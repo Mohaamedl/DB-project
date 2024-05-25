@@ -1,185 +1,280 @@
+USE rpg;
 
-use rpg
+DROP TABLE IF EXISTS [Character];
 
-drop table if exists [Character]
+CREATE TABLE [Language] (
+    ID INT NOT NULL,
+    Designation VARCHAR(64),
+    PRIMARY KEY(ID)
+);
 
+CREATE TABLE Ability_scores (
+    ID INT NOT NULL,
+    DEXTERITY INT NOT NULL,
+    STRENGTH INT NOT NULL,
+    CONSTITUTION INT NOT NULL,
+    INTELLIGENCE INT NOT NULL,
+    CHARISMA INT NOT NULL,
+    WISDOM INT NOT NULL,
+    PRIMARY KEY(ID)
+);
 
-create table [Language](
-	ID int not null,
-	Desig varchar(64)
-	primary key(ID)
-)
+CREATE TABLE Ancestry (
+    ID INT NOT NULL,
+    vision VARCHAR(28),
+    HP INT NOT NULL,
+    speed INT NOT NULL,
+    size CHAR(28) NOT NULL,
+	[name] VARCHAR(28) NOT NULL,
+    ability_scores_id INT REFERENCES Ability_scores(ID),
+    PRIMARY KEY(ID)
+);
 
+CREATE TABLE Background (
+    ID INT NOT NULL,
+    summary VARCHAR(512),
+	[name] VARCHAR(28) NOT NULL, 
+    PRIMARY KEY(ID)
+);
 
-create table Ability_scores(
-	ID int not null,
-	DEXTERITY int not null,
-	STRENGTH int not null,
-	CONSTITUTION  int not null,
-	INTELLIGENCE int not null,
-	CHARISMA int not null,
-	WINDSOM int not null
-	primary key(ID)
-)
+CREATE TABLE attackRoll (
+    ID INT NOT NULL,
+    proficiency INT NOT NULL,
+    [type] VARCHAR(28) NOT NULL,
+    PRIMARY KEY(ID)
+);
 
+CREATE TABLE Feat (
+    ID INT NOT NULL,
+    rarity CHAR(28) NOT NULL,
+    prerequisite VARCHAR(128) NULL,
+    summary VARCHAR(128) NULL,
+	[name] VARCHAR(28) NOT NULL, 
+    [level] INT NOT NULL,
+    PRIMARY KEY(ID)
+);
 
-create table Ancestry(
-	ID int not null,
-	vision varchar(28),
-	HP int not null,
-	speed int not null,
-	size char(28) not null,
-	ability_scores_id int references Ability_scores(id),
-	primary key(ID)
+CREATE TABLE Trait (
+    ID INT NOT NULL,
+    designation VARCHAR(28) NOT NULL,
+    details VARCHAR(128),
+    PRIMARY KEY(ID)
+);
 
-)
+CREATE TABLE Spell (
+    ID INT NOT NULL,
+    spell_type CHAR(28) NOT NULL,
+    [name] VARCHAR(28) NOT NULL,
+    actions VARCHAR(28) NOT NULL,
+    defense VARCHAR(28) NOT NULL,
+    [target] VARCHAR(64) NULL,
+    rarity CHAR(28) NOT NULL,
+    [trigger] VARCHAR(128) NULL,
+    area VARCHAR(64) NULL,
+    [rank] INT NOT NULL,
+    heighten INT NOT NULL,
+    duration VARCHAR(64) NULL,
+    [range] INT NULL,
+    PRIMARY KEY(ID)
+);
 
+CREATE TABLE Tradition (
+    ID INT NOT NULL,
+    [name] CHAR(28),
+    details VARCHAR(128),
+    PRIMARY KEY(ID)
+);
 
+CREATE TABLE Equipment (
+    ID INT NOT NULL,
+    [name] VARCHAR(64) NOT NULL,
+    item_category CHAR(64) NOT NULL,
+    item_sub_category CHAR(64) NULL,
+    usage CHAR(28) NULL,
+    [bulk] CHAR(1) NULL,
+    rarity CHAR(28) NOT NULL,
+    [level] INT NOT NULL DEFAULT 0,
+    price INT NULL,
+    PRIMARY KEY(ID)
+);
 
+CREATE TABLE Skill (
+    ID INT NOT NULL,
+    designation VARCHAR(28),
+    details VARCHAR(256),
+    PRIMARY KEY(ID)
+);
 
-create table Background(
-	ID int not null,
-	summary varchar(512)
-	primary key(ID)
+CREATE TABLE Spell_progression (
+    [level] INT NOT NULL,
+    cantrips INT NOT NULL,
+    n1 INT NULL,
+    n2 INT NULL,
+    n3 INT NULL,
+    n4 INT NULL,
+    n5 INT NULL,
+    n6 INT NULL,
+    n7 INT NULL,
+    n8 INT NULL,
+    n9 INT NULL,
+    n10 INT NULL,
+    PRIMARY KEY ([level])
+);
 
+CREATE TABLE saving_throws (
+    ID INT NOT NULL,
+    proficiency INT NOT NULL,
+    designation CHAR(28) NOT NULL,
+    [value] INT NOT NULL,
+    PRIMARY KEY (ID)
+);
 
-)
+CREATE TABLE Class (
+    ID INT NOT NULL,
+    [name] CHAR(28) NOT NULL,
+    HP INT NOT NULL,
+    skill_prof INT,
+    will_prof INT,
+    ID_tradition INT REFERENCES Tradition(ID),
+    reflex_prof INT NOT NULL,
+    ability VARCHAR(28) NOT NULL,
+    attack_prof INT NOT NULL,
+    defense_prof INT NOT NULL,
+    perception_prof INT NOT NULL,
+    progression_class_features VARCHAR(128),
+    progression_level INT,
+    spell_progression_id INT REFERENCES Spell_progression([level]),
+    PRIMARY KEY(ID)
+);
 
-create table attackRoll(
-	ID int not null,
-	proficiency int not null,
-	[type] varchar(28) not null
-	primary key(ID)
+CREATE TABLE [Character] (
+    ID INT UNIQUE NOT NULL,
+    Dex_mod INT,
+    Str_mod INT,
+    Wis_mod INT,
+    Con_mod INT,
+    Cha_mod INT,
+    Int_mod INT,
+    speed INT NOT NULL,
+    class_DC VARCHAR(28) NOT NULL,
+    [level] INT,
+    HP INT,
+    background_id INT REFERENCES Background(ID),
+    ability_scores_id INT REFERENCES Ability_scores(ID),
+    class_id INT REFERENCES Class(ID),
+    PRIMARY KEY(ID)
+);
 
-)
-create table Feat(
-	ID int not null,
-	rarity char(28) not null,
-	prerequisite varchar(128) null,
-	summary varchar(128) null,
-	[level] int not null
-	primary key(ID)
-)
+CREATE TABLE Background_tem_abilityScores (
+    id_background INT NOT NULL,
+    id_abilityScores INT NOT NULL,
+    PRIMARY KEY (id_background, id_abilityScores)
+);
 
+CREATE TABLE Character_tem_attackRolls (
+    id_character INT NOT NULL,
+    id_attackRolls INT NOT NULL,
+    PRIMARY KEY (id_character, id_attackRolls)
+);
 
-create table Trait(
-    ID int not null,
-    designation varchar(28) not null,
-    details varchar(128)
-	primary key(ID)
+CREATE TABLE Character_tem_Equipment (
+    id_character INT NOT NULL,
+    id_equipment INT NOT NULL,
+    PRIMARY KEY (id_character, id_equipment)
+);
 
-)
+CREATE TABLE Character_tem_feats (
+    id_character INT NOT NULL,
+    id_feats INT NOT NULL,
+    PRIMARY KEY (id_character, id_feats)
+);
 
+CREATE TABLE Character_tem_language (
+    id_character INT NOT NULL,
+    id_language INT NOT NULL,
+    PRIMARY KEY (id_character, id_language)
+);
 
-create table Spell(
-    ID int not null,
-    spell_type char(28) not null,
-    [name] varchar(28) not null,
-    actions varchar(28) not null,
-    defense varchar(28) not null,
-    [target] varchar(64) null,
-    rarity char(28) not null,
-    [trigger] varchar(128) null,
-    area varchar(64) null,
-    rank int not null,
-    heighten int not null,
-    duration varchar(64) null,
-    [range] int null
-    primary key(ID)
-)
+CREATE TABLE Character_tem_savingThrow (
+    id_character INT NOT NULL,
+    id_savingThrow INT NOT NULL,
+    PRIMARY KEY (id_character, id_savingThrow)
+);
 
+CREATE TABLE Character_tem_skills (
+    id_character INT NOT NULL,
+    id_skills INT NOT NULL,
+    PRIMARY KEY (id_character, id_skills)
+);
 
-create table Tradition(
-    ID int not null,
-    [name] char(28),
-    details varchar(128),
-    primary key(ID)
-)
+CREATE TABLE Character_tem_spells (
+    id_character INT NOT NULL,
+    id_spells INT NOT NULL,
+    PRIMARY KEY (id_character, id_spells)
+);
 
+CREATE TABLE class_tem_savingThrow (
+    id_class INT NOT NULL,
+    id_savingThrow INT NOT NULL,
+    PRIMARY KEY (id_class, id_savingThrow)
+);
 
-create table Equipment(
-    ID int not null,
-    [name] varchar(64) not null,
-    item_category char(64) not null,
-    item_sub_category char(64) null,
-    usage char(28) null,
-    [bulk] char(1) null,
-    rarity char(28) not null,
-    pfs int null,
-    [level] int not null default 0,
-    price int null
-    primary key(ID)
-    
-)
+CREATE TABLE class_tem_tradition (
+    id_class INT NOT NULL,
+    id_tradition INT NOT NULL,
+    PRIMARY KEY (id_class, id_tradition)
+);
 
-create table Skill(
-    ID int not null,
-    designation varchar(28),
-    details varchar(256),
-    primary key(ID)
-)
+CREATE TABLE equipment_tem_trait (
+    id_equipment INT NOT NULL,
+    id_trait INT NOT NULL,
+    PRIMARY KEY (id_equipment, id_trait)
+);
 
+CREATE TABLE feat_tem_background (
+    id_feat INT NOT NULL,
+    id_background INT NOT NULL,
+    PRIMARY KEY (id_feat, id_background)
+);
 
-create table Spell_progression(
-    [level] int not null,
-    contrips int not null,
-    n1 int null,
-    n2 int null,
-    n3 int null,
-    n4 int null,
-    n5 int null,
-    n6 int null,
-    n7 int null,
-    n8 int null,
-    n9 int null,
-    n10 int null
-    primary key ([level])
-)
+CREATE TABLE feat_tem_trait (
+    id_feat INT NOT NULL,
+    id_trait INT NOT NULL,
+    PRIMARY KEY (id_feat, id_trait)
+);
 
-create table saving_throws(
-    ID int not null,
-    proficiency int not null,
-    designation char(28) not null,
-    [value] int not null,
-    primary key (ID)
-)
+CREATE TABLE language_tem_ancestry (
+    id_language INT NOT NULL,
+    id_ancestry INT NOT NULL,
+    PRIMARY KEY (id_language, id_ancestry)
+);
 
+CREATE TABLE skills_tem_background (
+    id_skills INT NOT NULL,
+    id_background INT NOT NULL,
+    PRIMARY KEY (id_skills, id_background)
+);
 
-create table Class(
-    ID int not null,
-    [name] char(28) not null,
-    HP int not null,
-    skill_prof int,
-    will_proff int,
-    tradition char(28),-- deviamos ligar na tabela tradition?
-    reflex_prof int not null,
-    ability int not null,
-    attack_prof int not null,
-    defense_prof int not null,
-    perception_prof int not null,
-    progression_class_features varchar(128),
-    progression_level int,
-    spell_progression_id int references Spell_progression([level])
-    primary key (ID)
+CREATE TABLE skills_tem_class (
+    id_skills INT NOT NULL,
+    id_class INT NOT NULL,
+    PRIMARY KEY (id_skills, id_class)
+);
 
-)
+CREATE TABLE skill_tem_tradition (
+    id_skill INT NOT NULL,
+    id_tradition INT NOT NULL,
+    PRIMARY KEY (id_skill, id_tradition)
+);
 
+CREATE TABLE spells_tem_trait (
+    id_spells INT NOT NULL,
+    id_trait INT NOT NULL,
+    PRIMARY KEY (id_spells, id_trait)
+);
 
-
-create table [Character](
-	ID  int unique not null,
-	Dex_mo int,
-	Str_mod int,
-	Wid_mod int,
-	Cond_mod int,
-	Cha_mo int,
-	Int_mod int,
-	speed int not null,
-	class_DC varchar(28) not null,
-	[level] int,
-	HP int,
-    background_id int references Background(ID),
-    ability_scores_id int references Ability_scores(ID),
-    class_id int references Class(ID),
-	primary key(ID)
-)
+CREATE TABLE spells_tem_tradition (
+    id_spells INT NOT NULL,
+    id_tradition INT NOT NULL,
+    PRIMARY KEY (id_spells, id_tradition)
+);
