@@ -37,7 +37,7 @@ CREATE TABLE Background (
     PRIMARY KEY(ID)
 );
 
-CREATE TABLE attackRoll (
+CREATE TABLE Attack_rolls (
     ID INT NOT NULL,
     proficiency INT NOT NULL,
     [type] VARCHAR(28) NOT NULL,
@@ -121,7 +121,7 @@ CREATE TABLE Spell_progression (
     PRIMARY KEY ([level])
 );
 
-CREATE TABLE saving_throws (
+CREATE TABLE Saving_throws (
     ID INT NOT NULL,
     proficiency INT NOT NULL,
     designation CHAR(28) NOT NULL,
