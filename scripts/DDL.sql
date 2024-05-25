@@ -26,7 +26,8 @@ CREATE TABLE Ancestry (
     speed INT NOT NULL,
     size CHAR(28) NOT NULL,
 	[name] VARCHAR(28) NOT NULL,
-    ability_scores_id INT REFERENCES Ability_scores(ID),
+    ability_scores_flaw_id INT REFERENCES Ability_scores(ID),
+	ability_scores_boost_id INT REFERENCES Ability_scores(ID),
     PRIMARY KEY(ID)
 );
 
@@ -37,7 +38,7 @@ CREATE TABLE Background (
     PRIMARY KEY(ID)
 );
 
-CREATE TABLE attackRoll (
+CREATE TABLE Attack_rolls (
     ID INT NOT NULL,
     proficiency INT NOT NULL,
     [type] VARCHAR(28) NOT NULL,
@@ -121,7 +122,7 @@ CREATE TABLE Spell_progression (
     PRIMARY KEY ([level])
 );
 
-CREATE TABLE saving_throws (
+CREATE TABLE Saving_throws (
     ID INT NOT NULL,
     proficiency INT NOT NULL,
     designation CHAR(28) NOT NULL,
@@ -213,67 +214,67 @@ CREATE TABLE Character_tem_spells (
     PRIMARY KEY (id_character, id_spells)
 );
 
-CREATE TABLE class_tem_savingThrow (
+CREATE TABLE Class_tem_savingThrow (
     id_class INT NOT NULL,
     id_savingThrow INT NOT NULL,
     PRIMARY KEY (id_class, id_savingThrow)
 );
 
-CREATE TABLE class_tem_tradition (
+CREATE TABLE Class_tem_tradition (
     id_class INT NOT NULL,
     id_tradition INT NOT NULL,
     PRIMARY KEY (id_class, id_tradition)
 );
 
-CREATE TABLE equipment_tem_trait (
+CREATE TABLE Equipment_tem_trait (
     id_equipment INT NOT NULL,
     id_trait INT NOT NULL,
     PRIMARY KEY (id_equipment, id_trait)
 );
 
-CREATE TABLE feat_tem_background (
+CREATE TABLE Feat_tem_background (
     id_feat INT NOT NULL,
     id_background INT NOT NULL,
     PRIMARY KEY (id_feat, id_background)
 );
 
-CREATE TABLE feat_tem_trait (
+CREATE TABLE Feat_tem_trait (
     id_feat INT NOT NULL,
     id_trait INT NOT NULL,
     PRIMARY KEY (id_feat, id_trait)
 );
 
-CREATE TABLE language_tem_ancestry (
+CREATE TABLE Language_tem_ancestry (
     id_language INT NOT NULL,
     id_ancestry INT NOT NULL,
     PRIMARY KEY (id_language, id_ancestry)
 );
 
-CREATE TABLE skills_tem_background (
+CREATE TABLE Skills_tem_background (
     id_skills INT NOT NULL,
     id_background INT NOT NULL,
     PRIMARY KEY (id_skills, id_background)
 );
 
-CREATE TABLE skills_tem_class (
+CREATE TABLE Skills_tem_class (
     id_skills INT NOT NULL,
     id_class INT NOT NULL,
     PRIMARY KEY (id_skills, id_class)
 );
 
-CREATE TABLE skill_tem_tradition (
+CREATE TABLE Skill_tem_tradition (
     id_skill INT NOT NULL,
     id_tradition INT NOT NULL,
     PRIMARY KEY (id_skill, id_tradition)
 );
 
-CREATE TABLE spells_tem_trait (
+CREATE TABLE Spells_tem_trait (
     id_spells INT NOT NULL,
     id_trait INT NOT NULL,
     PRIMARY KEY (id_spells, id_trait)
 );
 
-CREATE TABLE spells_tem_tradition (
+CREATE TABLE Spells_tem_tradition (
     id_spells INT NOT NULL,
     id_tradition INT NOT NULL,
     PRIMARY KEY (id_spells, id_tradition)
