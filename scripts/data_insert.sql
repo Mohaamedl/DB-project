@@ -12,7 +12,8 @@ insert into Ancestry(
     [name],
     HP,
 	speed ,
-	size ,vision)
+	size ,
+	vision)
 
 select [name],hp,speed,size from openjson(@json_data)
 with(
