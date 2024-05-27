@@ -94,6 +94,7 @@ CREATE TABLE Equipment (
     usage CHAR(28) NULL,
     [bulk] CHAR(1) NULL,
     rarity CHAR(28) NOT NULL,
+	weapon_category varchar(28) NOT NULL
     [level] INT NOT NULL DEFAULT 0,
     price INT NULL,
     PRIMARY KEY(ID)
@@ -134,7 +135,6 @@ CREATE TABLE Class (
     ID INT NOT NULL,
     [name] CHAR(28) NOT NULL,
     HP INT NOT NULL,
-    skill_prof INT,
     will_prof INT,
     ID_tradition INT REFERENCES Tradition(ID),
     reflex_prof INT NOT NULL,
@@ -248,24 +248,6 @@ CREATE TABLE Language_tem_ancestry (
     id_language INT NOT NULL,
     id_ancestry INT NOT NULL,
     PRIMARY KEY (id_language, id_ancestry)
-);
-
-CREATE TABLE Skills_tem_background (
-    id_skills INT NOT NULL,
-    id_background INT NOT NULL,
-    PRIMARY KEY (id_skills, id_background)
-);
-
-CREATE TABLE Skills_tem_class (
-    id_skills INT NOT NULL,
-    id_class INT NOT NULL,
-    PRIMARY KEY (id_skills, id_class)
-);
-
-CREATE TABLE Skill_tem_tradition (
-    id_skill INT NOT NULL,
-    id_tradition INT NOT NULL,
-    PRIMARY KEY (id_skill, id_tradition)
 );
 
 CREATE TABLE Spells_tem_trait (
