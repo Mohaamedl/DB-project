@@ -8,5 +8,6 @@ namespace Interface
 {
     internal class Language
     {
+        public string designation {  get; set; }
     }
 }

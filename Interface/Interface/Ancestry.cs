@@ -9,7 +9,6 @@ namespace Interface
     internal class Ancestry
     {
 
-        public int ID { set; get; }
 
         public string name { set; get; } 
 

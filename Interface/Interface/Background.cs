@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Interface
 {
-    internal class Attack_rolls
+    public class Background
     {
-
-        public string profeciency { get; set; }
-        public string type { get; set; }
+        public string name {  get; set; }
+        public string summary { get; set; }
 
     }
 }

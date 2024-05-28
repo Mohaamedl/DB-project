@@ -7,6 +7,9 @@
     <Compile Update="EditCharacter.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FeatSelectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="HomePage.cs">
       <SubType>Form</SubType>
     </Compile>

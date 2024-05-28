@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Interface
 {
-    internal class Feats
+    public class Feat
     {
-        public int Id { get; set; }
+
         public string rarity { get; set; }
         public string prerequisite { get; set; }
         public string summary { get; set; }

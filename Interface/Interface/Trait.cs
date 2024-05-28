@@ -8,7 +8,6 @@ namespace Interface
 {
     internal class Trait
     {
-        public int ID {  get; set; }
         public string designation {  get; set; }
         public string details { get; set; }
 

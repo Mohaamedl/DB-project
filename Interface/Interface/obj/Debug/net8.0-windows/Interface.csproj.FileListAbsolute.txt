@@ -22,3 +22,4 @@ C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\o
 C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.CreateCharacter.resources
 C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.EditCharacter.resources
 C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.Properties.Resources.resources
+C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.FeatSelectionForm.resources

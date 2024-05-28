@@ -29,8 +29,8 @@ namespace Interface
             // Carregar alguns personagens para exemplo
             characters = new List<Character>
             {
-                new Character { Name = "Hero1", HP = 100, Level = 1, Class = "Warrior" },
-                new Character { Name = "Hero2", HP = 150, Level = 2, Class = "Mage" }
+                new Character { name = "Hero1", HP = 100, Level = 1},
+                new Character { name = "Hero2", HP = 150, Level = 2 }
             };
             listBoxCharacters.DataSource = null;
             listBoxCharacters.DataSource = characters;
@@ -41,10 +41,10 @@ namespace Interface
             selectedCharacter = listBoxCharacters.SelectedItem as Character;
             if (selectedCharacter != null)
             {
-                labelCharacterName.Text = selectedCharacter.Name;
+                labelCharacterName.Text = selectedCharacter.name;
                 labelCharacterHP.Text = $"HP: {selectedCharacter.HP}";
                 labelCharacterLevel.Text = $"Level: {selectedCharacter.Level}";
-                labelCharacterClass.Text = $"Class: {selectedCharacter.Class}";
+                
             }
         }
         private void buttonCreateCharacter_Click(object sender, EventArgs e)

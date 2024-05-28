@@ -27,18 +27,18 @@ namespace Interface
         }
         private void LoadCharacterData()
         {
-            textBoxName.Text = character.Name;
+            textBoxName.Text = character.name;
             textBoxHP.Text = character.HP.ToString();
             textBoxLevel.Text = character.Level.ToString();
-            textBoxClass.Text = character.Class;
+            
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            character.Name = textBoxName.Text;
+            character.name = textBoxName.Text;
             character.HP = int.Parse(textBoxHP.Text);
             character.Level = int.Parse(textBoxLevel.Text);
-            character.Class = textBoxClass.Text;
+            
 
             this.DialogResult = DialogResult.OK;
             this.Close();
