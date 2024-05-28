@@ -1,6 +1,35 @@
 USE rpg;
 
+DROP TABLE IF EXISTS Character_tem_language
+DROP TABLE IF EXISTS Language_tem_ancestry
+DROP TABLE IF EXISTS [Language]
+DROP TABLE IF EXISTS Spells_tem_tradition
+DROP TABLE IF EXISTS Feats_tem_background
+DROP TABLE IF EXISTS Character_tem_attackRolls
+DROP TABLE IF EXISTS Attack_rolls
+DROP TABLE IF EXISTS Character_tem_equipment
+DROP TABLE IF EXISTS Equipment_tem_traits
+DROP TABLE IF EXISTS Equipment
+DROP TABLE IF EXISTS Spells_tem_traits
+DROP TABLE IF EXISTS Feats_tem_traits
+DROP TABLE IF EXISTS Traits
+DROP TABLE IF EXISTS Class
+DROP TABLE IF EXISTS Spell_progression
+DROP TABLE IF EXISTS Tradition
+DROP TABLE IF EXISTS Character_tem_savingThrow
+DROP TABLE IF EXISTS Class_tem_savingThrow
+DROP TABLE IF EXISTS Saving_throws
+DROP TABLE IF EXISTS Character_tem_spells
+DROP TABLE IF EXISTS Spells
+DROP TABLE IF EXISTS Character_tem_feats
+DROP TABLE IF EXISTS Feats
+DROP TABLE IF EXISTS Ability_scores
+DROP TABLE IF EXISTS Character_tem_skills
+DROP TABLE IF EXISTS Skills
 DROP TABLE IF EXISTS [Character];
+DROP TABLE IF EXISTS Ancestry
+DROP TABLE IF EXISTS Background
+
 
 CREATE TABLE [Language] (
     ID INT NOT NULL,
@@ -19,26 +48,6 @@ CREATE TABLE Ability_scores (
     PRIMARY KEY(ID)
 );
 
-CREATE TABLE Ancestry (
-    ID INT NOT NULL,
-    vision VARCHAR(28),
-    HP INT NOT NULL,
-    speed INT NOT NULL,
-    size CHAR(14) NOT NULL,
-	[name] VARCHAR(28) NOT NULL,
-    ID_ability_scores_flaw INT REFERENCES Ability_scores(ID),
-	ID_ability_scores_boost INT REFERENCES Ability_scores(ID),
-    PRIMARY KEY(ID)
-);
-
-CREATE TABLE Background (
-    ID INT NOT NULL,
-    summary VARCHAR(512),
-	[name] VARCHAR(28) NOT NULL,
-	ID_ability_scores INT REFERENCES Ability_scores(ID),
-    PRIMARY KEY(ID)
-);
-
 CREATE TABLE Attack_rolls (
     ID INT NOT NULL,
     proficiency INT NOT NULL, --derivado de class.prof_attack
@@ -46,7 +55,7 @@ CREATE TABLE Attack_rolls (
     PRIMARY KEY(ID)
 );
 
-CREATE TABLE Feat (
+CREATE TABLE Feats (
     ID INT NOT NULL,
     rarity CHAR(28) NOT NULL,
     prerequisite VARCHAR(128) NULL,
@@ -56,14 +65,14 @@ CREATE TABLE Feat (
     PRIMARY KEY(ID)
 );
 
-CREATE TABLE Trait (
+CREATE TABLE Traits (
     ID INT NOT NULL,
     designation VARCHAR(28) NOT NULL,
     details VARCHAR(128),
     PRIMARY KEY(ID)
 );
 
-CREATE TABLE Spell (
+CREATE TABLE Spells (
     ID INT NOT NULL,
     spell_type CHAR(28) NOT NULL,
     [name] VARCHAR(28) NOT NULL,
@@ -101,7 +110,7 @@ CREATE TABLE Equipment (
     PRIMARY KEY(ID)
 );
 
-CREATE TABLE Skill (
+CREATE TABLE Skills (
     ID INT NOT NULL,
     designation VARCHAR(28),
     details VARCHAR(256),
@@ -132,6 +141,27 @@ CREATE TABLE Saving_throws (
     PRIMARY KEY (ID)
 );
 
+CREATE TABLE Ancestry (
+    ID INT NOT NULL,
+    vision VARCHAR(28),
+    HP INT NOT NULL,
+    speed INT NOT NULL,
+    size CHAR(14) NOT NULL,
+	[name] VARCHAR(28) NOT NULL,
+    ability_scores_flaw_id INT REFERENCES Ability_scores(ID),
+	ability_scores_boost_id INT REFERENCES Ability_scores(ID),
+    PRIMARY KEY(ID)
+);
+
+
+CREATE TABLE Background (
+    ID INT NOT NULL,
+    summary VARCHAR(512),
+	[name] VARCHAR(28) NOT NULL,
+	ID_ability_scores INT REFERENCES Ability_scores(ID),
+    PRIMARY KEY(ID)
+);
+
 CREATE TABLE Class (
     ID INT NOT NULL,
     [name] CHAR(28) NOT NULL,
@@ -141,7 +171,7 @@ CREATE TABLE Class (
 	prof_perception VARCHAR(32) NOT NULL,
 	prof_defense VARCHAR(128) NOT NULL,
 	prof_classDC VARCHAR(32) NOT NULL,
-    ID_tradition INT REFERENCES Tradition(ID),
+    tradition_id INT REFERENCES Tradition(ID),
     ability VARCHAR(28) NOT NULL,
 	progression_class_features VARCHAR(128) NOT NULL,
     progression_level INT,
@@ -151,102 +181,104 @@ CREATE TABLE Class (
 
 CREATE TABLE [Character] (
     ID INT UNIQUE NOT NULL,
-    Str_mod INT, --derivado de ability_scores
-    Dex_mod INT,
-    Con_mod INT,
-    Int_mod INT,
-    Wis_mod INT,
-    Cha_mod INT,
+    Str_mod INT NOT NULL, --derivado de ability_scores
+    Dex_mod INT NOT NULL,
+    Con_mod INT NOT NULL,
+    Int_mod INT NOT NULL,
+    Wis_mod INT NOT NULL,
+    Cha_mod INT NOT NULL,
     speed INT NOT NULL, -- derivado de ancestry.speed
     class_DC VARCHAR(28) NOT NULL, -- derivado de class.prof_classDC
     [level] INT NOT NULL,
+	[name] VARCHAR(28) NULL,
     HP INT NOT NULL, -- derivado de (class_HP + Con_mod) + Ancestry.HP
     background_id INT REFERENCES Background(ID),
     ability_scores_id INT REFERENCES Ability_scores(ID),
     class_id INT REFERENCES Class(ID),
+	ancestry_id INT REFERENCES Ancestry(ID),
     PRIMARY KEY(ID)
 );
 
 CREATE TABLE Character_tem_attackRolls (
-    id_character INT NOT NULL,
-    id_attackRolls INT NOT NULL,
+    id_character INT NOT NULL REFERENCES [Character](ID),
+    id_attackRolls INT NOT NULL REFERENCES Attack_rolls(ID),
     PRIMARY KEY (id_character, id_attackRolls)
 );
 
-CREATE TABLE Character_tem_Equipment (
-    id_character INT NOT NULL,
-    id_equipment INT NOT NULL,
+CREATE TABLE Character_tem_equipment (
+    id_character INT NOT NULL REFERENCES [Character](ID),
+    id_equipment INT NOT NULL REFERENCES Equipment(ID),
     PRIMARY KEY (id_character, id_equipment)
 );
 
 CREATE TABLE Character_tem_feats (
-    id_character INT NOT NULL,
-    id_feats INT NOT NULL,
+    id_character INT NOT NULL REFERENCES [Character](ID),
+    id_feats INT NOT NULL REFERENCES Feats(ID),
     PRIMARY KEY (id_character, id_feats)
 );
 
-CREATE TABLE Character_tem_language (
-    id_character INT NOT NULL,
-    id_language INT NOT NULL,
-    PRIMARY KEY (id_character, id_language)
-);
-
 CREATE TABLE Character_tem_savingThrow (
-    id_character INT NOT NULL,
-    id_savingThrow INT NOT NULL,
+    id_character INT NOT NULL REFERENCES [Character](ID),
+    id_savingThrow INT NOT NULL REFERENCES Saving_throws(ID),
     PRIMARY KEY (id_character, id_savingThrow)
 );
 
 CREATE TABLE Character_tem_skills (
-    id_character INT NOT NULL,
-    id_skills INT NOT NULL,
+    id_character INT NOT NULL REFERENCES [Character](ID),
+    id_skills INT NOT NULL REFERENCES Skills(ID),
     PRIMARY KEY (id_character, id_skills)
 );
 
 CREATE TABLE Character_tem_spells (
-    id_character INT NOT NULL,
-    id_spells INT NOT NULL,
+    id_character INT NOT NULL REFERENCES Character(ID),
+    id_spells INT NOT NULL REFERENCES Spells(ID),
     PRIMARY KEY (id_character, id_spells)
 );
 
 CREATE TABLE Class_tem_savingThrow (
-    id_class INT NOT NULL,
-    id_savingThrow INT NOT NULL,
+    id_class INT NOT NULL REFERENCES Class(ID),
+    id_savingThrow INT NOT NULL REFERENCES Saving_Throws(ID),
     PRIMARY KEY (id_class, id_savingThrow)
 );
 
-CREATE TABLE Equipment_tem_trait (
-    id_equipment INT NOT NULL,
-    id_trait INT NOT NULL,
+CREATE TABLE Equipment_tem_traits (
+    id_equipment INT NOT NULL REFERENCES Equipment(ID),
+    id_trait INT NOT NULL REFERENCES Traits(ID),
     PRIMARY KEY (id_equipment, id_trait)
 );
 
-CREATE TABLE Feat_tem_background (
-    id_feat INT NOT NULL,
-    id_background INT NOT NULL,
+CREATE TABLE Feats_tem_background (
+    id_feat INT NOT NULL REFERENCES Feats(ID),
+    id_background INT NOT NULL REFERENCES Background(ID),
     PRIMARY KEY (id_feat, id_background)
 );
 
-CREATE TABLE Feat_tem_trait (
-    id_feat INT NOT NULL,
-    id_trait INT NOT NULL,
+CREATE TABLE Feats_tem_traits (
+    id_feat INT NOT NULL REFERENCES Feats(ID),
+    id_trait INT NOT NULL REFERENCES Traits(ID),
     PRIMARY KEY (id_feat, id_trait)
 );
 
-CREATE TABLE Language_tem_ancestry (
-    id_language INT NOT NULL,
-    id_ancestry INT NOT NULL,
-    PRIMARY KEY (id_language, id_ancestry)
-);
-
-CREATE TABLE Spells_tem_trait (
-    id_spells INT NOT NULL,
-    id_trait INT NOT NULL,
+CREATE TABLE Spells_tem_traits (
+    id_spells INT NOT NULL REFERENCES Spells(ID),
+    id_trait INT NOT NULL REFERENCES Traits(ID),
     PRIMARY KEY (id_spells, id_trait)
 );
 
 CREATE TABLE Spells_tem_tradition (
-    id_spells INT NOT NULL,
-    id_tradition INT NOT NULL,
+    id_spells INT NOT NULL REFERENCES Spells(ID),
+    id_tradition INT NOT NULL REFERENCES Tradition(ID),
     PRIMARY KEY (id_spells, id_tradition)
+);
+
+CREATE TABLE Character_tem_language (
+    id_character INT NOT NULL REFERENCES [Character](ID),
+    id_language INT NOT NULL REFERENCES [Language](ID),
+    PRIMARY KEY (id_character, id_language)
+);
+
+CREATE TABLE Language_tem_ancestry (
+    id_language INT NOT NULL REFERENCES [Language](ID),
+    id_ancestry INT NOT NULL REFERENCES Ancestry(ID),
+    PRIMARY KEY (id_language, id_ancestry)
 );
