@@ -1,0 +1,43 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Interface
+{
+    internal class Spell
+    {
+
+        public string SpellType { get; set; }
+        public string Name { get; set; }
+        public string Actions { get; set; }
+        public string Defense { get; set; }
+        public string Target { get; set; }
+        public string Rarity { get; set; }
+        public string Trigger { get; set; }
+        public string Area { get; set; }
+        public int Rank { get; set; }
+        public int Heighten { get; set; }
+        public string Duration { get; set; }
+        public int? Range { get; set; }
+        public Spell() { }
+
+        // Construtor com parâmetros para inicializar todas as propriedades
+        public Spell(int id, string spellType, string name, string actions, string defense, string target, string rarity, string trigger, string area, int rank, int heighten, string duration, int? range)
+        {
+            SpellType = spellType;
+            Name = name;
+            Actions = actions;
+            Defense = defense;
+            Target = target;
+            Rarity = rarity;
+            Trigger = trigger;
+            Area = area;
+            Rank = rank;
+            Heighten = heighten;
+            Duration = duration;
+            Range = range;
+        }
+    }
+}

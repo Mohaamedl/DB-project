@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Interface/.vs
+Interface/.vs/Interface/DesignTimeBuild/.dtbcache.v2
+Interface/.vs/Interface/v17/DocumentLayout.json
+Interface/.vs/Interface/v17/.suo
+/Interface/.vs/Interface/v17/.suo
+/Interface/.vs/Interface/v17/DocumentLayout.json
+/Interface/.vs/Interface/DesignTimeBuild/.dtbcache.v2
