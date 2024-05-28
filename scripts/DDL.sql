@@ -24,24 +24,25 @@ CREATE TABLE Ancestry (
     vision VARCHAR(28),
     HP INT NOT NULL,
     speed INT NOT NULL,
-    size CHAR(28) NOT NULL,
+    size CHAR(14) NOT NULL,
 	[name] VARCHAR(28) NOT NULL,
-    ability_scores_flaw_id INT REFERENCES Ability_scores(ID),
-	ability_scores_boost_id INT REFERENCES Ability_scores(ID),
+    ID_ability_scores_flaw INT REFERENCES Ability_scores(ID),
+	ID_ability_scores_boost INT REFERENCES Ability_scores(ID),
     PRIMARY KEY(ID)
 );
 
 CREATE TABLE Background (
     ID INT NOT NULL,
     summary VARCHAR(512),
-	[name] VARCHAR(28) NOT NULL, 
+	[name] VARCHAR(28) NOT NULL,
+	ID_ability_scores INT REFERENCES Ability_scores(ID),
     PRIMARY KEY(ID)
 );
 
 CREATE TABLE Attack_rolls (
     ID INT NOT NULL,
-    proficiency INT NOT NULL,
-    [type] VARCHAR(28) NOT NULL,
+    proficiency INT NOT NULL, --derivado de class.prof_attack
+    [type] VARCHAR(28) NOT NULL, --either unarmed, simple, martial, advanced.
     PRIMARY KEY(ID)
 );
 
@@ -94,7 +95,7 @@ CREATE TABLE Equipment (
     usage CHAR(28) NULL,
     [bulk] CHAR(1) NULL,
     rarity CHAR(28) NOT NULL,
-	weapon_category varchar(28) NOT NULL
+	weapon_category varchar(28) NOT NULL,
     [level] INT NOT NULL DEFAULT 0,
     price INT NULL,
     PRIMARY KEY(ID)
@@ -125,7 +126,7 @@ CREATE TABLE Spell_progression (
 
 CREATE TABLE Saving_throws (
     ID INT NOT NULL,
-    proficiency INT NOT NULL,
+    proficiency INT NOT NULL, --derivado de class.prof_saving_throws
     designation CHAR(28) NOT NULL,
     [value] INT NOT NULL,
     PRIMARY KEY (ID)
@@ -135,14 +136,14 @@ CREATE TABLE Class (
     ID INT NOT NULL,
     [name] CHAR(28) NOT NULL,
     HP INT NOT NULL,
-    will_prof INT,
+	prof_attack	VARCHAR(128) NOT NULL,
+	prof_saving_throws VARCHAR(64) NOT NULL,
+	prof_perception VARCHAR(32) NOT NULL,
+	prof_defense VARCHAR(128) NOT NULL,
+	prof_classDC VARCHAR(32) NOT NULL,
     ID_tradition INT REFERENCES Tradition(ID),
-    reflex_prof INT NOT NULL,
     ability VARCHAR(28) NOT NULL,
-    attack_prof INT NOT NULL,
-    defense_prof INT NOT NULL,
-    perception_prof INT NOT NULL,
-    progression_class_features VARCHAR(128),
+	progression_class_features VARCHAR(128) NOT NULL,
     progression_level INT,
     spell_progression_id INT REFERENCES Spell_progression([level]),
     PRIMARY KEY(ID)
@@ -150,16 +151,16 @@ CREATE TABLE Class (
 
 CREATE TABLE [Character] (
     ID INT UNIQUE NOT NULL,
-    Dex_mod INT,
+    Dex_mod INT, --derivado de ability_scores
     Str_mod INT,
     Wis_mod INT,
     Con_mod INT,
     Cha_mod INT,
     Int_mod INT,
-    speed INT NOT NULL,
-    class_DC VARCHAR(28) NOT NULL,
-    [level] INT,
-    HP INT,
+    speed INT NOT NULL, -- derivado de ancestry.speed
+    class_DC VARCHAR(28) NOT NULL, -- derivado de class.prof_classDC
+    [level] INT NOT NULL,
+    HP INT NOT NULL, -- derivado de (class_HP + Con_mod) + Ancestry.HP
     background_id INT REFERENCES Background(ID),
     ability_scores_id INT REFERENCES Ability_scores(ID),
     class_id INT REFERENCES Class(ID),
@@ -218,12 +219,6 @@ CREATE TABLE Class_tem_savingThrow (
     id_class INT NOT NULL,
     id_savingThrow INT NOT NULL,
     PRIMARY KEY (id_class, id_savingThrow)
-);
-
-CREATE TABLE Class_tem_tradition (
-    id_class INT NOT NULL,
-    id_tradition INT NOT NULL,
-    PRIMARY KEY (id_class, id_tradition)
 );
 
 CREATE TABLE Equipment_tem_trait (
