@@ -13,9 +13,6 @@ DROP TABLE IF EXISTS Equipment
 DROP TABLE IF EXISTS Spells_tem_traits
 DROP TABLE IF EXISTS Feats_tem_traits
 DROP TABLE IF EXISTS Traits
-DROP TABLE IF EXISTS Class
-DROP TABLE IF EXISTS Spell_progression
-DROP TABLE IF EXISTS Tradition
 DROP TABLE IF EXISTS Character_tem_savingThrow
 DROP TABLE IF EXISTS Class_tem_savingThrow
 DROP TABLE IF EXISTS Saving_throws
@@ -23,12 +20,15 @@ DROP TABLE IF EXISTS Character_tem_spells
 DROP TABLE IF EXISTS Spells
 DROP TABLE IF EXISTS Character_tem_feats
 DROP TABLE IF EXISTS Feats
-DROP TABLE IF EXISTS Ability_scores
 DROP TABLE IF EXISTS Character_tem_skills
 DROP TABLE IF EXISTS Skills
 DROP TABLE IF EXISTS [Character];
 DROP TABLE IF EXISTS Ancestry
 DROP TABLE IF EXISTS Background
+DROP TABLE IF EXISTS Class
+DROP TABLE IF EXISTS Spell_progression
+DROP TABLE IF EXISTS Tradition
+DROP TABLE IF EXISTS Ability_scores
 
 
 CREATE TABLE [Language] (
