@@ -18,21 +18,25 @@ namespace Interface
         public CreateCharacter()
         {
             InitializeComponent();
-            InitializeFeats();
+
+            LoadInitialFeats();
         }
-        private void InitializeFeats()
-        {
-            // Inicialize sua lista de feats aqui
-            availableFeats = new List<Feat>
-            {
-                 new Feat { name = "Feat1", rarity = "Common", prerequisite = "None", summary = "Summary1", level = 1 },
-                new Feat { name = "Feat2", rarity = "Uncommon", prerequisite = "None", summary = "Summary2", level = 2 },
-                // Adicione mais feats conforme necessário
-            };
-        }
+        
         private void CreateCharacter_Load(object sender, EventArgs e)
         {
             
+        }
+        private void LoadInitialFeats()
+        {
+            try
+            {
+                availableFeats = DatabaseHelper.GetFeatsFromDatabase();
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading feats from database: " + ex.Message);
+            }
         }
         private void buttonSave_Click(object sender, EventArgs e)
         {
@@ -131,14 +135,19 @@ namespace Interface
                 if (featSelectionForm.ShowDialog() == DialogResult.OK)
                 {
                     var selectedFeats = featSelectionForm.SelectedFeats;
-                    feats.Text = string.Join(", ", selectedFeats.Select(f => f.name));
+                    feats_sel.Text = string.Join(", ", selectedFeats.Select(f => f.name));
                 }
             }
         }
         private void feats_MouseClick(object sender, MouseEventArgs e)
         {
-            this.feats.Text =" clicou";//setting cursor to the begining  on a mouse click
+            this.feats_sel.Text =" clicou";//setting cursor to the begining  on a mouse click
 
         }
+        
+       
+
+
+
     }
 }

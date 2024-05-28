@@ -24,15 +24,17 @@ namespace Interface
             InitializeComponent();
             Feats = feats ?? new List<Feat>();
             SelectedFeats = new List<Feat>();
-            
+
 
 
         }
 
         private void FeatSelectionForm_Load(object sender, EventArgs e)
         {
-            Feats.Add(new Feat { name = "Feat1", rarity = "Common", prerequisite = "None", summary = "Summary1", level = 1 });
-            Feats.Add(new Feat { name = "Feat2", rarity = "Uncommon", prerequisite = "None", summary = "Summary2", level = 2 });
+            DisplayFeats(Feats);
+        }
+        private void DisplayFeats(List<Feat> feats)
+        {
             listViewFeats.Columns.Add("Name", 150);
             listViewFeats.Columns.Add("Rarity", 100);
             listViewFeats.Columns.Add("Prerequisite", 150);
@@ -67,6 +69,23 @@ namespace Interface
         private void listViewFeats_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void load_all_Click(object sender, EventArgs e)
+        {
+            LoadAllFeats();
+        }
+        private void LoadAllFeats()
+        {
+            try
+            {
+               Feats = DatabaseHelper.GetAllFeatsFromDatabase();
+               DisplayFeats(Feats);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading all feats from database: " + ex.Message);
+            }
         }
     }
 }

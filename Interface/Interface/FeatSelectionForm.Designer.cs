@@ -19,6 +19,7 @@
         {
             listViewFeats = new ListView();
             btnSelect = new Button();
+            load_all = new Button();
             SuspendLayout();
             // 
             // listViewFeats
@@ -26,7 +27,6 @@
             listViewFeats.CheckBoxes = true;
             listViewFeats.FullRowSelect = true;
             listViewFeats.GridLines = true;
-            listViewFeats.HideSelection = false;
             listViewFeats.Location = new Point(12, 12);
             listViewFeats.Name = "listViewFeats";
             listViewFeats.Size = new Size(600, 300);
@@ -44,9 +44,20 @@
             btnSelect.UseVisualStyleBackColor = true;
             btnSelect.Click += btnSelect_Click;
             // 
+            // load_all
+            // 
+            load_all.Location = new Point(50, 318);
+            load_all.Name = "load_all";
+            load_all.Size = new Size(75, 23);
+            load_all.TabIndex = 2;
+            load_all.Text = "Load All";
+            load_all.UseVisualStyleBackColor = true;
+            load_all.Click += load_all_Click;
+            // 
             // FeatSelectionForm
             // 
             ClientSize = new Size(624, 353);
+            Controls.Add(load_all);
             Controls.Add(btnSelect);
             Controls.Add(listViewFeats);
             Name = "FeatSelectionForm";
@@ -54,5 +65,7 @@
             Load += FeatSelectionForm_Load;
             ResumeLayout(false);
         }
+
+        private Button load_all;
     }
 }

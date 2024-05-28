@@ -77,7 +77,7 @@
             label11 = new Label();
             label12 = new Label();
             button1 = new Button();
-            feats = new TextBox();
+            feats_sel = new TextBox();
             button2 = new Button();
             button3 = new Button();
             textBox2 = new TextBox();
@@ -454,12 +454,12 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // feats
+            // feats_sel
             // 
-            feats.Location = new Point(100, 240);
-            feats.Name = "feats";
-            feats.Size = new Size(100, 23);
-            feats.TabIndex = 25;
+            feats_sel.Location = new Point(100, 240);
+            feats_sel.Name = "feats_sel";
+            feats_sel.Size = new Size(100, 23);
+            feats_sel.TabIndex = 25;
             // 
             // button2
             // 
@@ -531,7 +531,7 @@
             Controls.Add(textBox2);
             Controls.Add(button3);
             Controls.Add(button2);
-            Controls.Add(feats);
+            Controls.Add(feats_sel);
             Controls.Add(button1);
             Controls.Add(label12);
             Controls.Add(label11);
@@ -598,7 +598,7 @@
         private Label label11;
         private Label label12;
         private Button button1;
-        private TextBox feats;
+        private TextBox feats_sel;
         private Button button2;
         private Button button3;
         private TextBox textBox2;
