@@ -19,7 +19,6 @@ DROP TABLE IF EXISTS Saving_throws
 DROP TABLE IF EXISTS Character_tem_spells
 DROP TABLE IF EXISTS Spells
 DROP TABLE IF EXISTS Character_tem_feats
-DROP TABLE IF EXISTS Feats
 DROP TABLE IF EXISTS Character_tem_skills
 DROP TABLE IF EXISTS Skills
 DROP TABLE IF EXISTS [Character];
@@ -29,16 +28,17 @@ DROP TABLE IF EXISTS Class
 DROP TABLE IF EXISTS Spell_progression
 DROP TABLE IF EXISTS Tradition
 DROP TABLE IF EXISTS Ability_scores
+DROP TABLE IF EXISTS Feats
 
 
 CREATE TABLE [Language] (
-    ID INT NOT NULL,
+    ID INT NOT NULL IDENTITY(1,1),
     Designation VARCHAR(64),
     PRIMARY KEY(ID)
 );
 
 CREATE TABLE Ability_scores (
-    ID INT NOT NULL,
+    ID INT NOT NULL IDENTITY(1,1),
     STRENGTH INT default 10,
 	DEXTERITY INT default 10,	--derivado de ancestry boost/flaw, Background e Class
     CONSTITUTION INT default 10,
@@ -49,14 +49,14 @@ CREATE TABLE Ability_scores (
 );
 
 CREATE TABLE Attack_rolls (
-    ID INT NOT NULL,
+    ID INT NOT NULL IDENTITY(1,1),
     proficiency INT NOT NULL, --derivado de class.prof_attack
     [type] VARCHAR(28) NOT NULL, --either unarmed, simple, martial, advanced.
     PRIMARY KEY(ID)
 );
 
 CREATE TABLE Feats (
-    ID INT NOT NULL,
+    ID INT NOT NULL IDENTITY(1,1),
     rarity CHAR(28) NOT NULL,
     prerequisite VARCHAR(128) NULL,
     summary VARCHAR(128) NULL,
@@ -66,14 +66,14 @@ CREATE TABLE Feats (
 );
 
 CREATE TABLE Traits (
-    ID INT NOT NULL,
+    ID INT NOT NULL IDENTITY(1,1),
     designation VARCHAR(28) NOT NULL,
     details VARCHAR(128),
     PRIMARY KEY(ID)
 );
 
 CREATE TABLE Spells (
-    ID INT NOT NULL,
+    ID INT NOT NULL IDENTITY(1,1),
     spell_type CHAR(28) NOT NULL,
     [name] VARCHAR(28) NOT NULL,
     actions VARCHAR(28) NOT NULL,
@@ -90,14 +90,14 @@ CREATE TABLE Spells (
 );
 
 CREATE TABLE Tradition (
-    ID INT NOT NULL,
+    ID INT NOT NULL IDENTITY(1,1),
     [name] CHAR(28),
     details VARCHAR(128),
     PRIMARY KEY(ID)
 );
 
 CREATE TABLE Equipment (
-    ID INT NOT NULL,
+    ID INT NOT NULL IDENTITY(1,1),
     [name] VARCHAR(64) NOT NULL,
     item_category CHAR(64) NOT NULL,
     item_sub_category CHAR(64) NULL,
@@ -111,7 +111,7 @@ CREATE TABLE Equipment (
 );
 
 CREATE TABLE Skills (
-    ID INT NOT NULL,
+    ID INT NOT NULL IDENTITY(1,1),
     designation VARCHAR(28),
     details VARCHAR(256),
     PRIMARY KEY(ID)
@@ -134,7 +134,7 @@ CREATE TABLE Spell_progression (
 );
 
 CREATE TABLE Saving_throws (
-    ID INT NOT NULL,
+    ID INT NOT NULL IDENTITY(1,1),
     proficiency INT NOT NULL, --derivado de class.prof_saving_throws
     designation CHAR(28) NOT NULL,
     [value] INT NOT NULL,
@@ -142,7 +142,7 @@ CREATE TABLE Saving_throws (
 );
 
 CREATE TABLE Ancestry (
-    ID INT NOT NULL,
+    ID INT NOT NULL IDENTITY(1,1),
     vision VARCHAR(28),
     HP INT NOT NULL,
     speed INT NOT NULL,
@@ -155,7 +155,7 @@ CREATE TABLE Ancestry (
 
 
 CREATE TABLE Background (
-    ID INT NOT NULL,
+    ID INT NOT NULL IDENTITY(1,1),
     summary VARCHAR(512),
 	[name] VARCHAR(28) NOT NULL,
 	ID_ability_scores INT REFERENCES Ability_scores(ID),
@@ -163,7 +163,7 @@ CREATE TABLE Background (
 );
 
 CREATE TABLE Class (
-    ID INT NOT NULL,
+    ID INT NOT NULL IDENTITY(1,1),
     [name] CHAR(28) NOT NULL,
     HP INT NOT NULL,
 	prof_attack	VARCHAR(128) NOT NULL,
@@ -180,7 +180,7 @@ CREATE TABLE Class (
 );
 
 CREATE TABLE [Character] (
-    ID INT UNIQUE NOT NULL,
+    ID INT UNIQUE NOT NULL IDENTITY(1,1),
     Str_mod INT NOT NULL, --derivado de ability_scores
     Dex_mod INT NOT NULL,
     Con_mod INT NOT NULL,
