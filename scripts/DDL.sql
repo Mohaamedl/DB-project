@@ -10,12 +10,12 @@ CREATE TABLE [Language] (
 
 CREATE TABLE Ability_scores (
     ID INT NOT NULL,
-    DEXTERITY INT NOT NULL,
-    STRENGTH INT NOT NULL,
-    CONSTITUTION INT NOT NULL,
-    INTELLIGENCE INT NOT NULL,
-    CHARISMA INT NOT NULL,
-    WISDOM INT NOT NULL,
+    STRENGTH INT default 10,
+	DEXTERITY INT default 10,	--derivado de ancestry boost/flaw, Background e Class
+    CONSTITUTION INT default 10,
+    INTELLIGENCE INT default 10,
+    WISDOM INT default 10,
+    CHARISMA INT default 10,
     PRIMARY KEY(ID)
 );
 
@@ -151,12 +151,12 @@ CREATE TABLE Class (
 
 CREATE TABLE [Character] (
     ID INT UNIQUE NOT NULL,
-    Dex_mod INT, --derivado de ability_scores
-    Str_mod INT,
-    Wis_mod INT,
+    Str_mod INT, --derivado de ability_scores
+    Dex_mod INT,
     Con_mod INT,
-    Cha_mod INT,
     Int_mod INT,
+    Wis_mod INT,
+    Cha_mod INT,
     speed INT NOT NULL, -- derivado de ancestry.speed
     class_DC VARCHAR(28) NOT NULL, -- derivado de class.prof_classDC
     [level] INT NOT NULL,
@@ -165,12 +165,6 @@ CREATE TABLE [Character] (
     ability_scores_id INT REFERENCES Ability_scores(ID),
     class_id INT REFERENCES Class(ID),
     PRIMARY KEY(ID)
-);
-
-CREATE TABLE Background_tem_abilityScores (
-    id_background INT NOT NULL,
-    id_abilityScores INT NOT NULL,
-    PRIMARY KEY (id_background, id_abilityScores)
 );
 
 CREATE TABLE Character_tem_attackRolls (
