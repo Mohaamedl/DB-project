@@ -21,7 +21,7 @@ DROP TABLE IF EXISTS Spells
 DROP TABLE IF EXISTS Character_tem_feats
 DROP TABLE IF EXISTS Character_tem_skills
 DROP TABLE IF EXISTS Skills
-DROP TABLE IF EXISTS [Character];
+DROP TABLE IF EXISTS [Character]
 DROP TABLE IF EXISTS Ancestry
 DROP TABLE IF EXISTS Background
 DROP TABLE IF EXISTS Class
@@ -83,9 +83,9 @@ CREATE TABLE Spells (
     [trigger] VARCHAR(128) NULL,
     area VARCHAR(64) NULL,
     [rank] INT NOT NULL,
-    heighten INT NOT NULL,
+    heighten VARCHAR(64),
     duration VARCHAR(64) NULL,
-    [range] INT NULL,
+    [range] VARCHAR(64),
     PRIMARY KEY(ID)
 );
 
