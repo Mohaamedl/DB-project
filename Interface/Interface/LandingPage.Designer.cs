@@ -32,15 +32,16 @@
             button1 = new Button();
             label1 = new Label();
             panel1 = new Panel();
+            panel2 = new Panel();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.BackColor = Color.FromArgb(64, 64, 64);
+            button1.BackColor = Color.Brown;
             button1.Font = new Font("Tempus Sans ITC", 24.75F, FontStyle.Bold);
-            button1.ForeColor = Color.DarkOrange;
-            button1.Location = new Point(129, 398);
+            button1.ForeColor = Color.NavajoWhite;
+            button1.Location = new Point(215, 378);
             button1.Name = "button1";
             button1.Size = new Size(166, 73);
             button1.TabIndex = 0;
@@ -57,22 +58,32 @@
             label1.ForeColor = Color.DarkOrange;
             label1.Location = new Point(68, 48);
             label1.Name = "label1";
-            label1.Size = new Size(314, 124);
+            label1.Size = new Size(0, 62);
             label1.TabIndex = 1;
-            label1.Text = "Welcome\r\nto PathFinder\r\n";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             label1.UseMnemonic = false;
             label1.Click += label1_Click;
             // 
             // panel1
             // 
+            panel1.Controls.Add(panel2);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(326, 22);
+            panel1.Location = new Point(230, 22);
             panel1.Name = "panel1";
-            panel1.Size = new Size(430, 498);
+            panel1.Size = new Size(601, 498);
             panel1.TabIndex = 2;
             panel1.Paint += panel1_Paint;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.Transparent;
+            panel2.BackgroundImage = (Image)resources.GetObject("panel2.BackgroundImage");
+            panel2.Location = new Point(0, 143);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(601, 139);
+            panel2.TabIndex = 2;
+            panel2.Paint += panel2_Paint;
             // 
             // LandingPage
             // 
@@ -97,5 +108,6 @@
         private Button button1;
         private Label label1;
         private Panel panel1;
+        private Panel panel2;
     }
 }
