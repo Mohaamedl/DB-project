@@ -104,6 +104,7 @@
             columnHeader2 = new ColumnHeader();
             selectedEquipmentListView = new ListView();
             columnHeader3 = new ColumnHeader();
+            columnHeader1 = new ColumnHeader();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -540,6 +541,7 @@
             button8.TabIndex = 42;
             button8.Text = "Select";
             button8.UseVisualStyleBackColor = true;
+            button8.Click += button8_Click;
             // 
             // label14
             // 
@@ -637,7 +639,7 @@
             // 
             // selectedTraitsListView
             // 
-            selectedTraitsListView.Columns.AddRange(new ColumnHeader[] { columnHeader2 });
+            selectedTraitsListView.Columns.AddRange(new ColumnHeader[] { columnHeader2, columnHeader1 });
             selectedTraitsListView.Location = new Point(370, 344);
             selectedTraitsListView.Name = "selectedTraitsListView";
             selectedTraitsListView.Size = new Size(284, 132);
@@ -647,7 +649,7 @@
             // 
             // columnHeader2
             // 
-            columnHeader2.Text = "name";
+            columnHeader2.Text = "designation";
             // 
             // selectedEquipmentListView
             // 
@@ -662,6 +664,10 @@
             // columnHeader3
             // 
             columnHeader3.Text = "name";
+            // 
+            // columnHeader1
+            // 
+            columnHeader1.Text = "details";
             // 
             // CreateCharacter
             // 
@@ -783,6 +789,7 @@
         private ColumnHeader rankSpell;
         private ColumnHeader actionSpell;
         private ColumnHeader raritySpell;
+        private ColumnHeader columnHeader1;
     }
     
 }

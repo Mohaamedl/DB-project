@@ -38,3 +38,4 @@ C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\o
 C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.EquipmentSelectionForm.resources
 C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.LanguageSelecttionForm.resources
 C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.SpellSelectionForm.resources
+C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.TraitsSelectionForm.resources

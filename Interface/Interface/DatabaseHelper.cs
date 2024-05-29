@@ -53,7 +53,7 @@ namespace Interface
             {
                 string query = $"SELECT TOP {limit} name, rarity, actions, rank, range FROM Spells ORDER BY name";
 
-                SqlCommand command = new SqlCommand(query, connection);
+                SqlCommand command = new(query, connection);
                 connection.Open();
 
                 using (SqlDataReader reader = command.ExecuteReader())
@@ -78,6 +78,38 @@ namespace Interface
         public static List<Spell> GetAllSpellsFromDatabase()
         {
             return GetSpellsFromDatabase(int.MaxValue);
+        }
+        public static List<Trait> GetTraitsFromDatabase(int limit = 20)
+        {
+            var traits = new List<Trait>();
+
+            using (SqlConnection connection = new(connectionString))
+            {
+                string query = $"SELECT TOP {limit} designation, details FROM Traits ORDER BY designation";
+
+                SqlCommand command = new(query, connection);
+                connection.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var trait = new Trait
+                        {
+                            designation = reader["designation"].ToString(),
+                            details = reader["details"].ToString()
+                            
+                        };
+                        traits.Add(trait);
+                    }
+                }
+            }
+
+            return traits;
+        }
+        public static List<Trait> GetAllTraitsFromDatabase()
+        {
+            return GetTraitsFromDatabase(int.MaxValue);
         }
 
     }

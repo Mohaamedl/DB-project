@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Interface
 {
-    internal class Trait
+    public class Trait
     {
         public string designation {  get; set; }
         public string details { get; set; }

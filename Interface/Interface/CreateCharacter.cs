@@ -16,12 +16,13 @@ namespace Interface
         public Character NewCharacter { get; private set; }
         private List<Feat> availableFeats;
         private List<Spell> availableSpells;
+        private List<Trait> availableTraits;
         public CreateCharacter()
         {
             InitializeComponent();
-
             LoadInitialFeats();
             LoadInitialSpells();
+            LoadInitialTraits();
 
         }
 
@@ -50,9 +51,24 @@ namespace Interface
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error loading feats from database: " + ex.Message);
+                MessageBox.Show("Error loading Spells from database: " + ex.Message);
             }
         }
+        private void LoadInitialTraits()
+        {
+            try
+            {
+                availableTraits = DatabaseHelper.GetTraitsFromDatabase();
+                
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading Traits from database: " + ex.Message);
+            }
+        }
+
+
         private void buttonSave_Click(object sender, EventArgs e)
         {
             NewCharacter = new Character
@@ -166,11 +182,7 @@ namespace Interface
                 }
             }
         }
-        private void feats_MouseClick(object sender, MouseEventArgs e)
-        {
-            this.feats_sel.Text = " clicou";//setting cursor to the begining  on a mouse click
-
-        }
+        
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -179,7 +191,7 @@ namespace Interface
                 if (spellSelectionForm.ShowDialog() == DialogResult.OK)
                 {
                     var selectedSpells = spellSelectionForm.SelectedSpells;
-                    
+
                     foreach (var spell in selectedSpells)
                     {
                         var item = new ListViewItem(new[]
@@ -192,6 +204,29 @@ namespace Interface
                         });
 
                         selectedSpellsListView.Items.Add(item);
+                    }
+                }
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            using (var traitSelectionForm = new TraitsSelectionForm(availableTraits))
+            {
+                if (traitSelectionForm.ShowDialog() == DialogResult.OK)
+                {
+                    var selectedTraits = traitSelectionForm.SelectedTraits;
+
+                    foreach (var trait in selectedTraits)
+                    {
+                        var item = new ListViewItem(new[]
+                        {
+                            trait.designation,
+                            trait.details
+                            
+                        });
+
+                        selectedTraitsListView.Items.Add(item);
                     }
                 }
             }
