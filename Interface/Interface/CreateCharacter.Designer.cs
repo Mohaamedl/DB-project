@@ -47,11 +47,8 @@
             labelHP = new Label();
             labelLevel = new Label();
             labelClass = new Label();
-            comboBox1 = new ComboBox();
             label1 = new Label();
             label2 = new Label();
-            comboBox2 = new ComboBox();
-            comboBox3 = new ComboBox();
             panel1 = new Panel();
             char_mod = new TextBox();
             wisd_mod = new TextBox();
@@ -71,7 +68,6 @@
             label4 = new Label();
             label3 = new Label();
             label8 = new Label();
-            listBox1 = new ListBox();
             textBox1 = new TextBox();
             label9 = new Label();
             label11 = new Label();
@@ -85,7 +81,31 @@
             textBox4 = new TextBox();
             label13 = new Label();
             button4 = new Button();
+            textBox9 = new TextBox();
+            button6 = new Button();
+            button7 = new Button();
+            button8 = new Button();
+            label14 = new Label();
+            textBox10 = new TextBox();
+            panel2 = new Panel();
+            label15 = new Label();
+            listBox5 = new ListBox();
+            selectedFeatsListView = new ListView();
+            name = new ColumnHeader();
+            rarity = new ColumnHeader();
+            prerequisite = new ColumnHeader();
+            level = new ColumnHeader();
+            selectedSpellsListView = new ListView();
+            nameSpell = new ColumnHeader();
+            rankSpell = new ColumnHeader();
+            actionSpell = new ColumnHeader();
+            raritySpell = new ColumnHeader();
+            selectedTraitsListView = new ListView();
+            columnHeader2 = new ColumnHeader();
+            selectedEquipmentListView = new ListView();
+            columnHeader3 = new ColumnHeader();
             panel1.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // textBoxStr
@@ -94,7 +114,7 @@
             textBoxStr.Name = "textBoxStr";
             textBoxStr.Size = new Size(54, 23);
             textBoxStr.TabIndex = 18;
-            textBoxStr.Text = "100";
+            textBoxStr.Text = "10";
             textBoxStr.TextChanged += textBoxStr_TextChanged;
             // 
             // textBoxName
@@ -121,15 +141,15 @@
             // 
             // textBoxClass
             // 
-            textBoxClass.Location = new Point(225, 154);
+            textBoxClass.Location = new Point(100, 143);
             textBoxClass.Name = "textBoxClass";
-            textBoxClass.Size = new Size(54, 23);
+            textBoxClass.Size = new Size(150, 23);
             textBoxClass.TabIndex = 3;
             // 
             // buttonSave
             // 
             buttonSave.Font = new Font("Segoe UI", 12F);
-            buttonSave.Location = new Point(1058, 281);
+            buttonSave.Location = new Point(98, 384);
             buttonSave.Name = "buttonSave";
             buttonSave.Size = new Size(112, 57);
             buttonSave.TabIndex = 4;
@@ -173,20 +193,10 @@
             labelClass.TabIndex = 8;
             labelClass.Text = "Class";
             // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "1", "2", "3", "4" });
-            comboBox1.Location = new Point(100, 140);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
-            comboBox1.TabIndex = 10;
-            comboBox1.Text = "1";
-            // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(20, 175);
+            label1.Location = new Point(19, 243);
             label1.Name = "label1";
             label1.Size = new Size(72, 15);
             label1.TabIndex = 11;
@@ -196,27 +206,11 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(20, 205);
+            label2.Location = new Point(22, 176);
             label2.Name = "label2";
             label2.Size = new Size(53, 15);
             label2.TabIndex = 12;
             label2.Text = "Ancestry";
-            // 
-            // comboBox2
-            // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(98, 175);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(121, 23);
-            comboBox2.TabIndex = 13;
-            // 
-            // comboBox3
-            // 
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(100, 202);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(121, 23);
-            comboBox3.TabIndex = 14;
             // 
             // panel1
             // 
@@ -238,9 +232,11 @@
             panel1.Controls.Add(label5);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(label3);
-            panel1.Location = new Point(997, 20);
+            panel1.Controls.Add(buttonSave);
+            panel1.Dock = DockStyle.Right;
+            panel1.Location = new Point(992, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(250, 234);
+            panel1.Size = new Size(297, 493);
             panel1.TabIndex = 15;
             panel1.Paint += panel1_Paint;
             // 
@@ -393,24 +389,16 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(333, 21);
+            label8.Location = new Point(295, 17);
             label8.Name = "label8";
             label8.Size = new Size(38, 15);
             label8.TabIndex = 16;
             label8.Text = "speed";
             // 
-            // listBox1
-            // 
-            listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 15;
-            listBox1.Location = new Point(745, 37);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(216, 199);
-            listBox1.TabIndex = 17;
-            // 
             // textBox1
             // 
-            textBox1.Location = new Point(388, 18);
+            textBox1.BackColor = SystemColors.InactiveBorder;
+            textBox1.Location = new Point(350, 14);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(100, 23);
             textBox1.TabIndex = 18;
@@ -418,7 +406,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(25, 239);
+            label9.Location = new Point(409, 44);
             label9.Name = "label9";
             label9.Size = new Size(34, 15);
             label9.TabIndex = 19;
@@ -428,7 +416,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(20, 323);
+            label11.Location = new Point(710, 290);
             label11.Name = "label11";
             label11.Size = new Size(65, 15);
             label11.TabIndex = 21;
@@ -438,7 +426,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(20, 289);
+            label12.Location = new Point(20, 205);
             label12.Name = "label12";
             label12.Size = new Size(71, 15);
             label12.TabIndex = 22;
@@ -446,7 +434,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(206, 240);
+            button1.Location = new Point(579, 41);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 24;
@@ -456,14 +444,14 @@
             // 
             // feats_sel
             // 
-            feats_sel.Location = new Point(100, 240);
+            feats_sel.Location = new Point(473, 41);
             feats_sel.Name = "feats_sel";
             feats_sel.Size = new Size(100, 23);
             feats_sel.TabIndex = 25;
             // 
             // button2
             // 
-            button2.Location = new Point(206, 286);
+            button2.Location = new Point(256, 201);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 26;
@@ -472,7 +460,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(206, 319);
+            button3.Location = new Point(896, 286);
             button3.Name = "button3";
             button3.Size = new Size(75, 23);
             button3.TabIndex = 27;
@@ -481,29 +469,29 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(98, 286);
+            textBox2.Location = new Point(98, 202);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(100, 23);
+            textBox2.Size = new Size(152, 23);
             textBox2.TabIndex = 28;
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(100, 320);
+            textBox3.Location = new Point(790, 287);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(100, 23);
             textBox3.TabIndex = 29;
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(98, 358);
+            textBox4.Location = new Point(62, 298);
             textBox4.Name = "textBox4";
-            textBox4.Size = new Size(100, 23);
+            textBox4.Size = new Size(155, 23);
             textBox4.TabIndex = 30;
             // 
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(25, 361);
+            label13.Location = new Point(12, 300);
             label13.Name = "label13";
             label13.Size = new Size(37, 15);
             label13.TabIndex = 31;
@@ -511,19 +499,188 @@
             // 
             // button4
             // 
-            button4.Location = new Point(204, 361);
+            button4.Location = new Point(235, 298);
             button4.Name = "button4";
             button4.Size = new Size(75, 23);
             button4.TabIndex = 32;
             button4.Text = "Select";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
+            // 
+            // textBox9
+            // 
+            textBox9.Location = new Point(100, 173);
+            textBox9.Name = "textBox9";
+            textBox9.Size = new Size(152, 23);
+            textBox9.TabIndex = 34;
+            // 
+            // button6
+            // 
+            button6.Location = new Point(256, 140);
+            button6.Name = "button6";
+            button6.Size = new Size(75, 23);
+            button6.TabIndex = 36;
+            button6.Text = "Select";
+            button6.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            button7.Location = new Point(258, 168);
+            button7.Name = "button7";
+            button7.Size = new Size(75, 23);
+            button7.TabIndex = 37;
+            button7.Text = "Select";
+            button7.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            button8.Location = new Point(604, 288);
+            button8.Name = "button8";
+            button8.Size = new Size(75, 23);
+            button8.TabIndex = 42;
+            button8.Text = "Select";
+            button8.UseVisualStyleBackColor = true;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(370, 291);
+            label14.Name = "label14";
+            label14.Size = new Size(34, 15);
+            label14.TabIndex = 41;
+            label14.Text = "Traits";
+            // 
+            // textBox10
+            // 
+            textBox10.Location = new Point(431, 287);
+            textBox10.Name = "textBox10";
+            textBox10.Size = new Size(155, 23);
+            textBox10.TabIndex = 40;
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(label15);
+            panel2.Location = new Point(710, 25);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(261, 233);
+            panel2.TabIndex = 44;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(119, 16);
+            label15.Name = "label15";
+            label15.Size = new Size(33, 15);
+            label15.TabIndex = 0;
+            label15.Text = "Skills";
+            // 
+            // listBox5
+            // 
+            listBox5.FormattingEnabled = true;
+            listBox5.ItemHeight = 15;
+            listBox5.Location = new Point(97, 231);
+            listBox5.Name = "listBox5";
+            listBox5.Size = new Size(157, 64);
+            listBox5.TabIndex = 45;
+            // 
+            // selectedFeatsListView
+            // 
+            selectedFeatsListView.Columns.AddRange(new ColumnHeader[] { name, rarity, prerequisite, level });
+            selectedFeatsListView.Location = new Point(409, 88);
+            selectedFeatsListView.Name = "selectedFeatsListView";
+            selectedFeatsListView.Size = new Size(295, 137);
+            selectedFeatsListView.TabIndex = 46;
+            selectedFeatsListView.UseCompatibleStateImageBehavior = false;
+            selectedFeatsListView.View = View.Details;
+            // 
+            // name
+            // 
+            name.Text = "name";
+            // 
+            // rarity
+            // 
+            rarity.Text = "rarity";
+            // 
+            // prerequisite
+            // 
+            prerequisite.Text = "prerequisite";
+            // 
+            // level
+            // 
+            level.Text = "level";
+            // 
+            // selectedSpellsListView
+            // 
+            selectedSpellsListView.Columns.AddRange(new ColumnHeader[] { nameSpell, rankSpell, actionSpell, raritySpell });
+            selectedSpellsListView.Location = new Point(37, 327);
+            selectedSpellsListView.Name = "selectedSpellsListView";
+            selectedSpellsListView.Size = new Size(248, 149);
+            selectedSpellsListView.TabIndex = 47;
+            selectedSpellsListView.UseCompatibleStateImageBehavior = false;
+            selectedSpellsListView.View = View.Details;
+            // 
+            // nameSpell
+            // 
+            nameSpell.Text = "name";
+            // 
+            // rankSpell
+            // 
+            rankSpell.Text = "rank";
+            // 
+            // actionSpell
+            // 
+            actionSpell.Text = "action";
+            // 
+            // raritySpell
+            // 
+            raritySpell.Text = "rarity";
+            // 
+            // selectedTraitsListView
+            // 
+            selectedTraitsListView.Columns.AddRange(new ColumnHeader[] { columnHeader2 });
+            selectedTraitsListView.Location = new Point(370, 344);
+            selectedTraitsListView.Name = "selectedTraitsListView";
+            selectedTraitsListView.Size = new Size(284, 132);
+            selectedTraitsListView.TabIndex = 48;
+            selectedTraitsListView.UseCompatibleStateImageBehavior = false;
+            selectedTraitsListView.View = View.Details;
+            // 
+            // columnHeader2
+            // 
+            columnHeader2.Text = "name";
+            // 
+            // selectedEquipmentListView
+            // 
+            selectedEquipmentListView.Columns.AddRange(new ColumnHeader[] { columnHeader3 });
+            selectedEquipmentListView.Location = new Point(710, 344);
+            selectedEquipmentListView.Name = "selectedEquipmentListView";
+            selectedEquipmentListView.Size = new Size(244, 132);
+            selectedEquipmentListView.TabIndex = 49;
+            selectedEquipmentListView.UseCompatibleStateImageBehavior = false;
+            selectedEquipmentListView.View = View.Details;
+            // 
+            // columnHeader3
+            // 
+            columnHeader3.Text = "name";
             // 
             // CreateCharacter
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.BurlyWood;
-            ClientSize = new Size(1279, 519);
+            ClientSize = new Size(1289, 493);
+            Controls.Add(selectedEquipmentListView);
+            Controls.Add(selectedTraitsListView);
+            Controls.Add(selectedSpellsListView);
+            Controls.Add(selectedFeatsListView);
+            Controls.Add(listBox5);
+            Controls.Add(panel2);
+            Controls.Add(button8);
+            Controls.Add(label14);
+            Controls.Add(textBox10);
+            Controls.Add(button7);
+            Controls.Add(button6);
+            Controls.Add(textBox9);
             Controls.Add(button4);
             Controls.Add(label13);
             Controls.Add(textBox4);
@@ -537,19 +694,14 @@
             Controls.Add(label11);
             Controls.Add(label9);
             Controls.Add(textBox1);
-            Controls.Add(listBox1);
             Controls.Add(label8);
             Controls.Add(panel1);
-            Controls.Add(comboBox3);
-            Controls.Add(comboBox2);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(comboBox1);
             Controls.Add(labelClass);
             Controls.Add(labelLevel);
             Controls.Add(labelHP);
             Controls.Add(labelName);
-            Controls.Add(buttonSave);
             Controls.Add(textBoxClass);
             Controls.Add(textBoxLevel);
             Controls.Add(textBoxHP);
@@ -560,17 +712,15 @@
             Load += CreateCharacter_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private ComboBox comboBox1;
         private Label label1;
         private Label label2;
-        private ComboBox comboBox2;
-        private ComboBox comboBox3;
         private Panel panel1;
         private Label label7;
         private Label label6;
@@ -592,7 +742,6 @@
         private TextBox dex_mod;
         internal TextBox textBoxName;
         private Label label8;
-        private ListBox listBox1;
         private TextBox textBox1;
         private Label label9;
         private Label label11;
@@ -606,5 +755,34 @@
         private TextBox textBox4;
         private Label label13;
         private Button button4;
+        private TextBox textBox9;
+        private Button button6;
+        private Button button7;
+
+        private Button button8;
+        private Label label14;
+        private TextBox textBox10;
+        private Panel panel2;
+        private Label label15;
+        private ListBox listBox5;
+        private ListView selectedFeatsListView = new System.Windows.Forms.ListView();
+        private ColumnHeader columnHeaderNameFeats = new System.Windows.Forms.ColumnHeader();
+        private ColumnHeader columnHeaderRarityFeats = new System.Windows.Forms.ColumnHeader();
+        private ColumnHeader columnHeaderPrerequisiteFeats = new System.Windows.Forms.ColumnHeader();
+        private ColumnHeader columnHeaderLevelFeats = new System.Windows.Forms.ColumnHeader();
+        private ColumnHeader name;
+        private ColumnHeader rarity;
+        private ColumnHeader prerequisite;
+        private ColumnHeader level;
+        private ListView selectedSpellsListView;
+        private ColumnHeader nameSpell;
+        private ListView selectedTraitsListView;
+        private ColumnHeader columnHeader2;
+        private ListView selectedEquipmentListView;
+        private ColumnHeader columnHeader3;
+        private ColumnHeader rankSpell;
+        private ColumnHeader actionSpell;
+        private ColumnHeader raritySpell;
     }
+    
 }

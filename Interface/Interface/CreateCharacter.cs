@@ -15,23 +15,38 @@ namespace Interface
     {
         public Character NewCharacter { get; private set; }
         private List<Feat> availableFeats;
+        private List<Spell> availableSpells;
         public CreateCharacter()
         {
             InitializeComponent();
 
             LoadInitialFeats();
+            LoadInitialSpells();
+
         }
-        
+
         private void CreateCharacter_Load(object sender, EventArgs e)
         {
-            
+
         }
         private void LoadInitialFeats()
         {
             try
             {
                 availableFeats = DatabaseHelper.GetFeatsFromDatabase();
-                
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading feats from database: " + ex.Message);
+            }
+        }
+        private void LoadInitialSpells()
+        {
+            try
+            {
+                availableSpells = DatabaseHelper.GetSpellsFromDatabase();
+
             }
             catch (Exception ex)
             {
@@ -47,7 +62,7 @@ namespace Interface
                 Level = int.Parse(textBoxLevel.Text),
 
             };
-            
+
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -136,18 +151,50 @@ namespace Interface
                 {
                     var selectedFeats = featSelectionForm.SelectedFeats;
                     feats_sel.Text = string.Join(", ", selectedFeats.Select(f => f.name));
+                    foreach (var feat in selectedFeats)
+                    {
+                        var item = new ListViewItem(new[]
+                        {
+                            feat.name,
+                            feat.rarity,
+                            feat.prerequisite,
+                            feat.level.ToString()
+                        });
+
+                        selectedFeatsListView.Items.Add(item);
+                    }
                 }
             }
         }
         private void feats_MouseClick(object sender, MouseEventArgs e)
         {
-            this.feats_sel.Text =" clicou";//setting cursor to the begining  on a mouse click
+            this.feats_sel.Text = " clicou";//setting cursor to the begining  on a mouse click
 
         }
-        
-       
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            using (var spellSelectionForm = new SpellSelectionForm(availableSpells))
+            {
+                if (spellSelectionForm.ShowDialog() == DialogResult.OK)
+                {
+                    var selectedSpells = spellSelectionForm.SelectedSpells;
+                    
+                    foreach (var spell in selectedSpells)
+                    {
+                        var item = new ListViewItem(new[]
+                        {
+                            spell.Name,
+                            spell.Rarity,
+                            spell.Actions,
+                            spell.Rank.ToString(),
+                            spell.Range
+                        });
 
-
+                        selectedSpellsListView.Items.Add(item);
+                    }
+                }
+            }
+        }
     }
 }

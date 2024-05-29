@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Interface
 {
-    internal class Spell
+    public class Spell
     {
 
         public string SpellType { get; set; }
@@ -20,11 +20,11 @@ namespace Interface
         public int Rank { get; set; }
         public int Heighten { get; set; }
         public string Duration { get; set; }
-        public int? Range { get; set; }
+        public string Range { get; set; }
         public Spell() { }
 
         // Construtor com parâmetros para inicializar todas as propriedades
-        public Spell(int id, string spellType, string name, string actions, string defense, string target, string rarity, string trigger, string area, int rank, int heighten, string duration, int? range)
+        public Spell(int id, string spellType, string name, string actions, string defense, string target, string rarity, string trigger, string area, int rank, int heighten, string duration, string range)
         {
             SpellType = spellType;
             Name = name;
