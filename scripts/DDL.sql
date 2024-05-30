@@ -143,13 +143,14 @@ CREATE TABLE Saving_throws (
 
 CREATE TABLE Ancestry (
     ID INT NOT NULL IDENTITY(1,1),
-    vision VARCHAR(28),
-    HP INT NOT NULL,
-    speed INT NOT NULL,
-    size CHAR(14) NOT NULL,
 	[name] VARCHAR(28) NOT NULL,
-    ability_scores_flaw_id INT REFERENCES Ability_scores(ID),
-	ability_scores_boost_id INT REFERENCES Ability_scores(ID),
+    HP INT NOT NULL,
+	size CHAR(14) NOT NULL,
+    speed INT NOT NULL,
+    ability_flaw varchar(64),
+	ability_boost varchar(64),
+	vision VARCHAR(28),
+	rarity varchar(28),
     PRIMARY KEY(ID)
 );
 

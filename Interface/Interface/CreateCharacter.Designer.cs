@@ -81,7 +81,7 @@
             textBox4 = new TextBox();
             label13 = new Label();
             button4 = new Button();
-            textBox9 = new TextBox();
+            ancestry_sel = new TextBox();
             button6 = new Button();
             button7 = new Button();
             button8 = new Button();
@@ -89,7 +89,6 @@
             textBox10 = new TextBox();
             panel2 = new Panel();
             label15 = new Label();
-            listBox5 = new ListBox();
             selectedFeatsListView = new ListView();
             name = new ColumnHeader();
             rarity = new ColumnHeader();
@@ -102,9 +101,10 @@
             raritySpell = new ColumnHeader();
             selectedTraitsListView = new ListView();
             columnHeader2 = new ColumnHeader();
+            columnHeader1 = new ColumnHeader();
             selectedEquipmentListView = new ListView();
             columnHeader3 = new ColumnHeader();
-            columnHeader1 = new ColumnHeader();
+            LanguagesList = new TextBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -508,12 +508,12 @@
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
-            // textBox9
+            // ancestry_sel
             // 
-            textBox9.Location = new Point(100, 173);
-            textBox9.Name = "textBox9";
-            textBox9.Size = new Size(152, 23);
-            textBox9.TabIndex = 34;
+            ancestry_sel.Location = new Point(100, 173);
+            ancestry_sel.Name = "ancestry_sel";
+            ancestry_sel.Size = new Size(152, 23);
+            ancestry_sel.TabIndex = 34;
             // 
             // button6
             // 
@@ -523,6 +523,7 @@
             button6.TabIndex = 36;
             button6.Text = "Select";
             button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
             // 
             // button7
             // 
@@ -532,6 +533,7 @@
             button7.TabIndex = 37;
             button7.Text = "Select";
             button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
             // 
             // button8
             // 
@@ -575,15 +577,6 @@
             label15.Size = new Size(33, 15);
             label15.TabIndex = 0;
             label15.Text = "Skills";
-            // 
-            // listBox5
-            // 
-            listBox5.FormattingEnabled = true;
-            listBox5.ItemHeight = 15;
-            listBox5.Location = new Point(97, 231);
-            listBox5.Name = "listBox5";
-            listBox5.Size = new Size(157, 64);
-            listBox5.TabIndex = 45;
             // 
             // selectedFeatsListView
             // 
@@ -651,6 +644,10 @@
             // 
             columnHeader2.Text = "designation";
             // 
+            // columnHeader1
+            // 
+            columnHeader1.Text = "details";
+            // 
             // selectedEquipmentListView
             // 
             selectedEquipmentListView.Columns.AddRange(new ColumnHeader[] { columnHeader3 });
@@ -665,9 +662,13 @@
             // 
             columnHeader3.Text = "name";
             // 
-            // columnHeader1
+            // LanguagesList
             // 
-            columnHeader1.Text = "details";
+            LanguagesList.Location = new Point(100, 231);
+            LanguagesList.Multiline = true;
+            LanguagesList.Name = "LanguagesList";
+            LanguagesList.Size = new Size(150, 55);
+            LanguagesList.TabIndex = 50;
             // 
             // CreateCharacter
             // 
@@ -675,18 +676,18 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.BurlyWood;
             ClientSize = new Size(1289, 493);
+            Controls.Add(LanguagesList);
             Controls.Add(selectedEquipmentListView);
             Controls.Add(selectedTraitsListView);
             Controls.Add(selectedSpellsListView);
             Controls.Add(selectedFeatsListView);
-            Controls.Add(listBox5);
             Controls.Add(panel2);
             Controls.Add(button8);
             Controls.Add(label14);
             Controls.Add(textBox10);
             Controls.Add(button7);
             Controls.Add(button6);
-            Controls.Add(textBox9);
+            Controls.Add(ancestry_sel);
             Controls.Add(button4);
             Controls.Add(label13);
             Controls.Add(textBox4);
@@ -761,7 +762,7 @@
         private TextBox textBox4;
         private Label label13;
         private Button button4;
-        private TextBox textBox9;
+        private TextBox ancestry_sel;
         private Button button6;
         private Button button7;
 
@@ -770,7 +771,6 @@
         private TextBox textBox10;
         private Panel panel2;
         private Label label15;
-        private ListBox listBox5;
         private ListView selectedFeatsListView = new System.Windows.Forms.ListView();
         private ColumnHeader columnHeaderNameFeats = new System.Windows.Forms.ColumnHeader();
         private ColumnHeader columnHeaderRarityFeats = new System.Windows.Forms.ColumnHeader();
@@ -790,6 +790,7 @@
         private ColumnHeader actionSpell;
         private ColumnHeader raritySpell;
         private ColumnHeader columnHeader1;
+        private TextBox LanguagesList;
     }
     
 }

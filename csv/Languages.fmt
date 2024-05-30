@@ -1,0 +1,5 @@
+9.0
+3
+1 SQLCHAR 0 0 "," 2 Column1 SQL_Latin1_General_CP1_CI_AS
+2 SQLCHAR 0 0 "," 0 Column2 SQL_Latin1_General_CP1_CI_AS
+3 SQLCHAR 0 30 "\r\n" 1 Designation SQL_Latin1_General_CP1_CI_AS

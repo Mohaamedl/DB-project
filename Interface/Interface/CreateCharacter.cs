@@ -17,19 +17,23 @@ namespace Interface
         private List<Feat> availableFeats;
         private List<Spell> availableSpells;
         private List<Trait> availableTraits;
+        private List<Ancestry> availableAncestries;
+        private string selected_language;
         public CreateCharacter()
         {
             InitializeComponent();
             LoadInitialFeats();
             LoadInitialSpells();
             LoadInitialTraits();
-
+            LoadInitialAncestries();
+            
         }
 
         private void CreateCharacter_Load(object sender, EventArgs e)
         {
 
         }
+        
         private void LoadInitialFeats()
         {
             try
@@ -59,12 +63,25 @@ namespace Interface
             try
             {
                 availableTraits = DatabaseHelper.GetTraitsFromDatabase();
-                
+
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error loading Traits from database: " + ex.Message);
+            }
+        }
+        private void LoadInitialAncestries()
+        {
+            try
+            {
+                availableAncestries = DatabaseHelper.GetAncestriesFromDatabase();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading Ancestries from database: " + ex.Message);
             }
         }
 
@@ -182,7 +199,7 @@ namespace Interface
                 }
             }
         }
-        
+
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -197,9 +214,9 @@ namespace Interface
                         var item = new ListViewItem(new[]
                         {
                             spell.Name,
-                            spell.Rarity,
-                            spell.Actions,
                             spell.Rank.ToString(),
+                            spell.Actions,
+                            spell.Rarity,
                             spell.Range
                         });
 
@@ -223,12 +240,40 @@ namespace Interface
                         {
                             trait.designation,
                             trait.details
-                            
+
                         });
 
                         selectedTraitsListView.Items.Add(item);
                     }
                 }
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            using (var ancestrySelectionForm = new AncestrySelectionForm(availableAncestries))
+            {
+                if (ancestrySelectionForm.ShowDialog() == DialogResult.OK)
+                {
+                    var selectedAncestry = ancestrySelectionForm.SelectedAncestries.FirstOrDefault();
+
+                    if (selectedAncestry != null)
+                    {
+                        // Adiciona os detalhes da ascendência na ListView
+                        
+
+                        // Armazena o nome da ascendência no TextBox
+                        ancestry_sel.Text = selectedAncestry.name;
+                        LanguagesList.Text = string.Join(", ", DatabaseHelper.GetLanguagesByAncestry(ancestry_sel.Text));
+
+                    }
+                }
+
             }
         }
     }

@@ -28,12 +28,63 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "AncestrySelectionForm";
+            LoadAll = new Button();
+            Select = new Button();
+            listViewAncestries = new ListView();
+            SuspendLayout();
+            // 
+            // LoadAll
+            // 
+            LoadAll.Location = new Point(89, 396);
+            LoadAll.Name = "LoadAll";
+            LoadAll.Size = new Size(75, 23);
+            LoadAll.TabIndex = 0;
+            LoadAll.Text = "Load all";
+            LoadAll.UseVisualStyleBackColor = true;
+            LoadAll.Click += LoadAll_Click;
+            // 
+            // Select
+            // 
+            Select.Location = new Point(637, 385);
+            Select.Name = "Select";
+            Select.Size = new Size(75, 23);
+            Select.TabIndex = 1;
+            Select.Text = "Select";
+            Select.UseVisualStyleBackColor = true;
+            Select.Click += Select_Click;
+            // 
+            // listViewAncestries
+            // 
+            listViewAncestries.CheckBoxes = true;
+            listViewAncestries.FullRowSelect = false;
+            listViewAncestries.GridLines = true;
+            listViewAncestries.Location = new Point(59, 34);
+            listViewAncestries.MultiSelect = false;
+            listViewAncestries.Name = "listViewAncestries";
+            listViewAncestries.Size = new Size(662, 327);
+            listViewAncestries.TabIndex = 2;
+            listViewAncestries.UseCompatibleStateImageBehavior = false;
+            listViewAncestries.View = View.Details;
+            listViewAncestries.ItemCheck += ListViewAncestries_ItemCheck;
+            // 
+            // AncestrySelectionForm
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(listViewAncestries);
+            Controls.Add(Select);
+            Controls.Add(LoadAll);
+            Name = "AncestrySelectionForm";
+            Text = "AncestrySelectionForm";
+            Load += AncestrySelectionForm_Load;
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private Button LoadAll;
+        private Button Select;
+        private ListView listViewAncestries;
     }
 }

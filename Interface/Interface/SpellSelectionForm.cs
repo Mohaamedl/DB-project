@@ -33,9 +33,9 @@ namespace Interface
         private void DisplaySpells(List<Spell> spells)
         {
             listViewSpells.Columns.Add("Name", 150);
-            listViewSpells.Columns.Add("Rarity", 100);
+            listViewSpells.Columns.Add("Rank", 100);
             listViewSpells.Columns.Add("Action", 150);
-            listViewSpells.Columns.Add("Rank", 250);
+            listViewSpells.Columns.Add("Rarity", 250);
             listViewSpells.Columns.Add("Range", 50);
 
             foreach (var spell in spells)
@@ -44,9 +44,9 @@ namespace Interface
                 {
                     Tag = spell
                 };
-                item.SubItems.Add(spell.Rarity);
-                item.SubItems.Add(spell.Actions);
                 item.SubItems.Add(spell.Rank.ToString());
+                item.SubItems.Add(spell.Actions);
+                item.SubItems.Add(spell.Rarity);
                 item.SubItems.Add(spell.Range);
                 listViewSpells.Items.Add(item);
             }

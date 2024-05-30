@@ -107,9 +107,75 @@ namespace Interface
 
             return traits;
         }
+        public static List<Ancestry> GetAncestriesFromDatabase(int limit = 20)
+        {
+            var Ancestries = new List<Ancestry>();
+
+            using (SqlConnection connection = new(connectionString))
+            {
+                string query = $"SELECT TOP {limit} name, HP, size, speed,ability_boost,ability_flaw,rarity FROM Ancestry ORDER BY name";
+
+                SqlCommand command = new(query, connection);
+                connection.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var ancestry = new Ancestry
+                        {
+                            name = reader["name"].ToString(),
+                            HP = Convert.ToInt32(reader["HP"]),
+                            size = reader["size"].ToString(),
+                            speed = Convert.ToInt32(reader["speed"]),
+                            ability_boost = reader["ability_boost"].ToString(),
+                            ability_flaw = reader["ability_flaw"].ToString(),
+                            rarity = reader["rarity"].ToString(),
+                           
+
+
+
+                        };
+                        Ancestries.Add(ancestry);
+                    }
+                }
+            }
+
+            return Ancestries;
+        }
         public static List<Trait> GetAllTraitsFromDatabase()
         {
             return GetTraitsFromDatabase(int.MaxValue);
+        }
+
+        internal static List<Ancestry> GetAllAncestriesFromDatabase()
+        {
+            throw new NotImplementedException();
+        }
+        public static List<string> GetLanguagesByAncestry(string ancestryName)
+        {
+            var languages = new List<string>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("GetLanguagesByAncestry", connection))
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@AncestryName", ancestryName);
+
+                    connection.Open();
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            languages.Add(reader["Designation"].ToString());
+                        }
+                    }
+                }
+            }
+
+            return languages;
         }
 
     }

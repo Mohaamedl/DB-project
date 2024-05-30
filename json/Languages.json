@@ -1,0 +1,130 @@
+[
+  {
+    "ID": 1,
+    "Designation": "Common"
+  },
+  {
+    "ID": 2,
+    "Designation": "Draconic"
+  },
+  {
+    "ID": 3,
+    "Designation": "Dwarven"
+  },
+  {
+    "ID": 4,
+    "Designation": "Elven"
+  },
+  {
+    "ID": 5,
+    "Designation": "Gnomish"
+  },
+  {
+    "ID": 6,
+    "Designation": "Goblin"
+  },
+  {
+    "ID": 7,
+    "Designation": "Halfling"
+  },
+  {
+    "ID": 8,
+    "Designation": "Jotun"
+  },
+  {
+    "ID": 9,
+    "Designation": "Orcish"
+  },
+  {
+    "ID": 10,
+    "Designation": "Sylvan"
+  },
+  {
+    "ID": 11,
+    "Designation": "Undercommon"
+  },
+  {
+    "ID": 12,
+    "Designation": "Abyssal"
+  },
+  {
+    "ID": 13,
+    "Designation": "Aklo"
+  },
+  {
+    "ID": 14,
+    "Designation": "Aquan"
+  },
+  {
+    "ID": 15,
+    "Designation": "Auran"
+  },
+  {
+    "ID": 16,
+    "Designation": "Celestial"
+  },
+  {
+    "ID": 17,
+    "Designation": "Gnoll"
+  },
+  {
+    "ID": 18,
+    "Designation": "Ignan"
+  },
+  {
+    "ID": 19,
+    "Designation": "Infernal"
+  },
+  {
+    "ID": 20,
+    "Designation": "Necril"
+  },
+  {
+    "ID": 21,
+    "Designation": "Shadowtongue"
+  },
+  {
+    "ID": 22,
+    "Designation": "Terran"
+  },
+  {
+    "ID": 23,
+    "Designation": "Druidic"
+  },
+  {
+    "ID": 24,
+    "Designation": "Hallit"
+  },
+  {
+    "ID": 25,
+    "Designation": "Kelish"
+  },
+  {
+    "ID": 26,
+    "Designation": "Mwangi"
+  },
+  {
+    "ID": 27,
+    "Designation": "Osiriani"
+  },
+  {
+    "ID": 28,
+    "Designation": "Shoanti"
+  },
+  {
+    "ID": 29,
+    "Designation": "Skald"
+  },
+  {
+    "ID": 30,
+    "Designation": "Tien"
+  },
+  {
+    "ID": 31,
+    "Designation": "Varisian"
+  },
+  {
+    "ID": 32,
+    "Designation": "Vudrani"
+  }
+]
