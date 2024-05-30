@@ -1,6 +1,15 @@
 use rpg
+
+--------------------------------------------tradition------------------------------------------------------
+INSERT INTO Tradition ([name], details)
+VALUES 
+    ('Arcane', 'Arcane does everything besides healing. Extremely versatile and lots of strong utility.'),
+    ('Divine', 'Divine has lots of healing and protection magic. Damage spells tend to be on the lower end unless you''re fighting undead or outsiders.'),
+    ('Occult', 'Occult excels at subtle magic. Very few spells to affect the physical world. Main focuses are enchantment, illusion and divination. Nearly no elemental spells and very few ways to target Reflex saves.'),
+    ('Primal', 'Primal is the opposite of occult. Nearly everything is a physical effect in some way. Lots of elemental spells and good healing options. Lacks subtle spells and has trouble targeting will saves. Also nearly no ways to deal with enemy spellcasters other than dispel magic (or blowing them up).');
+
+select * from Tradition
 --------------------------------------------language---------------------------------------------------------
-go
 
 DECLARE @json_data VARCHAR(MAX);
 SELECT @json_data = BulkColumn 
@@ -27,7 +36,7 @@ SELECT * FROM Language;
 
 go
 ---------------------------------------------ancestry-------------------------------------------------------
-go
+
 
 
 
@@ -68,7 +77,7 @@ select * from Ancestry
 
 go
 ---------------------------------------------language-ancestry--------------------------------------------------
-go 
+
 
 DROP TABLE IF EXISTS #AncestryTemp
 CREATE TABLE #AncestryTemp (
@@ -86,7 +95,7 @@ If (ISJSON(@JSON)=1)
 Print 'It is a valid JSON'
 ELSE
 Print 'Error in JSON format'
--- Corrigir a leitura dos dados do JSON
+
 INSERT #AncestryTemp ([name],[language])
 SELECT 
     [name] AS [name],
@@ -113,7 +122,7 @@ select * from  Language_tem_ancestry order by id_ancestry
 
 go
 ---------------------------------------------feats--------------------------------------------------
-go 
+
 
 
 
@@ -141,7 +150,7 @@ select * from Feats
 
 go
 ---------------------------------------------spells--------------------------------------------------
-go 
+
 
 
 
@@ -189,17 +198,15 @@ SELECT * FROM Spells;
 
 go
 ---------------------------------------------traits--------------------------------------------------
-go 
 
--- Declare a variable to hold your data
+
 DECLARE @TraitsList NVARCHAR(MAX);
 
--- Load the data from the file
 SELECT @TraitsList = BulkColumn 
 FROM OPENROWSET 
 (
     BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\data\traits.txt',
-    SINGLE_CLOB  -- Uses a single, continuous column data type
+    SINGLE_CLOB  
 ) AS j;
 
 
@@ -213,9 +220,9 @@ SELECT * FROM Traits;
 
 
 
-
----------------------------------------------------------------background---------------------------------------------------------------------------
 go
+---------------------------------------------------------------background---------------------------------------------------------------------------
+
 
 Declare @JSON varchar(max)
 SELECT @JSON=BulkColumn
@@ -295,14 +302,269 @@ DROP TABLE #TempBackground
 select * from Feats_tem_background
 
 go 
-----------------------------------------------          -------------------------------------------
+----------------------------------------------skills -------------------------------------------
+
+DECLARE @json_data VARCHAR(MAX);
+SELECT @json_data = BulkColumn 
+FROM OPENROWSET 
+(
+    BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\skills_data.json', SINGLE_CLOB
+) AS datasource;
+
+INSERT INTO Skills(designation,details) 
+SELECT  
+    designation,details
+ 
+FROM OPENJSON (@json_data)
+WITH
+(
+
+    designation VARCHAR(50),
+	details varchar(512)
+    
+);
+
+SELECT * FROM Skills;
+
+
 go
----------------------------------------------language-ancestry--------------------------------------------------
-go 
+---------------------------------------------spell-progression--------------------------------------------------
+DECLARE @JsonData NVARCHAR(MAX)
+
+SELECT @JsonData = BulkColumn
+FROM OPENROWSET(BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\Spells_progression_data.json', SINGLE_CLOB) AS j
+
+INSERT INTO Spell_progression ([level], cantrips, n1, n2, n3, n4, n5, n6, n7, n8, n9, n10)
+SELECT 
+    [Your Level] AS [level],
+    Cantrips as cantrips ,
+    CASE WHEN [1st] = '-' THEN NULL ELSE TRY_CAST(REPLACE([1st], '*', '') AS INT) END AS n1,
+    CASE WHEN [2nd] = '-' THEN NULL ELSE TRY_CAST([2nd] AS INT) END AS n2,
+    CASE WHEN [3rd] = '-' THEN NULL ELSE TRY_CAST([3rd] AS INT) END AS n3,
+    CASE WHEN [4th] = '-' THEN NULL ELSE TRY_CAST([4th] AS INT) END AS n4,
+    CASE WHEN [5th] = '-' THEN NULL ELSE TRY_CAST([5th] AS INT) END AS n5,
+    CASE WHEN [6th] = '-' THEN NULL ELSE TRY_CAST([6th] AS INT) END AS n6,
+    CASE WHEN [7th] = '-' THEN NULL ELSE TRY_CAST([7th] AS INT) END AS n7,
+    CASE WHEN [8th] = '-' THEN NULL ELSE TRY_CAST([8th] AS INT) END AS n8,
+    CASE WHEN [9th] = '-' THEN NULL ELSE TRY_CAST([9th] AS INT) END AS n9,
+    CASE WHEN [10th] = '-' THEN NULL ELSE TRY_CAST(REPLACE([10th], '*', '') AS INT) END AS n10
+FROM OPENJSON(@JsonData)
+WITH (
+    [Your Level] INT '$."Your Level"',
+    Cantrips INT '$.Cantrips',
+    [1st] NVARCHAR(10) '$."1st"',
+    [2nd] NVARCHAR(10) '$."2nd"',
+    [3rd] NVARCHAR(10) '$."3rd"',
+    [4th] NVARCHAR(10) '$."4th"',
+    [5th] NVARCHAR(10) '$."5th"',
+    [6th] NVARCHAR(10) '$."6th"',
+    [7th] NVARCHAR(10) '$."7th"',
+    [8th] NVARCHAR(10) '$."8th"',
+    [9th] NVARCHAR(10) '$."9th"',
+    [10th] NVARCHAR(10) '$."10th"'
+)
+
+select* from Spell_progression
+
 go
----------------------------------------------language-ancestry--------------------------------------------------
-go 
+-----------------------------------------------------class-----------------------------------------------------
+
+DECLARE @json_data VARCHAR(MAX);
+DECLARE @classes_spell_prog VARCHAR(200);
+SET @classes_spell_prog = 'Bard,Cleric,Druid,Magus,Oracle,Sorcerer,Summoner,Witch';
+
+SELECT @json_data = BulkColumn 
+FROM OPENROWSET 
+(
+    BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\Classes_data.json', SINGLE_CLOB
+) AS datasource;
+
+INSERT INTO Class([name], HP, prof_attack, prof_defense, ability, spell_progression_id) 
+SELECT  
+    cls.[name],
+    cls.hp,
+    cls.attack_proficiency,
+    cls.defense_proficiency,
+    cls.ability,
+    CASE
+        WHEN prog.[name] IS NOT NULL THEN 1
+        ELSE NULL
+    END AS spell_progression_id
+FROM OPENJSON (@json_data)
+WITH
+(
+    [name] VARCHAR(50),
+    hp INT,
+    ability VARCHAR(50),
+    attack_proficiency VARCHAR(512),
+    defense_proficiency VARCHAR(512)
+) AS cls
+LEFT JOIN (
+    SELECT value AS [name]
+    FROM STRING_SPLIT(@classes_spell_prog, ',')
+) AS prog
+ON cls.[name] = prog.[name];
+
+
+SELECT * FROM Class;
+
+
+
 go
----------------------------------------------language-ancestry--------------------------------------------------
-go 
+---------------------------------------------class-features--------------------------------------------------
+DECLARE @JsonData NVARCHAR(MAX);
+DECLARE @class_id INT;
+SET @class_id = 1;
+
+SELECT @JsonData = BulkColumn
+FROM OPENROWSET(BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\Class_features.json', SINGLE_CLOB) AS j;
+
+WITH JsonData AS (
+    SELECT 
+        [Your Level] AS [level],
+        [Class Features] AS feature,
+        ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS rn
+    FROM OPENJSON(@JsonData)
+    WITH (
+        [Your Level] INT '$."Your Level"',
+        [Class Features] VARCHAR(128) '$."Class Features"'
+    )
+)
+INSERT INTO Class_features ([level], class_id, feature)
+SELECT 
+    level,
+    ((rn - 1) / 20) + 1 AS class_id,
+    feature
+FROM JsonData;
+
+select * from Class_features
 go
+-----------------------------------------------class_tradition------------------------------------------------
+
+
+
+INSERT INTO Class_tem_tradition (class_id, tradition_id)
+SELECT c.ID, t.ID
+FROM Class c, Tradition t
+WHERE c.name = 'Magus' AND t.name = 'Arcane';
+
+INSERT INTO Class_tem_tradition (class_id, tradition_id)
+SELECT c.ID, t.ID
+FROM Class c, Tradition t
+WHERE c.name = 'Oracle' AND t.name = 'Divine';
+
+INSERT INTO Class_tem_tradition (class_id, tradition_id)
+SELECT c.ID, t.ID
+FROM Class c, Tradition t
+WHERE c.name = 'Psychic' AND t.name = 'Occult';
+
+INSERT INTO Class_tem_tradition (class_id, tradition_id)
+SELECT c.ID, t.ID
+FROM Class c, Tradition t
+WHERE c.name = 'Sorcerer' AND t.name IN ('Arcane', 'Divine', 'Occult', 'Primal');
+
+INSERT INTO Class_tem_tradition (class_id, tradition_id)
+SELECT c.ID, t.ID
+FROM Class c, Tradition t
+WHERE c.name = 'Summoner' AND t.name IN ('Arcane', 'Divine', 'Occult', 'Primal');
+
+select * from Class_tem_tradition
+
+go
+--------------------------------------------------------Equipment-----------------------------------------------------------
+IF OBJECT_ID('dbo.RemoveNonNumericChars', 'FN') IS NOT NULL
+    DROP FUNCTION dbo.RemoveNonNumericChars;
+GO
+
+CREATE FUNCTION dbo.RemoveNonNumericChars (@input VARCHAR(50))
+RETURNS VARCHAR(50)
+AS
+BEGIN
+    DECLARE @output VARCHAR(50);
+    SET @output = '';
+
+    DECLARE @i INT = 1;
+    DECLARE @len INT = LEN(@input);
+    
+    WHILE @i <= @len
+    BEGIN
+        IF SUBSTRING(@input, @i, 1) LIKE '[0-9 ]'
+        BEGIN
+            SET @output = @output + SUBSTRING(@input, @i, 1);
+        END
+        SET @i = @i + 1;
+    END
+    
+    RETURN @output;
+END;
+GO
+
+IF OBJECT_ID('dbo.ConvertPriceToCP', 'FN') IS NOT NULL
+    DROP FUNCTION dbo.ConvertPriceToCP;
+GO
+
+CREATE FUNCTION dbo.ConvertPriceToCP (@price VARCHAR(50))
+RETURNS INT
+AS
+BEGIN
+    DECLARE @converted_price INT;
+
+
+    DECLARE @numeric_value VARCHAR(50) = LEFT(@price, PATINDEX('%[a-zA-Z]%', @price) - 1);
+
+
+    DECLARE @unit_of_measure VARCHAR(50) = SUBSTRING(@price, PATINDEX('%[a-zA-Z]%', @price), LEN(@price));
+
+    
+    SET @converted_price = 
+        CASE 
+            WHEN @unit_of_measure = 'pp' THEN CAST(REPLACE(@numeric_value, ',', '') AS INT) * 1000
+            WHEN @unit_of_measure = 'gp' THEN CAST(REPLACE(@numeric_value, ',', '') AS INT) * 100
+            WHEN @unit_of_measure = 'sp' THEN CAST(REPLACE(@numeric_value, ',', '') AS INT) * 10
+            WHEN @unit_of_measure = 'cp' THEN CAST(REPLACE(@numeric_value, ',', '') AS INT)
+            ELSE 0 
+        END;
+
+    RETURN @converted_price;
+END;
+GO
+
+
+DECLARE @json_data NVARCHAR(MAX);
+SELECT @json_data = BulkColumn 
+FROM OPENROWSET 
+(
+    BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\Equipment_data.json', SINGLE_CLOB
+) AS datasource;
+
+
+INSERT INTO Equipment([name], item_category, item_sub_category, usage, [bulk], rarity, weapon_category, [level], price)
+SELECT  
+    name,
+    item_category,
+    item_subcategory,
+    usage,
+    [bulk],
+    rarity,
+    weapon_category,  
+    CASE 
+        WHEN [level] = '-1' THEN 0
+        ELSE CAST([level] AS INT)
+    END AS [level],
+    dbo.ConvertPriceToCP(price) 
+FROM OPENJSON (@json_data)
+WITH (
+    [name] VARCHAR(64) '$.name',
+    item_category CHAR(64) '$.item_category',
+    item_subcategory CHAR(64) '$.item_subcategory',
+    usage CHAR(28) '$.usage',
+    [bulk] CHAR(1) '$.bulk',
+    rarity CHAR(28) '$.rarity',
+    [level] VARCHAR(10) '$.level',
+    price VARCHAR(50) '$.price',
+    weapon_category VARCHAR(28) '$.weapon_category' 
+);
+
+
+SELECT * FROM Equipment;
+--------------------------------------------------------------------------------------------------------------------------------------

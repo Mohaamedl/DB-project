@@ -24,6 +24,9 @@ DROP TABLE IF EXISTS Skills
 DROP TABLE IF EXISTS [Character]
 DROP TABLE IF EXISTS Ancestry
 DROP TABLE IF EXISTS Background
+DROP TABLE IF EXISTS Class_features
+DROP TABLE IF EXISTS Background
+DROP TABLE IF EXISTS Class_tem_tradition
 DROP TABLE IF EXISTS Class
 DROP TABLE IF EXISTS Spell_progression
 DROP TABLE IF EXISTS Tradition
@@ -92,7 +95,7 @@ CREATE TABLE Spells (
 CREATE TABLE Tradition (
     ID INT NOT NULL IDENTITY(1,1),
     [name] CHAR(28),
-    details VARCHAR(128),
+    details VARCHAR(512),
     PRIMARY KEY(ID)
 );
 
@@ -106,7 +109,7 @@ CREATE TABLE Equipment (
     rarity CHAR(28) NOT NULL,
 	weapon_category varchar(28) NOT NULL,
     [level] INT NOT NULL DEFAULT 0,
-    price INT NULL,
+    price int NULL,
     PRIMARY KEY(ID)
 );
 
@@ -157,31 +160,41 @@ CREATE TABLE Ancestry (
 
 CREATE TABLE Background (
     ID INT NOT NULL IDENTITY(1,1),
-	[name] VARCHAR(28) NOT NULL,
+    [name] VARCHAR(28) NOT NULL,
     ability varchar(64) null,
     skill varchar(64) null,
     feat varchar(64) null,
     rarity varchar(28) not null,
-    summary VARCHAR(512),
+	summary VARCHAR(512),
     PRIMARY KEY(ID)
 );
 
+
 CREATE TABLE Class (
     ID INT NOT NULL IDENTITY(1,1),
-    [name] CHAR(28) NOT NULL,
+    [name] CHAR(50) NOT NULL,
     HP INT NOT NULL,
-	prof_attack	VARCHAR(128) NOT NULL,
-	prof_saving_throws VARCHAR(64) NOT NULL,
-	prof_perception VARCHAR(32) NOT NULL,
-	prof_defense VARCHAR(128) NOT NULL,
-	prof_classDC VARCHAR(32) NOT NULL,
-    tradition_id INT REFERENCES Tradition(ID),
-    ability VARCHAR(28) NOT NULL,
-	progression_class_features VARCHAR(128) NOT NULL,
-    progression_level INT,
-    spell_progression_id INT REFERENCES Spell_progression([level]),
+	prof_attack	VARCHAR(512) NOT NULL,
+	prof_defense VARCHAR(512) NOT NULL,
+    ability VARCHAR(50) NOT NULL,
+    spell_progression_id INT REFERENCES Spell_progression([level]) null
     PRIMARY KEY(ID)
 );
+CREATE TABLE Class_tem_tradition (
+    class_id INT NOT NULL,
+    tradition_id INT NOT NULL,
+    PRIMARY KEY (class_id, tradition_id),
+    FOREIGN KEY (class_id) REFERENCES Class(ID),
+    FOREIGN KEY (tradition_id) REFERENCES Tradition(ID)
+);
+
+create table Class_features(
+	[level] int not null,
+	class_id int references Class(ID),
+	feature varchar(128) not null
+	primary key (class_id,[level])
+)
+
 
 CREATE TABLE [Character] (
     ID INT UNIQUE NOT NULL IDENTITY(1,1),
