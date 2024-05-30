@@ -37,7 +37,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBoxStr = new TextBox();
+            STRENGTH = new TextBox();
             textBoxName = new TextBox();
             textBoxHP = new TextBox();
             textBoxLevel = new TextBox();
@@ -55,9 +55,9 @@
             intel_mod = new TextBox();
             const_mod = new TextBox();
             dex_mod = new TextBox();
-            textBox7 = new TextBox();
-            textBox6 = new TextBox();
-            textBox5 = new TextBox();
+            CHARISMA = new TextBox();
+            WISDOM = new TextBox();
+            INTELLIGENCE = new TextBox();
             stre_mod = new TextBox();
             CONSTITUTION = new TextBox();
             DEXTERITY = new TextBox();
@@ -76,7 +76,7 @@
             feats_sel = new TextBox();
             button2 = new Button();
             button3 = new Button();
-            textBox2 = new TextBox();
+            background_sel = new TextBox();
             textBox3 = new TextBox();
             textBox4 = new TextBox();
             label13 = new Label();
@@ -109,14 +109,14 @@
             panel2.SuspendLayout();
             SuspendLayout();
             // 
-            // textBoxStr
+            // STRENGTH
             // 
-            textBoxStr.Location = new Point(98, 17);
-            textBoxStr.Name = "textBoxStr";
-            textBoxStr.Size = new Size(54, 23);
-            textBoxStr.TabIndex = 18;
-            textBoxStr.Text = "10";
-            textBoxStr.TextChanged += textBoxStr_TextChanged;
+            STRENGTH.Location = new Point(98, 17);
+            STRENGTH.Name = "STRENGTH";
+            STRENGTH.Size = new Size(54, 23);
+            STRENGTH.TabIndex = 18;
+            STRENGTH.Text = "10";
+            STRENGTH.TextChanged += textBoxStr_TextChanged;
             // 
             // textBoxName
             // 
@@ -124,7 +124,7 @@
             textBoxName.Name = "textBoxName";
             textBoxName.Size = new Size(150, 23);
             textBoxName.TabIndex = 0;
-            textBoxName.TextChanged += textBoxName_TextChanged;
+            
             // 
             // textBoxHP
             // 
@@ -202,7 +202,7 @@
             label1.Size = new Size(72, 15);
             label1.TabIndex = 11;
             label1.Text = "Language(s)";
-            label1.Click += label1_Click;
+            
             // 
             // label2
             // 
@@ -220,13 +220,13 @@
             panel1.Controls.Add(intel_mod);
             panel1.Controls.Add(const_mod);
             panel1.Controls.Add(dex_mod);
-            panel1.Controls.Add(textBox7);
-            panel1.Controls.Add(textBox6);
-            panel1.Controls.Add(textBox5);
+            panel1.Controls.Add(CHARISMA);
+            panel1.Controls.Add(WISDOM);
+            panel1.Controls.Add(INTELLIGENCE);
             panel1.Controls.Add(stre_mod);
             panel1.Controls.Add(CONSTITUTION);
             panel1.Controls.Add(DEXTERITY);
-            panel1.Controls.Add(textBoxStr);
+            panel1.Controls.Add(STRENGTH);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(label10);
             panel1.Controls.Add(label6);
@@ -239,7 +239,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(297, 493);
             panel1.TabIndex = 15;
-            panel1.Paint += panel1_Paint;
+            
             // 
             // char_mod
             // 
@@ -281,29 +281,32 @@
             dex_mod.TabIndex = 25;
             dex_mod.Text = "0";
             // 
-            // textBox7
+            // CHARISMA
             // 
-            textBox7.Location = new Point(98, 197);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(54, 23);
-            textBox7.TabIndex = 24;
-            textBox7.Text = "10";
+            CHARISMA.Location = new Point(98, 197);
+            CHARISMA.Name = "CHARISMA";
+            CHARISMA.Size = new Size(54, 23);
+            CHARISMA.TabIndex = 24;
+            CHARISMA.Text = "10";
+            CHARISMA.TextChanged += CHARISMA_TextChanged;
             // 
-            // textBox6
+            // WISDOM
             // 
-            textBox6.Location = new Point(98, 155);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(54, 23);
-            textBox6.TabIndex = 23;
-            textBox6.Text = "10";
+            WISDOM.Location = new Point(98, 155);
+            WISDOM.Name = "WISDOM";
+            WISDOM.Size = new Size(54, 23);
+            WISDOM.TabIndex = 23;
+            WISDOM.Text = "10";
+            WISDOM.TextChanged += WISDOM_TextChanged;
             // 
-            // textBox5
+            // INTELLIGENCE
             // 
-            textBox5.Location = new Point(98, 118);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(54, 23);
-            textBox5.TabIndex = 22;
-            textBox5.Text = "10";
+            INTELLIGENCE.Location = new Point(98, 118);
+            INTELLIGENCE.Name = "INTELLIGENCE";
+            INTELLIGENCE.Size = new Size(54, 23);
+            INTELLIGENCE.TabIndex = 22;
+            INTELLIGENCE.Text = "10";
+            INTELLIGENCE.TextChanged += INTELLIGENCE_TextChanged;
             // 
             // stre_mod
             // 
@@ -329,6 +332,7 @@
             DEXTERITY.Size = new Size(54, 23);
             DEXTERITY.TabIndex = 19;
             DEXTERITY.Text = "10";
+            DEXTERITY.TextChanged += DEXTERITY_TextChanged;
             // 
             // label7
             // 
@@ -356,7 +360,7 @@
             label6.Size = new Size(64, 15);
             label6.TabIndex = 3;
             label6.Text = "STRENGTH";
-            label6.Click += label6_Click;
+            
             // 
             // label5
             // 
@@ -366,7 +370,7 @@
             label5.Size = new Size(83, 15);
             label5.TabIndex = 2;
             label5.Text = "INTELLIGENCE";
-            label5.Click += label5_Click;
+            
             // 
             // label4
             // 
@@ -399,6 +403,7 @@
             // textBox1
             // 
             textBox1.BackColor = SystemColors.InactiveBorder;
+            textBox1.Enabled = false;
             textBox1.Location = new Point(350, 14);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(100, 23);
@@ -412,7 +417,7 @@
             label9.Size = new Size(34, 15);
             label9.TabIndex = 19;
             label9.Text = "Feats";
-            label9.Click += label9_Click;
+            
             // 
             // label11
             // 
@@ -422,7 +427,7 @@
             label11.Size = new Size(65, 15);
             label11.TabIndex = 21;
             label11.Text = "Equipment";
-            label11.Click += label11_Click_1;
+            
             // 
             // label12
             // 
@@ -458,6 +463,7 @@
             button2.TabIndex = 26;
             button2.Text = "Select";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button3
             // 
@@ -468,12 +474,12 @@
             button3.Text = "Select";
             button3.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // background_sel
             // 
-            textBox2.Location = new Point(98, 202);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(152, 23);
-            textBox2.TabIndex = 28;
+            background_sel.Location = new Point(98, 202);
+            background_sel.Name = "background_sel";
+            background_sel.Size = new Size(152, 23);
+            background_sel.TabIndex = 28;
             // 
             // textBox3
             // 
@@ -523,7 +529,7 @@
             button6.TabIndex = 36;
             button6.Text = "Select";
             button6.UseVisualStyleBackColor = true;
-            button6.Click += button6_Click;
+            
             // 
             // button7
             // 
@@ -572,7 +578,7 @@
             // label15
             // 
             label15.AutoSize = true;
-            label15.Location = new Point(119, 16);
+            label15.Location = new Point(110, 16);
             label15.Name = "label15";
             label15.Size = new Size(33, 15);
             label15.TabIndex = 0;
@@ -692,7 +698,7 @@
             Controls.Add(label13);
             Controls.Add(textBox4);
             Controls.Add(textBox3);
-            Controls.Add(textBox2);
+            Controls.Add(background_sel);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(feats_sel);
@@ -735,12 +741,12 @@
         private Label label4;
         private Label label3;
         private Label label10;
-        private TextBox textBox7;
-        private TextBox textBox6;
-        private TextBox textBox5;
+        private TextBox CHARISMA;
+        private TextBox WISDOM;
+        private TextBox INTELLIGENCE;
         private TextBox CONSTITUTION;
         private TextBox DEXTERITY;
-        private TextBox textBoxStr;
+        private TextBox STRENGTH;
         private TextBox stre_mod;
         private TextBox char_mod;
         private TextBox wisd_mod;
@@ -757,7 +763,7 @@
         private TextBox feats_sel;
         private Button button2;
         private Button button3;
-        private TextBox textBox2;
+        private TextBox background_sel;
         private TextBox textBox3;
         private TextBox textBox4;
         private Label label13;

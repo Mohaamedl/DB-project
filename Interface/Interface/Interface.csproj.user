@@ -4,7 +4,7 @@
     <Compile Update="AncestrySelectionForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="BackgroundSelecionForm.cs">
+    <Compile Update="BackgroundSelectionForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="ClassesSelectionForm.cs">

@@ -157,9 +157,12 @@ CREATE TABLE Ancestry (
 
 CREATE TABLE Background (
     ID INT NOT NULL IDENTITY(1,1),
-    summary VARCHAR(512),
 	[name] VARCHAR(28) NOT NULL,
-	ID_ability_scores INT REFERENCES Ability_scores(ID),
+    ability varchar(64) null,
+    skill varchar(64) null,
+    feat varchar(64) null,
+    rarity varchar(28) not null,
+    summary VARCHAR(512),
     PRIMARY KEY(ID)
 );
 

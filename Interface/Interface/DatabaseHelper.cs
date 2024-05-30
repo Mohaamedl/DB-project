@@ -118,7 +118,7 @@ namespace Interface
                 SqlCommand command = new(query, connection);
                 connection.Open();
 
-                using (SqlDataReader reader = command.ExecuteReader())
+                using ( SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -150,7 +150,7 @@ namespace Interface
 
         internal static List<Ancestry> GetAllAncestriesFromDatabase()
         {
-            throw new NotImplementedException();
+            return GetAncestriesFromDatabase(int.MaxValue);
         }
         public static List<string> GetLanguagesByAncestry(string ancestryName)
         {
@@ -178,5 +178,46 @@ namespace Interface
             return languages;
         }
 
+
+        
+        public static List<Background> GetBackgroundsFromDatabase(int limit = 20)
+        {
+            var Backgrounds = new List<Background>();
+
+            using (SqlConnection connection = new(connectionString))
+            {
+                string query = $"SELECT TOP {limit} name, ability, skill, feat,rarity,summary FROM Background ORDER BY name";
+
+                SqlCommand command = new(query, connection);
+                connection.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var background = new Background
+                        {
+                            name = reader["name"].ToString(),
+                            ability = reader["ability"].ToString(),
+                            skill = reader["skill"].ToString(),
+                            feat = reader["feat"].ToString(),
+                            rarity = reader["rarity"].ToString(),
+                            summary = reader["summary"].ToString()
+
+
+
+
+                        };
+                        Backgrounds.Add(background);
+                    }
+                }
+            }
+
+            return Backgrounds;
+        }
+        public static List<Background> GetAllBackgroundsFromDatabase()
+        {
+            return GetBackgroundsFromDatabase(int.MaxValue);
+        }
     }
 }

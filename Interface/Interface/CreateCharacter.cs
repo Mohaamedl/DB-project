@@ -18,7 +18,10 @@ namespace Interface
         private List<Spell> availableSpells;
         private List<Trait> availableTraits;
         private List<Ancestry> availableAncestries;
-        private string selected_language;
+        private List<Background> availableBackgrounds;
+        private Background selectedBackground;
+        private Ancestry selectedAncestry;
+        private Classes selectedClass;
         public CreateCharacter()
         {
             InitializeComponent();
@@ -26,14 +29,15 @@ namespace Interface
             LoadInitialSpells();
             LoadInitialTraits();
             LoadInitialAncestries();
-            
+            LoadInitialBackgrounds();
+
         }
 
         private void CreateCharacter_Load(object sender, EventArgs e)
         {
 
         }
-        
+
         private void LoadInitialFeats()
         {
             try
@@ -84,6 +88,19 @@ namespace Interface
                 MessageBox.Show("Error loading Ancestries from database: " + ex.Message);
             }
         }
+        private void LoadInitialBackgrounds()
+        {
+            try
+            {
+                availableBackgrounds = DatabaseHelper.GetBackgroundsFromDatabase();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading Ancestries from database: " + ex.Message);
+            }
+        }
 
 
         private void buttonSave_Click(object sender, EventArgs e)
@@ -100,35 +117,11 @@ namespace Interface
             this.Close();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label11_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void STRENGTH_TextChanged(object sender, EventArgs e)
         {
 
-            if (Int32.TryParse(this.textBoxStr.Text, out int value))
+            if (Int32.TryParse(this.STRENGTH.Text, out int value))
             {
                 Console.WriteLine(value);
                 int modifier = (value - 10) / 2;
@@ -141,19 +134,26 @@ namespace Interface
             }
         }
 
-        private void textBoxName_TextChanged(object sender, EventArgs e)
-        {
 
-        }
 
         private void CONSTITUTION_TextChanged(object sender, EventArgs e)
         {
-            Console.WriteLine("batatas");
+            if (Int32.TryParse(this.CONSTITUTION.Text, out int value))
+            {
+                Console.WriteLine(value);
+                int modifier = (value - 10) / 2;
+                this.const_mod.Text = modifier.ToString();
+            }
+            else
+            {
+                Console.WriteLine("Erro ao converter o valor de força.");
+                this.const_mod.Text = "Erro";
+            }
         }
 
         private void textBoxStr_TextChanged(object sender, EventArgs e)
         {
-            if (Int32.TryParse(this.textBoxStr.Text, out int value))
+            if (Int32.TryParse(this.STRENGTH.Text, out int value))
             {
                 Console.WriteLine(value);
                 int modifier = (value - 10) / 2;
@@ -164,16 +164,6 @@ namespace Interface
                 Console.WriteLine("Erro ao converter o valor de força.");
                 this.stre_mod.Text = "Erro";
             }
-        }
-
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label11_Click_1(object sender, EventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -249,23 +239,19 @@ namespace Interface
             }
         }
 
-        private void button6_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button7_Click(object sender, EventArgs e)
         {
             using (var ancestrySelectionForm = new AncestrySelectionForm(availableAncestries))
             {
                 if (ancestrySelectionForm.ShowDialog() == DialogResult.OK)
                 {
-                    var selectedAncestry = ancestrySelectionForm.SelectedAncestries.FirstOrDefault();
+                    selectedAncestry = ancestrySelectionForm.SelectedAncestries.FirstOrDefault();
+
 
                     if (selectedAncestry != null)
                     {
                         // Adiciona os detalhes da ascendência na ListView
-                        
+
 
                         // Armazena o nome da ascendência no TextBox
                         ancestry_sel.Text = selectedAncestry.name;
@@ -274,6 +260,87 @@ namespace Interface
                     }
                 }
 
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            using (var backgroundSelectionForm = new BackgroundSelectionForm(availableBackgrounds))
+            {
+                if (backgroundSelectionForm.ShowDialog() == DialogResult.OK)
+                {
+                    selectedBackground = backgroundSelectionForm.SelectedBackground.FirstOrDefault();
+
+                    if (selectedBackground != null)
+                    {
+                        // Adiciona os detalhes da ascendência na ListView
+
+
+                        // Armazena o nome da ascendência no TextBox
+                        background_sel.Text = selectedBackground.name;
+
+
+                    }
+                }
+
+            }
+        }
+
+        private void DEXTERITY_TextChanged(object sender, EventArgs e)
+        {
+            if (Int32.TryParse(this.DEXTERITY.Text, out int value))
+            {
+                int modifier = (value - 10) / 2;
+                this.dex_mod.Text = modifier.ToString();
+            }
+            else
+            {
+                Console.WriteLine("Erro ao converter o valor de força.");
+                this.dex_mod.Text = "Erro";
+            }
+
+        }
+
+        private void INTELLIGENCE_TextChanged(object sender, EventArgs e)
+        {
+            if (Int32.TryParse(this.INTELLIGENCE.Text, out int value))
+            {
+                int modifier = (value - 10) / 2;
+                this.intel_mod.Text = modifier.ToString();
+            }
+            else
+            {
+                Console.WriteLine("Erro ao converter o valor de força.");
+                this.intel_mod.Text = "Erro";
+            }
+
+        }
+
+        private void WISDOM_TextChanged(object sender, EventArgs e)
+        {
+            if (Int32.TryParse(this.WISDOM.Text, out int value))
+            {
+                int modifier = (value - 10) / 2;
+                this.wisd_mod.Text = modifier.ToString();
+            }
+            else
+            {
+                Console.WriteLine("Erro ao converter o valor de força.");
+                this.wisd_mod.Text = "Erro";
+            }
+        }
+
+        private void CHARISMA_TextChanged(object sender, EventArgs e)
+        {
+            if (Int32.TryParse(this.CHARISMA.Text, out int value))
+            {
+                int modifier = (value - 10) / 2;
+                this.char_mod.Text = modifier.ToString();
+            }
+            else
+            {
+                Console.WriteLine("Erro ao converter o valor de força.");
+                this.char_mod.Text = "Erro";
             }
         }
     }

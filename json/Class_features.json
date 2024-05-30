@@ -1,0 +1,1866 @@
+[
+  
+  {
+    "Your Level": 1,
+    "Class Features": "Ancestry and background, initial proficiencies, alchemy, formula book, research field, alchemist feat",
+    "class_id" : 1
+  },
+  {
+    "Your Level": 2,
+    "Class Features": "Alchemist feat, skill feat"
+  },
+  {
+    "Your Level": 3,
+    "Class Features": "General feat, skill increase"
+  },
+  {
+    "Your Level": 4,
+    "Class Features": "Alchemist feat, skill feat"
+  },
+  {
+    "Your Level": 5,
+    "Class Features": "Ability boosts, ancestry feat, field discovery, powerful alchemy, skill increase"
+  },
+  {
+    "Your Level": 6,
+    "Class Features": "Alchemist feat, skill feat"
+  },
+  {
+    "Your Level": 7,
+    "Class Features": "Alchemical weapon expertise, general feat, iron will, perpetual infusions, skill increase"
+  },
+  {
+    "Your Level": 8,
+    "Class Features": "Alchemist feat, skill feat"
+  },
+  {
+    "Your Level": 9,
+    "Class Features": "Alchemical expertise, alertness, ancestry feat, double brew, skill increase"
+  },
+  {
+    "Your Level": 10,
+    "Class Features": "Ability boosts, alchemist feat, skill feat"
+  },
+  {
+    "Your Level": 11,
+    "Class Features": "General feat, juggernaut, perpetual potency, skill increase"
+  },
+  {
+    "Your Level": 12,
+    "Class Features": "Alchemist feat, skill feat"
+  },
+  {
+    "Your Level": 13,
+    "Class Features": "Ancestry feat, greater field discovery, medium armor expertise, skill increase, weapon specialization"
+  },
+  {
+    "Your Level": 14,
+    "Class Features": "Alchemist feat, skill feat"
+  },
+  {
+    "Your Level": 15,
+    "Class Features": "Ability boosts, alchemical alacrity, evasion, general feat, skill increase"
+  },
+  {
+    "Your Level": 16,
+    "Class Features": "Alchemist feat, skill feat"
+  },
+  {
+    "Your Level": 17,
+    "Class Features": "Alchemical mastery, ancestry feat, perpetual perfection, skill increase"
+  },
+  {
+    "Your Level": 18,
+    "Class Features": "Alchemist feat, skill feat"
+  },
+  {
+    "Your Level": 19,
+    "Class Features": "General feat, medium armor mastery, skill increase"
+  },
+  {
+    "Your Level": 20,
+    "Class Features": "Ability boosts, alchemist feat, skill feat"
+  },
+  
+  {
+    "Your Level": 1,
+    "Class Features": "Ancestry and background, initial proficiencies, rage, instinct, barbarian feat"
+  },
+  {
+    "Your Level": 2,
+    "Class Features": "Barbarian feat, skill feat"
+  },
+  {
+    "Your Level": 3,
+    "Class Features": "Deny advantage, general feat, skill increase"
+  },
+  {
+    "Your Level": 4,
+    "Class Features": "Barbarian feat, skill feat"
+  },
+  {
+    "Your Level": 5,
+    "Class Features": "Ability boosts, ancestry feat, brutality, skill increase"
+  },
+  {
+    "Your Level": 6,
+    "Class Features": "Barbarian feat, skill feat"
+  },
+  {
+    "Your Level": 7,
+    "Class Features": "General feat, juggernaut, skill increase, weapon specialization"
+  },
+  {
+    "Your Level": 8,
+    "Class Features": "Barbarian feat, skill feat"
+  },
+  {
+    "Your Level": 9,
+    "Class Features": "Ancestry feat, lightning reflexes, raging resistance, skill increase"
+  },
+  {
+    "Your Level": 10,
+    "Class Features": "Ability boosts, barbarian feat, skill feat"
+  },
+  {
+    "Your Level": 11,
+    "Class Features": "General feat, mighty rage, skill increase"
+  },
+  {
+    "Your Level": 12,
+    "Class Features": "Barbarian feat, skill feat"
+  },
+  {
+    "Your Level": 13,
+    "Class Features": "Ancestry feat, greater juggernaut, medium armor expertise, skill increase, weapon fury"
+  },
+  {
+    "Your Level": 14,
+    "Class Features": "Barbarian feat, skill feat"
+  },
+  {
+    "Your Level": 15,
+    "Class Features": "Ability boosts, general feat, greater weapon specialization, indomitable will, skill increase"
+  },
+  {
+    "Your Level": 16,
+    "Class Features": "Barbarian feat, skill feat"
+  },
+  {
+    "Your Level": 17,
+    "Class Features": "Ancestry feat, heightened senses, skill increase, quick rage"
+  },
+  {
+    "Your Level": 18,
+    "Class Features": "Barbarian feat, skill feat"
+  },
+  {
+    "Your Level": 19,
+    "Class Features": "Armor of fury, devastator, general feat, skill increase"
+  },
+  {
+    "Your Level": 20,
+    "Class Features": "Ability boosts, barbarian feat, skill feat"
+  },
+  
+  {
+    "Your Level": 1,
+    "Class Features": "Ancestry and background, attribute boosts, bard spellcasting, initial proficiencies, spell repertoire, composition spells, muse"
+  },
+  {
+    "Your Level": 2,
+    "Class Features": "Bard feat, skill feat"
+  },
+  {
+    "Your Level": 3,
+    "Class Features": "2nd-rank spells, general feat, reflex expertise, signature spells, skill increase"
+  },
+  {
+    "Your Level": 4,
+    "Class Features": "Bard feat, skill feat"
+  },
+  {
+    "Your Level": 5,
+    "Class Features": "3rd-rank spells, attribute boosts, ancestry feat, skill increase"
+  },
+  {
+    "Your Level": 6,
+    "Class Features": "Bard feat, skill feat"
+  },
+  {
+    "Your Level": 7,
+    "Class Features": "4th-rank spells, expert spellcaster, general feat, skill increase"
+  },
+  {
+    "Your Level": 8,
+    "Class Features": "Bard feat, skill feat"
+  },
+  {
+    "Your Level": 9,
+    "Class Features": "5th-rank spells, ancestry feat, fortitude expertise, performer’s heart, skill increase"
+  },
+  {
+    "Your Level": 10,
+    "Class Features": "Attribute boosts, bard feat, skill feat"
+  },
+  {
+    "Your Level": 11,
+    "Class Features": "6th-rank spells, bard weapon expertise, general feat, skill increase, vigilant senses"
+  },
+  {
+    "Your Level": 12,
+    "Class Features": "Bard feat, skill feat"
+  },
+  {
+    "Your Level": 13,
+    "Class Features": "7th-rank spells, ancestry feat, light armor expertise, skill increase, weapon specialization"
+  },
+  {
+    "Your Level": 14,
+    "Class Features": "Bard feat, skill feat"
+  },
+  {
+    "Your Level": 15,
+    "Class Features": "8th-rank spells, attribute boosts, general feat, master spellcaster, skill increase"
+  },
+  {
+    "Your Level": 16,
+    "Class Features": "Bard feat, skill feat"
+  },
+  {
+    "Your Level": 17,
+    "Class Features": "9th-rank spells, ancestry feat, greater performer’s heart, skill increase"
+  },
+  {
+    "Your Level": 18,
+    "Class Features": "Bard feat, skill feat"
+  },
+  {
+    "Your Level": 19,
+    "Class Features": "General feat, legendary spellcaster, magnum opus, skill increase"
+  },
+  {
+    "Your Level": 20,
+    "Class Features": "Attribute boosts, bard feat, skill feat"
+  },
+ 
+  {
+    "Your Level": 1,
+    "Class Features": "Ancestry and background, initial proficiencies, champion’s code, deity and cause, deific weapon, champion’s reaction, devotion spells, champion feat, shield block"
+  },
+  {
+    "Your Level": 2,
+    "Class Features": "Champion feat, skill feat"
+  },
+  {
+    "Your Level": 3,
+    "Class Features": "Divine ally, general feat, skill increase"
+  },
+  {
+    "Your Level": 4,
+    "Class Features": "Champion feat, skill feat"
+  },
+  {
+    "Your Level": 5,
+    "Class Features": "Ability boosts, ancestry feat, skill increase, weapon expertise"
+  },
+  {
+    "Your Level": 6,
+    "Class Features": "Champion feat, skill feat"
+  },
+  {
+    "Your Level": 7,
+    "Class Features": "Armor expertise, general feat, skill increase, weapon specialization"
+  },
+  {
+    "Your Level": 8,
+    "Class Features": "Champion feat, skill feat"
+  },
+  {
+    "Your Level": 9,
+    "Class Features": "Ancestry feat, champion expertise, divine smite, juggernaut, lightning reflexes, skill increase"
+  },
+  {
+    "Your Level": 10,
+    "Class Features": "Ability boosts, champion feat, skill feat"
+  },
+  {
+    "Your Level": 11,
+    "Class Features": "Alertness, divine will, exalt, general feat, skill increase"
+  },
+  {
+    "Your Level": 12,
+    "Class Features": "Champion feat, skill feat"
+  },
+  {
+    "Your Level": 13,
+    "Class Features": "Ancestry feat, armor mastery, skill increase, weapon mastery"
+  },
+  {
+    "Your Level": 14,
+    "Class Features": "Champion feat, skill feat"
+  },
+  {
+    "Your Level": 15,
+    "Class Features": "Ability boosts, general feat, greater weapon specialization, skill increase"
+  },
+  {
+    "Your Level": 16,
+    "Class Features": "Champion feat, skill feat"
+  },
+  {
+    "Your Level": 17,
+    "Class Features": "Ancestry feat, champion mastery, legendary armor, skill increase"
+  },
+  {
+    "Your Level": 18,
+    "Class Features": "Champion feat, skill feat"
+  },
+  {
+    "Your Level": 19,
+    "Class Features": "General feat, hero’s defiance, skill increase"
+  },
+  {
+    "Your Level": 20,
+    "Class Features": "Ability boosts, champion feat, skill feat"
+  },
+  
+  {
+    "Your Level": 1,
+    "Class Features": "Ancestry and background, attribute boosts, initial proficiencies, deity, cleric spellcasting, divine font, doctrine"
+  },
+  {
+    "Your Level": 2,
+    "Class Features": "Cleric feat, skill feat"
+  },
+  {
+    "Your Level": 3,
+    "Class Features": "2nd-rank spells, general feat, second doctrine, skill increase"
+  },
+  {
+    "Your Level": 4,
+    "Class Features": "Cleric feat, skill feat"
+  },
+  {
+    "Your Level": 5,
+    "Class Features": "3rd-rank spells, attribute boosts, ancestry feat, perception expertise, skill increase"
+  },
+  {
+    "Your Level": 6,
+    "Class Features": "Cleric feat, skill feat"
+  },
+  {
+    "Your Level": 7,
+    "Class Features": "4th-rank spells, general feat, skill increase, third doctrine"
+  },
+  {
+    "Your Level": 8,
+    "Class Features": "Cleric feat, skill feat"
+  },
+  {
+    "Your Level": 9,
+    "Class Features": "5th-rank spells, ancestry feat, resolute faith, skill increase"
+  },
+  {
+    "Your Level": 10,
+    "Class Features": "Attribute boosts, cleric feat, skill feat"
+  },
+  {
+    "Your Level": 11,
+    "Class Features": "6th-rank spells, fourth doctrine, general feat, lightning reflexes, skill increase"
+  },
+  {
+    "Your Level": 12,
+    "Class Features": "Cleric feat, skill feat"
+  },
+  {
+    "Your Level": 13,
+    "Class Features": "7th-rank spells, ancestry feat, divine defense, skill increase, weapon specialization"
+  },
+  {
+    "Your Level": 14,
+    "Class Features": "Cleric feat, skill feat"
+  },
+  {
+    "Your Level": 15,
+    "Class Features": "8th-rank spells, attribute boosts, fifth doctrine, general feat, skill increase"
+  },
+  {
+    "Your Level": 16,
+    "Class Features": "Cleric feat, skill feat"
+  },
+  {
+    "Your Level": 17,
+    "Class Features": "9th-rank spells, ancestry feat, skill increase"
+  },
+  {
+    "Your Level": 18,
+    "Class Features": "Cleric feat, skill feat"
+  },
+  {
+    "Your Level": 19,
+    "Class Features": "Final doctrine, general feat, miraculous spell, skill increase"
+  },
+  {
+    "Your Level": 20,
+    "Class Features": "Attribute boosts, cleric feat, skill feat"
+  },
+  
+  {
+    "Your Level": 1,
+    "Class Features": "Ancestry and background, attribute boosts, initial proficiencies, druid spellcasting, anathema, druidic order, Shield Block, voice of nature, Wildsong"
+  },
+  {
+    "Your Level": 2,
+    "Class Features": "Druid feat, skill feat"
+  },
+  {
+    "Your Level": 3,
+    "Class Features": "2nd-rank spells, fortitude expertise, general feat, perception expertise, skill increase"
+  },
+  {
+    "Your Level": 4,
+    "Class Features": "Druid feat, skill feat"
+  },
+  {
+    "Your Level": 5,
+    "Class Features": "3rd-rank spells, attribute boosts, ancestry feat, reflex expertise, skill increase"
+  },
+  {
+    "Your Level": 6,
+    "Class Features": "Druid feat, skill feat"
+  },
+  {
+    "Your Level": 7,
+    "Class Features": "4th-rank spells, expert spellcaster, general feat, skill increase"
+  },
+  {
+    "Your Level": 8,
+    "Class Features": "Druid feat, skill feat"
+  },
+  {
+    "Your Level": 9,
+    "Class Features": "5th-rank spells, ancestry feat, skill increase"
+  },
+  {
+    "Your Level": 10,
+    "Class Features": "Attribute boosts, druid feat, skill feat"
+  },
+  {
+    "Your Level": 11,
+    "Class Features": "6th-rank spells, general feat, skill increase, weapon expertise, wild willpower"
+  },
+  {
+    "Your Level": 12,
+    "Class Features": "Druid feat, skill feat"
+  },
+  {
+    "Your Level": 13,
+    "Class Features": "7th-rank spells, ancestry feat, medium armor expertise, skill increase, weapon specialization"
+  },
+  {
+    "Your Level": 14,
+    "Class Features": "Druid feat, skill feat"
+  },
+  {
+    "Your Level": 15,
+    "Class Features": "8th-rank spells, attribute boosts, general feat, master spellcaster, skill increase"
+  },
+  {
+    "Your Level": 16,
+    "Class Features": "Druid feat, skill feat"
+  },
+  {
+    "Your Level": 17,
+    "Class Features": "9th-rank spells, ancestry feat, skill increase"
+  },
+  {
+    "Your Level": 18,
+    "Class Features": "Druid feat, skill feat"
+  },
+  {
+    "Your Level": 19,
+    "Class Features": "General feat, legendary spellcaster, primal hierophant, skill increase"
+  },
+  {
+    "Your Level": 20,
+    "Class Features": "Attribute boosts, druid feat, skill feat"
+  },
+  
+  {
+    "Your Level": 1,
+    "Class Features": "Ancestry and background, attribute boosts, initial proficiencies, Reactive Strike, fighter feat, Shield Block"
+  },
+  {
+    "Your Level": 2,
+    "Class Features": "Fighter feat, skill feat"
+  },
+  {
+    "Your Level": 3,
+    "Class Features": "Bravery, general feat, skill increase"
+  },
+  {
+    "Your Level": 4,
+    "Class Features": "Fighter feat, skill feat"
+  },
+  {
+    "Your Level": 5,
+    "Class Features": "Ancestry feat, attribute boosts, fighter weapon mastery, skill increase"
+  },
+  {
+    "Your Level": 6,
+    "Class Features": "Fighter feat, skill feat"
+  },
+  {
+    "Your Level": 7,
+    "Class Features": "Battlefield surveyor, general feat, skill increase, weapon specialization"
+  },
+  {
+    "Your Level": 8,
+    "Class Features": "Fighter feat, skill feat"
+  },
+  {
+    "Your Level": 9,
+    "Class Features": "Ancestry feat, battle hardened, combat flexibility, skill increase"
+  },
+  {
+    "Your Level": 10,
+    "Class Features": "Attribute boosts, fighter feat, skill feat"
+  },
+  {
+    "Your Level": 11,
+    "Class Features": "Armor expertise, fighter expertise, general feat, skill increase"
+  },
+  {
+    "Your Level": 12,
+    "Class Features": "Fighter feat, skill feat"
+  },
+  {
+    "Your Level": 13,
+    "Class Features": "Ancestry feat, skill increase, weapon legend"
+  },
+  {
+    "Your Level": 14,
+    "Class Features": "Fighter feat, skill feat"
+  },
+  {
+    "Your Level": 15,
+    "Class Features": "Attribute boosts, general feat, greater weapon specialization, improved flexibility, skill increase, tempered reflexes"
+  },
+  {
+    "Your Level": 16,
+    "Class Features": "Fighter feat, skill feat"
+  },
+  {
+    "Your Level": 17,
+    "Class Features": "Ancestry feat, armor mastery, skill increase"
+  },
+  {
+    "Your Level": 18,
+    "Class Features": "Fighter feat, skill feat"
+  },
+  {
+    "Your Level": 19,
+    "Class Features": "General feat, skill increase, versatile legend"
+  },
+  {
+    "Your Level": 20,
+    "Class Features": "Attribute boosts, fighter feat, skill feat"
+  },
+  
+  {
+    "Your Level": 1,
+    "Class Features": "Ancestry and background, initial proficiencies, gunslinger's way, initial deed, gunslinger feat, singular expertise"
+  },
+  {
+    "Your Level": 2,
+    "Class Features": "Gunslinger feat, skill feat"
+  },
+  {
+    "Your Level": 3,
+    "Class Features": "General feat, skill increase, stubborn"
+  },
+  {
+    "Your Level": 4,
+    "Class Features": "Gunslinger feat, skill feat"
+  },
+  {
+    "Your Level": 5,
+    "Class Features": "Ability boosts, ancestry feat, gunslinger weapon mastery, skill increase"
+  },
+  {
+    "Your Level": 6,
+    "Class Features": "Gunslinger feat, skill feat"
+  },
+  {
+    "Your Level": 7,
+    "Class Features": "General feat, skill increase, vigilant senses, weapon specialization"
+  },
+  {
+    "Your Level": 8,
+    "Class Features": "Gunslinger feat, skill feat"
+  },
+  {
+    "Your Level": 9,
+    "Class Features": "Advanced deed, ancestry feat, gunslinger expertise, skill increase"
+  },
+  {
+    "Your Level": 10,
+    "Class Features": "Ability boosts, gunslinger feat, skill feat"
+  },
+  {
+    "Your Level": 11,
+    "Class Features": "Evasion, general feat, skill increase"
+  },
+  {
+    "Your Level": 12,
+    "Class Features": "Gunslinger feat, skill feat"
+  },
+  {
+    "Your Level": 13,
+    "Class Features": "Ancestry feat, gunslinging legend, medium armor expertise, skill increase"
+  },
+  {
+    "Your Level": 14,
+    "Class Features": "Gunslinger feat, skill feat"
+  },
+  {
+    "Your Level": 15,
+    "Class Features": "Ability boosts, general feat, greater deed, greater weapon specialization, skill increase"
+  },
+  {
+    "Your Level": 16,
+    "Class Features": "Gunslinger feat, skill feat"
+  },
+  {
+    "Your Level": 17,
+    "Class Features": "Ancestry feat, juggernaut, shootist's edge, skill increase"
+  },
+  {
+    "Your Level": 18,
+    "Class Features": "Gunslinger feat, skill feat"
+  },
+  {
+    "Your Level": 19,
+    "Class Features": "General feat, incredible senses, medium armor mastery, skill increase"
+  },
+  {
+    "Your Level": 20,
+    "Class Features": "Ability boosts, gunslinger feat, skill feat"
+  },
+  
+  {
+    "Your Level": 1,
+    "Class Features": "Ancestry and background, initial proficiencies, overdrive, innovation, explode, peerless inventor, shield block, inventor feat"
+  },
+  {
+    "Your Level": 2,
+    "Class Features": "Inventor feat, skill feat"
+  },
+  {
+    "Your Level": 3,
+    "Class Features": "Expert overdrive, general feat, reconfigure, skill increase"
+  },
+  {
+    "Your Level": 4,
+    "Class Features": "Inventor feat, skill feat"
+  },
+  {
+    "Your Level": 5,
+    "Class Features": "Ability boosts, ancestry feat, inventor weapon expertise, skill increase"
+  },
+  {
+    "Your Level": 6,
+    "Class Features": "Inventor feat, skill feat"
+  },
+  {
+    "Your Level": 7,
+    "Class Features": "Breakthrough innovation, general feat, lightning reflexes, master overdrive, skill increase, weapon specialization"
+  },
+  {
+    "Your Level": 8,
+    "Class Features": "Inventor feat, skill feat"
+  },
+  {
+    "Your Level": 9,
+    "Class Features": "Ancestry feat, inventive expertise, offensive boost, skill increase"
+  },
+  {
+    "Your Level": 10,
+    "Class Features": "Ability boosts, inventor feat, skill feat"
+  },
+  {
+    "Your Level": 11,
+    "Class Features": "General feat, medium armor expertise, resolve, skill increase"
+  },
+  {
+    "Your Level": 12,
+    "Class Features": "Inventor feat, skill feat"
+  },
+  {
+    "Your Level": 13,
+    "Class Features": "Alertness, ancestry feat, complete reconfiguration, inventor weapon mastery, skill increase"
+  },
+  {
+    "Your Level": 14,
+    "Class Features": "Inventor feat, skill feat"
+  },
+  {
+    "Your Level": 15,
+    "Class Features": "Ability boosts, general feat, greater weapon specialization, legendary overdrive, revolutionary innovation, skill increase"
+  },
+  {
+    "Your Level": 16,
+    "Class Features": "Inventor feat, skill feat"
+  },
+  {
+    "Your Level": 17,
+    "Class Features": "Ancestry feat, inventive mastery, juggernaut, skill increase"
+  },
+  {
+    "Your Level": 18,
+    "Class Features": "Inventor feat, skill feat"
+  },
+  {
+    "Your Level": 19,
+    "Class Features": "General feat, infinite invention, medium armor mastery, skill increase"
+  },
+  {
+    "Your Level": 20,
+    "Class Features": "Ability boosts, inventor feat, skill feat"
+  },
+  
+  {
+    "Your Level": 1,
+    "Class Features": "Ancestry and background, initial proficiencies, on the case, Devise a Stratagem, methodology, investigator feat, strategic strike 1d6"
+  },
+  {
+    "Your Level": 2,
+    "Class Features": "Investigator feat, skill feat, skill increase"
+  },
+  {
+    "Your Level": 3,
+    "Class Features": "General feat, keen recollection, skill increase, skillful lesson"
+  },
+  {
+    "Your Level": 4,
+    "Class Features": "Investigator feat, skill feat, skill increase"
+  },
+  {
+    "Your Level": 5,
+    "Class Features": "Ability boosts, ancestry feat, skill increase, skillful lesson, strategic strike 2d6, weapon expertise"
+  },
+  {
+    "Your Level": 6,
+    "Class Features": "Investigator feat, skill feat, skill increase"
+  },
+  {
+    "Your Level": 7,
+    "Class Features": "General feat, skill increase, skillful lesson, vigilant senses, weapon specialization"
+  },
+  {
+    "Your Level": 8,
+    "Class Features": "Investigator feat, skill feat, skill increase"
+  },
+  {
+    "Your Level": 9,
+    "Class Features": "Ancestry feat, great fortitude, investigator expertise, skill increase, skillful lesson, strategic strike 3d6"
+  },
+  {
+    "Your Level": 10,
+    "Class Features": "Ability boosts, investigator feat, skill feat, skill increase"
+  },
+  {
+    "Your Level": 11,
+    "Class Features": "Deductive improvisation, general feat, resolve, skill increase, skillful lesson"
+  },
+  {
+    "Your Level": 12,
+    "Class Features": "Investigator feat, skill feat, skill increase"
+  },
+  {
+    "Your Level": 13,
+    "Class Features": "Ancestry feat, incredible senses, light armor expertise, skill increase, skillful lesson, strategic strike 4d6, weapon mastery"
+  },
+  {
+    "Your Level": 14,
+    "Class Features": "Investigator feat, skill feat, skill increase"
+  },
+  {
+    "Your Level": 15,
+    "Class Features": "Ability boosts, evasion, general feat, greater weapon specialization, skill increase, skillful lesson"
+  },
+  {
+    "Your Level": 16,
+    "Class Features": "Investigator feat, skill feat, skill increase"
+  },
+  {
+    "Your Level": 17,
+    "Class Features": "Ancestry feat, greater resolve, skill increase, skillful lesson, strategic strike 5d6"
+  },
+  {
+    "Your Level": 18,
+    "Class Features": "Investigator feat, skill feat, skill increase"
+  },
+  {
+    "Your Level": 19,
+    "Class Features": "General feat, light armor mastery, master detective, skill increase, skillful lesson"
+  },
+  {
+    "Your Level": 20,
+    "Class Features": "Ability boosts, investigator feat, skill feat, skill increase"
+  },
+  
+  {
+    "Your Level": 1,
+    "Class Features": "Ancestry and background, attribute boosts, initial proficiencies, kinetic gate, kinetic aura, impulses (Elemental Blast, Base Kinesis), kineticist feat"
+  },
+  {
+    "Your Level": 2,
+    "Class Features": "Kineticist feat, skill feat"
+  },
+  {
+    "Your Level": 3,
+    "Class Features": "Extract Element, general feat, skill increase, Will expertise"
+  },
+  {
+    "Your Level": 4,
+    "Class Features": "Kineticist feat, skill feat"
+  },
+  {
+    "Your Level": 5,
+    "Class Features": "Ancestry feat, attribute boosts, gate's threshold, skill increase"
+  },
+  {
+    "Your Level": 6,
+    "Class Features": "Kineticist feat, skill feat"
+  },
+  {
+    "Your Level": 7,
+    "Class Features": "General feat, kinetic durability, kinetic expertise, skill increase"
+  },
+  {
+    "Your Level": 8,
+    "Class Features": "Kineticist feat, skill feat"
+  },
+  {
+    "Your Level": 9,
+    "Class Features": "Ancestry feat, gate's threshold, perception expertise, skill increase"
+  },
+  {
+    "Your Level": 10,
+    "Class Features": "Attribute boosts, kineticist feat, skill feat"
+  },
+  {
+    "Your Level": 11,
+    "Class Features": "General feat, kinetic quickness, reflow elements, skill increase, weapon expertise"
+  },
+  {
+    "Your Level": 12,
+    "Class Features": "Kineticist feat, skill feat"
+  },
+  {
+    "Your Level": 13,
+    "Class Features": "Ancestry feat, gate's threshold, light armor expertise, skill increase, weapon specialization"
+  },
+  {
+    "Your Level": 14,
+    "Class Features": "Kineticist feat, skill feat"
+  },
+  {
+    "Your Level": 15,
+    "Class Features": "Attribute boosts, general feat, greater kinetic durability, kinetic mastery, skill increase"
+  },
+  {
+    "Your Level": 16,
+    "Class Features": "Kineticist feat, skill feat"
+  },
+  {
+    "Your Level": 17,
+    "Class Features": "Ancestry feat, double reflow, gate's threshold, skill increase"
+  },
+  {
+    "Your Level": 18,
+    "Class Features": "Kineticist feat, skill feat"
+  },
+  {
+    "Your Level": 19,
+    "Class Features": "Final gate, general feat, kinetic legend, light armor mastery, skill increase"
+  },
+  {
+    "Your Level": 20,
+    "Class Features": "Attribute boosts, kineticist feat, skill feat"
+  },
+  
+  {
+    "Your Level": 1,
+    "Class Features": "Ancestry and background, initial proficiencies, arcane spellcasting, arcane cascade, conflux spells, hybrid study, spellstrike"
+  },
+  {
+    "Your Level": 2,
+    "Class Features": "Magus feat, skill feat"
+  },
+  {
+    "Your Level": 3,
+    "Class Features": "2nd-level spells, general feat, skill increase"
+  },
+  {
+    "Your Level": 4,
+    "Class Features": "Magus feat, skill feat"
+  },
+  {
+    "Your Level": 5,
+    "Class Features": "3rd-level spells, ability boosts, ancestry feat, lightning reflexes, skill increase, weapon expertise"
+  },
+  {
+    "Your Level": 6,
+    "Class Features": "Magus feat, skill feat"
+  },
+  {
+    "Your Level": 7,
+    "Class Features": "4th-level spells, general feat, skill increase, studious spells, weapon specialization"
+  },
+  {
+    "Your Level": 8,
+    "Class Features": "Magus feat, skill feat"
+  },
+  {
+    "Your Level": 9,
+    "Class Features": "5th-level spells, alertness, ancestry feat, expert spellcaster, resolve, skill increase"
+  },
+  {
+    "Your Level": 10,
+    "Class Features": "Ability boosts, magus feat, skill feat"
+  },
+  {
+    "Your Level": 11,
+    "Class Features": "6th-level spells, general feat, medium armor expertise, skill increase"
+  },
+  {
+    "Your Level": 12,
+    "Class Features": "Magus feat, skill feat"
+  },
+  {
+    "Your Level": 13,
+    "Class Features": "7th-level spells, ancestry feat, skill increase, weapon mastery"
+  },
+  {
+    "Your Level": 14,
+    "Class Features": "Magus feat, skill feat"
+  },
+  {
+    "Your Level": 15,
+    "Class Features": "8th-level spells, ability boosts, general feat, greater weapon specialization, juggernaut, skill increase"
+  },
+  {
+    "Your Level": 16,
+    "Class Features": "Magus feat, skill feat"
+  },
+  {
+    "Your Level": 17,
+    "Class Features": "9th-level spells, ancestry feat, master spellcaster, medium armor mastery, skill increase"
+  },
+  {
+    "Your Level": 18,
+    "Class Features": "Magus feat, skill feat"
+  },
+  {
+    "Your Level": 19,
+    "Class Features": "Double spellstrike, general feat, skill increase"
+  },
+  {
+    "Your Level": 20,
+    "Class Features": "Ability boosts, magus feat, skill feat"
+  },
+ 
+  {
+    "Your Level": 1,
+    "Class Features": "Ancestry and background, initial proficiencies, flurry of blows, monk feat, powerful fist"
+  },
+  {
+    "Your Level": 2,
+    "Class Features": "Monk feat, skill feat"
+  },
+  {
+    "Your Level": 3,
+    "Class Features": "General feat, incredible movement +10 feet, mystic strikes, skill increase"
+  },
+  {
+    "Your Level": 4,
+    "Class Features": "Monk feat, skill feat"
+  },
+  {
+    "Your Level": 5,
+    "Class Features": "Ability boosts, alertness, ancestry feat, expert strikes, skill increase"
+  },
+  {
+    "Your Level": 6,
+    "Class Features": "Monk feat, skill feat"
+  },
+  {
+    "Your Level": 7,
+    "Class Features": "General feat, incredible movement +15 feet, path to perfection, skill increase, weapon specialization"
+  },
+  {
+    "Your Level": 8,
+    "Class Features": "Monk feat, skill feat"
+  },
+  {
+    "Your Level": 9,
+    "Class Features": "Ancestry feat, metal strikes, monk expertise, skill increase"
+  },
+  {
+    "Your Level": 10,
+    "Class Features": "Ability boosts, monk feat, skill feat"
+  },
+  {
+    "Your Level": 11,
+    "Class Features": "General feat, incredible movement +20 feet, second path to perfection, skill increase"
+  },
+  {
+    "Your Level": 12,
+    "Class Features": "Monk feat, skill feat"
+  },
+  {
+    "Your Level": 13,
+    "Class Features": "Ancestry feat, graceful mastery, master strikes, skill increase"
+  },
+  {
+    "Your Level": 14,
+    "Class Features": "Monk feat, skill feat"
+  },
+  {
+    "Your Level": 15,
+    "Class Features": "Ability boosts, general feat, greater weapon specialization, incredible movement +25 feet, skill increase, third path to perfection"
+  },
+  {
+    "Your Level": 16,
+    "Class Features": "Monk feat, skill feat"
+  },
+  {
+    "Your Level": 17,
+    "Class Features": "Adamantine strikes, ancestry feat, graceful legend, skill increase"
+  },
+  {
+    "Your Level": 18,
+    "Class Features": "Monk feat, skill feat"
+  },
+  {
+    "Your Level": 19,
+    "Class Features": "General feat, incredible movement +30 feet, perfected form, skill increase"
+  },
+  {
+    "Your Level": 20,
+    "Class Features": "Ability boosts, monk feat, skill feat"
+  },
+  
+  {
+    "Your Level": 1,
+    "Class Features": "Ancestry and background, initial proficiencies, divine spellcasting, spell repertoire, mystery"
+  },
+  {
+    "Your Level": 2,
+    "Class Features": "Oracle feat, skill feat"
+  },
+  {
+    "Your Level": 3,
+    "Class Features": "2nd-level spells, general feat, signature spells, skill increase"
+  },
+  {
+    "Your Level": 4,
+    "Class Features": "Oracle feat, skill feat"
+  },
+  {
+    "Your Level": 5,
+    "Class Features": "3rd-level spells, ability boosts, ancestry feat, skill increase"
+  },
+  {
+    "Your Level": 6,
+    "Class Features": "Oracle feat, skill feat"
+  },
+  {
+    "Your Level": 7,
+    "Class Features": "4th-level spells, expert spellcaster, general feat, resolve, skill increase"
+  },
+  {
+    "Your Level": 8,
+    "Class Features": "Oracle feat, skill feat"
+  },
+  {
+    "Your Level": 9,
+    "Class Features": "5th-level spells, ancestry feat, magical fortitude, skill increase"
+  },
+  {
+    "Your Level": 10,
+    "Class Features": "Ability boosts, oracle feat, skill feat"
+  },
+  {
+    "Your Level": 11,
+    "Class Features": "6th-level spells, alertness, general feat, major curse, skill increase, weapon expertise"
+  },
+  {
+    "Your Level": 12,
+    "Class Features": "Oracle feat, skill feat"
+  },
+  {
+    "Your Level": 13,
+    "Class Features": "7th-level spells, ancestry feat, light armor expertise, lightning reflexes, skill increase, weapon specialization"
+  },
+  {
+    "Your Level": 14,
+    "Class Features": "Oracle feat, skill feat"
+  },
+  {
+    "Your Level": 15,
+    "Class Features": "8th-level spells, ability boosts, general feat, master spellcaster, skill increase"
+  },
+  {
+    "Your Level": 16,
+    "Class Features": "Oracle feat, skill feat"
+  },
+  {
+    "Your Level": 17,
+    "Class Features": "9th-level spells, ancestry feat, extreme curse, greater resolve, skill increase"
+  },
+  {
+    "Your Level": 18,
+    "Class Features": "Oracle feat, skill feat"
+  },
+  {
+    "Your Level": 19,
+    "Class Features": "General feat, legendary spellcaster, oracular clarity, skill increase"
+  },
+  {
+    "Your Level": 20,
+    "Class Features": "Ability boosts, oracle feat, skill feat"
+  },
+  
+  {
+    "Your Level": 1,
+    "Class Features": "Ancestry and background, initial proficiencies, psychic spellcasting, spell repertoire, psi cantrips and psi amps, Unleash Psyche, subconscious mind, conscious mind"
+  },
+  {
+    "Your Level": 2,
+    "Class Features": "Psychic feat, skill feat"
+  },
+  {
+    "Your Level": 3,
+    "Class Features": "2nd-level spells, general feat, signature spells, skill increase"
+  },
+  {
+    "Your Level": 4,
+    "Class Features": "Psychic feat, skill feat"
+  },
+  {
+    "Your Level": 5,
+    "Class Features": "3rd-level spells, ability boosts, ancestry feat, clarity of focus, precognitive reflexes, skill increase"
+  },
+  {
+    "Your Level": 6,
+    "Class Features": "Psychic feat, skill feat"
+  },
+  {
+    "Your Level": 7,
+    "Class Features": "4th-level spells, expert spellcaster, general feat, skill increase"
+  },
+  {
+    "Your Level": 8,
+    "Class Features": "Psychic feat, skill feat"
+  },
+  {
+    "Your Level": 9,
+    "Class Features": "5th-level spells, ancestry feat, great fortitude, skill increase"
+  },
+  {
+    "Your Level": 10,
+    "Class Features": "Ability boosts, psychic feat, skill feat"
+  },
+  {
+    "Your Level": 11,
+    "Class Features": "6th-level spells, extrasensory perception, general feat, skill increase, walls of will, weapon expertise"
+  },
+  {
+    "Your Level": 12,
+    "Class Features": "Psychic feat, skill feat"
+  },
+  {
+    "Your Level": 13,
+    "Class Features": "7th-level spells, ancestry feat, personal barrier, skill increase, weapon specialization"
+  },
+  {
+    "Your Level": 14,
+    "Class Features": "Psychic feat, skill feat"
+  },
+  {
+    "Your Level": 15,
+    "Class Features": "8th-level spells, ability boosts, general feat, master spellcaster, skill increase"
+  },
+  {
+    "Your Level": 16,
+    "Class Features": "Psychic feat, skill feat"
+  },
+  {
+    "Your Level": 17,
+    "Class Features": "9th-level spells, ancestry feat, fortress of will, skill increase"
+  },
+  {
+    "Your Level": 18,
+    "Class Features": "Psychic feat, skill feat"
+  },
+  {
+    "Your Level": 19,
+    "Class Features": "General feat, infinite mind, legendary spellcaster, skill increase"
+  },
+  {
+    "Your Level": 20,
+    "Class Features": "Ability boosts, psychic feat, skill feat"
+  },
+  
+  {
+    "Your Level": 1,
+    "Class Features": "Ancestry and background, attribute boosts, initial proficiencies, hunt prey, hunter’s edge, ranger feat"
+  },
+  {
+    "Your Level": 2,
+    "Class Features": "Ranger feat, skill feat"
+  },
+  {
+    "Your Level": 3,
+    "Class Features": "General feat, will expertise, skill increase"
+  },
+  {
+    "Your Level": 4,
+    "Class Features": "Ranger feat, skill feat"
+  },
+  {
+    "Your Level": 5,
+    "Class Features": "Attribute boosts, ancestry feat, ranger weapon expertise, skill increase, trackless journey"
+  },
+  {
+    "Your Level": 6,
+    "Class Features": "Ranger feat, skill feat"
+  },
+  {
+    "Your Level": 7,
+    "Class Features": "General feat, natural reflexes, skill increase, perception mastery, weapon specialization"
+  },
+  {
+    "Your Level": 8,
+    "Class Features": "Ranger feat, skill feat"
+  },
+  {
+    "Your Level": 9,
+    "Class Features": "Ancestry feat, nature’s edge, ranger expertise, skill increase"
+  },
+  {
+    "Your Level": 10,
+    "Class Features": "Attribute boosts, ranger feat, skill feat"
+  },
+  {
+    "Your Level": 11,
+    "Class Features": "General feat, warden’s endurance, medium armor expertise, skill increase, unimpeded journey"
+  },
+  {
+    "Your Level": 12,
+    "Class Features": "Ranger feat, skill feat"
+  },
+  {
+    "Your Level": 13,
+    "Class Features": "Ancestry feat, skill increase, martial weapon mastery"
+  },
+  {
+    "Your Level": 14,
+    "Class Features": "Ranger feat, skill feat"
+  },
+  {
+    "Your Level": 15,
+    "Class Features": "Attribute boosts, general feat, greater natural reflexes, greater weapon specialization, perception legend, skill increase"
+  },
+  {
+    "Your Level": 16,
+    "Class Features": "Ranger feat, skill feat"
+  },
+  {
+    "Your Level": 17,
+    "Class Features": "Ancestry feat, masterful hunter, skill increase"
+  },
+  {
+    "Your Level": 18,
+    "Class Features": "Ranger feat, skill feat"
+  },
+  {
+    "Your Level": 19,
+    "Class Features": "General feat, medium armor mastery, skill increase, swift prey"
+  },
+  {
+    "Your Level": 20,
+    "Class Features": "Attribute boosts, ranger feat, skill feat"
+  },
+  
+  {
+    "Your Level": 1,
+    "Class Features": "Ancestry and background, attribute boosts, initial proficiencies, rogue’s racket, sneak attack 1d6, surprise attack, rogue feat, skill feat"
+  },
+  {
+    "Your Level": 2,
+    "Class Features": "Rogue feat, skill feat, skill increase"
+  },
+  {
+    "Your Level": 3,
+    "Class Features": "Deny advantage, general feat, skill feat, skill increase"
+  },
+  {
+    "Your Level": 4,
+    "Class Features": "Rogue feat, skill feat, skill increase"
+  },
+  {
+    "Your Level": 5,
+    "Class Features": "Attribute boosts, ancestry feat, skill feat, skill increase, sneak attack 2d6, weapon tricks"
+  },
+  {
+    "Your Level": 6,
+    "Class Features": "Rogue feat, skill feat, skill increase"
+  },
+  {
+    "Your Level": 7,
+    "Class Features": "Evasive reflexes, general feat, skill feat, skill increase, vigilant senses, weapon specialization"
+  },
+  {
+    "Your Level": 8,
+    "Class Features": "Rogue feat, skill feat, skill increase"
+  },
+  {
+    "Your Level": 9,
+    "Class Features": "Ancestry feat, debilitating strike, rogue resilience, skill feat, skill increase"
+  },
+  {
+    "Your Level": 10,
+    "Class Features": "Attribute boosts, rogue feat, skill feat, skill increase"
+  },
+  {
+    "Your Level": 11,
+    "Class Features": "General feat, rogue expertise, skill feat, skill increase, sneak attack 3d6"
+  },
+  {
+    "Your Level": 12,
+    "Class Features": "Rogue feat, skill feat, skill increase"
+  },
+  {
+    "Your Level": 13,
+    "Class Features": "Ancestry feat, improved rogue reflexes, incredible senses, light armor expertise, master tricks, skill feat, skill increase"
+  },
+  {
+    "Your Level": 14,
+    "Class Features": "Rogue feat, skill feat, skill increase"
+  },
+  {
+    "Your Level": 15,
+    "Class Features": "Attribute boosts, double debilitation, general feat, greater weapon specialization, skill feat, skill increase"
+  },
+  {
+    "Your Level": 16,
+    "Class Features": "Rogue feat, skill feat, skill increase"
+  },
+  {
+    "Your Level": 17,
+    "Class Features": "Ancestry feat, skill feat, skill increase, slippery mind, sneak attack 4d6"
+  },
+  {
+    "Your Level": 18,
+    "Class Features": "Rogue feat, skill feat, skill increase"
+  },
+  {
+    "Your Level": 19,
+    "Class Features": "General feat, light armor mastery, master strike, skill feat, skill increase"
+  },
+  {
+    "Your Level": 20,
+    "Class Features": "Attribute boosts, rogue feat, skill feat, skill increase"
+  },
+  
+  {
+    "Your Level": 1,
+    "Class Features": "Ancestry and background, initial proficiencies, bloodline, sorcerer spellcasting, spell repertoire"
+  },
+  {
+    "Your Level": 2,
+    "Class Features": "Skill feat, sorcerer feat"
+  },
+  {
+    "Your Level": 3,
+    "Class Features": "2nd-level spells, general feat, signature spells, skill increase"
+  },
+  {
+    "Your Level": 4,
+    "Class Features": "Skill feat, sorcerer feat"
+  },
+  {
+    "Your Level": 5,
+    "Class Features": "3rd-level spells, ability boosts, ancestry feat, magical fortitude, skill increase"
+  },
+  {
+    "Your Level": 6,
+    "Class Features": "Skill feat, sorcerer feat"
+  },
+  {
+    "Your Level": 7,
+    "Class Features": "4th-level spells, expert spellcaster, general feat, skill increase"
+  },
+  {
+    "Your Level": 8,
+    "Class Features": "Skill feat, sorcerer feat"
+  },
+  {
+    "Your Level": 9,
+    "Class Features": "5th-level spells, ancestry feat, lightning reflexes, skill increase"
+  },
+  {
+    "Your Level": 10,
+    "Class Features": "Ability boosts, skill feat, sorcerer feat"
+  },
+  {
+    "Your Level": 11,
+    "Class Features": "6th-level spells, alertness, general feat, skill increase, weapon expertise"
+  },
+  {
+    "Your Level": 12,
+    "Class Features": "Skill feat, sorcerer feat"
+  },
+  {
+    "Your Level": 13,
+    "Class Features": "7th-level spells, ancestry feat, defensive robes, skill increase, weapon specialization"
+  },
+  {
+    "Your Level": 14,
+    "Class Features": "Skill feat, sorcerer feat"
+  },
+  {
+    "Your Level": 15,
+    "Class Features": "8th-level spells, ability boosts, general feat, master spellcaster, skill increase"
+  },
+  {
+    "Your Level": 16,
+    "Class Features": "Skill feat, sorcerer feat"
+  },
+  {
+    "Your Level": 17,
+    "Class Features": "9th-level spells, ancestry feat, resolve, skill increase"
+  },
+  {
+    "Your Level": 18,
+    "Class Features": "Skill feat, sorcerer feat"
+  },
+  {
+    "Your Level": 19,
+    "Class Features": "Bloodline paragon, general feat, legendary spellcaster, skill increase"
+  },
+  {
+    "Your Level": 20,
+    "Class Features": "Ability boosts, skill feat, sorcerer feat"
+  },
+  
+  {
+    "Your Level": 1,
+    "Class Features": "Ancestry and background, initial proficiencies, eidolon, evolution feat, link spells, spell repertoire, summoner spellcasting"
+  },
+  {
+    "Your Level": 2,
+    "Class Features": "Skill feat, summoner feat"
+  },
+  {
+    "Your Level": 3,
+    "Class Features": "2nd-level spells, general feat, shared vigilance, skill increase, unlimited signature spells"
+  },
+  {
+    "Your Level": 4,
+    "Class Features": "Skill feat, summoner feat"
+  },
+  {
+    "Your Level": 5,
+    "Class Features": "3rd-level spells, ability boosts, ancestry feat, eidolon unarmed expertise, skill increase"
+  },
+  {
+    "Your Level": 6,
+    "Class Features": "Skill feat, summoner feat"
+  },
+  {
+    "Your Level": 7,
+    "Class Features": "4th-level spells, eidolon symbiosis, eidolon weapon specialization, general feat, skill increase"
+  },
+  {
+    "Your Level": 8,
+    "Class Features": "Skill feat, summoner feat"
+  },
+  {
+    "Your Level": 9,
+    "Class Features": "5th-level spells, ancestry feat, expert spellcaster, shared reflexes, skill increase"
+  },
+  {
+    "Your Level": 10,
+    "Class Features": "Ability boosts, skill feat, summoner feat"
+  },
+  {
+    "Your Level": 11,
+    "Class Features": "6th-level spells, eidolon defensive expertise, general feat, simple weapon expertise, skill increase, twin juggernauts"
+  },
+  {
+    "Your Level": 12,
+    "Class Features": "Skill feat, summoner feat"
+  },
+  {
+    "Your Level": 13,
+    "Class Features": "7th-level spells, ancestry feat, defensive robes, eidolon unarmed mastery, skill increase, weapon specialization"
+  },
+  {
+    "Your Level": 14,
+    "Class Features": "Skill feat, summoner feat"
+  },
+  {
+    "Your Level": 15,
+    "Class Features": "8th-level spells, ability boosts, greater eidolon specialization, general feat, shared resolve, skill increase"
+  },
+  {
+    "Your Level": 16,
+    "Class Features": "Skill feat, summoner feat"
+  },
+  {
+    "Your Level": 17,
+    "Class Features": "9th-level spells, ancestry feat, eidolon transcendence, master spellcaster, skill increase"
+  },
+  {
+    "Your Level": 18,
+    "Class Features": "Skill feat, summoner feat"
+  },
+  {
+    "Your Level": 19,
+    "Class Features": "General feat, eidolon defensive mastery, instant manifestation, skill increase"
+  },
+  {
+    "Your Level": 20,
+    "Class Features": "Ability boosts, skill feat, summoner feat"
+  },
+  
+  {
+    "Your Level": 1,
+    "Class Features": "Ancestry and background, initial proficiencies, panache, swashbuckler’s style, precise strike (2d6), confident finisher, swashbuckler feat"
+  },
+  {
+    "Your Level": 2,
+    "Class Features": "Skill feat, swashbuckler feat"
+  },
+  {
+    "Your Level": 3,
+    "Class Features": "General feat, great fortitude, opportune riposte, skill increase, stylish trick, vivacious speed +10 feet"
+  },
+  {
+    "Your Level": 4,
+    "Class Features": "Skill feat, swashbuckler feat"
+  },
+  {
+    "Your Level": 5,
+    "Class Features": "Ability boosts, ancestry feat, precise strike (3d6), skill increase, weapon expertise"
+  },
+  {
+    "Your Level": 6,
+    "Class Features": "Skill feat, swashbuckler feat"
+  },
+  {
+    "Your Level": 7,
+    "Class Features": "Evasion, general feat, skill increase, stylish trick, vivacious speed +15 feet, weapon specialization"
+  },
+  {
+    "Your Level": 8,
+    "Class Features": "Skill feat, swashbuckler feat"
+  },
+  {
+    "Your Level": 9,
+    "Class Features": "Ancestry feat, exemplary finisher, precise strike (4d6), skill increase, swashbuckler expertise"
+  },
+  {
+    "Your Level": 10,
+    "Class Features": "Ability boosts, skill feat, swashbuckler feat"
+  },
+  {
+    "Your Level": 11,
+    "Class Features": "Continuous flair, general feat, skill increase, vigilant senses, vivacious speed +20 feet"
+  },
+  {
+    "Your Level": 12,
+    "Class Features": "Skill feat, swashbuckler feat"
+  },
+  {
+    "Your Level": 13,
+    "Class Features": "Ancestry feat, improved evasion, light armor expertise, precise strike (5d6), skill increase, weapon mastery"
+  },
+  {
+    "Your Level": 14,
+    "Class Features": "Skill feat, swashbuckler feat"
+  },
+  {
+    "Your Level": 15,
+    "Class Features": "Ability boosts, general feat, greater weapon specialization, keen flair, skill increase, stylish trick, vivacious speed +25 feet"
+  },
+  {
+    "Your Level": 16,
+    "Class Features": "Skill feat, swashbuckler feat"
+  },
+  {
+    "Your Level": 17,
+    "Class Features": "Ancestry feat, precise strike (6d6), resolve, skill increase"
+  },
+  {
+    "Your Level": 18,
+    "Class Features": "Skill feat, swashbuckler feat"
+  },
+  {
+    "Your Level": 19,
+    "Class Features": "Eternal confidence, general feat, light armor mastery, skill increase, vivacious speed +30 feet"
+  },
+  {
+    "Your Level": 20,
+    "Class Features": "Ability boosts, skill feat, swashbuckler feat"
+  },
+  
+  {
+    "Your Level": 1,
+    "Class Features": "Ancestry and background, initial proficiencies, esoteric lore, first implement and esoterica, implement's empowerment, thaumaturge feat"
+  },
+  {
+    "Your Level": 2,
+    "Class Features": "Skill feat, thaumaturge feat"
+  },
+  {
+    "Your Level": 3,
+    "Class Features": "General feat, lightning reflexes, skill increase"
+  },
+  {
+    "Your Level": 4,
+    "Class Features": "Skill feat, thaumaturge feat"
+  },
+  {
+    "Your Level": 5,
+    "Class Features": "Ability boosts, ancestry feat, second implement, skill increase, thaumaturge weapon expertise"
+  },
+  {
+    "Your Level": 6,
+    "Class Features": "Skill feat, thaumaturge feat"
+  },
+  {
+    "Your Level": 7,
+    "Class Features": "General feat, implement adept, resolve, skill increase, weapon specialization"
+  },
+  {
+    "Your Level": 8,
+    "Class Features": "Skill feat, thaumaturge feat"
+  },
+  {
+    "Your Level": 9,
+    "Class Features": "Ancestry feat, intensify vulnerability, skill increase, thaumaturgic expertise, vigilant senses"
+  },
+  {
+    "Your Level": 10,
+    "Class Features": "Ability boosts, skill feat, thaumaturge feat"
+  },
+  {
+    "Your Level": 11,
+    "Class Features": "General feat, medium armor expertise, second adept, skill increase"
+  },
+  {
+    "Your Level": 12,
+    "Class Features": "Skill feat, thaumaturge feat"
+  },
+  {
+    "Your Level": 13,
+    "Class Features": "Ancestry feat, greater resolve, skill increase, weapon mastery"
+  },
+  {
+    "Your Level": 14,
+    "Class Features": "Skill feat, thaumaturge feat"
+  },
+  {
+    "Your Level": 15,
+    "Class Features": "Ability boosts, general feat, greater weapon specialization, juggernaut, skill increase, third implement"
+  },
+  {
+    "Your Level": 16,
+    "Class Features": "Skill feat, thaumaturge feat"
+  },
+  {
+    "Your Level": 17,
+    "Class Features": "Ancestry feat, implement paragon, skill increase, thaumaturgic mastery"
+  },
+  {
+    "Your Level": 18,
+    "Class Features": "Skill feat, thaumaturge feat"
+  },
+  {
+    "Your Level": 19,
+    "Class Features": "General feat, medium armor mastery, skill increase, unlimited esoterica"
+  },
+  {
+    "Your Level": 20,
+    "Class Features": "Ability boosts, skill feat, thaumaturge feat"
+  },
+  
+  {
+    "Your Level": 1,
+    "Class Features": "Ancestry and background, attribute boosts, initial proficiencies, patron, familiar, witch spellcasting, hexes"
+  },
+  {
+    "Your Level": 2,
+    "Class Features": "Skill feat, witch feat"
+  },
+  {
+    "Your Level": 3,
+    "Class Features": "2nd-rank spells, general feat, skill increase"
+  },
+  {
+    "Your Level": 4,
+    "Class Features": "Skill feat, witch feat"
+  },
+  {
+    "Your Level": 5,
+    "Class Features": "3rd-rank spells, attribute boosts, ancestry feat, magical fortitude, skill increase"
+  },
+  {
+    "Your Level": 6,
+    "Class Features": "Familiar ability, skill feat, witch feat"
+  },
+  {
+    "Your Level": 7,
+    "Class Features": "4th-rank spells, expert spellcaster, general feat, skill increase"
+  },
+  {
+    "Your Level": 8,
+    "Class Features": "Skill feat, witch feat"
+  },
+  {
+    "Your Level": 9,
+    "Class Features": "5th-rank spells, ancestry feat, reflex expertise, skill increase"
+  },
+  {
+    "Your Level": 10,
+    "Class Features": "Attribute boosts, skill feat, witch feat"
+  },
+  {
+    "Your Level": 11,
+    "Class Features": "6th-rank spells, general feat, perception expertise, skill increase, weapon expertise"
+  },
+  {
+    "Your Level": 12,
+    "Class Features": "Familiar ability, skill feat, witch feat"
+  },
+  {
+    "Your Level": 13,
+    "Class Features": "7th-rank spells, ancestry feat, defensive robes, skill increase, weapon specialization"
+  },
+  {
+    "Your Level": 14,
+    "Class Features": "Skill feat, witch feat"
+  },
+  {
+    "Your Level": 15,
+    "Class Features": "8th-rank spells, attribute boosts, general feat, master spellcaster, skill increase"
+  },
+  {
+    "Your Level": 16,
+    "Class Features": "Skill feat, witch feat"
+  },
+  {
+    "Your Level": 17,
+    "Class Features": "9th-rank spells, ancestry feat, skill increase, will of the pupil"
+  },
+  {
+    "Your Level": 18,
+    "Class Features": "Familiar ability, skill feat, witch feat"
+  },
+  {
+    "Your Level": 19,
+    "Class Features": "General feat, legendary spellcaster, patron’s gift, skill increase"
+  },
+  {
+    "Your Level": 20,
+    "Class Features": "Attribute boosts, skill feat, witch feat"
+  },
+  
+  {
+    "Your Level": 1,
+    "Class Features": "Ancestry and background, attribute boosts, initial proficiencies, wizard spellcasting, arcane thesis, arcane school, arcane bond"
+  },
+  {
+    "Your Level": 2,
+    "Class Features": "Skill feat, wizard feat"
+  },
+  {
+    "Your Level": 3,
+    "Class Features": "2nd-rank spells, general feat, skill increase"
+  },
+  {
+    "Your Level": 4,
+    "Class Features": "Skill feat, wizard feat"
+  },
+  {
+    "Your Level": 5,
+    "Class Features": "3rd-rank spells, attribute boosts, ancestry feat, reflex expertise, skill increase"
+  },
+  {
+    "Your Level": 6,
+    "Class Features": "Skill feat, wizard feat"
+  },
+  {
+    "Your Level": 7,
+    "Class Features": "4th-rank spells, expert spellcaster, general feat, skill increase"
+  },
+  {
+    "Your Level": 8,
+    "Class Features": "Skill feat, wizard feat"
+  },
+  {
+    "Your Level": 9,
+    "Class Features": "5th-rank spells, ancestry feat, magical fortitude, skill increase"
+  },
+  {
+    "Your Level": 10,
+    "Class Features": "Attribute boosts, skill feat, wizard feat"
+  },
+  {
+    "Your Level": 11,
+    "Class Features": "6th-rank spells, general feat, perception expertise, skill increase, wizard weapon expertise"
+  },
+  {
+    "Your Level": 12,
+    "Class Features": "Skill feat, wizard feat"
+  },
+  {
+    "Your Level": 13,
+    "Class Features": "7th-rank spells, ancestry feat, defensive robes, skill increase, weapon specialization"
+  },
+  {
+    "Your Level": 14,
+    "Class Features": "Skill feat, wizard feat"
+  },
+  {
+    "Your Level": 15,
+    "Class Features": "8th-rank spells, attribute boosts, general feat, master spellcaster, skill increase"
+  },
+  {
+    "Your Level": 16,
+    "Class Features": "Skill feat, wizard feat"
+  },
+  {
+    "Your Level": 17,
+    "Class Features": "9th-rank spells, ancestry feat, prodigious will, skill increase"
+  },
+  {
+    "Your Level": 18,
+    "Class Features": "Skill feat, wizard feat"
+  },
+  {
+    "Your Level": 19,
+    "Class Features": "Archwizard’s spellcraft, general feat, legendary spellcaster, skill increase"
+  },
+  {
+    "Your Level": 20,
+    "Class Features": "Attribute boosts, skill feat, wizard feat"
+  }
+]

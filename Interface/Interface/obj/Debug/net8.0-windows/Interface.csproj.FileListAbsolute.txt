@@ -33,9 +33,9 @@ C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\b
 C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\bin\Debug\net8.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.csproj.Up2Date
 C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.AncestrySelectionForm.resources
-C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.BackgroundSelecionForm.resources
 C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.ClassesSelectionForm.resources
 C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.EquipmentSelectionForm.resources
 C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.LanguageSelecttionForm.resources
 C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.SpellSelectionForm.resources
 C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.TraitsSelectionForm.resources
+C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.BackgroundSelectionForm.resources
