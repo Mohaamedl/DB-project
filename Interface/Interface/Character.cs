@@ -11,7 +11,7 @@ namespace Interface
         public string name { get; set; }
         public int HP { get; set; }
         public int Level { get; set; }
-        private Classes Class { get; set; } // Adicional, como exemplo
+        private Class Class { get; set; } 
         public int Str_mod { get; set; }
         public int Dex_mod { get; set; }
         public int Con_mod { get; set; }

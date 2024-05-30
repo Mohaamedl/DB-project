@@ -8,7 +8,7 @@
         private System.ComponentModel.IContainer components = null;
         private System.Windows.Forms.TextBox textBoxHP;
         private System.Windows.Forms.TextBox textBoxLevel;
-        private System.Windows.Forms.TextBox textBoxClass;
+        private System.Windows.Forms.TextBox class_sel;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.Label labelHP;
@@ -41,7 +41,7 @@
             textBoxName = new TextBox();
             textBoxHP = new TextBox();
             textBoxLevel = new TextBox();
-            textBoxClass = new TextBox();
+            class_sel = new TextBox();
             buttonSave = new Button();
             labelName = new Label();
             labelHP = new Label();
@@ -50,6 +50,7 @@
             label1 = new Label();
             label2 = new Label();
             panel1 = new Panel();
+            label16 = new Label();
             char_mod = new TextBox();
             wisd_mod = new TextBox();
             intel_mod = new TextBox();
@@ -102,8 +103,12 @@
             selectedTraitsListView = new ListView();
             columnHeader2 = new ColumnHeader();
             columnHeader1 = new ColumnHeader();
-            selectedEquipmentListView = new ListView();
-            columnHeader3 = new ColumnHeader();
+            selectedEquipmentsListView = new ListView();
+            equip_name = new ColumnHeader();
+            item_category = new ColumnHeader();
+            equip_level = new ColumnHeader();
+            equip_price = new ColumnHeader();
+            equip_usage = new ColumnHeader();
             LanguagesList = new TextBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -111,7 +116,7 @@
             // 
             // STRENGTH
             // 
-            STRENGTH.Location = new Point(98, 17);
+            STRENGTH.Location = new Point(108, 48);
             STRENGTH.Name = "STRENGTH";
             STRENGTH.Size = new Size(54, 23);
             STRENGTH.TabIndex = 18;
@@ -124,7 +129,6 @@
             textBoxName.Name = "textBoxName";
             textBoxName.Size = new Size(150, 23);
             textBoxName.TabIndex = 0;
-            
             // 
             // textBoxHP
             // 
@@ -140,12 +144,12 @@
             textBoxLevel.Size = new Size(150, 23);
             textBoxLevel.TabIndex = 2;
             // 
-            // textBoxClass
+            // class_sel
             // 
-            textBoxClass.Location = new Point(100, 143);
-            textBoxClass.Name = "textBoxClass";
-            textBoxClass.Size = new Size(150, 23);
-            textBoxClass.TabIndex = 3;
+            class_sel.Location = new Point(100, 143);
+            class_sel.Name = "class_sel";
+            class_sel.Size = new Size(150, 23);
+            class_sel.TabIndex = 3;
             // 
             // buttonSave
             // 
@@ -202,7 +206,6 @@
             label1.Size = new Size(72, 15);
             label1.TabIndex = 11;
             label1.Text = "Language(s)";
-            
             // 
             // label2
             // 
@@ -215,6 +218,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(label16);
             panel1.Controls.Add(char_mod);
             panel1.Controls.Add(wisd_mod);
             panel1.Controls.Add(intel_mod);
@@ -235,15 +239,23 @@
             panel1.Controls.Add(label3);
             panel1.Controls.Add(buttonSave);
             panel1.Dock = DockStyle.Right;
-            panel1.Location = new Point(992, 0);
+            panel1.Location = new Point(1082, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(297, 493);
+            panel1.Size = new Size(297, 562);
             panel1.TabIndex = 15;
-            
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new Point(193, 23);
+            label16.Name = "label16";
+            label16.Size = new Size(44, 15);
+            label16.TabIndex = 30;
+            label16.Text = "label16";
             // 
             // char_mod
             // 
-            char_mod.Location = new Point(183, 197);
+            char_mod.Location = new Point(193, 228);
             char_mod.Name = "char_mod";
             char_mod.Size = new Size(54, 23);
             char_mod.TabIndex = 29;
@@ -251,7 +263,7 @@
             // 
             // wisd_mod
             // 
-            wisd_mod.Location = new Point(183, 155);
+            wisd_mod.Location = new Point(193, 186);
             wisd_mod.Name = "wisd_mod";
             wisd_mod.Size = new Size(54, 23);
             wisd_mod.TabIndex = 28;
@@ -259,7 +271,7 @@
             // 
             // intel_mod
             // 
-            intel_mod.Location = new Point(183, 120);
+            intel_mod.Location = new Point(193, 151);
             intel_mod.Name = "intel_mod";
             intel_mod.Size = new Size(54, 23);
             intel_mod.TabIndex = 27;
@@ -267,7 +279,7 @@
             // 
             // const_mod
             // 
-            const_mod.Location = new Point(183, 88);
+            const_mod.Location = new Point(193, 119);
             const_mod.Name = "const_mod";
             const_mod.Size = new Size(54, 23);
             const_mod.TabIndex = 26;
@@ -275,7 +287,7 @@
             // 
             // dex_mod
             // 
-            dex_mod.Location = new Point(183, 56);
+            dex_mod.Location = new Point(193, 87);
             dex_mod.Name = "dex_mod";
             dex_mod.Size = new Size(54, 23);
             dex_mod.TabIndex = 25;
@@ -283,7 +295,7 @@
             // 
             // CHARISMA
             // 
-            CHARISMA.Location = new Point(98, 197);
+            CHARISMA.Location = new Point(108, 228);
             CHARISMA.Name = "CHARISMA";
             CHARISMA.Size = new Size(54, 23);
             CHARISMA.TabIndex = 24;
@@ -292,7 +304,7 @@
             // 
             // WISDOM
             // 
-            WISDOM.Location = new Point(98, 155);
+            WISDOM.Location = new Point(108, 186);
             WISDOM.Name = "WISDOM";
             WISDOM.Size = new Size(54, 23);
             WISDOM.TabIndex = 23;
@@ -301,7 +313,7 @@
             // 
             // INTELLIGENCE
             // 
-            INTELLIGENCE.Location = new Point(98, 118);
+            INTELLIGENCE.Location = new Point(108, 149);
             INTELLIGENCE.Name = "INTELLIGENCE";
             INTELLIGENCE.Size = new Size(54, 23);
             INTELLIGENCE.TabIndex = 22;
@@ -310,7 +322,7 @@
             // 
             // stre_mod
             // 
-            stre_mod.Location = new Point(183, 17);
+            stre_mod.Location = new Point(193, 48);
             stre_mod.Name = "stre_mod";
             stre_mod.Size = new Size(54, 23);
             stre_mod.TabIndex = 21;
@@ -318,7 +330,7 @@
             // 
             // CONSTITUTION
             // 
-            CONSTITUTION.Location = new Point(98, 83);
+            CONSTITUTION.Location = new Point(108, 114);
             CONSTITUTION.Name = "CONSTITUTION";
             CONSTITUTION.Size = new Size(54, 23);
             CONSTITUTION.TabIndex = 20;
@@ -327,7 +339,7 @@
             // 
             // DEXTERITY
             // 
-            DEXTERITY.Location = new Point(98, 51);
+            DEXTERITY.Location = new Point(108, 82);
             DEXTERITY.Name = "DEXTERITY";
             DEXTERITY.Size = new Size(54, 23);
             DEXTERITY.TabIndex = 19;
@@ -337,7 +349,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(16, 200);
+            label7.Location = new Point(26, 231);
             label7.Name = "label7";
             label7.Size = new Size(67, 15);
             label7.TabIndex = 4;
@@ -346,7 +358,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(25, 163);
+            label10.Location = new Point(35, 194);
             label10.Name = "label10";
             label10.Size = new Size(55, 15);
             label10.TabIndex = 17;
@@ -355,27 +367,25 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(16, 25);
+            label6.Location = new Point(26, 56);
             label6.Name = "label6";
             label6.Size = new Size(64, 15);
             label6.TabIndex = 3;
             label6.Text = "STRENGTH";
-            
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(9, 126);
+            label5.Location = new Point(19, 157);
             label5.Name = "label5";
             label5.Size = new Size(83, 15);
             label5.TabIndex = 2;
             label5.Text = "INTELLIGENCE";
-            
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(3, 91);
+            label4.Location = new Point(13, 122);
             label4.Name = "label4";
             label4.Size = new Size(89, 15);
             label4.TabIndex = 1;
@@ -385,7 +395,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(17, 59);
+            label3.Location = new Point(27, 90);
             label3.Name = "label3";
             label3.Size = new Size(63, 15);
             label3.TabIndex = 0;
@@ -417,7 +427,6 @@
             label9.Size = new Size(34, 15);
             label9.TabIndex = 19;
             label9.Text = "Feats";
-            
             // 
             // label11
             // 
@@ -427,7 +436,6 @@
             label11.Size = new Size(65, 15);
             label11.TabIndex = 21;
             label11.Text = "Equipment";
-            
             // 
             // label12
             // 
@@ -473,6 +481,7 @@
             button3.TabIndex = 27;
             button3.Text = "Select";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // background_sel
             // 
@@ -529,7 +538,7 @@
             button6.TabIndex = 36;
             button6.Text = "Select";
             button6.UseVisualStyleBackColor = true;
-            
+            button6.Click += button6_Click;
             // 
             // button7
             // 
@@ -570,7 +579,7 @@
             // panel2
             // 
             panel2.Controls.Add(label15);
-            panel2.Location = new Point(710, 25);
+            panel2.Location = new Point(755, 23);
             panel2.Name = "panel2";
             panel2.Size = new Size(261, 233);
             panel2.TabIndex = 44;
@@ -615,7 +624,7 @@
             selectedSpellsListView.Columns.AddRange(new ColumnHeader[] { nameSpell, rankSpell, actionSpell, raritySpell });
             selectedSpellsListView.Location = new Point(37, 327);
             selectedSpellsListView.Name = "selectedSpellsListView";
-            selectedSpellsListView.Size = new Size(248, 149);
+            selectedSpellsListView.Size = new Size(273, 165);
             selectedSpellsListView.TabIndex = 47;
             selectedSpellsListView.UseCompatibleStateImageBehavior = false;
             selectedSpellsListView.View = View.Details;
@@ -641,7 +650,7 @@
             selectedTraitsListView.Columns.AddRange(new ColumnHeader[] { columnHeader2, columnHeader1 });
             selectedTraitsListView.Location = new Point(370, 344);
             selectedTraitsListView.Name = "selectedTraitsListView";
-            selectedTraitsListView.Size = new Size(284, 132);
+            selectedTraitsListView.Size = new Size(309, 170);
             selectedTraitsListView.TabIndex = 48;
             selectedTraitsListView.UseCompatibleStateImageBehavior = false;
             selectedTraitsListView.View = View.Details;
@@ -654,19 +663,40 @@
             // 
             columnHeader1.Text = "details";
             // 
-            // selectedEquipmentListView
+            // selectedEquipmentsListView
             // 
-            selectedEquipmentListView.Columns.AddRange(new ColumnHeader[] { columnHeader3 });
-            selectedEquipmentListView.Location = new Point(710, 344);
-            selectedEquipmentListView.Name = "selectedEquipmentListView";
-            selectedEquipmentListView.Size = new Size(244, 132);
-            selectedEquipmentListView.TabIndex = 49;
-            selectedEquipmentListView.UseCompatibleStateImageBehavior = false;
-            selectedEquipmentListView.View = View.Details;
+            selectedEquipmentsListView.Columns.AddRange(new ColumnHeader[] { equip_name, item_category, equip_level, equip_price, equip_usage });
+            selectedEquipmentsListView.Location = new Point(710, 344);
+            selectedEquipmentsListView.Name = "selectedEquipmentsListView";
+            selectedEquipmentsListView.Size = new Size(339, 182);
+            selectedEquipmentsListView.TabIndex = 49;
+            selectedEquipmentsListView.UseCompatibleStateImageBehavior = false;
+            selectedEquipmentsListView.View = View.Details;
             // 
-            // columnHeader3
+            // equip_name
             // 
-            columnHeader3.Text = "name";
+            equip_name.Text = "name";
+            equip_name.Width = 100;
+            // 
+            // item_category
+            // 
+            item_category.Text = "Item Category";
+            item_category.Width = 100;
+            // 
+            // equip_level
+            // 
+            equip_level.Text = "Level";
+            equip_level.Width = 40;
+            // 
+            // equip_price
+            // 
+            equip_price.Text = "Price";
+            equip_price.Width = 40;
+            // 
+            // equip_usage
+            // 
+            equip_usage.Text = "Usage";
+            equip_usage.Width = 70;
             // 
             // LanguagesList
             // 
@@ -681,9 +711,9 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.BurlyWood;
-            ClientSize = new Size(1289, 493);
+            ClientSize = new Size(1379, 562);
             Controls.Add(LanguagesList);
-            Controls.Add(selectedEquipmentListView);
+            Controls.Add(selectedEquipmentsListView);
             Controls.Add(selectedTraitsListView);
             Controls.Add(selectedSpellsListView);
             Controls.Add(selectedFeatsListView);
@@ -715,7 +745,7 @@
             Controls.Add(labelLevel);
             Controls.Add(labelHP);
             Controls.Add(labelName);
-            Controls.Add(textBoxClass);
+            Controls.Add(class_sel);
             Controls.Add(textBoxLevel);
             Controls.Add(textBoxHP);
             Controls.Add(textBoxName);
@@ -790,13 +820,18 @@
         private ColumnHeader nameSpell;
         private ListView selectedTraitsListView;
         private ColumnHeader columnHeader2;
-        private ListView selectedEquipmentListView;
-        private ColumnHeader columnHeader3;
+        private ListView selectedEquipmentsListView;
+        private ColumnHeader equip_name;
         private ColumnHeader rankSpell;
         private ColumnHeader actionSpell;
         private ColumnHeader raritySpell;
         private ColumnHeader columnHeader1;
         private TextBox LanguagesList;
+        private ColumnHeader item_category;
+        private ColumnHeader equip_level;
+        private ColumnHeader equip_price;
+        private ColumnHeader equip_usage;
+        private Label label16;
     }
     
 }

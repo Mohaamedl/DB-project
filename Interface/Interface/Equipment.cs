@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Interface
 {
-    internal class Equipment
+    public class Equipment
     {
         public string name ; public int id; public int quantity;
         public string item_category {  get; set; }

@@ -39,18 +39,18 @@ namespace Interface
             listViewBackgrounds.Columns.Add("Summary", 250);
             
 
-            foreach (var ancestry in Backgrounds)
+            foreach (var bg in Backgrounds)
             {
-                var item = new ListViewItem(ancestry.name)
+                var item = new ListViewItem(bg.name)
                 {
-                    Tag = ancestry
+                    Tag = bg
                 };
 
-                item.SubItems.Add(ancestry.ability);
-                item.SubItems.Add(ancestry.skill);
-                item.SubItems.Add(ancestry.feat);
-                item.SubItems.Add(ancestry.rarity);
-                item.SubItems.Add(ancestry.summary);
+                item.SubItems.Add(bg.ability);
+                item.SubItems.Add(bg.skill);
+                item.SubItems.Add(bg.feat);
+                item.SubItems.Add(bg.rarity);
+                item.SubItems.Add(bg.summary);
                 listViewBackgrounds.Items.Add(item);
             }
         }

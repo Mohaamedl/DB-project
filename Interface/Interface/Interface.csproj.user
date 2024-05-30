@@ -7,7 +7,7 @@
     <Compile Update="BackgroundSelectionForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="ClassesSelectionForm.cs">
+    <Compile Update="ClassSelectionForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="CreateCharacter.cs">

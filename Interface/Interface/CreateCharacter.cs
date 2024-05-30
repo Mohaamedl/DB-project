@@ -19,9 +19,13 @@ namespace Interface
         private List<Trait> availableTraits;
         private List<Ancestry> availableAncestries;
         private List<Background> availableBackgrounds;
+        private List<Equipment> availableEquipments;
+        private List<Equipment> selectedEquipments;
+        private List<Class> availableClasses;
+        private Class selectedClass;
         private Background selectedBackground;
         private Ancestry selectedAncestry;
-        private Classes selectedClass;
+        
         public CreateCharacter()
         {
             InitializeComponent();
@@ -30,7 +34,8 @@ namespace Interface
             LoadInitialTraits();
             LoadInitialAncestries();
             LoadInitialBackgrounds();
-
+            LoadInitialEquipments();
+            LoadInitialClasses();
         }
 
         private void CreateCharacter_Load(object sender, EventArgs e)
@@ -98,9 +103,38 @@ namespace Interface
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error loading Ancestries from database: " + ex.Message);
+                MessageBox.Show("Error loading Backgrounds from database: " + ex.Message);
             }
         }
+        private void LoadInitialEquipments()
+        {
+            try
+            {
+                availableEquipments = DatabaseHelper.GetEquipmentsFromDatabase();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading Equipments from database: " + ex.Message);
+            }
+        }
+        private void LoadInitialClasses()
+        {
+            try
+            {
+                availableClasses = DatabaseHelper.GetClassesFromDatabase(20);
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading Classes from database: " + ex.Message);
+            }
+        }
+
+
+
 
 
         private void buttonSave_Click(object sender, EventArgs e)
@@ -343,5 +377,61 @@ namespace Interface
                 this.char_mod.Text = "Erro";
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            using (var equipmentsSelectionForm = new EquipmentSelectionForm(availableEquipments))
+            {
+                if (equipmentsSelectionForm.ShowDialog() == DialogResult.OK)
+                {
+                    var selectedEquipments = equipmentsSelectionForm.SelectedEquipments;
+
+                    foreach (var equipment in selectedEquipments)
+                    {
+                        var item = new ListViewItem(new[]
+                        {
+                            equipment.name,
+                            equipment.item_category,
+                            //equipment.item_sub_category,
+                            //equipment.weapon_category,
+                            equipment.level.ToString(),
+                            equipment.price.ToString(),
+                            //equipment.rarity,
+                            equipment.usage,
+                            //equipment.bulk
+
+                        });
+
+
+                        selectedEquipmentsListView.Items.Add(item);
+                    }
+                }
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            using (var classSelectionForm = new ClassSelectionForm(availableClasses))
+            {
+                if (classSelectionForm.ShowDialog() == DialogResult.OK)
+                {
+                    selectedClass = classSelectionForm.SelectedClass.FirstOrDefault();
+
+                    if (selectedClass != null)
+                    {
+                        
+
+
+                       
+                        class_sel.Text = selectedClass.name;
+
+
+                    }
+                }
+
+            }
+        }
+
+
     }
 }

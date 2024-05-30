@@ -1,6 +1,6 @@
 ﻿namespace Interface
 {
-    partial class EquipmentSelectionForm
+    partial class ClassSelectionForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,60 +28,49 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Load_all = new Button();
             Select = new Button();
-            listViewEquipments = new ListView();
+            listViewClasses = new ListView();
             SuspendLayout();
-            // 
-            // Load_all
-            // 
-            Load_all.Location = new Point(60, 404);
-            Load_all.Name = "Load_all";
-            Load_all.Size = new Size(75, 23);
-            Load_all.TabIndex = 0;
-            Load_all.Text = "Load All";
-            Load_all.UseVisualStyleBackColor = true;
-            Load_all.Click += Load_all_Click_1;
             // 
             // Select
             // 
-            Select.Location = new Point(661, 404);
+            Select.Location = new Point(1091, 451);
             Select.Name = "Select";
-            Select.Size = new Size(75, 23);
+            Select.Size = new Size(125, 35);
             Select.TabIndex = 1;
             Select.Text = "Select";
             Select.UseVisualStyleBackColor = true;
             Select.Click += Select_Click;
             // 
-            // listViewEquipments
+            // listViewClasses
             // 
-            listViewEquipments.CheckBoxes = true;
-            listViewEquipments.GridLines = true;
-            listViewEquipments.Location = new Point(60, 29);
-            listViewEquipments.Name = "listViewEquipments";
-            listViewEquipments.Size = new Size(676, 356);
-            listViewEquipments.TabIndex = 2;
-            listViewEquipments.UseCompatibleStateImageBehavior = false;
-            listViewEquipments.View = View.Details;
+            listViewClasses.CheckBoxes = true;
+            listViewClasses.GridLines = true;
+            listViewClasses.Location = new Point(40, 28);
+            listViewClasses.MultiSelect = false;
+            listViewClasses.Name = "listViewClasses";
+            listViewClasses.Size = new Size(1202, 417);
+            listViewClasses.TabIndex = 2;
+            listViewClasses.UseCompatibleStateImageBehavior = false;
+            listViewClasses.View = View.Details;
+            listViewClasses.ItemCheck += ListViewClass_ItemCheck;
             // 
-            // EquipmentSelectionForm
+            // ClassSelectionForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(listViewEquipments);
+            ClientSize = new Size(1280, 509);
+            Controls.Add(listViewClasses);
             Controls.Add(Select);
-            Controls.Add(Load_all);
-            Name = "EquipmentSelectionForm";
-            Text = "EquipmentSelectionForm";
-            Load += EquipmentSelectionForm_Load;
+            Name = "ClassSelectionForm";
+            Text = "Class Selection";
+            Load += ClassSelectionForm_Load;
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Button Load_all;
         private Button Select;
-        private ListView listViewEquipments;
+        private ListView listViewClasses;
     }
 }

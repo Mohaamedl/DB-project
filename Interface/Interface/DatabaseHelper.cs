@@ -219,5 +219,88 @@ namespace Interface
         {
             return GetBackgroundsFromDatabase(int.MaxValue);
         }
+        public static List<Equipment> GetEquipmentsFromDatabase(int limit = 20)
+        {
+            var Equipments = new List<Equipment>();
+
+            using (SqlConnection connection = new(connectionString))
+            {
+                string query = $"SELECT TOP {limit} [name], item_category, item_sub_category, weapon_category,[level],price,rarity,usage,[bulk] FROM Equipment ORDER BY [name]";
+
+                SqlCommand command = new(query, connection);
+                connection.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var equipment = new Equipment
+                        {
+                            name = reader["name"].ToString(),
+                            item_category = reader["item_category"].ToString(),
+                            item_sub_category = reader["item_sub_category"].ToString(),
+                            weapon_category = reader["weapon_category"].ToString(),
+                            level = Convert.ToInt32(reader["level"]),
+                            price = Convert.ToInt32(reader["price"]),
+                            rarity = reader["rarity"].ToString(),
+                            usage = reader["usage"].ToString(),
+                            bulk = reader["bulk"].ToString()
+
+
+
+
+                        };
+                        Equipments.Add(equipment);
+                    }
+                }
+            }
+
+            return Equipments;
+        }
+        public static List<Equipment> GetAllEquipmentsFromDatabase()
+        {
+            return GetEquipmentsFromDatabase(int.MaxValue);
+        }
+        public static List<Class> GetClassesFromDatabase(int limit = 20)
+        {
+            var Classes = new List<Class>();
+
+            using (SqlConnection connection = new(connectionString))
+            {
+                string query = $"SELECT TOP {limit} [name],HP , prof_attack, prof_defense, ability, spell_progression_id FROM Class ORDER BY [name]";
+
+                SqlCommand command = new(query, connection);
+                connection.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var cla = new Class
+                        {
+                            name = reader["name"].ToString(),
+                            HP = Convert.ToInt32(reader["HP"]),
+                            prof_attack = reader["prof_attack"].ToString(),
+                            prof_defense = reader["prof_defense"].ToString(),
+                            ability = reader["ability"].ToString(),
+                            
+                          
+
+
+
+                        };
+                        Classes.Add(cla);
+                    }
+                }
+                connection.Close();
+            }
+
+            return Classes;
+        }
+        public static List<Class> GetAllClassesFromDatabase()
+        {
+            return GetClassesFromDatabase(int.MaxValue);
+        }
+
     }
 }
