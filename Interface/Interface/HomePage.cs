@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Interface
 {
@@ -14,6 +15,8 @@ namespace Interface
     {
         private List<Character> characters;
         private Character selectedCharacter;
+        private string userName;
+
         public HomePage()
         {
             InitializeComponent();
@@ -22,17 +25,25 @@ namespace Interface
 
         private void HomePage_Load(object sender, EventArgs e)
         {
+           
+        }
+        public HomePage(string userName)
+        {
+            InitializeComponent();
 
+            // Armazenar o nome de usuário recebido como parâmetro
+            this.userName = userName;
+
+            // Você pode usar o nome de usuário aqui como quiser, por exemplo, definindo o texto de uma label
+            labelPlayerName.Text = $"Player Name: {userName}";
         }
         private void LoadCharacters()
         {
             // Carregar alguns personagens para exemplo
-            characters = new List<Character>
-            {
-                new Character { name = "Hero1", HP = 100, Level = 1},
-                new Character { name = "Hero2", HP = 150, Level = 2 }
-            };
+            characters = new List<Character>();
+
             listBoxCharacters.DataSource = null;
+
             listBoxCharacters.DataSource = characters;
             listBoxCharacters.DisplayMember = "Name";
         }
@@ -41,9 +52,63 @@ namespace Interface
             selectedCharacter = listBoxCharacters.SelectedItem as Character;
             if (selectedCharacter != null)
             {
-                labelCharacterName.Text = selectedCharacter.name;
+                // Define o nome do personagem
+                labelCharacterName.Text = $"Character Name: {selectedCharacter.name}" ;
+
+                // Define o HP do personagem
                 labelCharacterHP.Text = $"HP: {selectedCharacter.HP}";
+
+                // Define o nível do personagem
                 labelCharacterLevel.Text = $"Level: {selectedCharacter.Level}";
+
+                // Limpa a ListView
+                listViewCharacterDetails.Items.Clear();
+
+                // Adiciona detalhes do personagem à ListView
+                listViewCharacterDetails.Items.Clear();
+
+                // Adiciona detalhes do personagem como labels
+                labelClass.Text = $"Class: {selectedCharacter.Class.name}";
+                labelAncestry.Text = $"Ancestry: {selectedCharacter.ancestry.name}";
+                labelBackground.Text = $"Background: {selectedCharacter.background.name}";
+                labelSpeed.Text = $"Speed: {selectedCharacter.speed}";
+
+                // Atributos do personagem
+                labelStrength.Text = $"Strength: {selectedCharacter.Str}";
+                labelWisdom.Text = $"Wisdom: {selectedCharacter.Wis}";
+                labelIntelligence.Text = $"Intelligence: {selectedCharacter.Int}";
+                labelCharisma.Text = $"Charisma: {selectedCharacter.Cha}";
+                labelDexterity.Text = $"Dexterity: {selectedCharacter.Dex}";
+                labelConstitution.Text = $"Constitution: {selectedCharacter.Con}";
+
+                // Modificadores de atributos
+                labelStrengthModifier.Text = $"Strength Modifier: {selectedCharacter.Str_mod}";
+                labelWisdomModifier.Text = $"Wisdom Modifier: {selectedCharacter.Wis_mod}";
+                labelIntelligenceModifier.Text = $"Intelligence Modifier: {selectedCharacter.Int_mod}";
+                labelCharismaModifier.Text = $"Charisma Modifier: {selectedCharacter.Cha_mod}";
+                labelDexterityModifier.Text = $"Dexterity Modifier: {selectedCharacter.Dex_mod}";
+                labelConstitutionModifier.Text = $"Constitution Modifier: {selectedCharacter.Con_mod}";
+                string languages = string.Join(", ", selectedCharacter.Languages);
+                labelLanguages.Text = $"Languages: {languages}";
+
+                // Equipamentos
+                foreach (var equipment in selectedCharacter.equipment)
+                {
+                    listViewCharacterDetails.Items.Add(new ListViewItem(new[] { "Equipment", equipment.name.ToString() }));
+                }
+
+                // Habilidades (Feats)
+                foreach (var feat in selectedCharacter.feats)
+                {
+                    listViewCharacterDetails.Items.Add(new ListViewItem(new[] { "Feat", feat.name.ToString() }));
+                }
+
+                // Magias (Spells)
+                foreach (var spell in selectedCharacter.spells)
+                {
+                    listViewCharacterDetails.Items.Add(new ListViewItem(new[] { "Spell", spell.Name.ToString() }));
+                }
+
                 
             }
         }

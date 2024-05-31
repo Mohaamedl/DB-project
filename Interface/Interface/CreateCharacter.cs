@@ -15,13 +15,16 @@ namespace Interface
     {
         public Character NewCharacter { get; private set; }
         private List<Feat> availableFeats;
+        private List<Feat> selectedFeats;
         private List<Spell> availableSpells;
+        private List<Spell> selectedSpells;
         private List<Trait> availableTraits;
         private List<Ancestry> availableAncestries;
         private List<Background> availableBackgrounds;
         private List<Equipment> availableEquipments;
         private List<Equipment> selectedEquipments;
         private List<Class> availableClasses;
+        private List<Skill> availableSkills;
         private Class selectedClass;
         private Background selectedBackground;
         private Ancestry selectedAncestry;
@@ -36,6 +39,7 @@ namespace Interface
             LoadInitialBackgrounds();
             LoadInitialEquipments();
             LoadInitialClasses();
+            LoadSkills();
         }
 
         private void CreateCharacter_Load(object sender, EventArgs e)
@@ -119,6 +123,32 @@ namespace Interface
                 MessageBox.Show("Error loading Equipments from database: " + ex.Message);
             }
         }
+        private void LoadSkills()
+        {
+            try
+            {
+                availableSkills = DatabaseHelper.GetSkillsFromDatabase();
+                
+                foreach (var skill in availableSkills)
+                {
+                    var item = new ListViewItem(new[]
+                    {
+                            skill.designation,
+                            skill.value.ToString(),
+                            skill.details
+
+                        });
+
+                    listViewSkills.Items.Add(item);
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading Equipments from database: " + ex.Message);
+            }
+        }
         private void LoadInitialClasses()
         {
             try
@@ -142,8 +172,33 @@ namespace Interface
             NewCharacter = new Character
             {
                 name = textBoxName.Text,
-                HP = int.Parse(textBoxHP.Text),
+                HP = int.Parse(HP.Text),
                 Level = int.Parse(textBoxLevel.Text),
+                Class = selectedClass,
+                ancestry = selectedAncestry,
+                background = selectedBackground,
+                speed = Int16.Parse(this.speed.Text),
+                equipment = selectedEquipments,
+                feats = selectedFeats,
+                spells = selectedSpells,
+                Str = Int16.Parse(STRENGTH.Text),
+                Wis = Int16.Parse(WISDOM.Text),
+                Int = Int16.Parse(INTELLIGENCE.Text),
+                Cha = Int16.Parse(CHARISMA.Text),
+                Dex = Int16.Parse(DEXTERITY.Text),
+                Con = Int16.Parse(CONSTITUTION.Text),
+                Str_mod = Int16.Parse(stre_mod.Text),
+                Wis_mod = Int16.Parse(wisd_mod.Text),
+                Int_mod = Int16.Parse(intel_mod.Text),
+                Cha_mod = Int16.Parse(char_mod.Text),
+                Dex_mod = Int16.Parse(dex_mod.Text),
+                Con_mod = Int16.Parse(const_mod.Text),
+                Languages = DatabaseHelper.GetLanguagesByAncestry(ancestry_sel.Text),
+
+
+
+
+
 
             };
 
@@ -206,8 +261,7 @@ namespace Interface
             {
                 if (featSelectionForm.ShowDialog() == DialogResult.OK)
                 {
-                    var selectedFeats = featSelectionForm.SelectedFeats;
-                    feats_sel.Text = string.Join(", ", selectedFeats.Select(f => f.name));
+                    selectedFeats = featSelectionForm.SelectedFeats;
                     foreach (var feat in selectedFeats)
                     {
                         var item = new ListViewItem(new[]
@@ -231,7 +285,7 @@ namespace Interface
             {
                 if (spellSelectionForm.ShowDialog() == DialogResult.OK)
                 {
-                    var selectedSpells = spellSelectionForm.SelectedSpells;
+                    selectedSpells = spellSelectionForm.SelectedSpells;
 
                     foreach (var spell in selectedSpells)
                     {
@@ -288,6 +342,12 @@ namespace Interface
 
 
                         // Armazena o nome da ascendência no TextBox
+                        int classHP = selectedClass != null ? (selectedClass.HP) : 0;
+                        int ancestryHP = selectedAncestry != null ? (selectedAncestry.HP) : 0;
+
+                        int totalHP = classHP + ancestryHP;
+                        speed.Text = selectedAncestry.speed.ToString();
+                        HP.Text = totalHP.ToString();
                         ancestry_sel.Text = selectedAncestry.name;
                         LanguagesList.Text = string.Join(", ", DatabaseHelper.GetLanguagesByAncestry(ancestry_sel.Text));
 
@@ -384,7 +444,7 @@ namespace Interface
             {
                 if (equipmentsSelectionForm.ShowDialog() == DialogResult.OK)
                 {
-                    var selectedEquipments = equipmentsSelectionForm.SelectedEquipments;
+                    selectedEquipments = equipmentsSelectionForm.SelectedEquipments;
 
                     foreach (var equipment in selectedEquipments)
                     {
@@ -419,10 +479,15 @@ namespace Interface
 
                     if (selectedClass != null)
                     {
+
+
+                        int classHP = selectedClass != null ? (selectedClass.HP) : 0;
+                        int ancestryHP = selectedAncestry != null ? (selectedAncestry.HP) : 0;
+
+                        int totalHP = classHP + ancestryHP;
+                        HP.Text = totalHP.ToString();
+
                         
-
-
-                       
                         class_sel.Text = selectedClass.name;
 
 

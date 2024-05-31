@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Interface
 {
-    internal class Skill
+    public class Skill
     {
         public string designation {  get; set; }
         public string details { get; set; }
+        public int value { get; set; }
 
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Interface
 {
-    internal class Attack_rolls
+    public class Attack_rolls
     {
 
         public string profeciency { get; set; }

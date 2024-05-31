@@ -6,7 +6,7 @@
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-        private System.Windows.Forms.TextBox textBoxHP;
+        private System.Windows.Forms.TextBox HP;
         private System.Windows.Forms.TextBox textBoxLevel;
         private System.Windows.Forms.TextBox class_sel;
         private System.Windows.Forms.Button buttonSave;
@@ -39,7 +39,7 @@
         {
             STRENGTH = new TextBox();
             textBoxName = new TextBox();
-            textBoxHP = new TextBox();
+            HP = new TextBox();
             textBoxLevel = new TextBox();
             class_sel = new TextBox();
             buttonSave = new Button();
@@ -69,17 +69,14 @@
             label4 = new Label();
             label3 = new Label();
             label8 = new Label();
-            textBox1 = new TextBox();
+            speed = new TextBox();
             label9 = new Label();
             label11 = new Label();
             label12 = new Label();
             button1 = new Button();
-            feats_sel = new TextBox();
             button2 = new Button();
             button3 = new Button();
             background_sel = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
             label13 = new Label();
             button4 = new Button();
             ancestry_sel = new TextBox();
@@ -87,8 +84,11 @@
             button7 = new Button();
             button8 = new Button();
             label14 = new Label();
-            textBox10 = new TextBox();
             panel2 = new Panel();
+            listViewSkills = new ListView();
+            skillName = new ColumnHeader();
+            skill_value = new ColumnHeader();
+            skilDetails = new ColumnHeader();
             label15 = new Label();
             selectedFeatsListView = new ListView();
             name = new ColumnHeader();
@@ -130,12 +130,13 @@
             textBoxName.Size = new Size(150, 23);
             textBoxName.TabIndex = 0;
             // 
-            // textBoxHP
+            // HP
             // 
-            textBoxHP.Location = new Point(100, 60);
-            textBoxHP.Name = "textBoxHP";
-            textBoxHP.Size = new Size(150, 23);
-            textBoxHP.TabIndex = 1;
+            HP.Enabled = false;
+            HP.Location = new Point(100, 60);
+            HP.Name = "HP";
+            HP.Size = new Size(150, 23);
+            HP.TabIndex = 1;
             // 
             // textBoxLevel
             // 
@@ -143,6 +144,7 @@
             textBoxLevel.Name = "textBoxLevel";
             textBoxLevel.Size = new Size(150, 23);
             textBoxLevel.TabIndex = 2;
+            textBoxLevel.Text = "1";
             // 
             // class_sel
             // 
@@ -249,9 +251,9 @@
             label16.AutoSize = true;
             label16.Location = new Point(193, 23);
             label16.Name = "label16";
-            label16.Size = new Size(44, 15);
+            label16.Size = new Size(35, 15);
             label16.TabIndex = 30;
-            label16.Text = "label16";
+            label16.Text = "MOD";
             // 
             // char_mod
             // 
@@ -410,19 +412,19 @@
             label8.TabIndex = 16;
             label8.Text = "speed";
             // 
-            // textBox1
+            // speed
             // 
-            textBox1.BackColor = SystemColors.InactiveBorder;
-            textBox1.Enabled = false;
-            textBox1.Location = new Point(350, 14);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
-            textBox1.TabIndex = 18;
+            speed.BackColor = SystemColors.InactiveBorder;
+            speed.Enabled = false;
+            speed.Location = new Point(350, 14);
+            speed.Name = "speed";
+            speed.Size = new Size(100, 23);
+            speed.TabIndex = 18;
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(409, 44);
+            label9.Location = new Point(508, 60);
             label9.Name = "label9";
             label9.Size = new Size(34, 15);
             label9.TabIndex = 19;
@@ -431,11 +433,11 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(710, 290);
+            label11.Location = new Point(699, 296);
             label11.Name = "label11";
-            label11.Size = new Size(65, 15);
+            label11.Size = new Size(70, 15);
             label11.TabIndex = 21;
-            label11.Text = "Equipment";
+            label11.Text = "Equipments";
             // 
             // label12
             // 
@@ -448,20 +450,13 @@
             // 
             // button1
             // 
-            button1.Location = new Point(579, 41);
+            button1.Location = new Point(584, 60);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 24;
             button1.Text = "Select";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
-            // 
-            // feats_sel
-            // 
-            feats_sel.Location = new Point(473, 41);
-            feats_sel.Name = "feats_sel";
-            feats_sel.Size = new Size(100, 23);
-            feats_sel.TabIndex = 25;
             // 
             // button2
             // 
@@ -475,7 +470,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(896, 286);
+            button3.Location = new Point(974, 514);
             button3.Name = "button3";
             button3.Size = new Size(75, 23);
             button3.TabIndex = 27;
@@ -490,24 +485,10 @@
             background_sel.Size = new Size(152, 23);
             background_sel.TabIndex = 28;
             // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(790, 287);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(100, 23);
-            textBox3.TabIndex = 29;
-            // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(62, 298);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(155, 23);
-            textBox4.TabIndex = 30;
-            // 
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(12, 300);
+            label13.Location = new Point(22, 296);
             label13.Name = "label13";
             label13.Size = new Size(37, 15);
             label13.TabIndex = 31;
@@ -515,7 +496,7 @@
             // 
             // button4
             // 
-            button4.Location = new Point(235, 298);
+            button4.Location = new Point(234, 514);
             button4.Name = "button4";
             button4.Size = new Size(75, 23);
             button4.TabIndex = 32;
@@ -552,7 +533,7 @@
             // 
             // button8
             // 
-            button8.Location = new Point(604, 288);
+            button8.Location = new Point(584, 514);
             button8.Name = "button8";
             button8.Size = new Size(75, 23);
             button8.TabIndex = 42;
@@ -563,31 +544,49 @@
             // label14
             // 
             label14.AutoSize = true;
-            label14.Location = new Point(370, 291);
+            label14.Location = new Point(370, 296);
             label14.Name = "label14";
             label14.Size = new Size(34, 15);
             label14.TabIndex = 41;
             label14.Text = "Traits";
             // 
-            // textBox10
-            // 
-            textBox10.Location = new Point(431, 287);
-            textBox10.Name = "textBox10";
-            textBox10.Size = new Size(155, 23);
-            textBox10.TabIndex = 40;
-            // 
             // panel2
             // 
+            panel2.Controls.Add(listViewSkills);
             panel2.Controls.Add(label15);
-            panel2.Location = new Point(755, 23);
+            panel2.Location = new Point(730, 23);
             panel2.Name = "panel2";
-            panel2.Size = new Size(261, 233);
+            panel2.Size = new Size(319, 257);
             panel2.TabIndex = 44;
+            // 
+            // listViewSkills
+            // 
+            listViewSkills.Columns.AddRange(new ColumnHeader[] { skillName, skill_value, skilDetails });
+            listViewSkills.GridLines = true;
+            listViewSkills.Location = new Point(20, 40);
+            listViewSkills.Name = "listViewSkills";
+            listViewSkills.Size = new Size(278, 174);
+            listViewSkills.TabIndex = 1;
+            listViewSkills.UseCompatibleStateImageBehavior = false;
+            listViewSkills.View = View.Details;
+            // 
+            // skillName
+            // 
+            skillName.Text = "Name";
+            // 
+            // skill_value
+            // 
+            skill_value.Text = "value";
+            // 
+            // skilDetails
+            // 
+            skilDetails.Text = "Details";
+            skilDetails.Width = 150;
             // 
             // label15
             // 
             label15.AutoSize = true;
-            label15.Location = new Point(110, 16);
+            label15.Location = new Point(114, 18);
             label15.Name = "label15";
             label15.Size = new Size(33, 15);
             label15.TabIndex = 0;
@@ -622,9 +621,9 @@
             // selectedSpellsListView
             // 
             selectedSpellsListView.Columns.AddRange(new ColumnHeader[] { nameSpell, rankSpell, actionSpell, raritySpell });
-            selectedSpellsListView.Location = new Point(37, 327);
+            selectedSpellsListView.Location = new Point(36, 329);
             selectedSpellsListView.Name = "selectedSpellsListView";
-            selectedSpellsListView.Size = new Size(273, 165);
+            selectedSpellsListView.Size = new Size(273, 170);
             selectedSpellsListView.TabIndex = 47;
             selectedSpellsListView.UseCompatibleStateImageBehavior = false;
             selectedSpellsListView.View = View.Details;
@@ -648,7 +647,7 @@
             // selectedTraitsListView
             // 
             selectedTraitsListView.Columns.AddRange(new ColumnHeader[] { columnHeader2, columnHeader1 });
-            selectedTraitsListView.Location = new Point(370, 344);
+            selectedTraitsListView.Location = new Point(350, 329);
             selectedTraitsListView.Name = "selectedTraitsListView";
             selectedTraitsListView.Size = new Size(309, 170);
             selectedTraitsListView.TabIndex = 48;
@@ -666,9 +665,9 @@
             // selectedEquipmentsListView
             // 
             selectedEquipmentsListView.Columns.AddRange(new ColumnHeader[] { equip_name, item_category, equip_level, equip_price, equip_usage });
-            selectedEquipmentsListView.Location = new Point(710, 344);
+            selectedEquipmentsListView.Location = new Point(708, 329);
             selectedEquipmentsListView.Name = "selectedEquipmentsListView";
-            selectedEquipmentsListView.Size = new Size(339, 182);
+            selectedEquipmentsListView.Size = new Size(341, 170);
             selectedEquipmentsListView.TabIndex = 49;
             selectedEquipmentsListView.UseCompatibleStateImageBehavior = false;
             selectedEquipmentsListView.View = View.Details;
@@ -710,7 +709,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.BurlyWood;
+            BackColor = Color.Tan;
             ClientSize = new Size(1379, 562);
             Controls.Add(LanguagesList);
             Controls.Add(selectedEquipmentsListView);
@@ -720,23 +719,19 @@
             Controls.Add(panel2);
             Controls.Add(button8);
             Controls.Add(label14);
-            Controls.Add(textBox10);
             Controls.Add(button7);
             Controls.Add(button6);
             Controls.Add(ancestry_sel);
             Controls.Add(button4);
             Controls.Add(label13);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
             Controls.Add(background_sel);
             Controls.Add(button3);
             Controls.Add(button2);
-            Controls.Add(feats_sel);
             Controls.Add(button1);
             Controls.Add(label12);
             Controls.Add(label11);
             Controls.Add(label9);
-            Controls.Add(textBox1);
+            Controls.Add(speed);
             Controls.Add(label8);
             Controls.Add(panel1);
             Controls.Add(label2);
@@ -747,7 +742,7 @@
             Controls.Add(labelName);
             Controls.Add(class_sel);
             Controls.Add(textBoxLevel);
-            Controls.Add(textBoxHP);
+            Controls.Add(HP);
             Controls.Add(textBoxName);
             FormBorderStyle = FormBorderStyle.SizableToolWindow;
             Name = "CreateCharacter";
@@ -785,17 +780,14 @@
         private TextBox dex_mod;
         internal TextBox textBoxName;
         private Label label8;
-        private TextBox textBox1;
+        private TextBox speed;
         private Label label9;
         private Label label11;
         private Label label12;
         private Button button1;
-        private TextBox feats_sel;
         private Button button2;
         private Button button3;
         private TextBox background_sel;
-        private TextBox textBox3;
-        private TextBox textBox4;
         private Label label13;
         private Button button4;
         private TextBox ancestry_sel;
@@ -804,7 +796,6 @@
 
         private Button button8;
         private Label label14;
-        private TextBox textBox10;
         private Panel panel2;
         private Label label15;
         private ListView selectedFeatsListView = new System.Windows.Forms.ListView();
@@ -832,6 +823,10 @@
         private ColumnHeader equip_price;
         private ColumnHeader equip_usage;
         private Label label16;
+        private ListView listViewSkills;
+        private ColumnHeader skillName;
+        public ColumnHeader skill_value;
+        private ColumnHeader skilDetails;
     }
     
 }

@@ -33,11 +33,17 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             labelUsername = new Label();
             labelPassword = new Label();
-            textBoxUsername = new TextBox();
-            textBoxPassword = new TextBox();
-            label1 = new Label();
-            buttonLogin = new Button();
+            getStarted = new Label();
             panel1 = new Panel();
+            createAcount = new Label();
+            haveAcount = new Label();
+            buttonClear = new Button();
+            buttonLogin = new Button();
+            checkBoxShowPassword = new CheckBox();
+            textPassword = new TextBox();
+            Password = new Label();
+            textUsername = new TextBox();
+            label1 = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -51,48 +57,105 @@
             resources.ApplyResources(labelPassword, "labelPassword");
             labelPassword.Name = "labelPassword";
             // 
-            // textBoxUsername
+            // getStarted
             // 
-            resources.ApplyResources(textBoxUsername, "textBoxUsername");
-            textBoxUsername.Name = "textBoxUsername";
+            resources.ApplyResources(getStarted, "getStarted");
+            getStarted.BackColor = Color.Transparent;
+            getStarted.ForeColor = Color.Khaki;
+            getStarted.Name = "getStarted";
             // 
-            // textBoxPassword
+            // panel1
             // 
-            resources.ApplyResources(textBoxPassword, "textBoxPassword");
-            textBoxPassword.ForeColor = SystemColors.ActiveCaptionText;
-            textBoxPassword.Name = "textBoxPassword";
-            textBoxPassword.UseSystemPasswordChar = true;
+            panel1.BackColor = Color.FromArgb(150, 100, 0, 0);
+            panel1.Controls.Add(createAcount);
+            panel1.Controls.Add(haveAcount);
+            panel1.Controls.Add(buttonClear);
+            panel1.Controls.Add(buttonLogin);
+            panel1.Controls.Add(checkBoxShowPassword);
+            panel1.Controls.Add(textPassword);
+            panel1.Controls.Add(Password);
+            panel1.Controls.Add(textUsername);
+            panel1.Controls.Add(label1);
+            resources.ApplyResources(panel1, "panel1");
+            panel1.Name = "panel1";
+            // 
+            // createAcount
+            // 
+            resources.ApplyResources(createAcount, "createAcount");
+            createAcount.BackColor = Color.Transparent;
+            createAcount.ForeColor = Color.Khaki;
+            createAcount.Name = "createAcount";
+            createAcount.Click += createAcount_Click;
+            // 
+            // haveAcount
+            // 
+            resources.ApplyResources(haveAcount, "haveAcount");
+            haveAcount.BackColor = Color.Transparent;
+            haveAcount.ForeColor = Color.Black;
+            haveAcount.Name = "haveAcount";
+            // 
+            // buttonClear
+            // 
+            buttonClear.BackColor = Color.Khaki;
+            resources.ApplyResources(buttonClear, "buttonClear");
+            buttonClear.ForeColor = Color.Brown;
+            buttonClear.Name = "buttonClear";
+            buttonClear.UseVisualStyleBackColor = false;
+            buttonClear.Click += buttonClear_Click;
+            // 
+            // buttonLogin
+            // 
+            buttonLogin.BackColor = Color.Brown;
+            resources.ApplyResources(buttonLogin, "buttonLogin");
+            buttonLogin.ForeColor = Color.Khaki;
+            buttonLogin.Name = "buttonLogin";
+            buttonLogin.UseVisualStyleBackColor = false;
+            buttonLogin.Click += buttonLogin_Click;
+            // 
+            // checkBoxShowPassword
+            // 
+            resources.ApplyResources(checkBoxShowPassword, "checkBoxShowPassword");
+            checkBoxShowPassword.BackColor = Color.Transparent;
+            checkBoxShowPassword.Cursor = Cursors.Hand;
+            checkBoxShowPassword.ForeColor = Color.Khaki;
+            checkBoxShowPassword.Name = "checkBoxShowPassword";
+            checkBoxShowPassword.UseVisualStyleBackColor = false;
+            checkBoxShowPassword.CheckedChanged += checkBoxShowPassword_CheckedChanged;
+            // 
+            // textPassword
+            // 
+            textPassword.BackColor = SystemColors.Window;
+            textPassword.BorderStyle = BorderStyle.None;
+            resources.ApplyResources(textPassword, "textPassword");
+            textPassword.Name = "textPassword";
+            // 
+            // Password
+            // 
+            resources.ApplyResources(Password, "Password");
+            Password.BackColor = Color.Transparent;
+            Password.ForeColor = Color.Khaki;
+            Password.Name = "Password";
+            // 
+            // textUsername
+            // 
+            textUsername.BackColor = SystemColors.Window;
+            textUsername.BorderStyle = BorderStyle.None;
+            resources.ApplyResources(textUsername, "textUsername");
+            textUsername.Name = "textUsername";
             // 
             // label1
             // 
             resources.ApplyResources(label1, "label1");
             label1.BackColor = Color.Transparent;
-            label1.ForeColor = Color.DarkOrange;
+            label1.ForeColor = Color.Khaki;
             label1.Name = "label1";
-            // 
-            // buttonLogin
-            // 
-            buttonLogin.BackColor = SystemColors.Control;
-            resources.ApplyResources(buttonLogin, "buttonLogin");
-            buttonLogin.ForeColor = Color.Coral;
-            buttonLogin.Name = "buttonLogin";
-            buttonLogin.UseVisualStyleBackColor = false;
-            buttonLogin.Click += buttonLogin_Click;
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(buttonLogin);
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(textBoxPassword);
-            panel1.Controls.Add(textBoxUsername);
-            resources.ApplyResources(panel1, "panel1");
-            panel1.Name = "panel1";
             // 
             // LoginForm
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(labelPassword);
+            Controls.Add(getStarted);
             Controls.Add(labelUsername);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
@@ -106,11 +169,16 @@
         }
 
         #endregion
-
-        private TextBox textBoxUsername;
-        private TextBox textBoxPassword;
-        private Label label1;
-        private Button buttonLogin;
+        private Label getStarted;
         private Panel panel1;
+        private Label createAcount;
+        private Label haveAcount;
+        private Button buttonClear;
+        private Button buttonLogin;
+        private CheckBox checkBoxShowPassword;
+        private TextBox textPassword;
+        private Label Password;
+        private TextBox textUsername;
+        private Label label1;
     }
 }

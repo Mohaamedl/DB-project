@@ -85,7 +85,7 @@ namespace Interface
 
             using (SqlConnection connection = new(connectionString))
             {
-                string query = $"SELECT TOP {limit} designation, details FROM Traits ORDER BY designation";
+                string query = $"SELECT TOP {limit} designation, details FROM Traits";
 
                 SqlCommand command = new(query, connection);
                 connection.Open();
@@ -301,6 +301,104 @@ namespace Interface
         {
             return GetClassesFromDatabase(int.MaxValue);
         }
+        public static bool RegisterUser(string username, string password)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlTransaction transaction = connection.BeginTransaction();
 
+                try
+                {
+                    string query = "INSERT INTO Users (Username, Password) VALUES (@Username, @Password)";
+                    SqlCommand command = new SqlCommand(query, connection, transaction);
+
+                    command.Parameters.AddWithValue("@Username", username);
+                    command.Parameters.AddWithValue("@Password", password);
+
+                    command.ExecuteNonQuery();
+                    transaction.Commit();
+
+                    return true; 
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    Console.WriteLine("An error occurred: " + ex.Message);
+                    return false; 
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+        public static bool LoginUser(string username, string password)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlTransaction transaction = connection.BeginTransaction();
+
+                try
+                {
+                    string query = "SELECT COUNT(*) FROM Users WHERE Username = @Username AND [Password] = @Password";
+                    SqlCommand command = new SqlCommand(query, connection, transaction);
+
+                    command.Parameters.AddWithValue("@Username", username);
+                    command.Parameters.AddWithValue("@Password", password);
+
+                    int userCount = (int)command.ExecuteScalar();
+                    transaction.Commit();
+
+                    return userCount > 0; 
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    Console.WriteLine("An error occurred: " + ex.Message);
+                    return false; 
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+
+        public static List<Skill> GetSkillsFromDatabase()
+        {
+            var Skills = new List<Skill>();
+
+            using (SqlConnection connection = new(connectionString))
+            {
+                string query = $"SELECT   designation , details FROM Skills ORDER BY designation";
+
+                SqlCommand command = new(query, connection);
+                connection.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var ski = new Skill
+                        {
+                            designation = reader["designation"].ToString(),
+                            value = 0,
+                            details = reader["details"].ToString(),
+
+
+
+
+                        };
+                        Skills.Add(ski);
+                    }
+                }
+                connection.Close();
+            }
+
+            return Skills;
+        }
     }
 }

@@ -39,3 +39,4 @@ C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\o
 C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.TraitsSelectionForm.resources
 C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.BackgroundSelectionForm.resources
 C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.ClassSelectionForm.resources
+C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.RegistrationForm.resources
