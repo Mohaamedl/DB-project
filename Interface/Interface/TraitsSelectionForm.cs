@@ -75,7 +75,7 @@ namespace Interface
             }
         }
 
-        
+
 
 
 
@@ -100,6 +100,11 @@ namespace Interface
         private void loadAll_Click_1(object sender, EventArgs e)
         {
             LoadAllTraits();
+        }
+
+        private void order_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

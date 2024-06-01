@@ -56,17 +56,27 @@
             labelDexterity = new Label();
             labelConstitution = new Label();
             panel1 = new Panel();
-            labelBackground = new Label();
-            labelSpeed = new Label();
-            labelLanguages = new Label();
             labelStrengthModifier = new Label();
             labelConstitutionModifier = new Label();
             labelWisdomModifier = new Label();
             labelDexterityModifier = new Label();
             labelIntelligenceModifier = new Label();
             labelCharismaModifier = new Label();
+            labelBackground = new Label();
+            labelSpeed = new Label();
+            labelLanguages = new Label();
             label1 = new Label();
+            comboBox1 = new ComboBox();
+            orderby = new Label();
+            filter_character = new Button();
+            textBoxSearch = new TextBox();
+            serach = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            panel2 = new Panel();
+            label4 = new Label();
             panel1.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // labelPlayerName
@@ -82,16 +92,16 @@
             // 
             listBoxCharacters.FormattingEnabled = true;
             listBoxCharacters.ItemHeight = 15;
-            listBoxCharacters.Location = new Point(12, 46);
+            listBoxCharacters.Location = new Point(12, 91);
             listBoxCharacters.Name = "listBoxCharacters";
-            listBoxCharacters.Size = new Size(294, 334);
+            listBoxCharacters.Size = new Size(503, 289);
             listBoxCharacters.TabIndex = 1;
             listBoxCharacters.SelectedIndexChanged += listBoxCharacters_SelectedIndexChanged;
             // 
             // labelCharacterName
             // 
             labelCharacterName.AutoSize = true;
-            labelCharacterName.Location = new Point(345, 65);
+            labelCharacterName.Location = new Point(3, 45);
             labelCharacterName.Name = "labelCharacterName";
             labelCharacterName.Size = new Size(93, 15);
             labelCharacterName.TabIndex = 2;
@@ -100,7 +110,7 @@
             // labelCharacterHP
             // 
             labelCharacterHP.AutoSize = true;
-            labelCharacterHP.Location = new Point(345, 102);
+            labelCharacterHP.Location = new Point(3, 82);
             labelCharacterHP.Name = "labelCharacterHP";
             labelCharacterHP.Size = new Size(23, 15);
             labelCharacterHP.TabIndex = 3;
@@ -109,7 +119,7 @@
             // labelCharacterLevel
             // 
             labelCharacterLevel.AutoSize = true;
-            labelCharacterLevel.Location = new Point(345, 135);
+            labelCharacterLevel.Location = new Point(3, 115);
             labelCharacterLevel.Name = "labelCharacterLevel";
             labelCharacterLevel.Size = new Size(34, 15);
             labelCharacterLevel.TabIndex = 4;
@@ -118,7 +128,7 @@
             // labelClass
             // 
             labelClass.AutoSize = true;
-            labelClass.Location = new Point(345, 210);
+            labelClass.Location = new Point(3, 190);
             labelClass.Name = "labelClass";
             labelClass.Size = new Size(34, 15);
             labelClass.TabIndex = 5;
@@ -167,7 +177,7 @@
             // listViewCharacterDetails
             // 
             listViewCharacterDetails.GridLines = true;
-            listViewCharacterDetails.Location = new Point(12, 407);
+            listViewCharacterDetails.Location = new Point(12, 425);
             listViewCharacterDetails.Name = "listViewCharacterDetails";
             listViewCharacterDetails.Size = new Size(918, 140);
             listViewCharacterDetails.TabIndex = 10;
@@ -176,7 +186,7 @@
             // labelAncestry
             // 
             labelAncestry.AutoSize = true;
-            labelAncestry.Location = new Point(345, 256);
+            labelAncestry.Location = new Point(3, 236);
             labelAncestry.Name = "labelAncestry";
             labelAncestry.Size = new Size(53, 15);
             labelAncestry.TabIndex = 11;
@@ -185,7 +195,7 @@
             // labelStrength
             // 
             labelStrength.AutoSize = true;
-            labelStrength.Location = new Point(50, 39);
+            labelStrength.Location = new Point(50, 63);
             labelStrength.Name = "labelStrength";
             labelStrength.Size = new Size(52, 15);
             labelStrength.TabIndex = 12;
@@ -194,7 +204,7 @@
             // labelWisdom
             // 
             labelWisdom.AutoSize = true;
-            labelWisdom.Location = new Point(50, 79);
+            labelWisdom.Location = new Point(50, 103);
             labelWisdom.Name = "labelWisdom";
             labelWisdom.Size = new Size(51, 15);
             labelWisdom.TabIndex = 13;
@@ -203,7 +213,7 @@
             // labelCharisma
             // 
             labelCharisma.AutoSize = true;
-            labelCharisma.Location = new Point(50, 170);
+            labelCharisma.Location = new Point(50, 194);
             labelCharisma.Name = "labelCharisma";
             labelCharisma.Size = new Size(57, 15);
             labelCharisma.TabIndex = 14;
@@ -212,7 +222,7 @@
             // labelIntelligence
             // 
             labelIntelligence.AutoSize = true;
-            labelIntelligence.Location = new Point(50, 124);
+            labelIntelligence.Location = new Point(50, 148);
             labelIntelligence.Name = "labelIntelligence";
             labelIntelligence.Size = new Size(68, 15);
             labelIntelligence.TabIndex = 15;
@@ -221,7 +231,7 @@
             // labelDexterity
             // 
             labelDexterity.AutoSize = true;
-            labelDexterity.Location = new Point(50, 210);
+            labelDexterity.Location = new Point(50, 234);
             labelDexterity.Name = "labelDexterity";
             labelDexterity.Size = new Size(54, 15);
             labelDexterity.TabIndex = 16;
@@ -230,7 +240,7 @@
             // labelConstitution
             // 
             labelConstitution.AutoSize = true;
-            labelConstitution.Location = new Point(50, 253);
+            labelConstitution.Location = new Point(50, 277);
             labelConstitution.Name = "labelConstitution";
             labelConstitution.Size = new Size(73, 15);
             labelConstitution.TabIndex = 17;
@@ -238,6 +248,8 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(label2);
             panel1.Controls.Add(labelStrengthModifier);
             panel1.Controls.Add(labelConstitutionModifier);
             panel1.Controls.Add(labelWisdomModifier);
@@ -252,40 +264,13 @@
             panel1.Controls.Add(labelCharisma);
             panel1.Location = new Point(732, 46);
             panel1.Name = "panel1";
-            panel1.Size = new Size(408, 306);
+            panel1.Size = new Size(408, 334);
             panel1.TabIndex = 18;
-            // 
-            // labelBackground
-            // 
-            labelBackground.AutoSize = true;
-            labelBackground.Location = new Point(345, 299);
-            labelBackground.Name = "labelBackground";
-            labelBackground.Size = new Size(71, 15);
-            labelBackground.TabIndex = 19;
-            labelBackground.Text = "Background";
-            // 
-            // labelSpeed
-            // 
-            labelSpeed.AutoSize = true;
-            labelSpeed.Location = new Point(345, 170);
-            labelSpeed.Name = "labelSpeed";
-            labelSpeed.Size = new Size(39, 15);
-            labelSpeed.TabIndex = 20;
-            labelSpeed.Text = "Speed";
-            // 
-            // labelLanguages
-            // 
-            labelLanguages.AutoSize = true;
-            labelLanguages.Location = new Point(531, 76);
-            labelLanguages.Name = "labelLanguages";
-            labelLanguages.Size = new Size(64, 15);
-            labelLanguages.TabIndex = 21;
-            labelLanguages.Text = "Languages";
             // 
             // labelStrengthModifier
             // 
             labelStrengthModifier.AutoSize = true;
-            labelStrengthModifier.Location = new Point(237, 39);
+            labelStrengthModifier.Location = new Point(237, 63);
             labelStrengthModifier.Name = "labelStrengthModifier";
             labelStrengthModifier.Size = new Size(52, 15);
             labelStrengthModifier.TabIndex = 18;
@@ -294,7 +279,7 @@
             // labelConstitutionModifier
             // 
             labelConstitutionModifier.AutoSize = true;
-            labelConstitutionModifier.Location = new Point(237, 253);
+            labelConstitutionModifier.Location = new Point(237, 277);
             labelConstitutionModifier.Name = "labelConstitutionModifier";
             labelConstitutionModifier.Size = new Size(73, 15);
             labelConstitutionModifier.TabIndex = 23;
@@ -303,7 +288,7 @@
             // labelWisdomModifier
             // 
             labelWisdomModifier.AutoSize = true;
-            labelWisdomModifier.Location = new Point(237, 79);
+            labelWisdomModifier.Location = new Point(237, 103);
             labelWisdomModifier.Name = "labelWisdomModifier";
             labelWisdomModifier.Size = new Size(51, 15);
             labelWisdomModifier.TabIndex = 19;
@@ -312,7 +297,7 @@
             // labelDexterityModifier
             // 
             labelDexterityModifier.AutoSize = true;
-            labelDexterityModifier.Location = new Point(237, 210);
+            labelDexterityModifier.Location = new Point(237, 234);
             labelDexterityModifier.Name = "labelDexterityModifier";
             labelDexterityModifier.Size = new Size(54, 15);
             labelDexterityModifier.TabIndex = 22;
@@ -321,7 +306,7 @@
             // labelIntelligenceModifier
             // 
             labelIntelligenceModifier.AutoSize = true;
-            labelIntelligenceModifier.Location = new Point(237, 124);
+            labelIntelligenceModifier.Location = new Point(237, 148);
             labelIntelligenceModifier.Name = "labelIntelligenceModifier";
             labelIntelligenceModifier.Size = new Size(68, 15);
             labelIntelligenceModifier.TabIndex = 21;
@@ -330,21 +315,138 @@
             // labelCharismaModifier
             // 
             labelCharismaModifier.AutoSize = true;
-            labelCharismaModifier.Location = new Point(237, 170);
+            labelCharismaModifier.Location = new Point(237, 194);
             labelCharismaModifier.Name = "labelCharismaModifier";
             labelCharismaModifier.Size = new Size(57, 15);
             labelCharismaModifier.TabIndex = 20;
             labelCharismaModifier.Text = "Charisma";
             // 
+            // labelBackground
+            // 
+            labelBackground.AutoSize = true;
+            labelBackground.Location = new Point(3, 279);
+            labelBackground.Name = "labelBackground";
+            labelBackground.Size = new Size(71, 15);
+            labelBackground.TabIndex = 19;
+            labelBackground.Text = "Background";
+            // 
+            // labelSpeed
+            // 
+            labelSpeed.AutoSize = true;
+            labelSpeed.Location = new Point(3, 150);
+            labelSpeed.Name = "labelSpeed";
+            labelSpeed.Size = new Size(39, 15);
+            labelSpeed.TabIndex = 20;
+            labelSpeed.Text = "Speed";
+            // 
+            // labelLanguages
+            // 
+            labelLanguages.AutoSize = true;
+            labelLanguages.Location = new Point(3, 314);
+            labelLanguages.Name = "labelLanguages";
+            labelLanguages.Size = new Size(64, 15);
+            labelLanguages.TabIndex = 21;
+            labelLanguages.Text = "Languages";
+            // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(329, 365);
+            label1.Location = new Point(12, 401);
             label1.Name = "label1";
             label1.Size = new Size(101, 21);
             label1.TabIndex = 22;
             label1.Text = "More Details:";
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(170, 59);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(121, 23);
+            comboBox1.TabIndex = 23;
+            // 
+            // orderby
+            // 
+            orderby.AutoSize = true;
+            orderby.Font = new Font("Segoe UI", 12F);
+            orderby.Location = new Point(92, 61);
+            orderby.Name = "orderby";
+            orderby.Size = new Size(72, 21);
+            orderby.TabIndex = 24;
+            orderby.Text = "Order by";
+            // 
+            // filter_character
+            // 
+            filter_character.Location = new Point(11, 61);
+            filter_character.Name = "filter_character";
+            filter_character.Size = new Size(75, 23);
+            filter_character.TabIndex = 25;
+            filter_character.Text = "Filter";
+            filter_character.UseVisualStyleBackColor = true;
+            // 
+            // textBoxSearch
+            // 
+            textBoxSearch.Location = new Point(397, 58);
+            textBoxSearch.Name = "textBoxSearch";
+            textBoxSearch.Size = new Size(117, 23);
+            textBoxSearch.TabIndex = 37;
+            // 
+            // serach
+            // 
+            serach.AutoSize = true;
+            serach.Font = new Font("Segoe UI", 12F);
+            serach.Location = new Point(334, 60);
+            serach.Name = "serach";
+            serach.Size = new Size(57, 21);
+            serach.TabIndex = 36;
+            serach.Text = "Serach";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(21, 23);
+            label2.Name = "label2";
+            label2.Size = new Size(153, 21);
+            label2.TabIndex = 24;
+            label2.Text = "Physical Attributes";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(227, 23);
+            label3.Name = "label3";
+            label3.Size = new Size(83, 21);
+            label3.TabIndex = 25;
+            label3.Text = "Modifiers";
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(label4);
+            panel2.Controls.Add(labelCharacterName);
+            panel2.Controls.Add(labelCharacterHP);
+            panel2.Controls.Add(labelLanguages);
+            panel2.Controls.Add(labelCharacterLevel);
+            panel2.Controls.Add(labelSpeed);
+            panel2.Controls.Add(labelClass);
+            panel2.Controls.Add(labelBackground);
+            panel2.Controls.Add(labelAncestry);
+            panel2.Location = new Point(545, 46);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(162, 334);
+            panel2.TabIndex = 39;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(16, 15);
+            label4.Name = "label4";
+            label4.Size = new Size(121, 17);
+            label4.TabIndex = 22;
+            label4.Text = "General Attributes";
             // 
             // HomePage
             // 
@@ -352,21 +454,19 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1186, 577);
+            Controls.Add(panel2);
+            Controls.Add(textBoxSearch);
+            Controls.Add(serach);
+            Controls.Add(filter_character);
+            Controls.Add(orderby);
+            Controls.Add(comboBox1);
             Controls.Add(label1);
-            Controls.Add(labelLanguages);
-            Controls.Add(labelSpeed);
-            Controls.Add(labelBackground);
             Controls.Add(panel1);
-            Controls.Add(labelAncestry);
             Controls.Add(listViewCharacterDetails);
             Controls.Add(button1);
             Controls.Add(buttonDeleteCharacter);
             Controls.Add(buttonEditCharacter);
             Controls.Add(buttonCreateCharacter);
-            Controls.Add(labelClass);
-            Controls.Add(labelCharacterLevel);
-            Controls.Add(labelCharacterHP);
-            Controls.Add(labelCharacterName);
             Controls.Add(listBoxCharacters);
             Controls.Add(labelPlayerName);
             Name = "HomePage";
@@ -374,6 +474,8 @@
             Load += HomePage_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -400,5 +502,14 @@
         private Label labelIntelligenceModifier;
         private Label labelCharismaModifier;
         private Label label1;
+        private ComboBox comboBox1;
+        private Label orderby;
+        private Button filter_character;
+        private TextBox textBoxSearch;
+        private Label serach;
+        private Label label3;
+        private Label label2;
+        private Panel panel2;
+        private Label label4;
     }
 }

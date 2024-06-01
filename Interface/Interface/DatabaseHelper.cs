@@ -9,14 +9,17 @@ namespace Interface
     {
         private static string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
-        public static List<Feat> GetFeatsFromDatabase(int limit = 20)
+        public static List<Feat> GetFeatsFromDatabase(int limit = 20, string columnName = null, string searchString = null)
         {
             var feats = new List<Feat>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = $"SELECT TOP {limit} Name, Rarity, Prerequisite, Summary, Level FROM Feats ORDER BY Name";
-
+                if (!string.IsNullOrEmpty(columnName) && !string.IsNullOrEmpty(searchString))
+                {
+                    query += $" WHERE {columnName} LIKE '%{searchString}%'";
+                }
                 SqlCommand command = new SqlCommand(query, connection);
                 connection.Open();
 
@@ -45,14 +48,17 @@ namespace Interface
             return GetFeatsFromDatabase(int.MaxValue);
         }
 
-        public static List<Spell> GetSpellsFromDatabase(int limit = 20)
+        public static List<Spell> GetSpellsFromDatabase(int limit = 20, string columnName = null, string searchString = null)
         {
             var spells = new List<Spell>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = $"SELECT TOP {limit} name, rarity, actions, rank, range FROM Spells ORDER BY name";
-
+                if (!string.IsNullOrEmpty(columnName) && !string.IsNullOrEmpty(searchString))
+                {
+                    query += $" WHERE {columnName} LIKE '%{searchString}%'";
+                }
                 SqlCommand command = new(query, connection);
                 connection.Open();
 
@@ -79,14 +85,17 @@ namespace Interface
         {
             return GetSpellsFromDatabase(int.MaxValue);
         }
-        public static List<Trait> GetTraitsFromDatabase(int limit = 20)
+        public static List<Trait> GetTraitsFromDatabase(int limit = 20, string columnName = null, string searchString = null)
         {
             var traits = new List<Trait>();
 
             using (SqlConnection connection = new(connectionString))
             {
                 string query = $"SELECT TOP {limit} designation, details FROM Traits";
-
+                if (!string.IsNullOrEmpty(columnName) && !string.IsNullOrEmpty(searchString))
+                {
+                    query += $" WHERE {columnName} LIKE '%{searchString}%'";
+                }
                 SqlCommand command = new(query, connection);
                 connection.Open();
 
@@ -107,14 +116,17 @@ namespace Interface
 
             return traits;
         }
-        public static List<Ancestry> GetAncestriesFromDatabase(int limit = 20)
+        public static List<Ancestry> GetAncestriesFromDatabase(int limit = 20, string columnName = null, string searchString = null)
         {
             var Ancestries = new List<Ancestry>();
 
             using (SqlConnection connection = new(connectionString))
             {
                 string query = $"SELECT TOP {limit} name, HP, size, speed,ability_boost,ability_flaw,rarity FROM Ancestry ORDER BY name";
-
+                if (!string.IsNullOrEmpty(columnName) && !string.IsNullOrEmpty(searchString))
+                {
+                    query += $" WHERE {columnName} LIKE '%{searchString}%'";
+                }
                 SqlCommand command = new(query, connection);
                 connection.Open();
 
@@ -180,14 +192,17 @@ namespace Interface
 
 
         
-        public static List<Background> GetBackgroundsFromDatabase(int limit = 20)
+        public static List<Background> GetBackgroundsFromDatabase(int limit = 20, string columnName = null, string searchString = null)
         {
             var Backgrounds = new List<Background>();
 
             using (SqlConnection connection = new(connectionString))
             {
                 string query = $"SELECT TOP {limit} name, ability, skill, feat,rarity,summary FROM Background ORDER BY name";
-
+                if (!string.IsNullOrEmpty(columnName) && !string.IsNullOrEmpty(searchString))
+                {
+                    query += $" WHERE {columnName} LIKE '%{searchString}%'";
+                }
                 SqlCommand command = new(query, connection);
                 connection.Open();
 
@@ -219,14 +234,17 @@ namespace Interface
         {
             return GetBackgroundsFromDatabase(int.MaxValue);
         }
-        public static List<Equipment> GetEquipmentsFromDatabase(int limit = 20)
+        public static List<Equipment> GetEquipmentsFromDatabase(int limit = 20, string columnName = null, string searchString = null)
         {
             var Equipments = new List<Equipment>();
 
             using (SqlConnection connection = new(connectionString))
             {
                 string query = $"SELECT TOP {limit} [name], item_category, item_sub_category, weapon_category,[level],price,rarity,usage,[bulk] FROM Equipment ORDER BY [name]";
-
+                if (!string.IsNullOrEmpty(columnName) && !string.IsNullOrEmpty(searchString))
+                {
+                    query += $" WHERE {columnName} LIKE '%{searchString}%'";
+                }
                 SqlCommand command = new(query, connection);
                 connection.Open();
 
@@ -261,14 +279,17 @@ namespace Interface
         {
             return GetEquipmentsFromDatabase(int.MaxValue);
         }
-        public static List<Class> GetClassesFromDatabase(int limit = 20)
+        public static List<Class> GetClassesFromDatabase(int limit = 20, string columnName = null, string searchString = null)
         {
             var Classes = new List<Class>();
 
             using (SqlConnection connection = new(connectionString))
             {
                 string query = $"SELECT TOP {limit} [name],HP , prof_attack, prof_defense, ability, spell_progression_id FROM Class ORDER BY [name]";
-
+                if (!string.IsNullOrEmpty(columnName) && !string.IsNullOrEmpty(searchString))
+                {
+                    query += $" WHERE {columnName} LIKE '%{searchString}%'";
+                }
                 SqlCommand command = new(query, connection);
                 connection.Open();
 
@@ -475,6 +496,25 @@ namespace Interface
 
             return exists;
         }
+        //public static bool searchstringincolumn(string tablename, string columnname, string searchstring)
+        //{
+        //    bool found = false;
+
+        //    using (var connection = new sqlconnection(connectionstring))
+        //    {
+        //        connection.open();
+
+        //        string query = $"select count(*) from {tablename} where {columnname} like @searchstring";
+        //        using (var command = new sqlcommand(query, connection))
+        //        {
+        //            command.parameters.addwithvalue("@searchstring", $"%{searchstring}%");
+        //            int count = (int)command.executescalar();
+        //            found = count > 0;
+        //        }
+        //    }
+
+        //    return found;
+        //}
 
     }
 }

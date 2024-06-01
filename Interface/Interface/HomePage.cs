@@ -20,7 +20,7 @@ namespace Interface
 
         private void HomePage_Load(object sender, EventArgs e)
         {
-           
+
         }
         public HomePage(User user)
         {
@@ -48,7 +48,7 @@ namespace Interface
             if (selectedCharacter != null)
             {
                 // Define o nome do personagem
-                labelCharacterName.Text = $"Character Name: {selectedCharacter.name}" ;
+                labelCharacterName.Text = $"Character Name: {selectedCharacter.name}";
 
                 // Define o HP do personagem
                 labelCharacterHP.Text = $"HP: {selectedCharacter.HP}";
@@ -104,7 +104,7 @@ namespace Interface
                     listViewCharacterDetails.Items.Add(new ListViewItem(new[] { "Spell", spell.Name.ToString() }));
                 }
 
-                
+
             }
         }
         private void buttonCreateCharacter_Click(object sender, EventArgs e)
@@ -170,5 +170,7 @@ namespace Interface
             landingPage.Show();
             this.Close();
         }
+
+
     }
 }

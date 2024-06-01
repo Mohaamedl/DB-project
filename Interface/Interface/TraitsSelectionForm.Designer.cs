@@ -33,6 +33,10 @@
             listViewTraits = new ListView();
             button2 = new Button();
             button1 = new Button();
+            textBoxSearch = new TextBox();
+            serach = new Label();
+            orderby = new Label();
+            order = new ComboBox();
             SuspendLayout();
             // 
             // loadAll
@@ -59,9 +63,9 @@
             // 
             listViewTraits.CheckBoxes = true;
             listViewTraits.GridLines = true;
-            listViewTraits.Location = new Point(53, 22);
+            listViewTraits.Location = new Point(53, 40);
             listViewTraits.Name = "listViewTraits";
-            listViewTraits.Size = new Size(389, 452);
+            listViewTraits.Size = new Size(389, 434);
             listViewTraits.TabIndex = 2;
             listViewTraits.UseCompatibleStateImageBehavior = false;
             listViewTraits.View = View.Details;
@@ -84,11 +88,51 @@
             button1.Text = "Edit";
             button1.UseVisualStyleBackColor = true;
             // 
+            // textBoxSearch
+            // 
+            textBoxSearch.Location = new Point(309, 11);
+            textBoxSearch.Name = "textBoxSearch";
+            textBoxSearch.Size = new Size(146, 23);
+            textBoxSearch.TabIndex = 35;
+            // 
+            // serach
+            // 
+            serach.AutoSize = true;
+            serach.Font = new Font("Segoe UI", 12F);
+            serach.Location = new Point(246, 12);
+            serach.Name = "serach";
+            serach.Size = new Size(57, 21);
+            serach.TabIndex = 34;
+            serach.Text = "Serach";
+            // 
+            // orderby
+            // 
+            orderby.AutoSize = true;
+            orderby.Font = new Font("Segoe UI", 12F);
+            orderby.Location = new Point(31, 12);
+            orderby.Name = "orderby";
+            orderby.Size = new Size(72, 21);
+            orderby.TabIndex = 32;
+            orderby.Text = "Order by";
+            // 
+            // order
+            // 
+            order.FormattingEnabled = true;
+            order.Location = new Point(109, 10);
+            order.Name = "order";
+            order.Size = new Size(121, 23);
+            order.TabIndex = 31;
+            order.SelectedIndexChanged += order_SelectedIndexChanged;
+            // 
             // TraitsSelectionForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(491, 541);
+            Controls.Add(textBoxSearch);
+            Controls.Add(serach);
+            Controls.Add(orderby);
+            Controls.Add(order);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(listViewTraits);
@@ -98,6 +142,7 @@
             Text = "TraitsSelectionForm";
             Load += TraitsSelectionForm_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -107,5 +152,9 @@
         private ListView listViewTraits;
         private Button button2;
         private Button button1;
+        private TextBox textBoxSearch;
+        private Label serach;
+        private Label orderby;
+        private ComboBox order;
     }
 }
