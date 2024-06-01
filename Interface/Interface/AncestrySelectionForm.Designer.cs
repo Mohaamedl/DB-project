@@ -31,11 +31,14 @@
             LoadAll = new Button();
             Select = new Button();
             listViewAncestries = new ListView();
+            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            button2 = new Button();
+            button1 = new Button();
             SuspendLayout();
             // 
             // LoadAll
             // 
-            LoadAll.Location = new Point(89, 396);
+            LoadAll.Location = new Point(59, 396);
             LoadAll.Name = "LoadAll";
             LoadAll.Size = new Size(75, 23);
             LoadAll.TabIndex = 0;
@@ -45,7 +48,7 @@
             // 
             // Select
             // 
-            Select.Location = new Point(637, 385);
+            Select.Location = new Point(636, 396);
             Select.Name = "Select";
             Select.Size = new Size(75, 23);
             Select.TabIndex = 1;
@@ -56,7 +59,6 @@
             // listViewAncestries
             // 
             listViewAncestries.CheckBoxes = true;
-            listViewAncestries.FullRowSelect = false;
             listViewAncestries.GridLines = true;
             listViewAncestries.Location = new Point(59, 34);
             listViewAncestries.MultiSelect = false;
@@ -67,11 +69,31 @@
             listViewAncestries.View = View.Details;
             listViewAncestries.ItemCheck += ListViewAncestries_ItemCheck;
             // 
+            // button2
+            // 
+            button2.Location = new Point(402, 396);
+            button2.Name = "button2";
+            button2.Size = new Size(75, 23);
+            button2.TabIndex = 8;
+            button2.Text = "Delete";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(256, 396);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 7;
+            button1.Text = "Edit";
+            button1.UseVisualStyleBackColor = true;
+            // 
             // AncestrySelectionForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(button2);
+            Controls.Add(button1);
             Controls.Add(listViewAncestries);
             Controls.Add(Select);
             Controls.Add(LoadAll);
@@ -86,5 +108,8 @@
         private Button LoadAll;
         private Button Select;
         private ListView listViewAncestries;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private Button button2;
+        private Button button1;
     }
 }

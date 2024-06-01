@@ -16,7 +16,13 @@ namespace Interface
         {
             InitializeComponent();
         }
+        public string UserName { get; private set; }
 
+        // Método para definir o nome de usuário
+        public void SetUserName(string userName)
+        {
+            UserName = userName;
+        }
         private void LandingPage_Load(object sender, EventArgs e)
         {
             // Definir a imagem de fundo
@@ -27,11 +33,11 @@ namespace Interface
         private void button1_Click(object sender, EventArgs e)
         {
             // Abrir o formulário de login
-            LoginForm loginForm = new LoginForm();
+            LoginForm loginForm = new LoginForm(this);
 
             if (loginForm.ShowDialog() == DialogResult.OK && loginForm.IsAuthenticated)
             {
-                HomePage homePage = new HomePage();
+                HomePage homePage = new HomePage(this.UserName);
                 homePage.Show();
                 this.Hide();
             }

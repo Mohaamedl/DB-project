@@ -31,6 +31,8 @@
             loadAll = new Button();
             select = new Button();
             listViewSpells = new ListView();
+            button2 = new Button();
+            button1 = new Button();
             SuspendLayout();
             // 
             // loadAll
@@ -64,11 +66,31 @@
             listViewSpells.UseCompatibleStateImageBehavior = false;
             listViewSpells.View = View.Details;
             // 
+            // button2
+            // 
+            button2.Location = new Point(300, 405);
+            button2.Name = "button2";
+            button2.Size = new Size(75, 23);
+            button2.TabIndex = 6;
+            button2.Text = "Delete";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(176, 405);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 5;
+            button1.Text = "Edit";
+            button1.UseVisualStyleBackColor = true;
+            // 
             // SpellSelectionForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(button2);
+            Controls.Add(button1);
             Controls.Add(listViewSpells);
             Controls.Add(select);
             Controls.Add(loadAll);
@@ -84,5 +106,7 @@
         private Button loadAll;
         private Button select;
         private ListView listViewSpells;
+        private Button button2;
+        private Button button1;
     }
 }

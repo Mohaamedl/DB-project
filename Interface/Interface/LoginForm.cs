@@ -7,15 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Interface
 {
     public partial class LoginForm : Form
     {
         public bool IsAuthenticated { get; private set; }
-
-        public LoginForm()
-        {
+        public LandingPage landingPage;
+        public LoginForm(LandingPage landing)
+        {   
+            landingPage = landing;
             InitializeComponent();
         }
         private void LoginForm_Load(object sender, EventArgs e)
@@ -26,29 +28,31 @@ namespace Interface
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-
-            if (textUsername.Text == "" && textPassword.Text == "")
+            string username = textUsername.Text;
+            string password = textPassword.Text;
+            if (string.IsNullOrEmpty(username) && string.IsNullOrEmpty(password))
             {
-                MessageBox.Show("Username and password fields are empty", "Resistration failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Username and password fields are empty", "Login failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (textUsername.Text == "admin" && textPassword.Text == "admin")
+            else if (username == "admin" && password == "admin")
             {
                 MessageBox.Show("Login successful!");
 
                 IsAuthenticated = true;
+                landingPage.SetUserName(username);
                 this.DialogResult = DialogResult.OK;
                 this.Hide();
             }
             else
             {
-                string username = textUsername.Text;
-                string password = textPassword.Text;
-                bool isLoggedIn = DatabaseHelper.LoginUser(username, password);
+                User user = DatabaseHelper.Login(username, password);
 
-                if (isLoggedIn)
+                if (user != null)
                 {
                     MessageBox.Show("Login successful!");
+
                     IsAuthenticated = true;
+                    landingPage.SetUserName(username); // Passa o nome de usuário para a landing page
                     this.DialogResult = DialogResult.OK;
                     textPassword.Text = "";
                     textUsername.Text = "";
@@ -57,7 +61,7 @@ namespace Interface
                 }
                 else
                 {
-                    MessageBox.Show("Login failed. Please check your username and password.");
+                    MessageBox.Show("Login failed. Please check your username and password.", "Login failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     textPassword.Text = "";
                     textUsername.Text = "";
                     textUsername.Focus();

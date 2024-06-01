@@ -1,4 +1,8 @@
-﻿namespace Interface
+﻿using System;
+using System.Security.Cryptography;
+
+
+namespace Interface
 {
     partial class RegistrationForm
     {

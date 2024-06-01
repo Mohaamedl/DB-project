@@ -31,7 +31,7 @@ namespace Interface
 
                 try
                 {
-                    bool isRegistered = DatabaseHelper.RegisterUser(username, password);
+                    bool isRegistered = DatabaseHelper.Register(username, password,"normal");
                     if (isRegistered)
                     {
                         MessageBox.Show("User registered successfully!");

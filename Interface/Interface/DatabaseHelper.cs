@@ -400,5 +400,63 @@ namespace Interface
 
             return Skills;
         }
+        public static User Login(string username, string password)
+        {
+            User user = null;
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (var command = new SqlCommand("SELECT ID, Username, PasswordHash, PasswordSalt, Role FROM Users WHERE Username = @Username", connection))
+                {
+                    command.Parameters.AddWithValue("@Username", username);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            byte[] storedHash = (byte[])reader["PasswordHash"];
+                            byte[] storedSalt = (byte[])reader["PasswordSalt"];
+
+                            if (PasswordHelper.VerifyPasswordHash(password, storedHash, storedSalt))
+                            {
+                                user = new User
+                                {
+                                    ID = (int)reader["ID"],
+                                    Username = (string)reader["Username"],
+                                    PasswordHash = storedHash,
+                                    PasswordSalt = storedSalt,
+                                    Role = (string)reader["Role"]
+                                };
+                            }
+                        }
+                    }
+                }
+            }
+
+            return user;
+        }
+        public static bool Register(string username, string password, string role)
+        {
+            byte[] passwordHash, passwordSalt;
+            PasswordHelper.CreatePasswordHash(password, out passwordHash, out passwordSalt);
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (var command = new SqlCommand("INSERT INTO Users (Username, PasswordHash, PasswordSalt, Role, CreatedAt) VALUES (@Username, @PasswordHash, @PasswordSalt, @Role, @CreatedAt)", connection))
+                {
+                    command.Parameters.AddWithValue("@Username", username);
+                    command.Parameters.AddWithValue("@PasswordHash", passwordHash);
+                    command.Parameters.AddWithValue("@PasswordSalt", passwordSalt);
+                    command.Parameters.AddWithValue("@Role", role);
+                    command.Parameters.AddWithValue("@CreatedAt", DateTime.Now);
+
+                    int result = command.ExecuteNonQuery();
+                    return result > 0;
+                }
+            }
+        }
+
+
     }
 }

@@ -15,13 +15,8 @@ namespace Interface
     {
         private List<Character> characters;
         private Character selectedCharacter;
-        private string userName;
+        public string userName;
 
-        public HomePage()
-        {
-            InitializeComponent();
-            LoadCharacters();
-        }
 
         private void HomePage_Load(object sender, EventArgs e)
         {
@@ -30,7 +25,7 @@ namespace Interface
         public HomePage(string userName)
         {
             InitializeComponent();
-
+            LoadCharacters();
             // Armazenar o nome de usuário recebido como parâmetro
             this.userName = userName;
 

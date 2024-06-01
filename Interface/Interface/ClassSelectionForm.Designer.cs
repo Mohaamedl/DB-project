@@ -30,6 +30,8 @@
         {
             Select = new Button();
             listViewClasses = new ListView();
+            button2 = new Button();
+            button1 = new Button();
             SuspendLayout();
             // 
             // Select
@@ -55,11 +57,31 @@
             listViewClasses.View = View.Details;
             listViewClasses.ItemCheck += ListViewClass_ItemCheck;
             // 
+            // button2
+            // 
+            button2.Location = new Point(204, 459);
+            button2.Name = "button2";
+            button2.Size = new Size(75, 23);
+            button2.TabIndex = 6;
+            button2.Text = "Delete";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(63, 463);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 5;
+            button1.Text = "Edit";
+            button1.UseVisualStyleBackColor = true;
+            // 
             // ClassSelectionForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1280, 509);
+            Controls.Add(button2);
+            Controls.Add(button1);
             Controls.Add(listViewClasses);
             Controls.Add(Select);
             Name = "ClassSelectionForm";
@@ -72,5 +94,7 @@
 
         private Button Select;
         private ListView listViewClasses;
+        private Button button2;
+        private Button button1;
     }
 }

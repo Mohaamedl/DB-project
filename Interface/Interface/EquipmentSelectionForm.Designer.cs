@@ -31,6 +31,8 @@
             Load_all = new Button();
             Select = new Button();
             listViewEquipments = new ListView();
+            button1 = new Button();
+            button2 = new Button();
             SuspendLayout();
             // 
             // Load_all
@@ -64,11 +66,31 @@
             listViewEquipments.UseCompatibleStateImageBehavior = false;
             listViewEquipments.View = View.Details;
             // 
+            // button1
+            // 
+            button1.Location = new Point(265, 408);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 3;
+            button1.Text = "Edit";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(406, 404);
+            button2.Name = "button2";
+            button2.Size = new Size(75, 23);
+            button2.TabIndex = 4;
+            button2.Text = "Delete";
+            button2.UseVisualStyleBackColor = true;
+            // 
             // EquipmentSelectionForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(button2);
+            Controls.Add(button1);
             Controls.Add(listViewEquipments);
             Controls.Add(Select);
             Controls.Add(Load_all);
@@ -83,5 +105,7 @@
         private Button Load_all;
         private Button Select;
         private ListView listViewEquipments;
+        private Button button1;
+        private Button button2;
     }
 }
