@@ -16,12 +16,12 @@ namespace Interface
         {
             InitializeComponent();
         }
-        public string UserName { get; private set; }
+        public User user;
 
         // Método para definir o nome de usuário
-        public void SetUserName(string userName)
+        public void SetUser(User userr)
         {
-            UserName = userName;
+            this.user = userr;
         }
         private void LandingPage_Load(object sender, EventArgs e)
         {
@@ -37,7 +37,7 @@ namespace Interface
 
             if (loginForm.ShowDialog() == DialogResult.OK && loginForm.IsAuthenticated)
             {
-                HomePage homePage = new HomePage(this.UserName);
+                HomePage homePage = new HomePage(this.user);
                 homePage.Show();
                 this.Hide();
             }

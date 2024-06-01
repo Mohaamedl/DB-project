@@ -34,6 +34,7 @@ namespace Interface
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegistrationForm));
             panel1 = new Panel();
+            labelUsernameStatus = new Label();
             label2 = new Label();
             haveAcount = new Label();
             buttonClear = new Button();
@@ -52,6 +53,7 @@ namespace Interface
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(150, 100, 0, 0);
+            panel1.Controls.Add(labelUsernameStatus);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(haveAcount);
             panel1.Controls.Add(buttonClear);
@@ -63,10 +65,21 @@ namespace Interface
             panel1.Controls.Add(Password);
             panel1.Controls.Add(textUsername);
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(70, 162);
+            panel1.Location = new Point(60, 163);
             panel1.Name = "panel1";
             panel1.Size = new Size(285, 400);
             panel1.TabIndex = 0;
+            // 
+            // labelUsernameStatus
+            // 
+            labelUsernameStatus.AutoSize = true;
+            labelUsernameStatus.BackColor = Color.Khaki;
+            labelUsernameStatus.Location = new Point(69, 62);
+            labelUsernameStatus.Name = "labelUsernameStatus";
+            labelUsernameStatus.Size = new Size(38, 15);
+            labelUsernameStatus.TabIndex = 12;
+            labelUsernameStatus.Text = "label3";
+            labelUsernameStatus.Visible = false;
             // 
             // label2
             // 
@@ -184,18 +197,19 @@ namespace Interface
             textUsername.BackColor = SystemColors.Window;
             textUsername.BorderStyle = BorderStyle.None;
             textUsername.Font = new Font("Segoe UI", 12F);
-            textUsername.Location = new Point(69, 42);
+            textUsername.Location = new Point(69, 32);
             textUsername.Multiline = true;
             textUsername.Name = "textUsername";
             textUsername.Size = new Size(164, 27);
             textUsername.TabIndex = 2;
+            textUsername.TextChanged += textUsername_TextChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F);
             label1.ForeColor = Color.Khaki;
-            label1.Location = new Point(69, 18);
+            label1.Location = new Point(69, 8);
             label1.Name = "label1";
             label1.Size = new Size(81, 21);
             label1.TabIndex = 1;
@@ -248,5 +262,6 @@ namespace Interface
         private Label label2;
         private Label haveAcount;
         private Label getStarted;
+        private Label labelUsernameStatus;
     }
 }

@@ -15,22 +15,22 @@ namespace Interface
     {
         private List<Character> characters;
         private Character selectedCharacter;
-        public string userName;
+        public User user;
 
 
         private void HomePage_Load(object sender, EventArgs e)
         {
            
         }
-        public HomePage(string userName)
+        public HomePage(User user)
         {
             InitializeComponent();
             LoadCharacters();
             // Armazenar o nome de usuário recebido como parâmetro
-            this.userName = userName;
+            this.user = user;
 
             // Você pode usar o nome de usuário aqui como quiser, por exemplo, definindo o texto de uma label
-            labelPlayerName.Text = $"Player Name: {userName}";
+            labelPlayerName.Text = $"Player Name: {user.Username}";
         }
         private void LoadCharacters()
         {

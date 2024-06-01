@@ -456,7 +456,25 @@ namespace Interface
                 }
             }
         }
+        public static bool UserExists(string username)
+        {
+            bool exists = false;
 
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT COUNT(*) FROM Users WHERE Username = @Username";
+                using (var command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Username", username);
+                    int count = (int)command.ExecuteScalar();
+                    exists = count > 0;
+                }
+            }
+
+            return exists;
+        }
 
     }
 }

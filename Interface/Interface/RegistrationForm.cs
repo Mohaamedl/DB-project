@@ -15,7 +15,7 @@ namespace Interface
         public RegistrationForm()
         {
             InitializeComponent();
-            
+
         }
 
         private void buttonRegister_Click(object sender, EventArgs e)
@@ -31,7 +31,7 @@ namespace Interface
 
                 try
                 {
-                    bool isRegistered = DatabaseHelper.Register(username, password,"normal");
+                    bool isRegistered = DatabaseHelper.Register(username, password, "nomal");
                     if (isRegistered)
                     {
                         MessageBox.Show("User registered successfully!");
@@ -85,9 +85,37 @@ namespace Interface
 
         private void label2_Click(object sender, EventArgs e)
         {
-            
+
             this.DialogResult = DialogResult.OK;
             this.Hide();
+        }
+
+        private void textUsername_TextChanged(object sender, EventArgs e)
+        {
+            string username = textUsername.Text;
+
+            if (!string.IsNullOrEmpty(username))
+            {
+                bool userExists = DatabaseHelper.UserExists(username);
+                if (userExists)
+                {
+                    labelUsernameStatus.Text = "Username already exists";
+                    labelUsernameStatus.ForeColor = Color.Red;
+                }
+                else
+                {
+                    labelUsernameStatus.Text = "Username available";
+                    labelUsernameStatus.ForeColor = Color.Green;
+                }
+
+                // Exibir a label apenas quando começar a digitar
+                labelUsernameStatus.Visible = true;
+            }
+            else
+            {
+                // Esconder a label quando o campo de texto está vazio
+                labelUsernameStatus.Visible = false;
+            }
         }
     }
 }

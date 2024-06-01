@@ -15,8 +15,9 @@ namespace Interface
     {
         public bool IsAuthenticated { get; private set; }
         public LandingPage landingPage;
+        public User user;
         public LoginForm(LandingPage landing)
-        {   
+        {
             landingPage = landing;
             InitializeComponent();
         }
@@ -39,20 +40,21 @@ namespace Interface
                 MessageBox.Show("Login successful!");
 
                 IsAuthenticated = true;
-                landingPage.SetUserName(username);
+                this.user = DatabaseHelper.Login("admin", "admin");
+                landingPage.SetUser(user);
                 this.DialogResult = DialogResult.OK;
                 this.Hide();
             }
             else
             {
-                User user = DatabaseHelper.Login(username, password);
+                this.user = DatabaseHelper.Login(username, password);
 
                 if (user != null)
                 {
                     MessageBox.Show("Login successful!");
 
                     IsAuthenticated = true;
-                    landingPage.SetUserName(username); // Passa o nome de usuário para a landing page
+                    landingPage.SetUser(user); // Passa o nome de usuário para a landing page
                     this.DialogResult = DialogResult.OK;
                     textPassword.Text = "";
                     textUsername.Text = "";
@@ -92,16 +94,18 @@ namespace Interface
 
         private void createAcount_Click(object sender, EventArgs e)
         {
-            
+
             RegistrationForm registration = new RegistrationForm();
             this.Hide();
             if (registration.ShowDialog() == DialogResult.OK)
             {
-                
-                
+
+
                 this.Show();
             }
-            
+
         }
+
+
     }
 }
