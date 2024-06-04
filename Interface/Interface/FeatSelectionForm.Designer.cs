@@ -25,6 +25,7 @@
             filter = new Button();
             orderby = new Label();
             order = new ComboBox();
+            Create = new Button();
             SuspendLayout();
             // 
             // listViewFeats
@@ -103,9 +104,20 @@
             order.Size = new Size(121, 23);
             order.TabIndex = 31;
             // 
+            // Create
+            // 
+            Create.Location = new Point(156, 318);
+            Create.Name = "Create";
+            Create.Size = new Size(75, 23);
+            Create.TabIndex = 36;
+            Create.Text = "Create";
+            Create.UseVisualStyleBackColor = true;
+            Create.Click += Create_Click;
+            // 
             // FeatSelectionForm
             // 
             ClientSize = new Size(624, 353);
+            Controls.Add(Create);
             Controls.Add(textBoxSearch);
             Controls.Add(serach);
             Controls.Add(filter);
@@ -127,5 +139,6 @@
         private Button filter;
         private Label orderby;
         private ComboBox order;
+        private Button Create;
     }
 }

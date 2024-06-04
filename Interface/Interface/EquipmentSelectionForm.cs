@@ -99,5 +99,18 @@ namespace Interface
         {
             LoadAllEquipments();
         }
+
+        private void Create_Click(object sender, EventArgs e)
+        {
+            CreateEquipmentForm createEquipment = new CreateEquipmentForm();
+            createEquipment.ShowDialog();
+            if (DialogResult.OK == createEquipment.DialogResult)
+            {
+                Equipments = DatabaseHelper.GetEquipmentsFromDatabase();
+                Equipments.Add(createEquipment.equipment);
+                DisplayEquipments(Equipments);
+
+            }
+        }
     }
 }

@@ -13,28 +13,22 @@
     <Compile Update="CreateCharacter.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="EditAncestryForm.cs">
+    <Compile Update="CreateEquipmentForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="EditBackgroundForm.cs">
+    <Compile Update="CreateFeatForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="CreateSpellForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="EditAncestryForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="EditCharacter.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="EditClassForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="EditEquipmentForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="EditFeatForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="EditSpellForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="EditTraitForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="EquipmentSelectionForm.cs">

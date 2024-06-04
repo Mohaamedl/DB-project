@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Configuration;
+using static System.Windows.Forms.Design.AxImporter;
 
 namespace Interface
 {
@@ -610,8 +611,86 @@ namespace Interface
                 return result > 0;
             }
         }
+        public static bool CreateSpell(Spell spell)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                
+                string query = @"insert into Spells values('',
+                            @Name, @Actions, '','', @Rarity, '','',@Rank,'','',@Range)
+                        ";
 
+                
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Name", spell.Name);
+                command.Parameters.AddWithValue("@Rank", spell.Rank);
+                command.Parameters.AddWithValue("@Actions", spell.Actions);
+                command.Parameters.AddWithValue("@Rarity", spell.Rarity);
+                command.Parameters.AddWithValue("@Range", spell.Range);
+                
+
+                connection.Open();
+                int result = command.ExecuteNonQuery();
+                connection.Close();
+
+                return result > 0;
+            }
+        }
+        public static bool CreateFeat(Feat feat)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                string query = @"insert into Feats values(@Name,@Pre,@Summary,@Rarity,@Level)";
+
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Name", feat.name);
+                command.Parameters.AddWithValue("@Summary", feat.summary);
+                command.Parameters.AddWithValue("@pre", feat.prerequisite);
+                command.Parameters.AddWithValue("@Rarity", feat.rarity);
+                command.Parameters.AddWithValue("@Level", feat.level);
+
+
+                connection.Open();
+                int result = command.ExecuteNonQuery();
+                connection.Close();
+
+                return result > 0;
+            }
+        }
+
+        public static bool CreateEquipment(Equipment equipment)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                string query = @"insert into Equipment values(@Name, @ic, @isc, @usage, @bulk, @rarity,@wc, @level, @price)";
+
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Name", equipment.name);
+                command.Parameters.AddWithValue("@ic", equipment.item_category);
+                command.Parameters.AddWithValue("@isc", equipment.item_sub_category);
+                command.Parameters.AddWithValue("@usage", equipment.usage);
+                command.Parameters.AddWithValue("@bulk", equipment.bulk);
+                command.Parameters.AddWithValue("@rarity", equipment.rarity);
+                command.Parameters.AddWithValue("@wc", equipment.weapon_category);
+                command.Parameters.AddWithValue("@Level", equipment.level);
+                command.Parameters.AddWithValue("@price", equipment.price);
+
+                connection.Open();
+                int result = command.ExecuteNonQuery();
+                connection.Close();
+
+                return result > 0;
+            }
+        }
 
 
     }
+
+
+
 }
+

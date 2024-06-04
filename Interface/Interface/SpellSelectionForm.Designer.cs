@@ -38,6 +38,7 @@
             filter = new Button();
             orderby = new Label();
             order = new ComboBox();
+            Create = new Button();
             SuspendLayout();
             // 
             // loadAll
@@ -135,11 +136,22 @@
             order.Size = new Size(121, 23);
             order.TabIndex = 31;
             // 
+            // Create
+            // 
+            Create.Location = new Point(424, 405);
+            Create.Name = "Create";
+            Create.Size = new Size(75, 23);
+            Create.TabIndex = 36;
+            Create.Text = "Create";
+            Create.UseVisualStyleBackColor = true;
+            Create.Click += Create_Click;
+            // 
             // SpellSelectionForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(Create);
             Controls.Add(textBoxSearch);
             Controls.Add(serach);
             Controls.Add(filter);
@@ -170,5 +182,6 @@
         private Button filter;
         private Label orderby;
         private ComboBox order;
+        private Button Create;
     }
 }

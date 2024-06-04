@@ -133,7 +133,7 @@ namespace Interface
                 List<int> spellIds = new List<int>();
                 foreach (ListViewItem selectedItem in listViewSpells.CheckedItems)
                 {
-                    int spellId = Convert.ToInt32(selectedItem.SubItems[5].Text); 
+                    int spellId = Convert.ToInt32(selectedItem.SubItems[5].Text);
                     spellIds.Add(spellId);
                 }
 
@@ -156,6 +156,14 @@ namespace Interface
             {
                 MessageBox.Show("Please select spells to delete.");
             }
+        }
+
+        private void Create_Click(object sender, EventArgs e)
+        {
+            CreateSpellForm createSepll = new CreateSpellForm();
+            createSepll.ShowDialog();
+            Spells = DatabaseHelper.GetSpellsFromDatabase();
+            DisplaySpells(Spells);
         }
     }
 }

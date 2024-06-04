@@ -40,7 +40,7 @@ CREATE TABLE Users (
     Username VARCHAR(50) NOT NULL UNIQUE,
     PasswordHash VARBINARY(32) NOT NULL, -- 32 bytes para SHA-256
     PasswordSalt VARBINARY(16) NOT NULL, -- 16 bytes para o salt
-    Role VARCHAR(20) NOT NULL,
+    [Role] VARCHAR(20) NOT NULL,
     CreatedAt DATETIME NOT NULL DEFAULT GETDATE()
 );
 CREATE TABLE [Language] (
