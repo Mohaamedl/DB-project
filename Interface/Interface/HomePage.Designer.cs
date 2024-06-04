@@ -56,6 +56,8 @@
             labelDexterity = new Label();
             labelConstitution = new Label();
             panel1 = new Panel();
+            label3 = new Label();
+            label2 = new Label();
             labelStrengthModifier = new Label();
             labelConstitutionModifier = new Label();
             labelWisdomModifier = new Label();
@@ -71,8 +73,6 @@
             filter_character = new Button();
             textBoxSearch = new TextBox();
             serach = new Label();
-            label2 = new Label();
-            label3 = new Label();
             panel2 = new Panel();
             label4 = new Label();
             panel1.SuspendLayout();
@@ -90,6 +90,7 @@
             // 
             // listBoxCharacters
             // 
+            listBoxCharacters.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             listBoxCharacters.FormattingEnabled = true;
             listBoxCharacters.ItemHeight = 15;
             listBoxCharacters.Location = new Point(12, 91);
@@ -136,6 +137,7 @@
             // 
             // buttonCreateCharacter
             // 
+            buttonCreateCharacter.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             buttonCreateCharacter.Location = new Point(1031, 428);
             buttonCreateCharacter.Name = "buttonCreateCharacter";
             buttonCreateCharacter.Size = new Size(120, 39);
@@ -146,6 +148,7 @@
             // 
             // buttonEditCharacter
             // 
+            buttonEditCharacter.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             buttonEditCharacter.Location = new Point(1031, 473);
             buttonEditCharacter.Name = "buttonEditCharacter";
             buttonEditCharacter.Size = new Size(120, 34);
@@ -156,6 +159,7 @@
             // 
             // buttonDeleteCharacter
             // 
+            buttonDeleteCharacter.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             buttonDeleteCharacter.Location = new Point(1031, 513);
             buttonDeleteCharacter.Name = "buttonDeleteCharacter";
             buttonDeleteCharacter.Size = new Size(120, 34);
@@ -166,6 +170,7 @@
             // 
             // button1
             // 
+            button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             button1.Location = new Point(1103, 12);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
@@ -176,6 +181,7 @@
             // 
             // listViewCharacterDetails
             // 
+            listViewCharacterDetails.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             listViewCharacterDetails.GridLines = true;
             listViewCharacterDetails.Location = new Point(12, 425);
             listViewCharacterDetails.Name = "listViewCharacterDetails";
@@ -248,6 +254,7 @@
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(labelStrengthModifier);
@@ -266,6 +273,26 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(408, 334);
             panel1.TabIndex = 18;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(227, 23);
+            label3.Name = "label3";
+            label3.Size = new Size(83, 21);
+            label3.TabIndex = 25;
+            label3.Text = "Modifiers";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(21, 23);
+            label2.Name = "label2";
+            label2.Size = new Size(153, 21);
+            label2.TabIndex = 24;
+            label2.Text = "Physical Attributes";
             // 
             // labelStrengthModifier
             // 
@@ -350,6 +377,7 @@
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.Location = new Point(12, 401);
@@ -402,28 +430,9 @@
             serach.TabIndex = 36;
             serach.Text = "Serach";
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(21, 23);
-            label2.Name = "label2";
-            label2.Size = new Size(153, 21);
-            label2.TabIndex = 24;
-            label2.Text = "Physical Attributes";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(227, 23);
-            label3.Name = "label3";
-            label3.Size = new Size(83, 21);
-            label3.TabIndex = 25;
-            label3.Text = "Modifiers";
-            // 
             // panel2
             // 
+            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             panel2.Controls.Add(label4);
             panel2.Controls.Add(labelCharacterName);
             panel2.Controls.Add(labelCharacterHP);
@@ -470,6 +479,7 @@
             Controls.Add(listBoxCharacters);
             Controls.Add(labelPlayerName);
             Name = "HomePage";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Home Page";
             Load += HomePage_Load;
             panel1.ResumeLayout(false);

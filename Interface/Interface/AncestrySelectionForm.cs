@@ -25,9 +25,18 @@ namespace Interface
             InitializeComponent();
             Ancestries = ancestries ?? new List<Ancestry>();
             SelectedAncestries = new List<Ancestry>();
+            listViewAncestries.LabelEdit = true;
+            listViewAncestries.AfterLabelEdit += ListViewAncestries_AfterLabelEdit;
 
 
-
+        }
+        private void ListViewAncestries_AfterLabelEdit(object sender, LabelEditEventArgs e)
+        {
+            if (e.Label != null)
+            {
+                var ancestry = (Ancestry)listViewAncestries.Items[e.Item].Tag;
+                ancestry.name = e.Label;
+            }
         }
 
         private void AncestrySelectionForm_Load(object sender, EventArgs e)
@@ -57,6 +66,7 @@ namespace Interface
                 item.SubItems.Add(ancestry.ability_boost);
                 item.SubItems.Add(ancestry.ability_flaw);
                 item.SubItems.Add(ancestry.rarity);
+                item.SubItems.Add(ancestry.ID.ToString());
                 listViewAncestries.Items.Add(item);
             }
         }
@@ -110,5 +120,62 @@ namespace Interface
             }
         }
 
+        private void Edit_Click(object sender, EventArgs e)
+        {
+            if (listViewAncestries.CheckedItems.Count > 0)
+            {
+                var selectedItem = listViewAncestries.CheckedItems[0];
+                var ancestry = (Ancestry)selectedItem.Tag;
+
+                using (var editForm = new EditAncestryForm(ancestry))
+                {
+                    if (editForm.ShowDialog() == DialogResult.OK)
+                    {
+                        // Atualizar a ListView com os novos valores
+                        selectedItem.SubItems[0].Text = ancestry.name;
+                        selectedItem.SubItems[1].Text = ancestry.HP.ToString();
+                        selectedItem.SubItems[2].Text = ancestry.size;
+                        selectedItem.SubItems[3].Text = ancestry.speed.ToString();
+                        selectedItem.SubItems[4].Text = ancestry.ability_boost;
+                        selectedItem.SubItems[5].Text = ancestry.ability_flaw;
+                        selectedItem.SubItems[6].Text = ancestry.rarity;
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select an ancestry to edit.");
+            }
+        }
+
+        private void Delete_Click(object sender, EventArgs e)
+        {
+            if (listViewAncestries.CheckedItems.Count > 0)
+            {
+                var selectedItem = listViewAncestries.CheckedItems[0];
+                List<int> ancestryId = [Convert.ToInt32(selectedItem.SubItems[7].Text)];
+                
+
+                if (DatabaseHelper.DeleteRecordsByIds("Ancestry", "ID", ancestryId))
+                {
+                    MessageBox.Show("Ancestry deleted successfully.");
+                    // Refresh the ListView or remove the item directly
+                    listViewAncestries.Items.Remove(selectedItem);
+                }
+                else
+                {
+                    MessageBox.Show("Error deleting ancestry.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select an ancestry to delete.");
+            }
+        }
+
+        private void textBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

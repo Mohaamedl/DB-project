@@ -48,6 +48,7 @@ namespace Interface
                 item.SubItems.Add(spell.Actions);
                 item.SubItems.Add(spell.Rarity);
                 item.SubItems.Add(spell.Range);
+                item.SubItems.Add(spell.ID.ToString());
                 listViewSpells.Items.Add(item);
             }
         }
@@ -94,6 +95,67 @@ namespace Interface
             DialogResult = DialogResult.OK;
             Close();
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (listViewSpells.CheckedItems.Count > 0)
+            {
+                foreach (ListViewItem selectedItem in listViewSpells.CheckedItems)
+                {
+                    var spell = (Spell)selectedItem.Tag;
+
+                    using (var editForm = new EditSpellForm(spell))
+                    {
+                        if (editForm.ShowDialog() == DialogResult.OK)
+                        {
+                            // Atualizar a ListView com os novos valores
+                            selectedItem.SubItems[0].Text = spell.Name;
+                            selectedItem.SubItems[1].Text = spell.Rank.ToString();
+                            selectedItem.SubItems[2].Text = spell.Actions;
+                            selectedItem.SubItems[3].Text = spell.Rarity;
+                            selectedItem.SubItems[4].Text = spell.Range;
+
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a spell to edit.");
+            }
+        }
+
+        private void Delete_Click(object sender, EventArgs e)
+        {
+            if (listViewSpells.CheckedItems.Count > 0)
+            {
+                List<int> spellIds = new List<int>();
+                foreach (ListViewItem selectedItem in listViewSpells.CheckedItems)
+                {
+                    int spellId = Convert.ToInt32(selectedItem.SubItems[5].Text); 
+                    spellIds.Add(spellId);
+                }
+
+                if (DatabaseHelper.DeleteRecordsByIds("Spells", "ID", spellIds))
+                {
+                    MessageBox.Show("Spells deleted successfully.");
+
+                    // Remover os itens da ListView
+                    foreach (ListViewItem selectedItem in listViewSpells.CheckedItems)
+                    {
+                        listViewSpells.Items.Remove(selectedItem);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Error deleting spells.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select spells to delete.");
+            }
         }
     }
 }

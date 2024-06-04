@@ -240,7 +240,6 @@ namespace Interface
             Name = "RegistrationForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "RegistrationForm";
-            TopMost = true;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);

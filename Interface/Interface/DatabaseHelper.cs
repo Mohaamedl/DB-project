@@ -15,7 +15,7 @@ namespace Interface
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = $"SELECT TOP {limit} Name, Rarity, Prerequisite, Summary, Level FROM Feats ORDER BY Name";
+                string query = $"SELECT TOP {limit} ID,Name, Rarity, Prerequisite, Summary, Level FROM Feats ORDER BY Name";
                 if (!string.IsNullOrEmpty(columnName) && !string.IsNullOrEmpty(searchString))
                 {
                     query += $" WHERE {columnName} LIKE '%{searchString}%'";
@@ -33,7 +33,8 @@ namespace Interface
                             rarity = reader["Rarity"].ToString(),
                             prerequisite = reader["Prerequisite"].ToString(),
                             summary = reader["Summary"].ToString(),
-                            level = Convert.ToInt32(reader["Level"])
+                            level = Convert.ToInt32(reader["Level"]),
+                            ID = Convert.ToInt32(reader["ID"])
                         };
                         feats.Add(feat);
                     }
@@ -54,7 +55,7 @@ namespace Interface
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = $"SELECT TOP {limit} name, rarity, actions, rank, range FROM Spells ORDER BY name";
+                string query = $"SELECT TOP {limit} ID,name, rarity, actions, rank, range FROM Spells ORDER BY name";
                 if (!string.IsNullOrEmpty(columnName) && !string.IsNullOrEmpty(searchString))
                 {
                     query += $" WHERE {columnName} LIKE '%{searchString}%'";
@@ -73,6 +74,7 @@ namespace Interface
                             Actions = reader["actions"].ToString(),
                             Rank = Convert.ToInt32(reader["rank"]),
                             Range = reader["range"].ToString(),
+                            ID = Convert.ToInt32(reader["ID"])
                         };
                         spells.Add(spell);
                     }
@@ -91,7 +93,7 @@ namespace Interface
 
             using (SqlConnection connection = new(connectionString))
             {
-                string query = $"SELECT TOP {limit} designation, details FROM Traits";
+                string query = $"SELECT TOP {limit} ID,designation, details FROM Traits";
                 if (!string.IsNullOrEmpty(columnName) && !string.IsNullOrEmpty(searchString))
                 {
                     query += $" WHERE {columnName} LIKE '%{searchString}%'";
@@ -106,8 +108,9 @@ namespace Interface
                         var trait = new Trait
                         {
                             designation = reader["designation"].ToString(),
-                            details = reader["details"].ToString()
-                            
+                            details = reader["details"].ToString(),
+                            ID = Convert.ToInt32(reader["ID"])
+
                         };
                         traits.Add(trait);
                     }
@@ -122,7 +125,7 @@ namespace Interface
 
             using (SqlConnection connection = new(connectionString))
             {
-                string query = $"SELECT TOP {limit} name, HP, size, speed,ability_boost,ability_flaw,rarity FROM Ancestry ORDER BY name";
+                string query = $"SELECT TOP {limit} ID,name, HP, size, speed,ability_boost,ability_flaw,rarity FROM Ancestry ORDER BY name";
                 if (!string.IsNullOrEmpty(columnName) && !string.IsNullOrEmpty(searchString))
                 {
                     query += $" WHERE {columnName} LIKE '%{searchString}%'";
@@ -143,7 +146,8 @@ namespace Interface
                             ability_boost = reader["ability_boost"].ToString(),
                             ability_flaw = reader["ability_flaw"].ToString(),
                             rarity = reader["rarity"].ToString(),
-                           
+                            ID = Convert.ToInt32(reader["ID"]),
+
 
 
 
@@ -198,7 +202,7 @@ namespace Interface
 
             using (SqlConnection connection = new(connectionString))
             {
-                string query = $"SELECT TOP {limit} name, ability, skill, feat,rarity,summary FROM Background ORDER BY name";
+                string query = $"SELECT TOP {limit} ID,name, ability, skill, feat,rarity,summary FROM Background ORDER BY name";
                 if (!string.IsNullOrEmpty(columnName) && !string.IsNullOrEmpty(searchString))
                 {
                     query += $" WHERE {columnName} LIKE '%{searchString}%'";
@@ -217,7 +221,8 @@ namespace Interface
                             skill = reader["skill"].ToString(),
                             feat = reader["feat"].ToString(),
                             rarity = reader["rarity"].ToString(),
-                            summary = reader["summary"].ToString()
+                            summary = reader["summary"].ToString(),
+                            ID = Convert.ToInt32(reader["ID"])
 
 
 
@@ -240,7 +245,7 @@ namespace Interface
 
             using (SqlConnection connection = new(connectionString))
             {
-                string query = $"SELECT TOP {limit} [name], item_category, item_sub_category, weapon_category,[level],price,rarity,usage,[bulk] FROM Equipment ORDER BY [name]";
+                string query = $"SELECT TOP {limit} ID,[name], item_category, item_sub_category, weapon_category,[level],price,rarity,usage,[bulk] FROM Equipment ORDER BY [name]";
                 if (!string.IsNullOrEmpty(columnName) && !string.IsNullOrEmpty(searchString))
                 {
                     query += $" WHERE {columnName} LIKE '%{searchString}%'";
@@ -262,8 +267,9 @@ namespace Interface
                             price = Convert.ToInt32(reader["price"]),
                             rarity = reader["rarity"].ToString(),
                             usage = reader["usage"].ToString(),
-                            bulk = reader["bulk"].ToString()
-
+                            bulk = reader["bulk"].ToString(),
+                            ID = Convert.ToInt32(reader["ID"])
+                            
 
 
 
@@ -285,7 +291,7 @@ namespace Interface
 
             using (SqlConnection connection = new(connectionString))
             {
-                string query = $"SELECT TOP {limit} [name],HP , prof_attack, prof_defense, ability, spell_progression_id FROM Class ORDER BY [name]";
+                string query = $"SELECT TOP {limit} ID,[name],HP , prof_attack, prof_defense, ability, spell_progression_id FROM Class ORDER BY [name]";
                 if (!string.IsNullOrEmpty(columnName) && !string.IsNullOrEmpty(searchString))
                 {
                     query += $" WHERE {columnName} LIKE '%{searchString}%'";
@@ -299,12 +305,13 @@ namespace Interface
                     {
                         var cla = new Class
                         {
+                            
                             name = reader["name"].ToString(),
                             HP = Convert.ToInt32(reader["HP"]),
                             prof_attack = reader["prof_attack"].ToString(),
                             prof_defense = reader["prof_defense"].ToString(),
                             ability = reader["ability"].ToString(),
-                            
+                            ID = Convert.ToInt32(reader["ID"]),
                           
 
 
@@ -515,6 +522,96 @@ namespace Interface
 
         //    return found;
         //}
+        public static bool DeleteRecordsByIds(string tableName, string idColumnName, List<int> ids)
+        {
+            try
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Construir a consulta de exclusão
+                    var idList = string.Join(",", ids);
+                    var query = $"DELETE FROM {tableName} WHERE {idColumnName} IN ({idList})";
+
+                    using (var command = new SqlCommand(query, connection))
+                    {
+                        int rowsAffected = command.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Tratar exceções conforme necessário
+                MessageBox.Show("Error deleting records: " + ex.Message);
+                return false;
+            }
+        }
+
+
+        public static bool UpdateAncestry(Ancestry ancestry)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"UPDATE Ancestry SET 
+                            name = @Name, 
+                            HP = @HP, 
+                            size = @Size, 
+                            speed = @Speed, 
+                            ability_boost = @AbilityBoost, 
+                            ability_flaw = @AbilityFlaw, 
+                            rarity = @Rarity 
+                        WHERE ID = @ID";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Name", ancestry.name);
+                command.Parameters.AddWithValue("@HP", ancestry.HP);
+                command.Parameters.AddWithValue("@Size", ancestry.size);
+                command.Parameters.AddWithValue("@Speed", ancestry.speed);
+                command.Parameters.AddWithValue("@AbilityBoost", ancestry.ability_boost);
+                command.Parameters.AddWithValue("@AbilityFlaw", ancestry.ability_flaw);
+                command.Parameters.AddWithValue("@Rarity", ancestry.rarity);
+                command.Parameters.AddWithValue("@ID", ancestry.ID);
+
+                connection.Open();
+                int result = command.ExecuteNonQuery();
+                connection.Close();
+
+                return result > 0;
+            }
+            
+
+        }
+        public static bool UpdateSpell(Spell spell)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"UPDATE Spells SET 
+                            Name = @Name, 
+                            Rank = @Rank, 
+                            Actions = @Actions, 
+                            Rarity = @Rarity, 
+                            Range = @Range 
+                        WHERE ID = @ID";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Name", spell.Name);
+                command.Parameters.AddWithValue("@Rank", spell.Rank);
+                command.Parameters.AddWithValue("@Actions", spell.Actions);
+                command.Parameters.AddWithValue("@Rarity", spell.Rarity);
+                command.Parameters.AddWithValue("@Range", spell.Range);
+                command.Parameters.AddWithValue("@ID", spell.ID);
+
+                connection.Open();
+                int result = command.ExecuteNonQuery();
+                connection.Close();
+
+                return result > 0;
+            }
+        }
+
+
 
     }
 }

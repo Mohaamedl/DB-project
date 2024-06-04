@@ -32,8 +32,8 @@
             Select = new Button();
             listViewAncestries = new ListView();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            button2 = new Button();
-            button1 = new Button();
+            Delete = new Button();
+            Edit = new Button();
             filter = new Button();
             orderby = new Label();
             order = new ComboBox();
@@ -74,23 +74,25 @@
             listViewAncestries.View = View.Details;
             listViewAncestries.ItemCheck += ListViewAncestries_ItemCheck;
             // 
-            // button2
+            // Delete
             // 
-            button2.Location = new Point(402, 396);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 8;
-            button2.Text = "Delete";
-            button2.UseVisualStyleBackColor = true;
+            Delete.Location = new Point(402, 396);
+            Delete.Name = "Delete";
+            Delete.Size = new Size(75, 23);
+            Delete.TabIndex = 8;
+            Delete.Text = "Delete";
+            Delete.UseVisualStyleBackColor = true;
+            Delete.Click += Delete_Click;
             // 
-            // button1
+            // Edit
             // 
-            button1.Location = new Point(256, 396);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 7;
-            button1.Text = "Edit";
-            button1.UseVisualStyleBackColor = true;
+            Edit.Location = new Point(256, 396);
+            Edit.Name = "Edit";
+            Edit.Size = new Size(75, 23);
+            Edit.TabIndex = 7;
+            Edit.Text = "Edit";
+            Edit.UseVisualStyleBackColor = true;
+            Edit.Click += Edit_Click;
             // 
             // filter
             // 
@@ -135,6 +137,7 @@
             textBoxSearch.Name = "textBoxSearch";
             textBoxSearch.Size = new Size(146, 23);
             textBoxSearch.TabIndex = 30;
+            textBoxSearch.TextChanged += textBoxSearch_TextChanged;
             // 
             // AncestrySelectionForm
             // 
@@ -146,8 +149,8 @@
             Controls.Add(filter);
             Controls.Add(orderby);
             Controls.Add(order);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(Delete);
+            Controls.Add(Edit);
             Controls.Add(listViewAncestries);
             Controls.Add(Select);
             Controls.Add(LoadAll);
@@ -161,11 +164,11 @@
         #endregion
 
         private Button LoadAll;
-        private Button Select;
+        private new Button Select;
         private ListView listViewAncestries;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private Button button2;
-        private Button button1;
+        private Button Delete;
+        private Button Edit;
         private Button filter;
         private Label orderby;
         private ComboBox order;

@@ -36,6 +36,7 @@ namespace Interface
             listViewClasses.Columns.Add("Proficiency Attack", 450);
             listViewClasses.Columns.Add("Proficiency Defense", 450);
             listViewClasses.Columns.Add("Ability", 50);
+            
 
 
 
@@ -50,6 +51,7 @@ namespace Interface
                 item.SubItems.Add(cl.prof_attack);
                 item.SubItems.Add(cl.prof_defense);
                 item.SubItems.Add(cl.ability);
+                
 
                 listViewClasses.Items.Add(item);
             }

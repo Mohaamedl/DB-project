@@ -8,6 +8,7 @@ namespace Interface
 {
     public class Equipment
     {
+        public int ID { get; set; }
         public string name ; public int id; public int quantity;
         public string item_category {  get; set; }
         public string item_sub_category { get; set; }

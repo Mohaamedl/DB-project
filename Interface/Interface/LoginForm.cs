@@ -37,7 +37,7 @@ namespace Interface
             }
             else if (username == "admin" && password == "admin")
             {
-                MessageBox.Show("Login successful!");
+                //MessageBox.Show("Login successful!");
 
                 IsAuthenticated = true;
                 this.user = DatabaseHelper.Login("admin", "admin");
@@ -51,10 +51,10 @@ namespace Interface
 
                 if (user != null)
                 {
-                    MessageBox.Show("Login successful!");
+                    //MessageBox.Show("Login successful!");
 
                     IsAuthenticated = true;
-                    landingPage.SetUser(user); // Passa o nome de usuário para a landing page
+                    landingPage.SetUser(user); 
                     this.DialogResult = DialogResult.OK;
                     textPassword.Text = "";
                     textUsername.Text = "";

@@ -31,7 +31,7 @@
             loadAll = new Button();
             select = new Button();
             listViewSpells = new ListView();
-            button2 = new Button();
+            Delete = new Button();
             button1 = new Button();
             textBoxSearch = new TextBox();
             serach = new Label();
@@ -71,14 +71,15 @@
             listViewSpells.UseCompatibleStateImageBehavior = false;
             listViewSpells.View = View.Details;
             // 
-            // button2
+            // Delete
             // 
-            button2.Location = new Point(300, 405);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 6;
-            button2.Text = "Delete";
-            button2.UseVisualStyleBackColor = true;
+            Delete.Location = new Point(300, 405);
+            Delete.Name = "Delete";
+            Delete.Size = new Size(75, 23);
+            Delete.TabIndex = 6;
+            Delete.Text = "Delete";
+            Delete.UseVisualStyleBackColor = true;
+            Delete.Click += Delete_Click;
             // 
             // button1
             // 
@@ -88,6 +89,7 @@
             button1.TabIndex = 5;
             button1.Text = "Edit";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // textBoxSearch
             // 
@@ -143,7 +145,7 @@
             Controls.Add(filter);
             Controls.Add(orderby);
             Controls.Add(order);
-            Controls.Add(button2);
+            Controls.Add(Delete);
             Controls.Add(button1);
             Controls.Add(listViewSpells);
             Controls.Add(select);
@@ -161,7 +163,7 @@
         private Button loadAll;
         private Button select;
         private ListView listViewSpells;
-        private Button button2;
+        private Button Delete;
         private Button button1;
         private TextBox textBoxSearch;
         private Label serach;

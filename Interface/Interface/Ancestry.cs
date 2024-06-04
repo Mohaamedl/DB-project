@@ -4,24 +4,43 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System;
+
 namespace Interface
 {
     public class Ancestry
     {
+        public int ID {  get; set; }
+        public string name { get; set; }
+        public string vision { get; set; }
+        public string size { get; set; }
+        public int speed { get; set; }
+        public int HP { get; set; }
+        public string rarity { get; set; }
+        public string ability_flaw { get; set; }
+        public string ability_boost { get; set; }
+
+        public Ancestry()
+        {
+        }
 
 
-        public string name { set; get; } 
 
-        public string vision {   set; get;}
-        public string size { set; get; }
-        public int speed { set; get; }
-        public int HP { set; get; }
-        public string rarity { set; get; }
+        public Ancestry(string name, string vision, string size, int speed, int hp, string rarity, string ability_flaw, string ability_boost)
+        {
+            this.name = name;
+            this.vision = vision;
+            this.size = size;
+            this.speed = speed;
+            this.HP = hp;
+            this.rarity = rarity;
+            this.ability_flaw = ability_flaw;
+            this.ability_boost = ability_boost;
+        }
 
-        public string ability_flaw { set; get; }
-        public string ability_boost { set; get; }
-
-
-
+        public override string ToString()
+        {
+            return $"Name: {name}, Vision: {vision}, Size: {size}, Speed: {speed}, HP: {HP}, Rarity: {rarity}, Ability Flaw: {ability_flaw}, Ability Boost: {ability_boost}";
+        }
     }
 }

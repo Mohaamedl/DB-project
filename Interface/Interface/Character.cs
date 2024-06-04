@@ -8,10 +8,11 @@ namespace Interface
 {
     public class Character
     {
+        public int ID { get; set; }
         public string name { get; set; }
         public int HP { get; set; }
         public int Level { get; set; }
-        public Class Class { get; set; } 
+        public Class? Class { get; set; } 
         public int Str_mod { get; set; }
         public int Dex_mod { get; set; }
         public int Con_mod { get; set; }
@@ -25,20 +26,20 @@ namespace Interface
         public int Wis { get; set; }
         public int Cha { get; set; }
         public int speed { get; set; }
-        public Background background { get; set; }
-        public Ancestry ancestry { get; set; }
+        public Background? background { get; set; }
+        public Ancestry? ancestry { get; set; }
 
         //public List<Attack_rolls> attack_Rolls { get; set; }
 
-        public List<Equipment> equipment { get; set; }
+        public List<Equipment>? equipment { get; set; }
 
         // private List<Skill> skills { get; set; }
 
-        public List<Feat> feats { get; set; }
+        public List<Feat>? feats { get; set; }
 
-        public List<Spell> spells { get; set; }
+        public List<Spell>? spells { get; set; }
 
-        public List<String> Languages { get; set; }
+        public List<String>? Languages { get; set; }
 
 
         

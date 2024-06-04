@@ -158,7 +158,7 @@
         #endregion
 
         private Button Load_all;
-        private Button Select;
+        private new Button Select;
         private ListView listViewEquipments;
         private Button button1;
         private Button button2;

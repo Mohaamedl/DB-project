@@ -195,11 +195,6 @@ namespace Interface
                 Con_mod = Int16.Parse(const_mod.Text),
                 Languages = DatabaseHelper.GetLanguagesByAncestry(ancestry_sel.Text),
 
-
-
-
-
-
             };
 
             this.DialogResult = DialogResult.OK;

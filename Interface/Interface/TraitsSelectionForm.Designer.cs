@@ -148,7 +148,7 @@
         #endregion
 
         private Button loadAll;
-        private Button Select;
+        private new Button Select;
         private ListView listViewTraits;
         private Button button2;
         private Button button1;

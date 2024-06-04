@@ -21,6 +21,7 @@ DROP TABLE IF EXISTS Spells
 DROP TABLE IF EXISTS Character_tem_feats
 DROP TABLE IF EXISTS Character_tem_skills
 DROP TABLE IF EXISTS Skills
+DROP TABLE IF EXISTS user_tem_character
 DROP TABLE IF EXISTS [Character]
 DROP TABLE IF EXISTS Ancestry
 DROP TABLE IF EXISTS Background
@@ -32,8 +33,16 @@ DROP TABLE IF EXISTS Spell_progression
 DROP TABLE IF EXISTS Tradition
 DROP TABLE IF EXISTS Ability_scores
 DROP TABLE IF EXISTS Feats
+DROP TABLE IF EXISTS Users
 
-
+CREATE TABLE Users (
+    ID INT IDENTITY(1,1) PRIMARY KEY,
+    Username VARCHAR(50) NOT NULL UNIQUE,
+    PasswordHash VARBINARY(32) NOT NULL, -- 32 bytes para SHA-256
+    PasswordSalt VARBINARY(16) NOT NULL, -- 16 bytes para o salt
+    Role VARCHAR(20) NOT NULL,
+    CreatedAt DATETIME NOT NULL DEFAULT GETDATE()
+);
 CREATE TABLE [Language] (
     ID INT NOT NULL IDENTITY(1,1),
     Designation VARCHAR(64),
@@ -216,6 +225,12 @@ CREATE TABLE [Character] (
     PRIMARY KEY(ID)
 );
 
+CREATE TABLE User_tem_character(
+    id_user int references Users(ID) on delete cascade ,
+    id_character int references [Character](ID)  on delete cascade,
+    primary key (id_user,id_character)
+)
+
 CREATE TABLE Character_tem_attackRolls (
     id_character INT NOT NULL REFERENCES [Character](ID),
     id_attackRolls INT NOT NULL REFERENCES Attack_rolls(ID),
@@ -223,79 +238,79 @@ CREATE TABLE Character_tem_attackRolls (
 );
 
 CREATE TABLE Character_tem_equipment (
-    id_character INT NOT NULL REFERENCES [Character](ID),
-    id_equipment INT NOT NULL REFERENCES Equipment(ID),
+    id_character INT NOT NULL REFERENCES [Character](ID)  on delete cascade,
+    id_equipment INT NOT NULL REFERENCES Equipment(ID)  on delete cascade,
     PRIMARY KEY (id_character, id_equipment)
 );
 
 CREATE TABLE Character_tem_feats (
-    id_character INT NOT NULL REFERENCES [Character](ID),
-    id_feats INT NOT NULL REFERENCES Feats(ID),
+    id_character INT NOT NULL REFERENCES [Character](ID)  on delete cascade,
+    id_feats INT NOT NULL REFERENCES Feats(ID)  on delete cascade,
     PRIMARY KEY (id_character, id_feats)
 );
 
 CREATE TABLE Character_tem_savingThrow (
-    id_character INT NOT NULL REFERENCES [Character](ID),
-    id_savingThrow INT NOT NULL REFERENCES Saving_throws(ID),
+    id_character INT NOT NULL REFERENCES [Character](ID)  on delete cascade,
+    id_savingThrow INT NOT NULL REFERENCES Saving_throws(ID)  on delete cascade,
     PRIMARY KEY (id_character, id_savingThrow)
 );
 
 CREATE TABLE Character_tem_skills (
-    id_character INT NOT NULL REFERENCES [Character](ID),
-    id_skills INT NOT NULL REFERENCES Skills(ID),
+    id_character INT NOT NULL REFERENCES [Character](ID)  on delete cascade,
+    id_skills INT NOT NULL REFERENCES Skills(ID)  on delete cascade,
     PRIMARY KEY (id_character, id_skills)
 );
 
 CREATE TABLE Character_tem_spells (
-    id_character INT NOT NULL REFERENCES Character(ID),
-    id_spells INT NOT NULL REFERENCES Spells(ID),
+    id_character INT NOT NULL REFERENCES Character(ID)  on delete cascade,
+    id_spells INT NOT NULL REFERENCES Spells(ID) on delete cascade,
     PRIMARY KEY (id_character, id_spells)
 );
 
 CREATE TABLE Class_tem_savingThrow (
-    id_class INT NOT NULL REFERENCES Class(ID),
-    id_savingThrow INT NOT NULL REFERENCES Saving_Throws(ID),
+    id_class INT NOT NULL REFERENCES Class(ID)  on delete cascade,
+    id_savingThrow INT NOT NULL REFERENCES Saving_Throws(ID)  on delete cascade,
     PRIMARY KEY (id_class, id_savingThrow)
 );
 
 CREATE TABLE Equipment_tem_traits (
-    id_equipment INT NOT NULL REFERENCES Equipment(ID),
-    id_trait INT NOT NULL REFERENCES Traits(ID),
+    id_equipment INT NOT NULL REFERENCES Equipment(ID)  on delete cascade,
+    id_trait INT NOT NULL REFERENCES Traits(ID)  on delete cascade,
     PRIMARY KEY (id_equipment, id_trait)
 );
 
 CREATE TABLE Feats_tem_background (
-    id_feat INT NOT NULL REFERENCES Feats(ID),
-    id_background INT NOT NULL REFERENCES Background(ID),
+    id_feat INT NOT NULL REFERENCES Feats(ID)  on delete cascade,
+    id_background INT NOT NULL REFERENCES Background(ID)  on delete cascade,
     PRIMARY KEY (id_feat, id_background)
 );
 
 CREATE TABLE Feats_tem_traits (
-    id_feat INT NOT NULL REFERENCES Feats(ID),
-    id_trait INT NOT NULL REFERENCES Traits(ID),
+    id_feat INT NOT NULL REFERENCES Feats(ID)  on delete cascade,
+    id_trait INT NOT NULL REFERENCES Traits(ID)  on delete cascade,
     PRIMARY KEY (id_feat, id_trait)
 );
 
 CREATE TABLE Spells_tem_traits (
-    id_spells INT NOT NULL REFERENCES Spells(ID),
-    id_trait INT NOT NULL REFERENCES Traits(ID),
+    id_spells INT NOT NULL REFERENCES Spells(ID)  on delete cascade,
+    id_trait INT NOT NULL REFERENCES Traits(ID)  on delete cascade,
     PRIMARY KEY (id_spells, id_trait)
 );
 
 CREATE TABLE Spells_tem_tradition (
-    id_spells INT NOT NULL REFERENCES Spells(ID),
-    id_tradition INT NOT NULL REFERENCES Tradition(ID),
+    id_spells INT NOT NULL REFERENCES Spells(ID)  on delete cascade,
+    id_tradition INT NOT NULL REFERENCES Tradition(ID)  on delete cascade,
     PRIMARY KEY (id_spells, id_tradition)
 );
 
 CREATE TABLE Character_tem_language (
-    id_character INT NOT NULL REFERENCES [Character](ID),
-    id_language INT NOT NULL REFERENCES [Language](ID),
+    id_character INT NOT NULL REFERENCES [Character](ID)  on delete cascade,
+    id_language INT NOT NULL REFERENCES [Language](ID)  on delete cascade,
     PRIMARY KEY (id_character, id_language)
 );
 
 CREATE TABLE Language_tem_ancestry (
-    id_language INT NOT NULL REFERENCES [Language](ID),
-    id_ancestry INT NOT NULL REFERENCES Ancestry(ID),
+    id_language INT NOT NULL REFERENCES [Language](ID) on delete cascade,
+    id_ancestry INT NOT NULL REFERENCES Ancestry(ID) on delete cascade,
     PRIMARY KEY (id_language, id_ancestry)
 );

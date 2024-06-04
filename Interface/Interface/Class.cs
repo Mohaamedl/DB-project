@@ -8,6 +8,7 @@ namespace Interface
 {
     public class Class
     {
+        public int ID { get; set; }
         public string name {  get; set; }
         public int HP { get; set; }
         public string prof_attack { get; set; }

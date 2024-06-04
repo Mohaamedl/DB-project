@@ -8,7 +8,7 @@ namespace Interface
 {
     public class Spell
     {
-
+        public int ID { get; set; }
         public string SpellType { get; set; }
         public string Name { get; set; }
         public string Actions { get; set; }
@@ -26,6 +26,7 @@ namespace Interface
         // Construtor com parâmetros para inicializar todas as propriedades
         public Spell(int id, string spellType, string name, string actions, string defense, string target, string rarity, string trigger, string area, int rank, int heighten, string duration, string range)
         {
+            ID = id;
             SpellType = spellType;
             Name = name;
             Actions = actions;

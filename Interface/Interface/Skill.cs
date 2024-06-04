@@ -8,6 +8,7 @@ namespace Interface
 {
     public class Skill
     {
+        public int ID { get; set; }
         public string designation {  get; set; }
         public string details { get; set; }
         public int value { get; set; }

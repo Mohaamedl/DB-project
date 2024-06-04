@@ -147,7 +147,7 @@
 
         #endregion
 
-        private Button Select;
+        private new Button Select;
         private ListView listViewClasses;
         private Button button2;
         private Button button1;

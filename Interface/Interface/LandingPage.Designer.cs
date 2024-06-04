@@ -38,6 +38,7 @@
             // 
             // button1
             // 
+            button1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             button1.BackColor = Color.Brown;
             button1.Font = new Font("Tempus Sans ITC", 24.75F, FontStyle.Bold);
             button1.ForeColor = Color.NavajoWhite;
@@ -66,6 +67,7 @@
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(label1);
@@ -77,6 +79,7 @@
             // 
             // panel2
             // 
+            panel2.Anchor = AnchorStyles.Top;
             panel2.BackColor = Color.Transparent;
             panel2.BackgroundImage = (Image)resources.GetObject("panel2.BackgroundImage");
             panel2.Location = new Point(0, 143);
@@ -96,6 +99,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "LandingPage";
             RightToLeft = RightToLeft.No;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "LandingPage";
             Load += LandingPage_Load;
             panel1.ResumeLayout(false);

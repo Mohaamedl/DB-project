@@ -8,7 +8,7 @@ namespace Interface
 {
     public class Feat
     {
-
+        public int ID { get; set; }
         public string rarity { get; set; }
         public string prerequisite { get; set; }
         public string summary { get; set; }
