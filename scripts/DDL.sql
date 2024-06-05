@@ -44,7 +44,7 @@ CREATE TABLE Users ( -- preenchida
     CreatedAt DATETIME NOT NULL DEFAULT GETDATE()
 );
 
-CREATE TABLE [Language] (
+CREATE TABLE [Language] ( -- preenchida
     ID INT NOT NULL IDENTITY(1,1),
     Designation VARCHAR(64),
     PRIMARY KEY(ID)
@@ -204,7 +204,6 @@ create table Class_features( -- preenchida
 	primary key (class_id,[level])
 )
 
-
 CREATE TABLE [Character] (
     ID INT UNIQUE NOT NULL IDENTITY(1,1),
 	[name] VARCHAR(28) NULL,
@@ -313,5 +312,14 @@ CREATE TABLE Spells_tem_tradition ( -- preenchida
     PRIMARY KEY (id_spells, id_tradition)
 );
 
+-- Indexes for the Spells table
+CREATE INDEX idx_spells_name ON Spells ([name]);
+CREATE INDEX idx_spells_rarity ON Spells (rarity);
+CREATE INDEX idx_spells_rank ON Spells ([rank]);
 
+-- Index for the name attribute in the Equipment table
+CREATE INDEX idx_equipment_name ON Equipment ([name]);
+
+-- Index for the name attribute in the Feats table
+CREATE INDEX idx_feats_name ON Feats ([name]);
 
