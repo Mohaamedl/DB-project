@@ -1392,11 +1392,12 @@ namespace Interface
                             ID = reader.GetInt32(0),
                             name = reader.GetString(1),
                             HP = reader.GetInt32(2),
-                            prof_attack = reader.GetString(3),
-                            prof_defense = reader.GetString(4),
-                            ability = reader.GetString(5),
-                            spell_progression_id = reader.GetInt32(6)
+                            prof_attack = reader.IsDBNull(3) ? string.Empty : reader.GetString(3),
+                            prof_defense = reader.IsDBNull(4) ? string.Empty : reader.GetString(4),
+                            ability = reader.IsDBNull(5) ? string.Empty : reader.GetString(5),
+                            spell_progression_id = reader.IsDBNull(6) ? 0 : reader.GetInt32(6)
                         };
+
                     }
                 }
             }
