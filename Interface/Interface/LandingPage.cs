@@ -33,6 +33,16 @@ namespace Interface
                 // Users para exemplificar
                 DatabaseHelper.Register("admin", "admin", "admin");
                 DatabaseHelper.AddUserCharacter(1, 1);
+                DatabaseHelper.AddUserCharacter(1, 2);
+                DatabaseHelper.AddUserCharacter(1, 3);
+                DatabaseHelper.AddUserCharacter(1, 4);
+                DatabaseHelper.AddUserCharacter(1, 5);
+                DatabaseHelper.AddUserCharacter(1, 6);
+                DatabaseHelper.AddUserCharacter(1, 7);
+                DatabaseHelper.AddUserCharacter(1, 8);
+                DatabaseHelper.AddUserCharacter(1, 9);
+                DatabaseHelper.AddUserCharacter(1, 10);
+                DatabaseHelper.AddUserCharacter(1, 11);
                 DatabaseHelper.Register("user1", "12345678", "normal"); 
                 DatabaseHelper.Register("user2", "12345678", "normal");
             }

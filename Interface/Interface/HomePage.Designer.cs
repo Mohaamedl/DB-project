@@ -70,7 +70,6 @@
             label1 = new Label();
             comboBox1 = new ComboBox();
             orderby = new Label();
-            filter_character = new Button();
             textBoxSearch = new TextBox();
             serach = new Label();
             panel2 = new Panel();
@@ -182,12 +181,14 @@
             // listViewCharacterDetails
             // 
             listViewCharacterDetails.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            listViewCharacterDetails.FullRowSelect = true;
             listViewCharacterDetails.GridLines = true;
             listViewCharacterDetails.Location = new Point(12, 425);
             listViewCharacterDetails.Name = "listViewCharacterDetails";
             listViewCharacterDetails.Size = new Size(918, 140);
             listViewCharacterDetails.TabIndex = 10;
             listViewCharacterDetails.UseCompatibleStateImageBehavior = false;
+            listViewCharacterDetails.View = View.Details;
             // 
             // labelAncestry
             // 
@@ -389,7 +390,7 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(170, 59);
+            comboBox1.Location = new Point(92, 57);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(121, 23);
             comboBox1.TabIndex = 23;
@@ -398,20 +399,12 @@
             // 
             orderby.AutoSize = true;
             orderby.Font = new Font("Segoe UI", 12F);
-            orderby.Location = new Point(92, 61);
+            orderby.Location = new Point(14, 57);
             orderby.Name = "orderby";
             orderby.Size = new Size(72, 21);
             orderby.TabIndex = 24;
             orderby.Text = "Order by";
-            // 
-            // filter_character
-            // 
-            filter_character.Location = new Point(11, 61);
-            filter_character.Name = "filter_character";
-            filter_character.Size = new Size(75, 23);
-            filter_character.TabIndex = 25;
-            filter_character.Text = "Filter";
-            filter_character.UseVisualStyleBackColor = true;
+            orderby.Click += orderby_Click;
             // 
             // textBoxSearch
             // 
@@ -466,7 +459,6 @@
             Controls.Add(panel2);
             Controls.Add(textBoxSearch);
             Controls.Add(serach);
-            Controls.Add(filter_character);
             Controls.Add(orderby);
             Controls.Add(comboBox1);
             Controls.Add(label1);
@@ -514,7 +506,6 @@
         private Label label1;
         private ComboBox comboBox1;
         private Label orderby;
-        private Button filter_character;
         private TextBox textBoxSearch;
         private Label serach;
         private Label label3;

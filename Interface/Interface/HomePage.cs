@@ -20,6 +20,7 @@ namespace Interface
 
         private void HomePage_Load(object sender, EventArgs e)
         {
+
             // Verificar se há personagens
             if (listBoxCharacters.Items.Count > 0)
             {
@@ -30,7 +31,7 @@ namespace Interface
         public HomePage(User user)
         {
             InitializeComponent();
-            
+
 
             // Armazenar o nome de usuário recebido como parâmetro
             this.actual_user = user;
@@ -79,18 +80,35 @@ namespace Interface
 
                 // Limpar e exibir equipamentos, habilidades e magias
                 listViewCharacterDetails.Items.Clear();
-                foreach (var equipment in selectedCharacter.equipment)
-                {
-                    listViewCharacterDetails.Items.Add(new ListViewItem(new[] { "Equipment", equipment.name }));
-                }
-                foreach (var feat in selectedCharacter.feats)
-                {
-                    listViewCharacterDetails.Items.Add(new ListViewItem(new[] { "Feat", feat.name }));
-                }
-                foreach (var spell in selectedCharacter.spells)
-                {
-                    listViewCharacterDetails.Items.Add(new ListViewItem(new[] { "Spell", spell.Name }));
-                }
+                AddCharacterDetailsInRows(selectedCharacter.feats.Select(f => f.name).ToList(), selectedCharacter.spells.Select(s => s.Name).ToList(), selectedCharacter.equipment.Select(e => e.name).ToList());
+
+                // Ajustar automaticamente o tamanho das colunas ao conteúdo
+                AdjustListViewColumns();
+
+
+            }
+        }
+        private void AddCharacterDetailsInRows(List<string> feats, List<string> spells, List<string> equipments)
+        {
+            // Determinar o número máximo de linhas necessárias
+            int maxRows = Math.Max(feats.Count, Math.Max(spells.Count, equipments.Count));
+
+            // Adicionar as linhas
+            for (int i = 0; i < maxRows; i++)
+            {
+                var listViewItem = new ListViewItem(feats.Count > i ? feats[i] : "");
+                listViewItem.SubItems.Add(spells.Count > i ? spells[i] : "");
+                listViewItem.SubItems.Add(equipments.Count > i ? equipments[i] : "");
+                listViewCharacterDetails.Items.Add(listViewItem);
+            }
+        }
+
+        private void AdjustListViewColumns()
+        {
+            // Ajustar automaticamente o tamanho das colunas ao conteúdo
+            foreach (ColumnHeader column in listViewCharacterDetails.Columns)
+            {
+                column.Width = -2;
             }
         }
         private void buttonCreateCharacter_Click(object sender, EventArgs e)
@@ -120,11 +138,12 @@ namespace Interface
         }
         private void editCharacter(Character character)
         {
-            using (var editForm = new EditCharacter(actual_user,character))
+            using (var editForm = new EditCharacter(actual_user, character))
             {
                 if (editForm.ShowDialog() == DialogResult.OK)
                 {
-                    UpdateCharacterList();
+                    LoadCharacters();
+
                 }
             }
         }
@@ -177,6 +196,9 @@ namespace Interface
             this.Close();
         }
 
+        private void orderby_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }
