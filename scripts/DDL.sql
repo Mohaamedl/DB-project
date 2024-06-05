@@ -207,24 +207,22 @@ create table Class_features( -- preenchida
 
 CREATE TABLE [Character] (
     ID INT UNIQUE NOT NULL IDENTITY(1,1),
+	[name] VARCHAR(28) NULL,
+	HP INT NOT NULL, -- derivado de (class_HP + Con_mod) + Ancestry.HP
+    [level] INT NOT NULL,
+	speed INT NOT NULL, -- derivado de ancestry.speed
+	class_id INT REFERENCES Class(ID),
+	ancestry_id INT REFERENCES Ancestry(ID),
+    background_id INT REFERENCES Background(ID),
+    ability_scores_id INT REFERENCES Ability_scores(ID),
     Str_mod INT NOT NULL, --derivado de ability_scores
     Dex_mod INT NOT NULL,
     Con_mod INT NOT NULL,
     Int_mod INT NOT NULL,
     Wis_mod INT NOT NULL,
     Cha_mod INT NOT NULL,
-    speed INT NOT NULL, -- derivado de ancestry.speed
-    class_DC VARCHAR(28) NOT NULL, -- derivado de class.prof_classDC
-    [level] INT NOT NULL,
-	[name] VARCHAR(28) NULL,
-    HP INT NOT NULL, -- derivado de (class_HP + Con_mod) + Ancestry.HP
-    background_id INT REFERENCES Background(ID),
-    ability_scores_id INT REFERENCES Ability_scores(ID),
-    class_id INT REFERENCES Class(ID),
-	ancestry_id INT REFERENCES Ancestry(ID),
     PRIMARY KEY(ID)
 );
-
 CREATE TABLE User_tem_character( 
     id_user int references Users(ID) on delete cascade ,
     id_character int references [Character](ID)  on delete cascade,

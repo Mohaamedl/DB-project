@@ -200,7 +200,7 @@ namespace Interface
 
             };
 
-            NewCharacter.ID = DatabaseHelper.CreateCharacter(NewCharacter);
+            NewCharacter = DatabaseHelper.CreateCharacter(NewCharacter);
             DatabaseHelper.AddCharacterEquipment(NewCharacter.ID, selectedEquipments);
             DatabaseHelper.AddCharacterFeats(NewCharacter.ID, selectedFeats);
             DatabaseHelper.AddCharacterSpells(NewCharacter.ID, selectedSpells);

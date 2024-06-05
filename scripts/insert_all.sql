@@ -779,3 +779,20 @@ DROP TABLE IF EXISTS #SpellTraditions;
 
 -- Verification of inserted data
 SELECT * FROM Spells_tem_tradition;
+
+
+
+
+
+
+
+select * from Users
+
+select * from User_tem_character
+select * from [Character]
+select * from Character_tem_feats
+select * from Character_tem_equipment
+select * from Character_tem_language
+select * from Character_tem_spells
+
+

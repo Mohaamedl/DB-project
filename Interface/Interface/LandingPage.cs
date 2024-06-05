@@ -28,6 +28,15 @@ namespace Interface
             // Definir a imagem de fundo
             this.BackgroundImageLayout = ImageLayout.Stretch;
             panel1.BackColor = Color.FromArgb(100, 0, 0, 0);
+            if (!DatabaseHelper.UserExists("admin"))
+            {
+                // Users para exemplificar
+                DatabaseHelper.Register("admin", "admin", "admin");
+                DatabaseHelper.AddUserCharacter(1, 1);
+                DatabaseHelper.Register("user1", "12345678", "normal"); 
+                DatabaseHelper.Register("user2", "12345678", "normal");
+            }
+           
         }
 
         private void button1_Click(object sender, EventArgs e)

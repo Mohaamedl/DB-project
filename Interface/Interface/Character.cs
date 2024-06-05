@@ -41,7 +41,7 @@ namespace Interface
 
         public List<String>? Languages { get; set; }
 
-
+        public int id_abilityScores { get; set; }
         
         public override string ToString()
         {

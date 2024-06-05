@@ -734,13 +734,42 @@ namespace Interface
 
             return abilityScoresId;
         }
-        public static int CreateCharacter(Character character)
+        public static void UpdateAbilityScores(int abilityScoresId, int strength, int wisdom, int intelligence, int charisma, int dexterity, int constitution)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"UPDATE Ability_scores 
+                         SET 
+                            STRENGTH = @strength,
+                            WISDOM = @wisdom,
+                            INTELLIGENCE = @intelligence,
+                            CHARISMA = @charisma,
+                            DEXTERITY = @dexterity,
+                            CONSTITUTION = @constitution
+                         WHERE ID = @abilityScoresId;";
+
+                SqlCommand command = new SqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@strength", strength);
+                command.Parameters.AddWithValue("@wisdom", wisdom);
+                command.Parameters.AddWithValue("@intelligence", intelligence);
+                command.Parameters.AddWithValue("@charisma", charisma);
+                command.Parameters.AddWithValue("@dexterity", dexterity);
+                command.Parameters.AddWithValue("@constitution", constitution);
+                command.Parameters.AddWithValue("@abilityScoresId", abilityScoresId);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public static Character CreateCharacter(Character character)
         {
             int characterId = 0;
 
             // Criar a AbilityScores associada ao personagem
             int abilityScoresId = CreateAbilityScores(character.Str, character.Wis, character.Int, character.Cha, character.Dex, character.Con);
-
+            character.id_abilityScores = abilityScoresId;
             // Conexão com o banco de dados
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -771,9 +800,64 @@ namespace Interface
 
                 // Executar o comando SQL e obter o ID gerado
                 characterId = Convert.ToInt32(command.ExecuteScalar());
+                character.ID = characterId;
             }
 
-            return characterId;
+            return character;
+        }
+        public static Character UpdateCharacter(Character character)
+        {
+            
+
+            UpdateAbilityScores(character.id_abilityScores, character.Str, character.Wis, character.Int, character.Cha, character.Dex, character.Con);
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"UPDATE [Character] 
+                        SET 
+                            name = @Name,
+                            HP = @HP,
+                            [Level] = @Level,
+                            speed = @Speed,
+                            class_id = @ClassId,
+                            ancestry_id = @AncestryId,
+                            background_id = @BackgroundId,
+                            ability_scores_id = @AbilityScoresId,
+                            Str_mod = @Str_mod,
+                            Dex_mod = @Dex_mod,
+                            Con_mod = @Con_mod,
+                            Int_mod = @Int_mod,
+                            Wis_mod = @Wis_mod,
+                            Cha_mod = @Cha_mod
+                        WHERE ID = @CharacterId;";                      
+
+                SqlCommand command = new SqlCommand(query, connection);
+
+                // Parâmetros do comando SQL                                                                       
+                command.Parameters.AddWithValue("@Name", character.name);
+                command.Parameters.AddWithValue("@HP", character.HP);
+                command.Parameters.AddWithValue("@Level", character.Level);
+                command.Parameters.AddWithValue("@ClassId", character.Class.ID);
+                command.Parameters.AddWithValue("@AncestryId", character.ancestry.ID);
+                command.Parameters.AddWithValue("@BackgroundId", character.background.ID);
+                command.Parameters.AddWithValue("@AbilityScoresId", character.id_abilityScores); 
+                command.Parameters.AddWithValue("@Speed", character.speed);
+                command.Parameters.AddWithValue("@Str_mod", character.Str_mod);
+                command.Parameters.AddWithValue("@Dex_mod", character.Dex_mod);
+                command.Parameters.AddWithValue("@Con_mod", character.Con_mod);
+                command.Parameters.AddWithValue("@Int_mod", character.Int_mod);
+                command.Parameters.AddWithValue("@Wis_mod", character.Wis_mod);
+                command.Parameters.AddWithValue("@Cha_mod", character.Cha_mod);
+                command.Parameters.AddWithValue("@CharacterId", character.ID);
+
+                connection.Open();
+
+                // Executar o comando SQL e obter o ID gerado
+                command.ExecuteScalar();
+                
+            }
+
+            return character;
         }
         public static void AddCharacterEquipment(int characterId, List<Equipment> equipments)
         {
@@ -885,6 +969,142 @@ namespace Interface
                 }
             }
         }
+        public static void UpdateCharacterEquipment(int characterId, List<Equipment> equipments)
+        {
+            // Conexão com o banco de dados
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                try
+                {
+                    // Limpar os equipamentos anteriores do personagem
+                    string deleteQuery = @"delete from Character_tem_equipment where id_character = @CharacterId";
+                    SqlCommand deleteCommand = new SqlCommand(deleteQuery, connection);
+                    deleteCommand.Parameters.AddWithValue("@CharacterId", characterId);
+                    int rowsAffected = deleteCommand.ExecuteNonQuery();
+
+                    // Log para verificar se os equipamentos foram realmente deletados
+                    Console.WriteLine($"Equipamentos deletados: {rowsAffected} para CharacterId: {characterId}");
+
+                    // Loop pelos novos equipamentos selecionados
+                    AddCharacterEquipment(characterId, equipments);
+
+                    Console.WriteLine("Equipamentos atualizados com sucesso.");
+                }
+                catch (Exception ex)
+                {
+                    // Log de erro para facilitar a depuração
+                    Console.WriteLine($"Erro ao atualizar os equipamentos: {ex.Message}");
+                    throw;
+                }
+            }
+        }
+
+        public static void UpdateCharacterFeats(int characterId, List<Feat> feats)
+        {
+            // Conexão com o banco de dados
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Limpar os feats anteriores do personagem
+                string deleteQuery = @"DELETE FROM Character_tem_feats WHERE id_character = @CharacterId";
+                SqlCommand deleteCommand = new SqlCommand(deleteQuery, connection);
+                deleteCommand.Parameters.AddWithValue("@CharacterId", characterId);
+                deleteCommand.ExecuteNonQuery();
+
+                // Loop pelos novos feats selecionados
+                foreach (var feat in feats)
+                {
+                    // Comando SQL para atualizar a tabela de junção Character_tem_feats
+                    string query = @"INSERT INTO Character_tem_feats (id_character, id_feats) 
+                             VALUES (@CharacterId, @FeatId)";
+
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    // Parâmetros do comando SQL
+                    command.Parameters.AddWithValue("@CharacterId", characterId);
+                    command.Parameters.AddWithValue("@FeatId", feat.ID);
+
+                    // Executar o comando SQL
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public static void UpdateCharacterSpells(int characterId, List<Spell> spells)
+        {
+            // Conexão com o banco de dados
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Limpar os spells anteriores do personagem
+                string deleteQuery = @"DELETE FROM Character_tem_spells WHERE id_character = @CharacterId";
+                SqlCommand deleteCommand = new SqlCommand(deleteQuery, connection);
+                deleteCommand.Parameters.AddWithValue("@CharacterId", characterId);
+                deleteCommand.ExecuteNonQuery();
+
+                // Loop pelos novos spells selecionados
+                foreach (var spell in spells)
+                {
+                    // Comando SQL para atualizar a tabela de junção Character_tem_spells
+                    string query = @"INSERT INTO Character_tem_spells (id_character, id_spells) 
+                             VALUES (@CharacterId, @SpellId)";
+
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    // Parâmetros do comando SQL
+                    command.Parameters.AddWithValue("@CharacterId", characterId);
+                    command.Parameters.AddWithValue("@SpellId", spell.ID);
+
+                    // Executar o comando SQL
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public static void UpdateCharacterLanguages(int characterId, List<string> languages)
+        {
+            // Conexão com o banco de dados
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Limpar as línguas anteriores do personagem
+                string deleteQuery = @"DELETE FROM Character_tem_language WHERE id_character = @CharacterId";
+                SqlCommand deleteCommand = new SqlCommand(deleteQuery, connection);
+                deleteCommand.Parameters.AddWithValue("@CharacterId", characterId);
+                deleteCommand.ExecuteNonQuery();
+
+                // Loop pelas novas línguas selecionadas
+                foreach (var language in languages)
+                {
+                    // Consulta SQL para obter o ID da língua pelo nome
+                    string languageQuery = "SELECT ID FROM Language WHERE Designation = @LanguageName";
+
+                    SqlCommand languageCommand = new SqlCommand(languageQuery, connection);
+                    languageCommand.Parameters.AddWithValue("@LanguageName", language);
+
+                    int languageId = Convert.ToInt32(languageCommand.ExecuteScalar());
+
+                    // Comando SQL para inserir um registro na tabela de junção Character_tem_language
+                    string query = @"INSERT INTO Character_tem_language (id_character, id_language) 
+                             VALUES (@CharacterId, @LanguageId)";
+
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    // Parâmetros do comando SQL
+                    command.Parameters.AddWithValue("@CharacterId", characterId);
+                    command.Parameters.AddWithValue("@LanguageId", languageId);
+
+                    // Executar o comando SQL
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
         public static void AddUserCharacter(int userId, int characterId)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -901,6 +1121,398 @@ namespace Interface
 
                 command.ExecuteNonQuery();
             }
+        }
+        public static void DeleteCharacter(int characterId)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"DELETE FROM [Character] WHERE ID = @CharacterId;";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@CharacterId", characterId);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+       
+        public static List<Character> GetCharacters(int userId)
+        {
+            List<Character> characters = new List<Character>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"
+                SELECT c.ID, c.[name], c.HP, c.[Level], c.speed, c.class_id, c.ancestry_id, 
+                       c.background_id, c.ability_scores_id, c.Str_mod, c.Dex_mod, c.Con_mod, 
+                       c.Int_mod, c.Wis_mod, c.Cha_mod
+                FROM [Character] c
+                JOIN User_tem_character utc ON c.ID = utc.id_character
+                WHERE utc.id_user = @UserId;";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@UserId", userId);
+
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    List<int> abss = new List<int>();
+                    while (reader.Read())
+                    {
+                        abss = GetAbilityScoresById(reader.GetInt32(8));
+                        Character character = new Character
+                        {
+                            ID = reader.GetInt32(0),
+                            name = reader.GetString(1),
+                            HP = reader.GetInt32(2),
+                            Level = reader.GetInt32(3),
+                            speed = reader.GetInt32(4),
+                            Class = GetClassById(reader.GetInt32(5)),
+                            ancestry = GetAncestryById(reader.GetInt32(6)),
+                            background = GetBackgroundById(reader.GetInt32(7)),
+                            id_abilityScores = reader.GetInt32(8),
+                            Str_mod = reader.GetInt32(9),
+                            Dex_mod = reader.GetInt32(10),
+                            Con_mod = reader.GetInt32(11),
+                            Int_mod = reader.GetInt32(12),
+                            Wis_mod = reader.GetInt32(13),
+                            Cha_mod = reader.GetInt32(14),
+                            Str = abss[0],
+                            Dex = abss[1],
+                            Con = abss[2],
+                            Int = abss[3],
+                            Wis = abss[4],
+                            Cha = abss[5]
+                               
+
+
+
+
+                        };
+
+                        character.equipment = GetCharacterEquipment(character.ID);
+                        character.feats = GetCharacterFeats(character.ID);
+                        character.spells = GetCharacterSpells(character.ID);
+                        character.Languages = GetCharacterLanguages(character.ID);
+                        //character.traits = GetCharacterTraits(character.ID);
+
+                        characters.Add(character);
+                    }
+                }
+            }
+
+            return characters;
+        }
+
+        private static Class GetClassById(int classId)
+        {
+            Class characterClass = null;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT ID, [name], HP, prof_attack, prof_defense, ability, spell_progression_id FROM Class WHERE ID = @ClassId";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@ClassId", classId);
+
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        characterClass = new Class
+                        {
+                            ID = reader.GetInt32(0),
+                            name = reader.GetString(1),
+                            HP = reader.GetInt32(2),
+                            prof_attack = reader.GetString(3),
+                            prof_defense = reader.GetString(4),
+                            ability = reader.GetString(5),
+                            spell_progression_id = reader.GetInt32(6)
+                        };
+                    }
+                }
+            }
+
+            return characterClass;
+        }
+        public static List<int> GetAbilityScoresById(int abilityScoresId)
+        {
+            List<int> abilityScores = new List<int>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"SELECT STRENGTH, DEXTERITY, CONSTITUTION, INTELLIGENCE, WISDOM, CHARISMA
+                         FROM Ability_scores
+                         WHERE ID = @AbilityScoresId;";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@AbilityScoresId", abilityScoresId);
+
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        abilityScores.Add(reader.GetInt32(0)); // Strength
+                        abilityScores.Add(reader.GetInt32(1)); // Dexterity
+                        abilityScores.Add(reader.GetInt32(2)); // Constitution
+                        abilityScores.Add(reader.GetInt32(3)); // Intelligence
+                        abilityScores.Add(reader.GetInt32(4)); // Wisdom
+                        abilityScores.Add(reader.GetInt32(5)); // Charisma
+                    }
+                }
+            }
+
+            return abilityScores;
+        }
+
+
+        private static Ancestry GetAncestryById(int ancestryId)
+        {
+            Ancestry ancestry = null;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT ID, name, HP, size, speed, ability_flaw, ability_boost, vision, rarity FROM Ancestry WHERE ID = @AncestryId";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@AncestryId", ancestryId);
+
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        ancestry = new Ancestry
+                        {
+                            ID = reader.GetInt32(0),
+                            name = reader.GetString(1),
+                            HP = reader.GetInt32(2),
+                            size = reader.GetString(3),
+                            speed = reader.GetInt32(4),
+                            ability_flaw = reader.GetString(5),
+                            ability_boost = reader.GetString(6),
+                            vision = reader.GetString(7),
+                            rarity = reader.GetString(8)
+                        };
+                    }
+                }
+            }
+
+            return ancestry;
+        }
+
+        private static Background GetBackgroundById(int backgroundId)
+        {
+            Background background = null;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT ID, name, ability, skill, feat, rarity, summary FROM Background WHERE ID = @BackgroundId";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@BackgroundId", backgroundId);
+
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        background = new Background
+                        {
+                            ID = reader.GetInt32(0),
+                            name = reader.GetString(1),
+                            ability = reader.GetString(2),
+                            skill = reader.GetString(3),
+                            feat = reader.GetString(4),
+                            rarity = reader.GetString(5),
+                            summary = reader.GetString(6)
+                        };
+                    }
+                }
+            }
+
+            return background;
+        }
+
+        private static List<Equipment> GetCharacterEquipment(int characterId)
+        {
+            List<Equipment> equipment = new List<Equipment>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"
+                SELECT e.ID, e.[name], e.item_category, e.item_sub_category, e.usage, e.[bulk], 
+                       e.rarity, e.weapon_category, e.[level], e.price
+                FROM Equipment e
+                JOIN Character_tem_equipment cte ON e.ID = cte.id_equipment
+                WHERE cte.id_character = @CharacterId;";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@CharacterId", characterId);
+
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        equipment.Add(new Equipment
+                        {
+                            ID = reader.GetInt32(0),
+                            name = reader.GetString(1),
+                            item_category = reader.GetString(2),
+                            item_sub_category = reader.IsDBNull(3) ? null : reader.GetString(3),
+                            usage = reader.IsDBNull(4) ? null : reader.GetString(4),
+                            bulk = reader.IsDBNull(5) ? null : reader.GetString(5),
+                            rarity = reader.GetString(6),
+                            weapon_category = reader.GetString(7),
+                            level = reader.GetInt32(8),
+                            price = reader.IsDBNull(9) ?  0 : reader.GetInt32(9)
+                        });
+                    }
+                }
+            }
+
+            return equipment;
+        }
+
+        private static List<Feat> GetCharacterFeats(int characterId)
+        {
+            List<Feat> feats = new List<Feat>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"
+                SELECT f.ID, f.rarity, f.prerequisite, f.summary, f.name, f.level
+                FROM Feats f
+                JOIN Character_tem_feats ctf ON f.ID = ctf.id_feats
+                WHERE ctf.id_character = @CharacterId;";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@CharacterId", characterId);
+
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        feats.Add(new Feat
+                        {
+                            ID = reader.GetInt32(0),
+                            rarity = reader.GetString(1),
+                            prerequisite = reader.IsDBNull(2) ? null : reader.GetString(2),
+                            summary = reader.IsDBNull(3) ? null : reader.GetString(3),
+                            name = reader.GetString(4),
+                            level = reader.GetInt32(5)
+                        });
+                    }
+                }
+            }
+
+            return feats;
+        }
+
+        private static List<Spell> GetCharacterSpells(int characterId)
+        {
+            List<Spell> spells = new List<Spell>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"
+                SELECT s.ID, s.spell_type, s.name, s.actions, s.defense, s.target, s.rarity, 
+                       s.[trigger], s.area, s.rank, s.heighten, s.duration, s.range
+                FROM Spells s
+                JOIN Character_tem_spells cts ON s.ID = cts.id_spells
+                WHERE cts.id_character = @CharacterId;";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@CharacterId", characterId);
+
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        spells.Add(new Spell
+                        {
+                            ID = reader.GetInt32(0),
+                            SpellType = reader.GetString(1),
+                            Name = reader.GetString(2),
+                            Actions = reader.IsDBNull(3) ? null : reader.GetString(3),
+                            Defense = reader.IsDBNull(4) ? null : reader.GetString(4),
+                            Target = reader.IsDBNull(5) ? null : reader.GetString(5),
+                            Rarity = reader.GetString(6),
+                            Trigger = reader.IsDBNull(7) ? null : reader.GetString(7),
+                            Area = reader.IsDBNull(8) ? null : reader.GetString(8),
+                            Rank = reader.GetInt32(9),
+                            Heighten = reader.IsDBNull(10) ? null : reader.GetString(10),
+                            Duration = reader.IsDBNull(11) ? null : reader.GetString(11),
+                            Range = reader.IsDBNull(12) ? null : reader.GetString(12)
+                        });
+                    }
+                }
+            }
+
+            return spells;
+        }
+
+        private static List<string> GetCharacterLanguages(int characterId)
+        {
+            List<string> languages = new List<string>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"
+                SELECT l.designation
+                FROM Language l
+                JOIN Character_tem_language ctl ON l.ID = ctl.id_language
+                WHERE ctl.id_character = @CharacterId;";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@CharacterId", characterId);
+
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        languages.Add(reader.GetString(0));
+                    }
+                }
+            }
+
+            return languages;
+        }
+
+        private static List<Trait> GetCharacterTraits(int characterId)
+        {
+            List<Trait> traits = new List<Trait>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"
+                SELECT t.ID, t.name, t.description
+                FROM Trait t
+                JOIN Character_tem_traits ctt ON t.ID = ctt.id_trait
+                WHERE ctt.id_character = @CharacterId;";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@CharacterId", characterId);
+
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        traits.Add(new Trait
+                        {
+                            ID = reader.GetInt32(0),
+                            designation = reader.GetString(1),
+                            details = reader.GetString(2)
+                        });
+                    }
+                }
+            }
+
+            return traits;
         }
 
 

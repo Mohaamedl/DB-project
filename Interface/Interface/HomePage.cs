@@ -20,63 +20,54 @@ namespace Interface
 
         private void HomePage_Load(object sender, EventArgs e)
         {
-
+            // Verificar se há personagens
+            if (listBoxCharacters.Items.Count > 0)
+            {
+                // Selecionar o primeiro personagem na lista
+                listBoxCharacters.SelectedIndex = 0;
+            }
         }
         public HomePage(User user)
         {
             InitializeComponent();
-            LoadCharacters();
+            
+
             // Armazenar o nome de usuário recebido como parâmetro
             this.actual_user = user;
-
             // Você pode usar o nome de usuário aqui como quiser, por exemplo, definindo o texto de uma label
             labelPlayerName.Text = $"Player Name: {user.Username}";
+            LoadCharacters();
         }
         private void LoadCharacters()
         {
-            // Carregar alguns personagens para exemplo
-            characters = new List<Character>();
+            // Obter personagens do banco de dados
+            characters = DatabaseHelper.GetCharacters(actual_user.ID);
 
+            // Vincular personagens à lista
             listBoxCharacters.DataSource = null;
-
             listBoxCharacters.DataSource = characters;
             listBoxCharacters.DisplayMember = "Name";
         }
         private void listBoxCharacters_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Obter o personagem selecionado
             selectedCharacter = listBoxCharacters.SelectedItem as Character;
             if (selectedCharacter != null)
             {
-                // Define o nome do personagem
+                // Exibir informações do personagem
                 labelCharacterName.Text = $"Character Name: {selectedCharacter.name}";
-
-                // Define o HP do personagem
                 labelCharacterHP.Text = $"HP: {selectedCharacter.HP}";
-
-                // Define o nível do personagem
                 labelCharacterLevel.Text = $"Level: {selectedCharacter.Level}";
-
-                // Limpa a ListView
-                listViewCharacterDetails.Items.Clear();
-
-                // Adiciona detalhes do personagem à ListView
-                listViewCharacterDetails.Items.Clear();
-
-                // Adiciona detalhes do personagem como labels
                 labelClass.Text = $"Class: {selectedCharacter.Class.name}";
                 labelAncestry.Text = $"Ancestry: {selectedCharacter.ancestry.name}";
                 labelBackground.Text = $"Background: {selectedCharacter.background.name}";
                 labelSpeed.Text = $"Speed: {selectedCharacter.speed}";
-
-                // Atributos do personagem
                 labelStrength.Text = $"Strength: {selectedCharacter.Str}";
                 labelWisdom.Text = $"Wisdom: {selectedCharacter.Wis}";
                 labelIntelligence.Text = $"Intelligence: {selectedCharacter.Int}";
                 labelCharisma.Text = $"Charisma: {selectedCharacter.Cha}";
                 labelDexterity.Text = $"Dexterity: {selectedCharacter.Dex}";
                 labelConstitution.Text = $"Constitution: {selectedCharacter.Con}";
-
-                // Modificadores de atributos
                 labelStrengthModifier.Text = $"Strength Modifier: {selectedCharacter.Str_mod}";
                 labelWisdomModifier.Text = $"Wisdom Modifier: {selectedCharacter.Wis_mod}";
                 labelIntelligenceModifier.Text = $"Intelligence Modifier: {selectedCharacter.Int_mod}";
@@ -86,25 +77,20 @@ namespace Interface
                 string languages = string.Join(", ", selectedCharacter.Languages);
                 labelLanguages.Text = $"Languages: {languages}";
 
-                // Equipamentos
+                // Limpar e exibir equipamentos, habilidades e magias
+                listViewCharacterDetails.Items.Clear();
                 foreach (var equipment in selectedCharacter.equipment)
                 {
-                    listViewCharacterDetails.Items.Add(new ListViewItem(new[] { "Equipment", equipment.name.ToString() }));
+                    listViewCharacterDetails.Items.Add(new ListViewItem(new[] { "Equipment", equipment.name }));
                 }
-
-                // Habilidades (Feats)
                 foreach (var feat in selectedCharacter.feats)
                 {
-                    listViewCharacterDetails.Items.Add(new ListViewItem(new[] { "Feat", feat.name.ToString() }));
+                    listViewCharacterDetails.Items.Add(new ListViewItem(new[] { "Feat", feat.name }));
                 }
-
-                // Magias (Spells)
                 foreach (var spell in selectedCharacter.spells)
                 {
-                    listViewCharacterDetails.Items.Add(new ListViewItem(new[] { "Spell", spell.Name.ToString() }));
+                    listViewCharacterDetails.Items.Add(new ListViewItem(new[] { "Spell", spell.Name }));
                 }
-
-
             }
         }
         private void buttonCreateCharacter_Click(object sender, EventArgs e)
@@ -125,16 +111,16 @@ namespace Interface
             if (listBoxCharacters.SelectedItem != null)
             {
                 var selectedCharacter = (Character)listBoxCharacters.SelectedItem;
-                EditCharacter(selectedCharacter);
+                editCharacter(selectedCharacter);
             }
             else
             {
                 MessageBox.Show("Please select a character to edit.");
             }
         }
-        private void EditCharacter(Character character)
+        private void editCharacter(Character character)
         {
-            using (var editForm = new EditCharacter(character))
+            using (var editForm = new EditCharacter(actual_user,character))
             {
                 if (editForm.ShowDialog() == DialogResult.OK)
                 {
@@ -145,11 +131,31 @@ namespace Interface
 
         private void buttonDeleteCharacter_Click(object sender, EventArgs e)
         {
+            //if (selectedCharacter != null)
+            //{
+            //    characters.Remove(selectedCharacter);
+            //    listBoxCharacters.DataSource = null;
+            //    listBoxCharacters.DataSource = characters;
+            //}
             if (selectedCharacter != null)
             {
-                characters.Remove(selectedCharacter);
-                listBoxCharacters.DataSource = null;
-                listBoxCharacters.DataSource = characters;
+                // Confirmação de exclusão
+                var result = MessageBox.Show($"Are you sure you want to delete {selectedCharacter.name}?", "Confirm Delete", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    // Remove do banco de dados
+                    DatabaseHelper.DeleteCharacter(selectedCharacter.ID);
+
+                    // Remove da lista
+                    characters.Remove(selectedCharacter);
+
+                    // Atualiza a listBox
+                    UpdateCharacterList();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a character to delete.");
             }
         }
         private void UpdateCharacterList()
