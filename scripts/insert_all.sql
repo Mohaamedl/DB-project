@@ -777,13 +777,17 @@ WHERE
 -- Clean up temporary table
 DROP TABLE IF EXISTS #SpellTraditions;
 
+
+insert into Ability_scores values(10,10,10,10,10,10);
+insert into [Character] values('character1', 16,1,25,14,12,9,1,0,0,0,0,0,0);
+insert into Character_tem_feats values(1,7),(1,8),(1,21);
+insert into Character_tem_equipment values(1,1460),(1,2847),(1,2887);
+insert into Character_tem_language values(1,1),(1,17);
+insert into Character_tem_language values(1,1),(1,382),(1,759);
+
+
 -- Verification of inserted data
 SELECT * FROM Spells_tem_tradition;
-
-
-
-
-
 
 
 select * from Users

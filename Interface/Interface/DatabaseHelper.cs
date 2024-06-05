@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Configuration;
 using static System.Windows.Forms.Design.AxImporter;
+using System.Data;
 
 namespace Interface
 {
@@ -10,18 +11,60 @@ namespace Interface
     {
         private static string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
+        //public static List<Feat> GetFeatsFromDatabase(int limit = 20, string columnName = null, string searchString = null)
+        //{
+        //    var feats = new List<Feat>();
+
+        //    using (SqlConnection connection = new SqlConnection(connectionString))
+        //    {
+        //        string query = $"SELECT TOP {limit} ID,Name, Rarity, Prerequisite, Summary, Level FROM Feats ORDER BY Name";
+        //        if (!string.IsNullOrEmpty(columnName) && !string.IsNullOrEmpty(searchString))
+        //        {
+        //            query += $" WHERE {columnName} LIKE '%{searchString}%'";
+        //        }
+        //        SqlCommand command = new SqlCommand(query, connection);
+        //        connection.Open();
+
+        //        using (SqlDataReader reader = command.ExecuteReader())
+        //        {
+        //            while (reader.Read())
+        //            {
+        //                var feat = new Feat
+        //                {
+        //                    name = reader["Name"].ToString(),
+        //                    rarity = reader["Rarity"].ToString(),
+        //                    prerequisite = reader["Prerequisite"].ToString(),
+        //                    summary = reader["Summary"].ToString(),
+        //                    level = Convert.ToInt32(reader["Level"]),
+        //                    ID = Convert.ToInt32(reader["ID"])
+        //                };
+        //                feats.Add(feat);
+        //            }
+        //        }
+        //    }
+
+        //    return feats;
+        //}
         public static List<Feat> GetFeatsFromDatabase(int limit = 20, string columnName = null, string searchString = null)
         {
             var feats = new List<Feat>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = $"SELECT TOP {limit} ID,Name, Rarity, Prerequisite, Summary, Level FROM Feats ORDER BY Name";
+                SqlCommand command = new SqlCommand("sp_GetFeats", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@Limit", limit);
                 if (!string.IsNullOrEmpty(columnName) && !string.IsNullOrEmpty(searchString))
                 {
-                    query += $" WHERE {columnName} LIKE '%{searchString}%'";
+                    command.Parameters.AddWithValue("@ColumnName", columnName);
+                    command.Parameters.AddWithValue("@SearchString", searchString);
                 }
-                SqlCommand command = new SqlCommand(query, connection);
+                else
+                {
+                    command.Parameters.AddWithValue("@ColumnName", DBNull.Value);
+                    command.Parameters.AddWithValue("@SearchString", DBNull.Value);
+                }
+
                 connection.Open();
 
                 using (SqlDataReader reader = command.ExecuteReader())
@@ -30,12 +73,12 @@ namespace Interface
                     {
                         var feat = new Feat
                         {
+                            ID = Convert.ToInt32(reader["ID"]),
                             name = reader["Name"].ToString(),
                             rarity = reader["Rarity"].ToString(),
                             prerequisite = reader["Prerequisite"].ToString(),
                             summary = reader["Summary"].ToString(),
-                            level = Convert.ToInt32(reader["Level"]),
-                            ID = Convert.ToInt32(reader["ID"])
+                            level = Convert.ToInt32(reader["Level"])
                         };
                         feats.Add(feat);
                     }
@@ -45,42 +88,81 @@ namespace Interface
             return feats;
         }
 
+
         public static List<Feat> GetAllFeatsFromDatabase()
         {
             return GetFeatsFromDatabase(int.MaxValue);
         }
 
+        //public static List<Spell> GetSpellsFromDatabase(int limit = 20, string columnName = null, string searchString = null, string rankFilter = null, string rarityFilter = null, string sortBy = "name", bool sortOrderAscending = true)
+        //{
+        //    var spells = new List<Spell>();
+
+        //    using (SqlConnection connection = new SqlConnection(connectionString))
+        //    {
+        //        string query = $"SELECT TOP {limit} ID, name, rarity, actions, rank, range FROM Spells";
+
+        //        var conditions = new List<string>();
+        //        if (!string.IsNullOrEmpty(columnName) && !string.IsNullOrEmpty(searchString))
+        //        {
+        //            conditions.Add($"{columnName} LIKE '%{searchString}%'");
+        //        }
+        //        if (!string.IsNullOrEmpty(rankFilter))
+        //        {
+        //            conditions.Add($"rank = '{rankFilter}'");
+        //        }
+        //        if (!string.IsNullOrEmpty(rarityFilter))
+        //        {
+        //            conditions.Add($"rarity = '{rarityFilter}'");
+        //        }
+
+        //        if (conditions.Count > 0)
+        //        {
+        //            query += " WHERE " + string.Join(" AND ", conditions);
+        //        }
+
+        //        string sortOrder = sortOrderAscending ? "ASC" : "DESC";
+        //        query += $" ORDER BY {sortBy} {sortOrder}";
+
+        //        SqlCommand command = new SqlCommand(query, connection);
+        //        connection.Open();
+
+        //        using (SqlDataReader reader = command.ExecuteReader())
+        //        {
+        //            while (reader.Read())
+        //            {
+        //                var spell = new Spell
+        //                {
+        //                    ID = Convert.ToInt32(reader["ID"]),
+        //                    Name = reader["name"].ToString(),
+        //                    Rarity = reader["rarity"].ToString(),
+        //                    Actions = reader["actions"].ToString(),
+        //                    Rank = Convert.ToInt32(reader["rank"]),
+        //                    Range = reader["range"].ToString()
+        //                };
+        //                spells.Add(spell);
+        //            }
+        //        }
+        //    }
+
+        //    return spells;
+        //}
         public static List<Spell> GetSpellsFromDatabase(int limit = 20, string columnName = null, string searchString = null, string rankFilter = null, string rarityFilter = null, string sortBy = "name", bool sortOrderAscending = true)
         {
             var spells = new List<Spell>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = $"SELECT TOP {limit} ID, name, rarity, actions, rank, range FROM Spells";
+                SqlCommand command = new SqlCommand("sp_GetSpells", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@Limit", limit);
+                command.Parameters.AddWithValue("@ColumnName", string.IsNullOrEmpty(columnName) ? DBNull.Value : columnName);
+                command.Parameters.AddWithValue("@SearchString", string.IsNullOrEmpty(searchString) ? DBNull.Value : searchString);
+                command.Parameters.AddWithValue("@RankFilter", string.IsNullOrEmpty(rankFilter) ? DBNull.Value : rankFilter);
+                command.Parameters.AddWithValue("@RarityFilter", string.IsNullOrEmpty(rarityFilter) ? DBNull.Value : rarityFilter);
+                command.Parameters.AddWithValue("@SortBy", sortBy);
+                command.Parameters.AddWithValue("@SortOrderAscending", sortOrderAscending);
 
-                var conditions = new List<string>();
-                if (!string.IsNullOrEmpty(columnName) && !string.IsNullOrEmpty(searchString))
-                {
-                    conditions.Add($"{columnName} LIKE '%{searchString}%'");
-                }
-                if (!string.IsNullOrEmpty(rankFilter))
-                {
-                    conditions.Add($"rank = '{rankFilter}'");
-                }
-                if (!string.IsNullOrEmpty(rarityFilter))
-                {
-                    conditions.Add($"rarity = '{rarityFilter}'");
-                }
-
-                if (conditions.Count > 0)
-                {
-                    query += " WHERE " + string.Join(" AND ", conditions);
-                }
-
-                string sortOrder = sortOrderAscending ? "ASC" : "DESC";
-                query += $" ORDER BY {sortBy} {sortOrder}";
-
-                SqlCommand command = new SqlCommand(query, connection);
                 connection.Open();
 
                 using (SqlDataReader reader = command.ExecuteReader())
@@ -103,6 +185,7 @@ namespace Interface
 
             return spells;
         }
+
 
 
         public static List<Spell> GetAllSpellsFromDatabase()
@@ -216,20 +299,60 @@ namespace Interface
             return languages;
         }
 
+        //public static List<Background> GetBackgroundsFromDatabase(int limit = 20, string columnName = null, string searchString = null)
+        //{
+        //    var Backgrounds = new List<Background>();
 
-        
+        //    using (SqlConnection connection = new(connectionString))
+        //    {
+        //        string query = $"SELECT TOP {limit} ID,name, ability, skill, feat,rarity,summary FROM Background ORDER BY name";
+        //        if (!string.IsNullOrEmpty(columnName) && !string.IsNullOrEmpty(searchString))
+        //        {
+        //            query += $" WHERE {columnName} LIKE '%{searchString}%'";
+        //        }
+        //        SqlCommand command = new(query, connection);
+        //        connection.Open();
+
+        //        using (SqlDataReader reader = command.ExecuteReader())
+        //        {
+        //            while (reader.Read())
+        //            {
+        //                var background = new Background
+        //                {
+        //                    name = reader["name"].ToString(),
+        //                    ability = reader["ability"].ToString(),
+        //                    skill = reader["skill"].ToString(),
+        //                    feat = reader["feat"].ToString(),
+        //                    rarity = reader["rarity"].ToString(),
+        //                    summary = reader["summary"].ToString(),
+        //                    ID = Convert.ToInt32(reader["ID"])
+        //                };
+        //                Backgrounds.Add(background);
+        //            }
+        //        }
+        //    }
+        //    return Backgrounds;
+        //}
         public static List<Background> GetBackgroundsFromDatabase(int limit = 20, string columnName = null, string searchString = null)
         {
             var Backgrounds = new List<Background>();
 
             using (SqlConnection connection = new(connectionString))
             {
-                string query = $"SELECT TOP {limit} ID,name, ability, skill, feat,rarity,summary FROM Background ORDER BY name";
+                SqlCommand command = new SqlCommand("sp_GetBackgrounds", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@Limit", limit);
                 if (!string.IsNullOrEmpty(columnName) && !string.IsNullOrEmpty(searchString))
                 {
-                    query += $" WHERE {columnName} LIKE '%{searchString}%'";
+                    command.Parameters.AddWithValue("@ColumnName", columnName);
+                    command.Parameters.AddWithValue("@SearchString", searchString);
                 }
-                SqlCommand command = new(query, connection);
+                else
+                {
+                    command.Parameters.AddWithValue("@ColumnName", DBNull.Value);
+                    command.Parameters.AddWithValue("@SearchString", DBNull.Value);
+                }
+
                 connection.Open();
 
                 using (SqlDataReader reader = command.ExecuteReader())
@@ -238,17 +361,13 @@ namespace Interface
                     {
                         var background = new Background
                         {
+                            ID = Convert.ToInt32(reader["ID"]),
                             name = reader["name"].ToString(),
                             ability = reader["ability"].ToString(),
                             skill = reader["skill"].ToString(),
                             feat = reader["feat"].ToString(),
                             rarity = reader["rarity"].ToString(),
-                            summary = reader["summary"].ToString(),
-                            ID = Convert.ToInt32(reader["ID"])
-
-
-
-
+                            summary = reader["summary"].ToString()
                         };
                         Backgrounds.Add(background);
                     }
@@ -257,22 +376,73 @@ namespace Interface
 
             return Backgrounds;
         }
+
         public static List<Background> GetAllBackgroundsFromDatabase()
         {
             return GetBackgroundsFromDatabase(int.MaxValue);
         }
+        //public static List<Equipment> GetEquipmentsFromDatabase(int limit = 20, string columnName = null, string searchString = null)
+        //{
+        //    var Equipments = new List<Equipment>();
+
+        //    using (SqlConnection connection = new(connectionString))
+        //    {
+        //        string query = $"SELECT TOP {limit} ID,[name], item_category, item_sub_category, weapon_category,[level],price,rarity,usage,[bulk] FROM Equipment ORDER BY [name]";
+        //        if (!string.IsNullOrEmpty(columnName) && !string.IsNullOrEmpty(searchString))
+        //        {
+        //            query += $" WHERE {columnName} LIKE '%{searchString}%'";
+        //        }
+        //        SqlCommand command = new(query, connection);
+        //        connection.Open();
+
+        //        using (SqlDataReader reader = command.ExecuteReader())
+        //        {
+        //            while (reader.Read())
+        //            {
+        //                var equipment = new Equipment
+        //                {
+        //                    name = reader["name"].ToString(),
+        //                    item_category = reader["item_category"].ToString(),
+        //                    item_sub_category = reader["item_sub_category"].ToString(),
+        //                    weapon_category = reader["weapon_category"].ToString(),
+        //                    level = Convert.ToInt32(reader["level"]),
+        //                    price = Convert.ToInt32(reader["price"]),
+        //                    rarity = reader["rarity"].ToString(),
+        //                    usage = reader["usage"].ToString(),
+        //                    bulk = reader["bulk"].ToString(),
+        //                    ID = Convert.ToInt32(reader["ID"])
+
+
+
+
+        //                };
+        //                Equipments.Add(equipment);
+        //            }
+        //        }
+        //    }
+
+        //    return Equipments;
+        //}
         public static List<Equipment> GetEquipmentsFromDatabase(int limit = 20, string columnName = null, string searchString = null)
         {
             var Equipments = new List<Equipment>();
 
             using (SqlConnection connection = new(connectionString))
             {
-                string query = $"SELECT TOP {limit} ID,[name], item_category, item_sub_category, weapon_category,[level],price,rarity,usage,[bulk] FROM Equipment ORDER BY [name]";
+                SqlCommand command = new SqlCommand("sp_GetEquipments", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@Limit", limit);
                 if (!string.IsNullOrEmpty(columnName) && !string.IsNullOrEmpty(searchString))
                 {
-                    query += $" WHERE {columnName} LIKE '%{searchString}%'";
+                    command.Parameters.AddWithValue("@ColumnName", columnName);
+                    command.Parameters.AddWithValue("@SearchString", searchString);
                 }
-                SqlCommand command = new(query, connection);
+                else
+                {
+                    command.Parameters.AddWithValue("@ColumnName", DBNull.Value);
+                    command.Parameters.AddWithValue("@SearchString", DBNull.Value);
+                }
+
                 connection.Open();
 
                 using (SqlDataReader reader = command.ExecuteReader())
@@ -281,20 +451,16 @@ namespace Interface
                     {
                         var equipment = new Equipment
                         {
+                            ID = Convert.ToInt32(reader["ID"]),
                             name = reader["name"].ToString(),
                             item_category = reader["item_category"].ToString(),
                             item_sub_category = reader["item_sub_category"].ToString(),
                             weapon_category = reader["weapon_category"].ToString(),
                             level = Convert.ToInt32(reader["level"]),
-                            price = Convert.ToInt32(reader["price"]),
+                            price = reader.IsDBNull(reader.GetOrdinal("price")) ? 0 : Convert.ToInt32(reader["price"]),
                             rarity = reader["rarity"].ToString(),
                             usage = reader["usage"].ToString(),
-                            bulk = reader["bulk"].ToString(),
-                            ID = Convert.ToInt32(reader["ID"])
-                            
-
-
-
+                            bulk = reader["bulk"].ToString()
                         };
                         Equipments.Add(equipment);
                     }
@@ -303,6 +469,8 @@ namespace Interface
 
             return Equipments;
         }
+
+
         public static List<Equipment> GetAllEquipmentsFromDatabase()
         {
             return GetEquipmentsFromDatabase(int.MaxValue);
