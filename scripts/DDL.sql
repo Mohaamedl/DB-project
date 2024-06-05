@@ -324,10 +324,3 @@ CREATE INDEX idx_equipment_name ON Equipment ([name]);
 CREATE INDEX idx_feats_name ON Feats ([name]);
 
 
-insert into Ability_scores values(10,10,10,10,10,10);
-insert into [Character] values('character1', 16,1,25,14,12,9,1,0,0,0,0,0,0);
-insert into Character_tem_feats values(1,7),(1,8),(1,21);
-insert into Character_tem_equipment values(1,1460),(1,2847),(1,2887);
-insert into Character_tem_language values(1,1),(1,17);
-insert into Character_tem_language values(1,1),(1,382),(1,759);
-

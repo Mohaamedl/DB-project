@@ -15,7 +15,7 @@ DECLARE @json_data VARCHAR(MAX);
 SELECT @json_data = BulkColumn 
 FROM OPENROWSET 
 (
-    BULK 'C:\Users\joaog\Documents\GitHub\DB-project\json\Languages.json', SINGLE_CLOB
+    BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\Languages.json', SINGLE_CLOB
 ) AS datasource;
 
 INSERT INTO [Language](Designation) 
@@ -43,7 +43,7 @@ go
 
 Declare @JSON varchar(max)
 SELECT @JSON=BulkColumn
-FROM OPENROWSET (BULK 'C:\Users\joaog\Documents\GitHub\DB-project\json\Ancestries_data.json', SINGLE_CLOB) import
+FROM OPENROWSET (BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\Ancestries_data.json', SINGLE_CLOB) import
 If (ISJSON(@JSON)=1)
 Print 'It is a valid JSON'
 ELSE
@@ -90,7 +90,7 @@ CREATE TABLE #AncestryTemp (
 
 Declare @JSON varchar(max)
 SELECT @JSON=BulkColumn
-FROM OPENROWSET (BULK 'C:\Users\joaog\Documents\GitHub\DB-project\json\Ancestries_data.json', SINGLE_CLOB) import
+FROM OPENROWSET (BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\Ancestries_data.json', SINGLE_CLOB) import
 If (ISJSON(@JSON)=1)
 Print 'It is a valid JSON'
 ELSE
@@ -127,7 +127,7 @@ DECLARE @json_data VARCHAR(MAX);
 SELECT @json_data = BulkColumn 
 FROM OPENROWSET 
 (
-    BULK 'C:\Users\joaog\Documents\GitHub\DB-project\json\Feats_data.json', SINGLE_CLOB
+    BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\Feats_data.json', SINGLE_CLOB
 ) AS datasource;
 
 INSERT INTO Feats (rarity, prerequisite, summary, [name], [level]) 
@@ -155,7 +155,7 @@ DECLARE @json_data VARCHAR(MAX);
 SELECT @json_data = BulkColumn 
 FROM OPENROWSET 
 (
-    BULK 'C:\Users\joaog\Documents\GitHub\DB-project\json\Spells_data.json', SINGLE_CLOB
+    BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\Spells_data.json', SINGLE_CLOB
 ) AS datasource;
 
 INSERT INTO Spells (spell_type, [name], actions, defense, [target], rarity, [trigger], area, [rank], heighten, duration, [range]) 
@@ -202,7 +202,7 @@ DECLARE @TraitsList NVARCHAR(MAX);
 SELECT @TraitsList = BulkColumn 
 FROM OPENROWSET 
 (
-    BULK 'C:\Users\joaog\Documents\GitHub\DB-project\data\traits.txt',
+    BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\data\traits.txt',
     SINGLE_CLOB  
 ) AS j;
 
@@ -223,7 +223,7 @@ go
 
 Declare @JSON varchar(max)
 SELECT @JSON=BulkColumn
-FROM OPENROWSET (BULK 'C:\Users\joaog\Documents\GitHub\DB-project\json\Backgrounds_data.json', SINGLE_CLOB) import
+FROM OPENROWSET (BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\Backgrounds_data.json', SINGLE_CLOB) import
 If (ISJSON(@JSON)=1)
 Print 'It is a valid JSON'
 ELSE
@@ -255,7 +255,7 @@ DECLARE @JSON NVARCHAR(MAX)
 
 
 SELECT @JSON = BulkColumn
-FROM OPENROWSET (BULK 'C:\Users\joaog\Documents\GitHub\DB-project\json\Backgrounds_data.json', SINGLE_CLOB) AS jsonImport
+FROM OPENROWSET (BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\Backgrounds_data.json', SINGLE_CLOB) AS jsonImport
 
 IF (ISJSON(@JSON) = 1)
     PRINT 'É um JSON válido'
@@ -305,7 +305,7 @@ DECLARE @json_data VARCHAR(MAX);
 SELECT @json_data = BulkColumn 
 FROM OPENROWSET 
 (
-    BULK 'C:\Users\joaog\Documents\GitHub\DB-project\json\skills_data.json', SINGLE_CLOB
+    BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\skills_data.json', SINGLE_CLOB
 ) AS datasource;
 
 INSERT INTO Skills(designation,details) 
@@ -329,7 +329,7 @@ go
 DECLARE @JsonData NVARCHAR(MAX)
 
 SELECT @JsonData = BulkColumn
-FROM OPENROWSET(BULK 'C:\Users\joaog\Documents\GitHub\DB-project\json\Spells_progression_data.json', SINGLE_CLOB) AS j
+FROM OPENROWSET(BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\Spells_progression_data.json', SINGLE_CLOB) AS j
 
 INSERT INTO Spell_progression ([level], cantrips, n1, n2, n3, n4, n5, n6, n7, n8, n9, n10)
 SELECT 
@@ -373,7 +373,7 @@ SET @classes_spell_prog = 'Bard,Cleric,Druid,Magus,Oracle,Sorcerer,Summoner,Witc
 SELECT @json_data = BulkColumn 
 FROM OPENROWSET 
 (
-    BULK 'C:\Users\joaog\Documents\GitHub\DB-project\json\Classes_data.json', SINGLE_CLOB
+    BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\Classes_data.json', SINGLE_CLOB
 ) AS datasource;
 
 INSERT INTO Class([name], HP, prof_attack, prof_defense, ability, spell_progression_id) 
@@ -414,7 +414,7 @@ DECLARE @class_id INT;
 SET @class_id = 1;
 
 SELECT @JsonData = BulkColumn
-FROM OPENROWSET(BULK 'C:\Users\joaog\Documents\GitHub\DB-project\json\Class_features.json', SINGLE_CLOB) AS j;
+FROM OPENROWSET(BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\Class_features.json', SINGLE_CLOB) AS j;
 
 WITH JsonData AS (
     SELECT 
@@ -531,7 +531,7 @@ DECLARE @json_data NVARCHAR(MAX);
 SELECT @json_data = BulkColumn 
 FROM OPENROWSET 
 (
-    BULK 'C:\Users\joaog\Documents\GitHub\DB-project\json\Equipment_data.json', SINGLE_CLOB
+    BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\Equipment_data.json', SINGLE_CLOB
 ) AS datasource;
 
 
@@ -565,20 +565,17 @@ WITH (
 
 SELECT * FROM Equipment;
 -------------------------------------------------Equipment_tem_Traits--------------------------------------------------------
--- Load JSON data into the variable from a file
 SELECT @json_data = BulkColumn 
 FROM OPENROWSET(
-    BULK 'C:\Users\joaog\Documents\GitHub\DB-project\json\Equipment_data.json', 
+    BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\Equipment_data.json', 
     SINGLE_CLOB) AS datasource;
 
--- Temporary table for Equipment and their Traits
 IF OBJECT_ID('tempdb..#EquipmentTraits') IS NOT NULL DROP TABLE #EquipmentTraits;
 CREATE TABLE #EquipmentTraits (
     EquipmentName NVARCHAR(64),
     Traits NVARCHAR(400)
 );
 
--- Populate the temporary table with names and traits
 INSERT INTO #EquipmentTraits (EquipmentName, Traits)
 SELECT 
     [name],
@@ -590,18 +587,16 @@ FROM
         [trait] NVARCHAR(400)
     );
 
--- Temporary table for split traits with equipment IDs
 IF OBJECT_ID('tempdb..#SplitTraits') IS NOT NULL DROP TABLE #SplitTraits;
 CREATE TABLE #SplitTraits (
     EquipmentID INT,
     Trait NVARCHAR(100)
 );
 
--- Insert split traits with equipment IDs
 INSERT INTO #SplitTraits (EquipmentID, Trait)
 SELECT 
     e.ID,
-    LTRIM(RTRIM(value)) -- Trim spaces to ensure clean data matching
+    LTRIM(RTRIM(value)) 
 FROM 
     Equipment e
 JOIN 
@@ -609,7 +604,6 @@ JOIN
 CROSS APPLY 
     STRING_SPLIT(et.Traits, ',');
 
--- Inserting into the Many-to-Many Relationship Table
 INSERT INTO Equipment_tem_Traits (id_equipment, id_trait)
 SELECT DISTINCT
     st.EquipmentID,
@@ -631,17 +625,15 @@ select * from Equipment_tem_traits
 SELECT @json_data = BulkColumn 
 FROM OPENROWSET 
 (
-    BULK 'C:\Users\joaog\Documents\GitHub\DB-project\json\Spells_data.json', SINGLE_CLOB
+    BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\Spells_data.json', SINGLE_CLOB
 ) AS datasource;
 
--- Temporary table to hold spell names and their split traits
 IF OBJECT_ID('tempdb..#SpellTraits') IS NOT NULL DROP TABLE #SpellTraits;
 CREATE TABLE #SpellTraits (
     SpellName VARCHAR(28),
     TraitName NVARCHAR(100)
 );
 
--- Clean the data for a safer join and check
 INSERT INTO #SpellTraits (SpellName, TraitName)
 SELECT 
     TRIM([name]), 
@@ -654,7 +646,6 @@ FROM
     )
 CROSS APPLY STRING_SPLIT(traits, ',');
 
--- Insert into Spells_tem_traits with a check to prevent duplicates
 INSERT INTO Spells_tem_traits (id_spells, id_trait)
 SELECT DISTINCT
     s.ID, 
@@ -672,28 +663,24 @@ WHERE
         WHERE stt.id_spells = s.ID AND stt.id_trait = t.ID
     );
 
--- Clean up temporary table
 DROP TABLE IF EXISTS #SpellTraits;
 
--- Verification of inserted data
 SELECT * FROM Spells_tem_traits;
 
 -----------------------------------------------Feats_tem_traits-------------------------------------------------------------
 
 SELECT @json_data = BulkColumn 
 FROM OPENROWSET(
-    BULK 'C:\Users\joaog\Documents\GitHub\DB-project\json\Feats_data.json', 
+    BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\Feats_data.json', 
     SINGLE_CLOB
 ) AS datasource;
 
--- Temporary table to hold feat names and their split traits
 IF OBJECT_ID('tempdb..#FeatTraits') IS NOT NULL DROP TABLE #FeatTraits;
 CREATE TABLE #FeatTraits (
     FeatName VARCHAR(128),
     TraitName NVARCHAR(100)
 );
 
--- Populate the temporary table with feat names and their traits
 INSERT INTO #FeatTraits (FeatName, TraitName)
 SELECT 
     [name], 
@@ -706,7 +693,6 @@ FROM
     )
 CROSS APPLY STRING_SPLIT(traits, ',');
 
--- Insert into Feats_tem_traits with a check to prevent duplicates
 INSERT INTO Feats_tem_traits (id_feat, id_trait)
 SELECT DISTINCT
     f.ID, 
@@ -724,26 +710,22 @@ WHERE
         WHERE ftt.id_feat = f.ID AND ftt.id_trait = t.ID
     );
 
--- Clean up temporary table
 DROP TABLE IF EXISTS #FeatTraits;
 
--- Verification of inserted data
 SELECT * FROM Feats_tem_traits;
 -------------------------------------------------Spells_tem_tradition---------------------------------------------------
 SELECT @json_data = BulkColumn 
 FROM OPENROWSET 
 (
-    BULK 'C:\Users\joaog\Documents\GitHub\DB-project\json\Spells_data.json', SINGLE_CLOB
+    BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\Spells_data.json', SINGLE_CLOB
 ) AS datasource;
 
--- Temporary table to hold spell names and their traditions
 IF OBJECT_ID('tempdb..#SpellTraditions') IS NOT NULL DROP TABLE #SpellTraditions;
 CREATE TABLE #SpellTraditions (
     SpellName VARCHAR(28),
     TraditionName NVARCHAR(100)
 );
 
--- Populate the temporary table with spell names and their traditions
 INSERT INTO #SpellTraditions (SpellName, TraditionName)
 SELECT 
     [name], 
@@ -756,7 +738,6 @@ FROM
     )
 CROSS APPLY STRING_SPLIT(traditions, ',');
 
--- Insert into Spells_tem_tradition with a check to prevent duplicates
 INSERT INTO Spells_tem_tradition (id_spells, id_tradition)
 SELECT DISTINCT
     s.ID, 
@@ -774,7 +755,6 @@ WHERE
         WHERE stt.id_spells = s.ID AND stt.id_tradition = t.ID
     );
 
--- Clean up temporary table
 DROP TABLE IF EXISTS #SpellTraditions;
 
 
@@ -786,17 +766,71 @@ insert into Character_tem_language values(1,1),(1,17);
 insert into Character_tem_language values(1,1),(1,382),(1,759);
 
 
--- Verification of inserted data
-SELECT * FROM Spells_tem_tradition;
+INSERT INTO Ability_scores VALUES (12, 14, 13, 15, 11, 10);
+INSERT INTO Ability_scores VALUES (13, 12, 14, 11, 16, 15);
+INSERT INTO Ability_scores VALUES (14, 15, 12, 13, 10, 11);
+INSERT INTO Ability_scores VALUES (10, 13, 11, 12, 15, 14);
+INSERT INTO Ability_scores VALUES (11, 10, 15, 14, 12, 13);
+INSERT INTO Ability_scores VALUES (15, 11, 10, 16, 13, 12);
+INSERT INTO Ability_scores VALUES (10, 12, 14, 11, 13, 15);
+INSERT INTO Ability_scores VALUES (13, 10, 12, 14, 15, 11);
+INSERT INTO Ability_scores VALUES (12, 11, 15, 10, 14, 13);
+INSERT INTO Ability_scores VALUES (11, 14, 10, 13, 12, 15);
+
+INSERT INTO [Character] VALUES ('character2', 18, 1, 28, 16, 14, 10, 2, 0, 0, 0, 0, 0, 0);
+INSERT INTO [Character] VALUES ('character3', 17, 1, 27, 15, 13, 12, 3, 0, 0, 0, 0, 0, 0);
+INSERT INTO [Character] VALUES ('character4', 19, 1, 29, 14, 12, 11, 4, 0, 0, 0, 0, 0, 0);
+INSERT INTO [Character] VALUES ('character5', 16, 1, 25, 14, 13, 10, 5, 0, 0, 0, 0, 0, 0);
+INSERT INTO [Character] VALUES ('character6', 18, 1, 28, 15, 12, 11, 6, 0, 0, 0, 0, 0, 0);
+INSERT INTO [Character] VALUES ('character7', 17, 1, 27, 14, 10, 12, 7, 0, 0, 0, 0, 0, 0);
+INSERT INTO [Character] VALUES ('character8', 19, 1, 29, 13, 14, 10, 8, 0, 0, 0, 0, 0, 0);
+INSERT INTO [Character] VALUES ('character9', 16, 1, 25, 12, 11, 13, 9, 0, 0, 0, 0, 0, 0);
+INSERT INTO [Character] VALUES ('character10', 18, 1, 28, 14, 15, 10, 10, 0, 0, 0, 0, 0, 0);
+INSERT INTO [Character] VALUES ('character11', 17, 1, 27, 15, 12, 11, 11, 0, 0, 0, 0, 0, 0);
+
+INSERT INTO Character_tem_feats VALUES (2, 9), (2, 10), (2, 12);
+INSERT INTO Character_tem_feats VALUES (3, 8), (3, 11), (3, 14);
+INSERT INTO Character_tem_feats VALUES (4, 7), (4, 13), (4, 15);
+INSERT INTO Character_tem_feats VALUES (5, 9), (5, 16), (5, 18);
+INSERT INTO Character_tem_feats VALUES (6, 10), (6, 17), (6, 20);
+INSERT INTO Character_tem_feats VALUES (7, 8), (7, 12), (7, 21);
+INSERT INTO Character_tem_feats VALUES (8, 9), (8, 14), (8, 22);
+INSERT INTO Character_tem_feats VALUES (9, 11), (9, 15), (9, 23);
+INSERT INTO Character_tem_feats VALUES (10, 12), (10, 16), (10, 24);
+INSERT INTO Character_tem_feats VALUES (11, 7), (11, 17), (11, 25);
+
+INSERT INTO Character_tem_equipment VALUES (2, 1470), (2, 2850), (2, 2890);
+INSERT INTO Character_tem_equipment VALUES (3, 1480), (3, 2860), (3, 2900);
+INSERT INTO Character_tem_equipment VALUES (4, 1490), (4, 2870), (4, 2910);
+INSERT INTO Character_tem_equipment VALUES (5, 1500), (5, 2880), (5, 2920);
+INSERT INTO Character_tem_equipment VALUES (6, 1510), (6, 2890), (6, 2930);
+INSERT INTO Character_tem_equipment VALUES (7, 1520), (7, 2900), (7, 2940);
+INSERT INTO Character_tem_equipment VALUES (8, 1530), (8, 2910), (8, 2950);
+INSERT INTO Character_tem_equipment VALUES (9, 1540), (9, 2920), (9, 2960);
+INSERT INTO Character_tem_equipment VALUES (10, 1550), (10, 2930), (10, 2970);
+INSERT INTO Character_tem_equipment VALUES (11, 1560), (11, 2940), (11, 2980);
+
+INSERT INTO Character_tem_language VALUES (2, 2), (2, 3);
+INSERT INTO Character_tem_language VALUES (3, 4), (3, 5);
+INSERT INTO Character_tem_language VALUES (4, 6), (4, 7);
+INSERT INTO Character_tem_language VALUES (5, 8), (5, 9);
+INSERT INTO Character_tem_language VALUES (6, 10), (6, 11);
+INSERT INTO Character_tem_language VALUES (7, 12), (7, 13);
+INSERT INTO Character_tem_language VALUES (8, 14), (8, 15);
+INSERT INTO Character_tem_language VALUES (9, 16), (9, 17);
+INSERT INTO Character_tem_language VALUES (10, 1), (10, 3);
+INSERT INTO Character_tem_language VALUES (11, 5), (11, 7);
+INSERT INTO Character_tem_spells VALUES (2, 1200), (2, 1250), (2, 1280);
+INSERT INTO Character_tem_spells VALUES (3, 1150), (3, 1190), (3, 1230);
+INSERT INTO Character_tem_spells VALUES (4, 1130), (4, 1170), (4, 1210);
+INSERT INTO Character_tem_spells VALUES (5, 1100), (5, 1140), (5, 1180);
+INSERT INTO Character_tem_spells VALUES (6, 1050), (6, 1090), (6, 1120);
+INSERT INTO Character_tem_spells VALUES (7, 1010), (7, 1060), (7, 1080);
+INSERT INTO Character_tem_spells VALUES (8, 1000), (8, 1030), (8, 1070);
+INSERT INTO Character_tem_spells VALUES (9, 900), (9, 950), (9, 980);
+INSERT INTO Character_tem_spells VALUES (10, 850), (10, 890), (10, 920);
+INSERT INTO Character_tem_spells VALUES (11, 800), (11, 830), (11, 870);
 
 
-select * from Users
-
-select * from User_tem_character
-select * from [Character]
-select * from Character_tem_feats
-select * from Character_tem_equipment
-select * from Character_tem_language
-select * from Character_tem_spells
 
 
