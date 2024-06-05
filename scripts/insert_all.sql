@@ -15,7 +15,7 @@ DECLARE @json_data VARCHAR(MAX);
 SELECT @json_data = BulkColumn 
 FROM OPENROWSET 
 (
-    BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\Languages.json', SINGLE_CLOB
+    BULK 'C:\Users\joaog\Documents\GitHub\DB-project\json\Languages.json', SINGLE_CLOB
 ) AS datasource;
 
 INSERT INTO [Language](Designation) 
@@ -43,7 +43,7 @@ go
 
 Declare @JSON varchar(max)
 SELECT @JSON=BulkColumn
-FROM OPENROWSET (BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\Ancestries_data.json', SINGLE_CLOB) import
+FROM OPENROWSET (BULK 'C:\Users\joaog\Documents\GitHub\DB-project\json\Ancestries_data.json', SINGLE_CLOB) import
 If (ISJSON(@JSON)=1)
 Print 'It is a valid JSON'
 ELSE
@@ -90,7 +90,7 @@ CREATE TABLE #AncestryTemp (
 
 Declare @JSON varchar(max)
 SELECT @JSON=BulkColumn
-FROM OPENROWSET (BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\Ancestries_data.json', SINGLE_CLOB) import
+FROM OPENROWSET (BULK 'C:\Users\joaog\Documents\GitHub\DB-project\json\Ancestries_data.json', SINGLE_CLOB) import
 If (ISJSON(@JSON)=1)
 Print 'It is a valid JSON'
 ELSE
@@ -110,16 +110,13 @@ WITH (
 ) AS Ancestries;
 
 
-select * from #AncestryTemp
-
-
 INSERT INTO Language_tem_ancestry (id_language, id_ancestry)
 SELECT l.ID AS id_language, a.ID AS id_ancestry
 FROM #AncestryTemp a
 JOIN [Language] l ON CHARINDEX(l.Designation, a.[language]) > 0
 JOIN Ancestry an ON a.[name] = an.[name];
 select * from  Language_tem_ancestry order by id_ancestry
-
+DROP TABLE #AncestryTemp
 go
 ---------------------------------------------feats--------------------------------------------------
 
@@ -130,7 +127,7 @@ DECLARE @json_data VARCHAR(MAX);
 SELECT @json_data = BulkColumn 
 FROM OPENROWSET 
 (
-    BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\Feats_data.json', SINGLE_CLOB
+    BULK 'C:\Users\joaog\Documents\GitHub\DB-project\json\Feats_data.json', SINGLE_CLOB
 ) AS datasource;
 
 INSERT INTO Feats (rarity, prerequisite, summary, [name], [level]) 
@@ -158,7 +155,7 @@ DECLARE @json_data VARCHAR(MAX);
 SELECT @json_data = BulkColumn 
 FROM OPENROWSET 
 (
-    BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\Spells_data.json', SINGLE_CLOB
+    BULK 'C:\Users\joaog\Documents\GitHub\DB-project\json\Spells_data.json', SINGLE_CLOB
 ) AS datasource;
 
 INSERT INTO Spells (spell_type, [name], actions, defense, [target], rarity, [trigger], area, [rank], heighten, duration, [range]) 
@@ -205,7 +202,7 @@ DECLARE @TraitsList NVARCHAR(MAX);
 SELECT @TraitsList = BulkColumn 
 FROM OPENROWSET 
 (
-    BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\data\traits.txt',
+    BULK 'C:\Users\joaog\Documents\GitHub\DB-project\data\traits.txt',
     SINGLE_CLOB  
 ) AS j;
 
@@ -226,7 +223,7 @@ go
 
 Declare @JSON varchar(max)
 SELECT @JSON=BulkColumn
-FROM OPENROWSET (BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\Backgrounds_data.json', SINGLE_CLOB) import
+FROM OPENROWSET (BULK 'C:\Users\joaog\Documents\GitHub\DB-project\json\Backgrounds_data.json', SINGLE_CLOB) import
 If (ISJSON(@JSON)=1)
 Print 'It is a valid JSON'
 ELSE
@@ -258,7 +255,7 @@ DECLARE @JSON NVARCHAR(MAX)
 
 
 SELECT @JSON = BulkColumn
-FROM OPENROWSET (BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\Backgrounds_data.json', SINGLE_CLOB) AS jsonImport
+FROM OPENROWSET (BULK 'C:\Users\joaog\Documents\GitHub\DB-project\json\Backgrounds_data.json', SINGLE_CLOB) AS jsonImport
 
 IF (ISJSON(@JSON) = 1)
     PRINT 'É um JSON válido'
@@ -308,7 +305,7 @@ DECLARE @json_data VARCHAR(MAX);
 SELECT @json_data = BulkColumn 
 FROM OPENROWSET 
 (
-    BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\skills_data.json', SINGLE_CLOB
+    BULK 'C:\Users\joaog\Documents\GitHub\DB-project\json\skills_data.json', SINGLE_CLOB
 ) AS datasource;
 
 INSERT INTO Skills(designation,details) 
@@ -332,7 +329,7 @@ go
 DECLARE @JsonData NVARCHAR(MAX)
 
 SELECT @JsonData = BulkColumn
-FROM OPENROWSET(BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\Spells_progression_data.json', SINGLE_CLOB) AS j
+FROM OPENROWSET(BULK 'C:\Users\joaog\Documents\GitHub\DB-project\json\Spells_progression_data.json', SINGLE_CLOB) AS j
 
 INSERT INTO Spell_progression ([level], cantrips, n1, n2, n3, n4, n5, n6, n7, n8, n9, n10)
 SELECT 
@@ -376,7 +373,7 @@ SET @classes_spell_prog = 'Bard,Cleric,Druid,Magus,Oracle,Sorcerer,Summoner,Witc
 SELECT @json_data = BulkColumn 
 FROM OPENROWSET 
 (
-    BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\Classes_data.json', SINGLE_CLOB
+    BULK 'C:\Users\joaog\Documents\GitHub\DB-project\json\Classes_data.json', SINGLE_CLOB
 ) AS datasource;
 
 INSERT INTO Class([name], HP, prof_attack, prof_defense, ability, spell_progression_id) 
@@ -417,7 +414,7 @@ DECLARE @class_id INT;
 SET @class_id = 1;
 
 SELECT @JsonData = BulkColumn
-FROM OPENROWSET(BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\Class_features.json', SINGLE_CLOB) AS j;
+FROM OPENROWSET(BULK 'C:\Users\joaog\Documents\GitHub\DB-project\json\Class_features.json', SINGLE_CLOB) AS j;
 
 WITH JsonData AS (
     SELECT 
@@ -534,7 +531,7 @@ DECLARE @json_data NVARCHAR(MAX);
 SELECT @json_data = BulkColumn 
 FROM OPENROWSET 
 (
-    BULK 'C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\json\Equipment_data.json', SINGLE_CLOB
+    BULK 'C:\Users\joaog\Documents\GitHub\DB-project\json\Equipment_data.json', SINGLE_CLOB
 ) AS datasource;
 
 
