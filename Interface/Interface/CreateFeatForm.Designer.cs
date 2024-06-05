@@ -36,10 +36,10 @@
             Create = new Button();
             SuspendLayout();
             // 
-            // Name
+            // name
             // 
             name.Location = new Point(78, 46);
-            name.Name = "Name";
+            name.Name = "name";
             name.Size = new Size(100, 23);
             name.TabIndex = 0;
             name.Text = "Name";
@@ -98,6 +98,7 @@
             Controls.Add(Level);
             Controls.Add(name);
             Name = "CreateFeatForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "CreateFeatForm";
             Load += CreateFeatForm_Load;
             ResumeLayout(false);

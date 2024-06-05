@@ -68,6 +68,7 @@
             Controls.Add(button2);
             Controls.Add(button1);
             Name = "LanguageSelecttionForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "LanguageSelecttionForm";
             ResumeLayout(false);
         }

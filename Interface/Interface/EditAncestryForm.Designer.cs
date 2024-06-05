@@ -112,6 +112,7 @@
             Controls.Add(textBoxAbilityFlaw);
             Controls.Add(textBoxName);
             Name = "EditAncestryForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "EditAncestryForm";
             Load += EditAncestryForm_Load;
             ResumeLayout(false);

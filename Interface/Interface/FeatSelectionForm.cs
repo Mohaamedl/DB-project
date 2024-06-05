@@ -18,10 +18,15 @@ namespace Interface
         private List<Feat> Feats { get; set; }
         public List<Feat> SelectedFeats { get; set; }
 
-        public FeatSelectionForm(List<Feat> feats)
+        public FeatSelectionForm(List<Feat> feats,User user)
         {
 
             InitializeComponent();
+            if (user.Role == "admin")
+            {
+                Create.Enabled = true;
+
+            }
             Feats = feats ?? new List<Feat>();
             SelectedFeats = new List<Feat>();
 

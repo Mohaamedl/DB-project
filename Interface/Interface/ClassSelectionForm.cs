@@ -12,11 +12,17 @@ namespace Interface
 {
     public partial class ClassSelectionForm : Form
     {
-        public ClassSelectionForm(List<Class> classes)
+        public ClassSelectionForm(List<Class> classes, User user)
         {
+            
             InitializeComponent();
             Classes = classes ?? new List<Class>();
             SelectedClass = new List<Class>();
+            if(user.Role == "admin")
+            {
+                button1.Enabled = true; button2.Enabled = true;
+
+            }
         }
 
         private void ClasseSelectionForm_Load(object sender, EventArgs e)
@@ -36,7 +42,7 @@ namespace Interface
             listViewClasses.Columns.Add("Proficiency Attack", 450);
             listViewClasses.Columns.Add("Proficiency Defense", 450);
             listViewClasses.Columns.Add("Ability", 50);
-            
+
 
 
 
@@ -51,7 +57,7 @@ namespace Interface
                 item.SubItems.Add(cl.prof_attack);
                 item.SubItems.Add(cl.prof_defense);
                 item.SubItems.Add(cl.ability);
-                
+
 
                 listViewClasses.Items.Add(item);
             }
@@ -116,6 +122,11 @@ namespace Interface
             }
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

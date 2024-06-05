@@ -15,10 +15,15 @@ namespace Interface
         private List<Trait> Traits { get; set; }
         public List<Trait> SelectedTraits { get; set; }
 
-        public TraitsSelectionForm(List<Trait> traits)
+        public TraitsSelectionForm(List<Trait> traits,User user)
         {
 
             InitializeComponent();
+            if (user.Role == "admin")
+            {
+                button1.Enabled = true; button2.Enabled = true;
+
+            }
             Traits = traits ?? new List<Trait>();
             SelectedTraits = new List<Trait>();
 

@@ -80,6 +80,7 @@
             // 
             // Delete
             // 
+            Delete.Enabled = false;
             Delete.Location = new Point(300, 405);
             Delete.Name = "Delete";
             Delete.Size = new Size(75, 23);
@@ -90,6 +91,7 @@
             // 
             // button1
             // 
+            button1.Enabled = false;
             button1.Location = new Point(176, 405);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
@@ -138,6 +140,7 @@
             // 
             // Create
             // 
+            Create.Enabled = false;
             Create.Location = new Point(424, 405);
             Create.Name = "Create";
             Create.Size = new Size(75, 23);
@@ -223,6 +226,7 @@
             Controls.Add(loadAll);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "SpellSelectionForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "SpellSelectionForm";
             Load += SpellSelectionForm_Load;
             ((System.ComponentModel.ISupportInitialize)numericUpDownLimit).EndInit();

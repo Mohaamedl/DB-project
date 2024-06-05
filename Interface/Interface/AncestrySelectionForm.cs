@@ -19,10 +19,15 @@ namespace Interface
         private List<Ancestry> Ancestries { get; set; }
         public List<Ancestry> SelectedAncestries { get; set; }
 
-        public AncestrySelectionForm(List<Ancestry> ancestries)
+        public AncestrySelectionForm(List<Ancestry> ancestries,User user)
         {
-
+            
             InitializeComponent();
+            if (user.Role == "admin")
+            {
+                Edit.Enabled = true;
+                Delete.Enabled = true;  
+            }
             Ancestries = ancestries ?? new List<Ancestry>();
             SelectedAncestries = new List<Ancestry>();
             listViewAncestries.LabelEdit = true;

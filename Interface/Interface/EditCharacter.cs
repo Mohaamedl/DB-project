@@ -384,7 +384,7 @@ namespace Interface
             };
 
             NewCharacter = DatabaseHelper.UpdateCharacter(nc);
-            MessageBox.Show(NewCharacter.ID.ToString());
+            
             DatabaseHelper.UpdateCharacterEquipment(NewCharacter.ID, selectedEquipments);
             DatabaseHelper.UpdateCharacterFeats(NewCharacter.ID, selectedFeats);
             DatabaseHelper.UpdateCharacterSpells(NewCharacter.ID, selectedSpells);
@@ -445,7 +445,7 @@ namespace Interface
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using (var featSelectionForm = new FeatSelectionForm(availableFeats))
+            using (var featSelectionForm = new FeatSelectionForm(availableFeats,actual_user))
             {
                 if (featSelectionForm.ShowDialog() == DialogResult.OK)
                 {
@@ -469,7 +469,7 @@ namespace Interface
 
         private void button4_Click(object sender, EventArgs e)
         {
-            using (var spellSelectionForm = new SpellSelectionForm(availableSpells))
+            using (var spellSelectionForm = new SpellSelectionForm(availableSpells, actual_user))
             {
                 if (spellSelectionForm.ShowDialog() == DialogResult.OK)
                 {
@@ -494,7 +494,7 @@ namespace Interface
 
         private void button8_Click(object sender, EventArgs e)
         {
-            using (var traitSelectionForm = new TraitsSelectionForm(availableTraits))
+            using (var traitSelectionForm = new TraitsSelectionForm(availableTraits,actual_user))
             {
                 if (traitSelectionForm.ShowDialog() == DialogResult.OK)
                 {
@@ -517,7 +517,7 @@ namespace Interface
 
         private void button7_Click(object sender, EventArgs e)
         {
-            using (var ancestrySelectionForm = new AncestrySelectionForm(availableAncestries))
+            using (var ancestrySelectionForm = new AncestrySelectionForm(availableAncestries,actual_user))
             {
                 if (ancestrySelectionForm.ShowDialog() == DialogResult.OK)
                 {
@@ -628,7 +628,7 @@ namespace Interface
 
         private void button3_Click(object sender, EventArgs e)
         {
-            using (var equipmentsSelectionForm = new EquipmentSelectionForm(availableEquipments))
+            using (var equipmentsSelectionForm = new EquipmentSelectionForm(availableEquipments,actual_user))
             {
                 if (equipmentsSelectionForm.ShowDialog() == DialogResult.OK)
                 {
@@ -659,7 +659,7 @@ namespace Interface
 
         private void button6_Click(object sender, EventArgs e)
         {
-            using (var classSelectionForm = new ClassSelectionForm(availableClasses))
+            using (var classSelectionForm = new ClassSelectionForm(availableClasses,actual_user))
             {
                 if (classSelectionForm.ShowDialog() == DialogResult.OK)
                 {

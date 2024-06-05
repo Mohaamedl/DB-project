@@ -73,7 +73,8 @@
             // 
             // button2
             // 
-            button2.Location = new Point(406, 404);
+            button2.Enabled = false;
+            button2.Location = new Point(300, 404);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 4;
@@ -126,6 +127,7 @@
             // 
             // Create
             // 
+            Create.Enabled = false;
             Create.Location = new Point(186, 404);
             Create.Name = "Create";
             Create.Size = new Size(75, 23);
@@ -150,6 +152,7 @@
             Controls.Add(Select);
             Controls.Add(Load_all);
             Name = "EquipmentSelectionForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "EquipmentSelectionForm";
             Load += EquipmentSelectionForm_Load;
             ResumeLayout(false);

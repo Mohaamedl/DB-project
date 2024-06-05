@@ -15,13 +15,18 @@ namespace Interface
         private List<Spell> Spells { get; set; }
         public List<Spell> SelectedSpells { get; set; }
         private bool sortOrderAscending = true;
-        public SpellSelectionForm(List<Spell> spells)
+        public SpellSelectionForm(List<Spell> spells, User user)
         {
-
+            
             InitializeComponent();
             Spells = spells ?? new List<Spell>();
             SelectedSpells = new List<Spell>();
-
+            if (user.Role == "admin")
+            {
+                button1.Enabled = true;
+                Create.Enabled = true;  
+                Delete.Enabled = true;
+            }
 
 
             order.Items.AddRange(new string[] { "Name", "Rank", "Actions", "Rarity", "Range" });

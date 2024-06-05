@@ -72,6 +72,7 @@
             // 
             // button2
             // 
+            button2.Enabled = false;
             button2.Location = new Point(268, 480);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
@@ -81,6 +82,7 @@
             // 
             // button1
             // 
+            button1.Enabled = false;
             button1.Location = new Point(144, 480);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
@@ -139,6 +141,7 @@
             Controls.Add(Select);
             Controls.Add(loadAll);
             Name = "TraitsSelectionForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "TraitsSelectionForm";
             Load += TraitsSelectionForm_Load;
             ResumeLayout(false);

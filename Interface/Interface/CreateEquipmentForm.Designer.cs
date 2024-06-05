@@ -138,6 +138,7 @@
             Controls.Add(usage);
             Controls.Add(name);
             Name = "CreateEquipmentForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "CreateEquipmentForm";
             ResumeLayout(false);
             PerformLayout();

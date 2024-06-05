@@ -129,6 +129,7 @@
             Controls.Add(Select);
             Controls.Add(loadAll);
             Name = "BackgroundSelectionForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "BackgroundSelectionForm";
             Load += BackgroundSelectionForm_Load;
             ResumeLayout(false);

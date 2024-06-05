@@ -31,7 +31,7 @@ namespace Interface
 
         private void DisplayBackgrounds(List<Background> background)
         {
-            listViewBackgrounds.Columns.Add("Name", 50);
+            listViewBackgrounds.Columns.Add("Name", 150);
             listViewBackgrounds.Columns.Add("Ability", 70);
             listViewBackgrounds.Columns.Add("Skill", 70);
             listViewBackgrounds.Columns.Add("Feat", 70);

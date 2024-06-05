@@ -746,6 +746,7 @@
             Controls.Add(textBoxName);
             FormBorderStyle = FormBorderStyle.SizableToolWindow;
             Name = "CreateCharacter";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Create Character";
             Load += CreateCharacter_Load;
             panel1.ResumeLayout(false);

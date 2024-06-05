@@ -64,15 +64,18 @@
             // 
             // button2
             // 
-            button2.Location = new Point(204, 459);
+            button2.Enabled = false;
+            button2.Location = new Point(200, 463);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 6;
             button2.Text = "Delete";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button1
             // 
+            button1.Enabled = false;
             button1.Location = new Point(63, 463);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
@@ -139,6 +142,7 @@
             Controls.Add(listViewClasses);
             Controls.Add(Select);
             Name = "ClassSelectionForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Class Selection";
             Load += ClassSelectionForm_Load;
             ResumeLayout(false);

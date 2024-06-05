@@ -85,7 +85,6 @@ namespace Interface
                 // Ajustar automaticamente o tamanho das colunas ao conteúdo
                 AdjustListViewColumns();
 
-
             }
         }
         private void AddCharacterDetailsInRows(List<string> feats, List<string> spells, List<string> equipments)
@@ -150,12 +149,6 @@ namespace Interface
 
         private void buttonDeleteCharacter_Click(object sender, EventArgs e)
         {
-            //if (selectedCharacter != null)
-            //{
-            //    characters.Remove(selectedCharacter);
-            //    listBoxCharacters.DataSource = null;
-            //    listBoxCharacters.DataSource = characters;
-            //}
             if (selectedCharacter != null)
             {
                 // Confirmação de exclusão
@@ -168,14 +161,48 @@ namespace Interface
                     // Remove da lista
                     characters.Remove(selectedCharacter);
 
-                    // Atualiza a listBox
-                    UpdateCharacterList();
+                    // Atualiza a listBox e exibe o próximo personagem ou limpa os campos
+                    LoadCharacters();
+                    if (characters.Count > 0)
+                    {
+                        listBoxCharacters.SelectedIndex = 0;
+                    }
+                    else
+                    {
+                        ClearCharacterDetails();
+                    }
                 }
             }
             else
             {
                 MessageBox.Show("Please select a character to delete.");
             }
+        }
+        private void ClearCharacterDetails()
+        {
+            // Limpar informações do personagem
+            labelCharacterName.Text = "Character Name:";
+            labelCharacterHP.Text = "HP:";
+            labelCharacterLevel.Text = "Level:";
+            labelClass.Text = "Class:";
+            labelAncestry.Text = "Ancestry:";
+            labelBackground.Text = "Background:";
+            labelSpeed.Text = "Speed:";
+            labelStrength.Text = "Strength:";
+            labelWisdom.Text = "Wisdom:";
+            labelIntelligence.Text = "Intelligence:";
+            labelCharisma.Text = "Charisma:";
+            labelDexterity.Text = "Dexterity:";
+            labelConstitution.Text = "Constitution:";
+            labelStrengthModifier.Text = "Strength Modifier:";
+            labelWisdomModifier.Text = "Wisdom Modifier:";
+            labelIntelligenceModifier.Text = "Intelligence Modifier:";
+            labelCharismaModifier.Text = "Charisma Modifier:";
+            labelDexterityModifier.Text = "Dexterity Modifier:";
+            labelConstitutionModifier.Text = "Constitution Modifier:";
+            labelLanguages.Text = "Languages:";
+
+            listViewCharacterDetails.Items.Clear();
         }
         private void UpdateCharacterList()
         {

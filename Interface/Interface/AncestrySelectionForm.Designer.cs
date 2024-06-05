@@ -76,6 +76,7 @@
             // 
             // Delete
             // 
+            Delete.Enabled = false;
             Delete.Location = new Point(402, 396);
             Delete.Name = "Delete";
             Delete.Size = new Size(75, 23);
@@ -86,6 +87,7 @@
             // 
             // Edit
             // 
+            Edit.Enabled = false;
             Edit.Location = new Point(256, 396);
             Edit.Name = "Edit";
             Edit.Size = new Size(75, 23);
@@ -155,6 +157,7 @@
             Controls.Add(Select);
             Controls.Add(LoadAll);
             Name = "AncestrySelectionForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "AncestrySelectionForm";
             Load += AncestrySelectionForm_Load;
             ResumeLayout(false);

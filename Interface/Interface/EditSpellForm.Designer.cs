@@ -93,6 +93,7 @@
             Controls.Add(textBoxRank);
             Controls.Add(textBoxName);
             Name = "EditSpellForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "EditSpellForm";
             ResumeLayout(false);
             PerformLayout();

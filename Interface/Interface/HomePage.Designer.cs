@@ -97,6 +97,12 @@
             listBoxCharacters.Size = new Size(503, 289);
             listBoxCharacters.TabIndex = 1;
             listBoxCharacters.SelectedIndexChanged += listBoxCharacters_SelectedIndexChanged;
+            listViewCharacterDetails.View = View.Details;
+            listViewCharacterDetails.Columns.Clear();
+            listViewCharacterDetails.Columns.Add("Feats", 150); // Adicionar coluna para Feats
+            listViewCharacterDetails.Columns.Add("Spells", 150); // Adicionar coluna para Spells
+            listViewCharacterDetails.Columns.Add("Equipments", 150); // Adicionar coluna para Equipments
+            listViewCharacterDetails.FullRowSelect = true;
             // 
             // labelCharacterName
             // 

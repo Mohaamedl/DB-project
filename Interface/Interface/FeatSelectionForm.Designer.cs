@@ -68,6 +68,7 @@
             // 
             // Create
             // 
+            Create.Enabled = false;
             Create.Location = new Point(156, 351);
             Create.Name = "Create";
             Create.Size = new Size(75, 23);
@@ -185,6 +186,7 @@
             Controls.Add(btnSelect);
             Controls.Add(listViewFeats);
             Name = "FeatSelectionForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Select Feats";
             Load += FeatSelectionForm_Load;
             ((System.ComponentModel.ISupportInitialize)numericUpDownLimit).EndInit();

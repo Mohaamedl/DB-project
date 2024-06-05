@@ -99,6 +99,7 @@
             Controls.Add(boxRank);
             Controls.Add(textBoxName);
             Name = "CreateSpellForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "CreateSpellForm";
             Load += CreateSpellForm_Load;
             ResumeLayout(false);

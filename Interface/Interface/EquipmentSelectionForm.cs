@@ -15,13 +15,18 @@ namespace Interface
         private List<Equipment> Equipments { get; set; }
         public List<Equipment> SelectedEquipments { get; set; }
 
-        public EquipmentSelectionForm(List<Equipment> equipments)
+        public EquipmentSelectionForm(List<Equipment> equipments,User user)
         {
+            
 
             InitializeComponent();
             Equipments = equipments ?? new List<Equipment>();
             SelectedEquipments = new List<Equipment>();
+            if (user.Role == "admin")
+            {
+                Create.Enabled = true; button2.Enabled = true;
 
+            }
 
 
         }
