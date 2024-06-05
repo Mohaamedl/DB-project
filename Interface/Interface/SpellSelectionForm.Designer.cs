@@ -35,9 +35,16 @@
             button1 = new Button();
             textBoxSearch = new TextBox();
             serach = new Label();
-            filter = new Button();
             orderby = new Label();
             order = new ComboBox();
+            Create = new Button();
+            sortOrder = new Button();
+            comboBoxRankFilter = new ComboBox();
+            comboBoxRarityFilter = new ComboBox();
+            label1 = new Label();
+            label2 = new Label();
+            numericUpDownLimit = new NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownLimit).BeginInit();
             SuspendLayout();
             // 
             // loadAll
@@ -64,9 +71,9 @@
             // 
             listViewSpells.CheckBoxes = true;
             listViewSpells.GridLines = true;
-            listViewSpells.Location = new Point(24, 37);
+            listViewSpells.Location = new Point(24, 69);
             listViewSpells.Name = "listViewSpells";
-            listViewSpells.Size = new Size(722, 340);
+            listViewSpells.Size = new Size(722, 308);
             listViewSpells.TabIndex = 2;
             listViewSpells.UseCompatibleStateImageBehavior = false;
             listViewSpells.View = View.Details;
@@ -97,6 +104,7 @@
             textBoxSearch.Name = "textBoxSearch";
             textBoxSearch.Size = new Size(146, 23);
             textBoxSearch.TabIndex = 35;
+            textBoxSearch.TextChanged += textBoxSearch_TextChanged;
             // 
             // serach
             // 
@@ -108,20 +116,11 @@
             serach.TabIndex = 34;
             serach.Text = "Serach";
             // 
-            // filter
-            // 
-            filter.Location = new Point(25, 7);
-            filter.Name = "filter";
-            filter.Size = new Size(75, 23);
-            filter.TabIndex = 33;
-            filter.Text = "Filter";
-            filter.UseVisualStyleBackColor = true;
-            // 
             // orderby
             // 
             orderby.AutoSize = true;
             orderby.Font = new Font("Segoe UI", 12F);
-            orderby.Location = new Point(106, 9);
+            orderby.Location = new Point(24, 9);
             orderby.Name = "orderby";
             orderby.Size = new Size(72, 21);
             orderby.TabIndex = 32;
@@ -130,19 +129,90 @@
             // order
             // 
             order.FormattingEnabled = true;
-            order.Location = new Point(184, 7);
+            order.Location = new Point(102, 11);
             order.Name = "order";
             order.Size = new Size(121, 23);
             order.TabIndex = 31;
+            order.SelectedIndexChanged += order_SelectedIndexChanged;
+            // 
+            // Create
+            // 
+            Create.Location = new Point(424, 405);
+            Create.Name = "Create";
+            Create.Size = new Size(75, 23);
+            Create.TabIndex = 36;
+            Create.Text = "Create";
+            Create.UseVisualStyleBackColor = true;
+            Create.Click += Create_Click;
+            // 
+            // sortOrder
+            // 
+            sortOrder.Location = new Point(229, 12);
+            sortOrder.Name = "sortOrder";
+            sortOrder.Size = new Size(75, 23);
+            sortOrder.TabIndex = 37;
+            sortOrder.Text = "Order";
+            sortOrder.UseVisualStyleBackColor = true;
+            sortOrder.Click += sortOrder_Click;
+            // 
+            // comboBoxRankFilter
+            // 
+            comboBoxRankFilter.FormattingEnabled = true;
+            comboBoxRankFilter.Location = new Point(102, 40);
+            comboBoxRankFilter.Name = "comboBoxRankFilter";
+            comboBoxRankFilter.Size = new Size(121, 23);
+            comboBoxRankFilter.TabIndex = 38;
+            comboBoxRankFilter.SelectedIndexChanged += comboBoxRankFilter_SelectedIndexChanged;
+            // 
+            // comboBoxRarityFilter
+            // 
+            comboBoxRarityFilter.FormattingEnabled = true;
+            comboBoxRarityFilter.Location = new Point(354, 40);
+            comboBoxRarityFilter.Name = "comboBoxRarityFilter";
+            comboBoxRarityFilter.Size = new Size(121, 23);
+            comboBoxRarityFilter.TabIndex = 39;
+            comboBoxRarityFilter.SelectedIndexChanged += comboBoxRarityFilter_SelectedIndexChanged;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(36, 40);
+            label1.Name = "label1";
+            label1.Size = new Size(33, 15);
+            label1.TabIndex = 40;
+            label1.Text = "Rank";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(288, 47);
+            label2.Name = "label2";
+            label2.Size = new Size(37, 15);
+            label2.TabIndex = 41;
+            label2.Text = "Rarity";
+            // 
+            // numericUpDownLimit
+            // 
+            numericUpDownLimit.Location = new Point(570, 41);
+            numericUpDownLimit.Name = "numericUpDownLimit";
+            numericUpDownLimit.Size = new Size(120, 23);
+            numericUpDownLimit.TabIndex = 42;
+            numericUpDownLimit.ValueChanged += numericUpDownLimit_ValueChanged;
             // 
             // SpellSelectionForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(numericUpDownLimit);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(comboBoxRarityFilter);
+            Controls.Add(comboBoxRankFilter);
+            Controls.Add(sortOrder);
+            Controls.Add(Create);
             Controls.Add(textBoxSearch);
             Controls.Add(serach);
-            Controls.Add(filter);
             Controls.Add(orderby);
             Controls.Add(order);
             Controls.Add(Delete);
@@ -154,6 +224,7 @@
             Name = "SpellSelectionForm";
             Text = "SpellSelectionForm";
             Load += SpellSelectionForm_Load;
+            ((System.ComponentModel.ISupportInitialize)numericUpDownLimit).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -167,8 +238,14 @@
         private Button button1;
         private TextBox textBoxSearch;
         private Label serach;
-        private Button filter;
         private Label orderby;
         private ComboBox order;
+        private Button Create;
+        private Button sortOrder;
+        private ComboBox comboBoxRankFilter;
+        private ComboBox comboBoxRarityFilter;
+        private Label label1;
+        private Label label2;
+        private NumericUpDown numericUpDownLimit;
     }
 }

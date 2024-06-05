@@ -31,13 +31,13 @@
             Load_all = new Button();
             Select = new Button();
             listViewEquipments = new ListView();
-            button1 = new Button();
             button2 = new Button();
             textBoxSearch = new TextBox();
             serach = new Label();
             filter = new Button();
             orderby = new Label();
             order = new ComboBox();
+            Create = new Button();
             SuspendLayout();
             // 
             // Load_all
@@ -70,15 +70,6 @@
             listViewEquipments.TabIndex = 2;
             listViewEquipments.UseCompatibleStateImageBehavior = false;
             listViewEquipments.View = View.Details;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(265, 408);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 3;
-            button1.Text = "Edit";
-            button1.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
@@ -133,18 +124,28 @@
             order.Size = new Size(121, 23);
             order.TabIndex = 31;
             // 
+            // Create
+            // 
+            Create.Location = new Point(186, 404);
+            Create.Name = "Create";
+            Create.Size = new Size(75, 23);
+            Create.TabIndex = 36;
+            Create.Text = "Create";
+            Create.UseVisualStyleBackColor = true;
+            Create.Click += Create_Click;
+            // 
             // EquipmentSelectionForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(Create);
             Controls.Add(textBoxSearch);
             Controls.Add(serach);
             Controls.Add(filter);
             Controls.Add(orderby);
             Controls.Add(order);
             Controls.Add(button2);
-            Controls.Add(button1);
             Controls.Add(listViewEquipments);
             Controls.Add(Select);
             Controls.Add(Load_all);
@@ -160,12 +161,12 @@
         private Button Load_all;
         private new Button Select;
         private ListView listViewEquipments;
-        private Button button1;
         private Button button2;
         private TextBox textBoxSearch;
         private Label serach;
         private Button filter;
         private Label orderby;
         private ComboBox order;
+        private Button Create;
     }
 }

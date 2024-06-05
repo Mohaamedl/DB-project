@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -28,9 +29,10 @@ namespace Interface
         private Class selectedClass;
         private Background selectedBackground;
         private Ancestry selectedAncestry;
-        
-        public CreateCharacter()
+        private User actual_user {  get; set; }
+        public CreateCharacter(User user)
         {
+            actual_user = user;
             InitializeComponent();
             LoadInitialFeats();
             LoadInitialSpells();
@@ -195,8 +197,15 @@ namespace Interface
                 Con_mod = Int16.Parse(const_mod.Text),
                 Languages = DatabaseHelper.GetLanguagesByAncestry(ancestry_sel.Text),
 
+
             };
 
+            NewCharacter.ID = DatabaseHelper.CreateCharacter(NewCharacter);
+            DatabaseHelper.AddCharacterEquipment(NewCharacter.ID, selectedEquipments);
+            DatabaseHelper.AddCharacterFeats(NewCharacter.ID, selectedFeats);
+            DatabaseHelper.AddCharacterSpells(NewCharacter.ID, selectedSpells);
+            DatabaseHelper.AddCharacterLanguages(NewCharacter.ID,NewCharacter.Languages);
+            DatabaseHelper.AddUserCharacter(actual_user.ID, NewCharacter.ID);
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

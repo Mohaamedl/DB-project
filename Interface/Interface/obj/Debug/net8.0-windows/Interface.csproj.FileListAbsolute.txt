@@ -41,9 +41,7 @@ C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\o
 C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.ClassSelectionForm.resources
 C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.RegistrationForm.resources
 C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.EditAncestryForm.resources
-C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.EditBackgroundForm.resources
-C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.EditClassForm.resources
-C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.EditEquipmentForm.resources
-C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.EditFeatForm.resources
 C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.EditSpellForm.resources
-C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.EditTraitForm.resources
+C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.CreateSpellForm.resources
+C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.CreateFeatForm.resources
+C:\Users\moham\Desktop\Uni\3º ano\2º semestre\DB-project\Interface\Interface\obj\Debug\net8.0-windows\Interface.CreateEquipmentForm.resources

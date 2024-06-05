@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Configuration;
+using static System.Windows.Forms.Design.AxImporter;
 
 namespace Interface
 {
@@ -49,18 +50,37 @@ namespace Interface
             return GetFeatsFromDatabase(int.MaxValue);
         }
 
-        public static List<Spell> GetSpellsFromDatabase(int limit = 20, string columnName = null, string searchString = null)
+        public static List<Spell> GetSpellsFromDatabase(int limit = 20, string columnName = null, string searchString = null, string rankFilter = null, string rarityFilter = null, string sortBy = "name", bool sortOrderAscending = true)
         {
             var spells = new List<Spell>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = $"SELECT TOP {limit} ID,name, rarity, actions, rank, range FROM Spells ORDER BY name";
+                string query = $"SELECT TOP {limit} ID, name, rarity, actions, rank, range FROM Spells";
+
+                var conditions = new List<string>();
                 if (!string.IsNullOrEmpty(columnName) && !string.IsNullOrEmpty(searchString))
                 {
-                    query += $" WHERE {columnName} LIKE '%{searchString}%'";
+                    conditions.Add($"{columnName} LIKE '%{searchString}%'");
                 }
-                SqlCommand command = new(query, connection);
+                if (!string.IsNullOrEmpty(rankFilter))
+                {
+                    conditions.Add($"rank = '{rankFilter}'");
+                }
+                if (!string.IsNullOrEmpty(rarityFilter))
+                {
+                    conditions.Add($"rarity = '{rarityFilter}'");
+                }
+
+                if (conditions.Count > 0)
+                {
+                    query += " WHERE " + string.Join(" AND ", conditions);
+                }
+
+                string sortOrder = sortOrderAscending ? "ASC" : "DESC";
+                query += $" ORDER BY {sortBy} {sortOrder}";
+
+                SqlCommand command = new SqlCommand(query, connection);
                 connection.Open();
 
                 using (SqlDataReader reader = command.ExecuteReader())
@@ -69,12 +89,12 @@ namespace Interface
                     {
                         var spell = new Spell
                         {
+                            ID = Convert.ToInt32(reader["ID"]),
                             Name = reader["name"].ToString(),
                             Rarity = reader["rarity"].ToString(),
                             Actions = reader["actions"].ToString(),
                             Rank = Convert.ToInt32(reader["rank"]),
-                            Range = reader["range"].ToString(),
-                            ID = Convert.ToInt32(reader["ID"])
+                            Range = reader["range"].ToString()
                         };
                         spells.Add(spell);
                     }
@@ -83,6 +103,8 @@ namespace Interface
 
             return spells;
         }
+
+
         public static List<Spell> GetAllSpellsFromDatabase()
         {
             return GetSpellsFromDatabase(int.MaxValue);
@@ -610,8 +632,288 @@ namespace Interface
                 return result > 0;
             }
         }
+        public static bool CreateSpell(Spell spell)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                
+                string query = @"insert into Spells values('',
+                            @Name, @Actions, '','', @Rarity, '','',@Rank,'','',@Range)
+                        ";
+
+                
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Name", spell.Name);
+                command.Parameters.AddWithValue("@Rank", spell.Rank);
+                command.Parameters.AddWithValue("@Actions", spell.Actions);
+                command.Parameters.AddWithValue("@Rarity", spell.Rarity);
+                command.Parameters.AddWithValue("@Range", spell.Range);
+                
+
+                connection.Open();
+                int result = command.ExecuteNonQuery();
+                connection.Close();
+
+                return result > 0;
+            }
+        }
+        public static bool CreateFeat(Feat feat)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                string query = @"insert into Feats values(@Name,@Pre,@Summary,@Rarity,@Level)";
+
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Name", feat.name);
+                command.Parameters.AddWithValue("@Summary", feat.summary);
+                command.Parameters.AddWithValue("@pre", feat.prerequisite);
+                command.Parameters.AddWithValue("@Rarity", feat.rarity);
+                command.Parameters.AddWithValue("@Level", feat.level);
+
+
+                connection.Open();
+                int result = command.ExecuteNonQuery();
+                connection.Close();
+
+                return result > 0;
+            }
+        }
+
+        public static bool CreateEquipment(Equipment equipment)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                string query = @"insert into Equipment values(@Name, @ic, @isc, @usage, @bulk, @rarity,@wc, @level, @price)";
+
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Name", equipment.name);
+                command.Parameters.AddWithValue("@ic", equipment.item_category);
+                command.Parameters.AddWithValue("@isc", equipment.item_sub_category);
+                command.Parameters.AddWithValue("@usage", equipment.usage);
+                command.Parameters.AddWithValue("@bulk", equipment.bulk);
+                command.Parameters.AddWithValue("@rarity", equipment.rarity);
+                command.Parameters.AddWithValue("@wc", equipment.weapon_category);
+                command.Parameters.AddWithValue("@Level", equipment.level);
+                command.Parameters.AddWithValue("@price", equipment.price);
+
+                connection.Open();
+                int result = command.ExecuteNonQuery();
+                connection.Close();
+
+                return result > 0;
+            }
+        }
+        public static int CreateAbilityScores(int strength, int wisdom, int intelligence, int charisma, int dexterity, int constitution)
+        {
+            int abilityScoresId = 0;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                
+                string query = @"INSERT INTO Ability_scores 
+                             VALUES (@strength, @dexterity, @constitution, @intelligence,@wisdom,  @charisma);
+                             SELECT SCOPE_IDENTITY();"; 
+
+                SqlCommand command = new SqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@strength", strength);
+                command.Parameters.AddWithValue("@wisdom", wisdom);
+                command.Parameters.AddWithValue("@intelligence", intelligence);
+                command.Parameters.AddWithValue("@charisma", charisma);
+                command.Parameters.AddWithValue("@dexterity", dexterity);
+                command.Parameters.AddWithValue("@constitution", constitution);
+
+                connection.Open();
+
+                abilityScoresId = Convert.ToInt32(command.ExecuteScalar());
+            }
+
+            return abilityScoresId;
+        }
+        public static int CreateCharacter(Character character)
+        {
+            int characterId = 0;
+
+            // Criar a AbilityScores associada ao personagem
+            int abilityScoresId = CreateAbilityScores(character.Str, character.Wis, character.Int, character.Cha, character.Dex, character.Con);
+
+            // Conexão com o banco de dados
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                // Comando SQL para inserir um novo personagem na tabela Character e obter o ID gerado
+                string query = @"INSERT INTO [Character] 
+                         VALUES (@Name, @HP, @Level,@Speed, @ClassId, @AncestryId, @BackgroundId, @AbilityScoresId,@Str_mod, @Dex_mod, @Con_mod,@Int_mod,@Wis_mod,@Cha_mod);
+                         SELECT SCOPE_IDENTITY();"; // Retorna o ID da última linha inserida                       
+                                                                                                                  
+                SqlCommand command = new SqlCommand(query, connection);                                            
+                                                                                                                   
+                // Parâmetros do comando SQL                                                                       
+                command.Parameters.AddWithValue("@Name", character.name);
+                command.Parameters.AddWithValue("@HP", character.HP);
+                command.Parameters.AddWithValue("@Level", character.Level);
+                command.Parameters.AddWithValue("@ClassId", character.Class.ID);
+                command.Parameters.AddWithValue("@AncestryId", character.ancestry.ID);
+                command.Parameters.AddWithValue("@BackgroundId", character.background.ID);
+                command.Parameters.AddWithValue("@AbilityScoresId", abilityScoresId); // Usando o ID da AbilityScores criada
+                command.Parameters.AddWithValue("@Speed", character.speed);
+                command.Parameters.AddWithValue("@Str_mod", character.Str_mod);
+                command.Parameters.AddWithValue("@Dex_mod", character.Dex_mod);
+                command.Parameters.AddWithValue("@Con_mod", character.Con_mod);
+                command.Parameters.AddWithValue("@Int_mod", character.Int_mod);
+                command.Parameters.AddWithValue("@Wis_mod", character.Wis_mod);
+                command.Parameters.AddWithValue("@Cha_mod", character.Cha_mod);
+
+                connection.Open();
+
+                // Executar o comando SQL e obter o ID gerado
+                characterId = Convert.ToInt32(command.ExecuteScalar());
+            }
+
+            return characterId;
+        }
+        public static void AddCharacterEquipment(int characterId, List<Equipment> equipments)
+        {
+            // Conexão com o banco de dados
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Loop pelos equipamentos selecionados
+                foreach (var equipment in equipments)
+                {
+                    // Comando SQL para inserir um registro na tabela de junção Character_tem_equipment
+                    string query = @"INSERT INTO Character_tem_equipment (id_character, id_equipment) 
+                             VALUES (@CharacterId, @EquipmentId)";
+
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    // Parâmetros do comando SQL
+                    command.Parameters.AddWithValue("@CharacterId", characterId);
+                    command.Parameters.AddWithValue("@EquipmentId", equipment.ID);
+
+                    // Executar o comando SQL
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public static void AddCharacterFeats(int characterId, List<Feat> feats)
+        {
+            // Conexão com o banco de dados
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Loop pelos feats selecionados
+                foreach (var feat in feats)
+                {
+                    // Comando SQL para inserir um registro na tabela de junção Character_tem_feats
+                    string query = @"INSERT INTO Character_tem_feats (id_character, id_feats) 
+                             VALUES (@CharacterId, @FeatId)";
+
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    // Parâmetros do comando SQL
+                    command.Parameters.AddWithValue("@CharacterId", characterId);
+                    command.Parameters.AddWithValue("@FeatId", feat.ID);
+
+                    // Executar o comando SQL
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public static void AddCharacterSpells(int characterId, List<Spell> spells)
+        {
+            // Conexão com o banco de dados
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Loop pelos spells selecionados
+                foreach (var spell in spells)
+                {
+                    // Comando SQL para inserir um registro na tabela de junção Character_tem_spells
+                    string query = @"INSERT INTO Character_tem_spells (id_character, id_spells) 
+                             VALUES (@CharacterId, @SpellId)";
+
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    // Parâmetros do comando SQL
+                    command.Parameters.AddWithValue("@CharacterId", characterId);
+                    command.Parameters.AddWithValue("@SpellId", spell.ID);
+
+                    // Executar o comando SQL
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+        public static void AddCharacterLanguages(int characterId, List<string> languages)
+        {
+            // Conexão com o banco de dados
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Loop pelas línguas selecionadas
+                foreach (var language in languages)
+                {
+                    // Consulta SQL para obter o ID da língua pelo nome
+                    string languageQuery = "SELECT ID FROM Language WHERE Designation = @LanguageName";
+
+                    SqlCommand languageCommand = new SqlCommand(languageQuery, connection);
+                    languageCommand.Parameters.AddWithValue("@LanguageName", language);
+
+                    int languageId = Convert.ToInt32(languageCommand.ExecuteScalar());
+
+                    // Comando SQL para inserir um registro na tabela de junção Character_tem_language
+                    string query = @"INSERT INTO Character_tem_language (id_character, id_language) 
+                             VALUES (@CharacterId, @LanguageId)";
+
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    // Parâmetros do comando SQL
+                    command.Parameters.AddWithValue("@CharacterId", characterId);
+                    command.Parameters.AddWithValue("@LanguageId", languageId);
+
+                    // Executar o comando SQL
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+        public static void AddUserCharacter(int userId, int characterId)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = @"INSERT INTO User_tem_character (id_user, id_character) 
+                         VALUES (@UserId, @CharacterId)";
+
+                SqlCommand command = new SqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@UserId", userId);
+                command.Parameters.AddWithValue("@CharacterId", characterId);
+
+                command.ExecuteNonQuery();
+            }
+        }
+
+
+
+
+
 
 
 
     }
+
+
+
+
 }
+

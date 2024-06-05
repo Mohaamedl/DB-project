@@ -79,13 +79,27 @@ namespace Interface
         {
             try
             {
-               Feats = DatabaseHelper.GetAllFeatsFromDatabase();
-               DisplayFeats(Feats);
+                Feats = DatabaseHelper.GetAllFeatsFromDatabase();
+                DisplayFeats(Feats);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error loading all feats from database: " + ex.Message);
             }
+        }
+
+        private void Create_Click(object sender, EventArgs e)
+        {
+            CreateFeatForm createFeat = new CreateFeatForm();
+            createFeat.ShowDialog();
+            if (DialogResult.OK == createFeat.DialogResult)
+            {
+                Feats = DatabaseHelper.GetFeatsFromDatabase();
+                Feats.Add(createFeat.feat);
+                DisplayFeats(Feats);
+
+            }
+            
         }
     }
 }
