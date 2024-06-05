@@ -15,7 +15,7 @@ namespace Interface
     {
         private List<Character> characters;
         private Character selectedCharacter;
-        public User user;
+        public User actual_user;
 
 
         private void HomePage_Load(object sender, EventArgs e)
@@ -27,7 +27,7 @@ namespace Interface
             InitializeComponent();
             LoadCharacters();
             // Armazenar o nome de usuário recebido como parâmetro
-            this.user = user;
+            this.actual_user = user;
 
             // Você pode usar o nome de usuário aqui como quiser, por exemplo, definindo o texto de uma label
             labelPlayerName.Text = $"Player Name: {user.Username}";
@@ -109,7 +109,7 @@ namespace Interface
         }
         private void buttonCreateCharacter_Click(object sender, EventArgs e)
         {
-            using (var createForm = new CreateCharacter())
+            using (var createForm = new CreateCharacter(actual_user))
             {
                 if (createForm.ShowDialog() == DialogResult.OK)
                 {
