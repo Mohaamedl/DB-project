@@ -22,17 +22,17 @@ namespace Interface
             Spells = spells ?? new List<Spell>();
             SelectedSpells = new List<Spell>();
 
-            
+
 
             order.Items.AddRange(new string[] { "Name", "Rank", "Actions", "Rarity", "Range" });
             order.SelectedIndex = 0;
 
-            comboBoxRankFilter.Items.AddRange(new string[] { "All", "1", "2", "3", "4", "5" });
+            comboBoxRankFilter.Items.AddRange(new string[] { "All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
             comboBoxRankFilter.SelectedIndex = 0;
 
             comboBoxRarityFilter.Items.AddRange(new string[] { "All", "Common", "Uncommon", "Rare", "Very Rare" });
             comboBoxRarityFilter.SelectedIndex = 0;
-            
+
             numericUpDownLimit.Value = 20;
 
             DisplaySpells(Spells);
@@ -42,9 +42,9 @@ namespace Interface
 
         private void DisplaySpells(List<Spell> spells)
         {
-            listViewSpells.Items.Clear(); 
+            listViewSpells.Items.Clear();
 
-    
+
             if (listViewSpells.Columns.Count == 0)
             {
                 listViewSpells.Columns.Add("Name", 150);
@@ -52,7 +52,7 @@ namespace Interface
                 listViewSpells.Columns.Add("Action", 150);
                 listViewSpells.Columns.Add("Rarity", 250);
                 listViewSpells.Columns.Add("Range", 50);
-                listViewSpells.Columns.Add("ID", 50); 
+                listViewSpells.Columns.Add("ID", 50);
             }
 
             foreach (var spell in spells)
@@ -80,7 +80,7 @@ namespace Interface
             string rarityFilter = comboBoxRarityFilter?.SelectedItem?.ToString() != "All" ? comboBoxRarityFilter?.SelectedItem?.ToString() : null;
 
             Spells = DatabaseHelper.GetSpellsFromDatabase(limit, "name", searchText, rankFilter, rarityFilter, sortBy, sortOrderAscending);
-            
+
             DisplaySpells(Spells);
         }
 
@@ -232,6 +232,11 @@ namespace Interface
         }
 
         private void SpellSelectionForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void serach_Click(object sender, EventArgs e)
         {
 
         }

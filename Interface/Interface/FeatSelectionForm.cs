@@ -25,8 +25,18 @@ namespace Interface
             Feats = feats ?? new List<Feat>();
             SelectedFeats = new List<Feat>();
 
+            order.Items.AddRange(new string[] { "Name", "Rarity", "Level"});
+            order.SelectedIndex = 0;
 
+            comboBoxLevelFilter.Items.AddRange(new string[] { "All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" });
+            comboBoxLevelFilter.SelectedIndex = 0;
 
+            comboBoxRarityFilter.Items.AddRange(new string[] { "All", "Common", "Uncommon", "Rare", "Very Rare" });
+            comboBoxRarityFilter.SelectedIndex = 0;
+
+            numericUpDownLimit.Value = 20;
+
+            DisplayFeats(Feats);
         }
 
         private void FeatSelectionForm_Load(object sender, EventArgs e)
@@ -99,7 +109,37 @@ namespace Interface
                 DisplayFeats(Feats);
 
             }
-            
+
+        }
+
+        private void order_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxRankFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sortOrder_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxRarityFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDownLimit_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

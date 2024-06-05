@@ -34,7 +34,7 @@
             Delete = new Button();
             button1 = new Button();
             textBoxSearch = new TextBox();
-            serach = new Label();
+            search = new Label();
             orderby = new Label();
             order = new ComboBox();
             Create = new Button();
@@ -106,15 +106,16 @@
             textBoxSearch.TabIndex = 35;
             textBoxSearch.TextChanged += textBoxSearch_TextChanged;
             // 
-            // serach
+            // search
             // 
-            serach.AutoSize = true;
-            serach.Font = new Font("Segoe UI", 12F);
-            serach.Location = new Point(537, 9);
-            serach.Name = "serach";
-            serach.Size = new Size(57, 21);
-            serach.TabIndex = 34;
-            serach.Text = "Serach";
+            search.AutoSize = true;
+            search.Font = new Font("Segoe UI", 12F);
+            search.Location = new Point(537, 9);
+            search.Name = "search";
+            search.Size = new Size(57, 21);
+            search.TabIndex = 34;
+            search.Text = "Search";
+            search.Click += serach_Click;
             // 
             // orderby
             // 
@@ -212,7 +213,7 @@
             Controls.Add(sortOrder);
             Controls.Add(Create);
             Controls.Add(textBoxSearch);
-            Controls.Add(serach);
+            Controls.Add(search);
             Controls.Add(orderby);
             Controls.Add(order);
             Controls.Add(Delete);
@@ -237,7 +238,7 @@
         private Button Delete;
         private Button button1;
         private TextBox textBoxSearch;
-        private Label serach;
+        private Label search;
         private Label orderby;
         private ComboBox order;
         private Button Create;
