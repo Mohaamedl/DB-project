@@ -279,7 +279,7 @@ CREATE TABLE Class_tem_savingThrow (
     PRIMARY KEY (id_class, id_savingThrow)
 );
 
-CREATE TABLE Equipment_tem_traits ( -- falta
+CREATE TABLE Equipment_tem_traits ( -- preenchida
     id_equipment INT NOT NULL REFERENCES Equipment(ID)  on delete cascade,
     id_trait INT NOT NULL REFERENCES Traits(ID)  on delete cascade,
     PRIMARY KEY (id_equipment, id_trait)
@@ -291,7 +291,7 @@ CREATE TABLE Feats_tem_background ( -- preenchida
     PRIMARY KEY (id_feat, id_background)
 );
 
-CREATE TABLE Feats_tem_traits ( -- falta
+CREATE TABLE Feats_tem_traits ( -- preenchida
     id_feat INT NOT NULL REFERENCES Feats(ID)  on delete cascade,
     id_trait INT NOT NULL REFERENCES Traits(ID)  on delete cascade,
     PRIMARY KEY (id_feat, id_trait)
@@ -303,13 +303,13 @@ CREATE TABLE Language_tem_ancestry ( -- preenchida
     PRIMARY KEY (id_language, id_ancestry)
 );
 
-CREATE TABLE Spells_tem_traits ( -- falta
+CREATE TABLE Spells_tem_traits ( -- preenchida
     id_spells INT NOT NULL REFERENCES Spells(ID)  on delete cascade,
     id_trait INT NOT NULL REFERENCES Traits(ID)  on delete cascade,
     PRIMARY KEY (id_spells, id_trait)
 );
 
-CREATE TABLE Spells_tem_tradition ( -- falta
+CREATE TABLE Spells_tem_tradition ( -- preenchida
     id_spells INT NOT NULL REFERENCES Spells(ID)  on delete cascade,
     id_tradition INT NOT NULL REFERENCES Tradition(ID)  on delete cascade,
     PRIMARY KEY (id_spells, id_tradition)
