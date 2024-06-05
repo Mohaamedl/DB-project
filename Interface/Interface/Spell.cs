@@ -18,13 +18,13 @@ namespace Interface
         public string Trigger { get; set; }
         public string Area { get; set; }
         public int Rank { get; set; }
-        public int Heighten { get; set; }
+        public string Heighten { get; set; }
         public string Duration { get; set; }
         public string Range { get; set; }
         public Spell() { }
 
         // Construtor com parâmetros para inicializar todas as propriedades
-        public Spell(int id, string spellType, string name, string actions, string defense, string target, string rarity, string trigger, string area, int rank, int heighten, string duration, string range)
+        public Spell(int id, string spellType, string name, string actions, string defense, string target, string rarity, string trigger, string area, int rank, string heighten, string duration, string range)
         {
             ID = id;
             SpellType = spellType;

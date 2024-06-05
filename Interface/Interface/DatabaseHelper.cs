@@ -50,18 +50,37 @@ namespace Interface
             return GetFeatsFromDatabase(int.MaxValue);
         }
 
-        public static List<Spell> GetSpellsFromDatabase(int limit = 20, string columnName = null, string searchString = null)
+        public static List<Spell> GetSpellsFromDatabase(int limit = 20, string columnName = null, string searchString = null, string rankFilter = null, string rarityFilter = null, string sortBy = "name", bool sortOrderAscending = true)
         {
             var spells = new List<Spell>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = $"SELECT TOP {limit} ID,name, rarity, actions, rank, range FROM Spells ORDER BY name";
+                string query = $"SELECT TOP {limit} ID, name, rarity, actions, rank, range FROM Spells";
+
+                var conditions = new List<string>();
                 if (!string.IsNullOrEmpty(columnName) && !string.IsNullOrEmpty(searchString))
                 {
-                    query += $" WHERE {columnName} LIKE '%{searchString}%'";
+                    conditions.Add($"{columnName} LIKE '%{searchString}%'");
                 }
-                SqlCommand command = new(query, connection);
+                if (!string.IsNullOrEmpty(rankFilter))
+                {
+                    conditions.Add($"rank = '{rankFilter}'");
+                }
+                if (!string.IsNullOrEmpty(rarityFilter))
+                {
+                    conditions.Add($"rarity = '{rarityFilter}'");
+                }
+
+                if (conditions.Count > 0)
+                {
+                    query += " WHERE " + string.Join(" AND ", conditions);
+                }
+
+                string sortOrder = sortOrderAscending ? "ASC" : "DESC";
+                query += $" ORDER BY {sortBy} {sortOrder}";
+
+                SqlCommand command = new SqlCommand(query, connection);
                 connection.Open();
 
                 using (SqlDataReader reader = command.ExecuteReader())
@@ -70,12 +89,12 @@ namespace Interface
                     {
                         var spell = new Spell
                         {
+                            ID = Convert.ToInt32(reader["ID"]),
                             Name = reader["name"].ToString(),
                             Rarity = reader["rarity"].ToString(),
                             Actions = reader["actions"].ToString(),
                             Rank = Convert.ToInt32(reader["rank"]),
-                            Range = reader["range"].ToString(),
-                            ID = Convert.ToInt32(reader["ID"])
+                            Range = reader["range"].ToString()
                         };
                         spells.Add(spell);
                     }
@@ -84,6 +103,8 @@ namespace Interface
 
             return spells;
         }
+
+
         public static List<Spell> GetAllSpellsFromDatabase()
         {
             return GetSpellsFromDatabase(int.MaxValue);
@@ -686,9 +707,14 @@ namespace Interface
                 return result > 0;
             }
         }
+        
+
+
+
 
 
     }
+
 
 
 

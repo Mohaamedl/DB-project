@@ -14,7 +14,7 @@ namespace Interface
     {
         private List<Spell> Spells { get; set; }
         public List<Spell> SelectedSpells { get; set; }
-
+        private bool sortOrderAscending = true;
         public SpellSelectionForm(List<Spell> spells)
         {
 
@@ -22,21 +22,38 @@ namespace Interface
             Spells = spells ?? new List<Spell>();
             SelectedSpells = new List<Spell>();
 
+            
 
+            order.Items.AddRange(new string[] { "Name", "Rank", "Actions", "Rarity", "Range" });
+            order.SelectedIndex = 0;
 
-        }
+            comboBoxRankFilter.Items.AddRange(new string[] { "All", "1", "2", "3", "4", "5" });
+            comboBoxRankFilter.SelectedIndex = 0;
 
-        private void SpellSelectionForm_Load(object sender, EventArgs e)
-        {
+            comboBoxRarityFilter.Items.AddRange(new string[] { "All", "Common", "Uncommon", "Rare", "Very Rare" });
+            comboBoxRarityFilter.SelectedIndex = 0;
+            
+            numericUpDownLimit.Value = 20;
+
             DisplaySpells(Spells);
+
         }
+
+
         private void DisplaySpells(List<Spell> spells)
         {
-            listViewSpells.Columns.Add("Name", 150);
-            listViewSpells.Columns.Add("Rank", 100);
-            listViewSpells.Columns.Add("Action", 150);
-            listViewSpells.Columns.Add("Rarity", 250);
-            listViewSpells.Columns.Add("Range", 50);
+            listViewSpells.Items.Clear(); 
+
+    
+            if (listViewSpells.Columns.Count == 0)
+            {
+                listViewSpells.Columns.Add("Name", 150);
+                listViewSpells.Columns.Add("Rank", 100);
+                listViewSpells.Columns.Add("Action", 150);
+                listViewSpells.Columns.Add("Rarity", 250);
+                listViewSpells.Columns.Add("Range", 50);
+                listViewSpells.Columns.Add("ID", 50); 
+            }
 
             foreach (var spell in spells)
             {
@@ -52,6 +69,21 @@ namespace Interface
                 listViewSpells.Items.Add(item);
             }
         }
+
+        private void LoadSpells()
+        {
+            string searchText = textBoxSearch?.Text ?? string.Empty;
+            string sortBy = order?.SelectedItem?.ToString() ?? "name";
+            int limit = numericUpDownLimit != null ? (int)numericUpDownLimit.Value : 20;
+
+            string rankFilter = comboBoxRankFilter?.SelectedItem?.ToString() != "All" ? comboBoxRankFilter?.SelectedItem?.ToString() : null;
+            string rarityFilter = comboBoxRarityFilter?.SelectedItem?.ToString() != "All" ? comboBoxRarityFilter?.SelectedItem?.ToString() : null;
+
+            Spells = DatabaseHelper.GetSpellsFromDatabase(limit, "name", searchText, rankFilter, rarityFilter, sortBy, sortOrderAscending);
+            
+            DisplaySpells(Spells);
+        }
+
 
         private void Select_Click(object sender, EventArgs e)
         {
@@ -72,6 +104,9 @@ namespace Interface
             try
             {
                 Spells = DatabaseHelper.GetAllSpellsFromDatabase();
+                numericUpDownLimit.Maximum = Spells.Count;
+                numericUpDownLimit.Value = Spells.Count;
+
                 DisplaySpells(Spells);
             }
             catch (Exception ex)
@@ -109,7 +144,6 @@ namespace Interface
                     {
                         if (editForm.ShowDialog() == DialogResult.OK)
                         {
-                            // Atualizar a ListView com os novos valores
                             selectedItem.SubItems[0].Text = spell.Name;
                             selectedItem.SubItems[1].Text = spell.Rank.ToString();
                             selectedItem.SubItems[2].Text = spell.Actions;
@@ -141,7 +175,6 @@ namespace Interface
                 {
                     MessageBox.Show("Spells deleted successfully.");
 
-                    // Remover os itens da ListView
                     foreach (ListViewItem selectedItem in listViewSpells.CheckedItems)
                     {
                         listViewSpells.Items.Remove(selectedItem);
@@ -164,6 +197,43 @@ namespace Interface
             createSepll.ShowDialog();
             Spells = DatabaseHelper.GetSpellsFromDatabase();
             DisplaySpells(Spells);
+        }
+
+        private void order_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadSpells();
+        }
+
+        private void sortOrder_Click(object sender, EventArgs e)
+        {
+            sortOrderAscending = !sortOrderAscending;
+            sortOrder.Text = sortOrderAscending ? "Asc" : "Desc";
+            LoadSpells();
+        }
+
+        private void comboBoxRankFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadSpells();
+        }
+
+        private void comboBoxRarityFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadSpells();
+        }
+
+        private void numericUpDownLimit_ValueChanged(object sender, EventArgs e)
+        {
+            LoadSpells();
+        }
+
+        private void textBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+            LoadSpells();
+        }
+
+        private void SpellSelectionForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
